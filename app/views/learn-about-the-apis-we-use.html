@@ -1,0 +1,203 @@
+{% extends "layouts/main.html" %}
+
+show_subnav: true
+
+
+{% block header %}
+
+
+
+  <!-- Blank header with no service name for the start page -->
+
+
+
+  {{ govukHeader() }}
+
+
+
+{% endblock %}
+
+
+
+{% block main %}
+
+
+
+  <div class="govuk-width-container {{ containerClasses }}">
+
+
+
+    <div class="govuk-phase-banner">
+
+
+
+      <p class="govuk-phase-banner__content">
+
+
+
+        <strong class="govuk-tag govuk-tag--pink">
+
+
+
+          Prototype
+
+
+
+        </strong>
+
+
+
+        <span class="govuk-phase-banner__text">
+
+
+
+          This is not a full service. It is not production code and you might experience problems.
+
+
+
+        </span>
+
+
+
+      </p>
+
+
+
+    </div>
+
+
+
+    <main class="govuk-main-wrapper {{ mainClasses }}" id="main-content" role="main" {% if mainLang %} lang="{{ mainLang }}" {% endif %}>
+
+
+      <div class="govuk-grid-row">
+
+
+
+        <div class="govuk-grid-column-one-third">
+
+
+
+
+          <p class="govuk-body govuk-!-font-size-19" style="color:#505a5f">Before you start</p>
+          <ul class="govuk-list">
+            <li>
+              <a class="govuk-link" href="/what-to-expect-from-the-developer-pack">What to expect from the developer pack</a>
+            </li>
+            <li>
+              <a class="govuk-link" href="/introduction-to-business-gateway">Introduction to Business Gateway</a>
+            </li>
+            <li>
+              <a class="govuk-link" href="/terms-of-use">Terms of use</a>
+            </li>
+          </ul>
+          <br>
+
+          <p class="govuk-body govuk-!-font-size-19" style="color:#505a5f">Explore APIs</p>
+          <ul class="govuk-list">
+            <li>
+              <a class="govuk-link  govuk-!-font-weight-bold" href="/learn-about-the-apis-we-use">Learn about the APIs we use</a>
+            </li>
+            <li>
+              <a class="govuk-link" href="/find-a-service-api">Find a service API</a>
+            </li>
+            <li>
+              <a class="govuk-link" href="/a-guide-to-testing">A guide to testing</a>
+            </li>
+          </ul>
+          <br>
+
+          <p class="govuk-body govuk-!-font-size-19" style="color:#505a5f">Support</p>
+          <ul class="govuk-list">
+            <li>
+              <a class="govuk-link" href="/contact-us">Contact us</a>
+            </li>
+          </ul>
+          <br>
+
+
+
+
+
+
+
+        </div>
+
+
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <span class="govuk-caption-xl">Explore APIs</span>
+          <h1 class="govuk-heading-xl">Learn about the APIs we use</h1>
+
+
+          <div class="govuk-grid-row">
+
+            <p class="govuk-body govuk-!-font-weight-regular govuk-!-margin-left-3">Business Gateway provides two core API options for developers – REST and SOAP. Using one or both APIs allows developers to integrate different HM Land Registry (HMLR) service with their own platforms.</p>
+
+            <p class="govuk-body govuk-!-font-weight-regular govuk-!-margin-left-3">You can learn more about these two APIs and how to integrate them below. For a list of service APIs, visit our <a class="govuk-link" href="/find-a-service-api">Find a service API</a>. For a list of HM Land Registry terms and their definitions, visit <a class="govuk-link" href="/glossary">our glossary</a>.</p>
+
+            <div class="govuk-accordion govuk-!-margin-left-3" data-module="govuk-accordion" id="accordion-default">
+  <div class="govuk-accordion__section">
+    <div class="govuk-accordion__section-header">
+      <h2 class="govuk-accordion__section-heading">
+        <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+          REST API
+        </span>
+      </h2>
+    </div>
+    <div id="accordion-default-content-1" class="govuk-accordion__section-content">
+      <p class="govuk-body govuk-!-font-weight-bold">Rate limiting</p>
+      <p class="govuk-body">HMLR may need to restrict the usage of an API to protect it from excessive use. These rate limits are subject to change based on expected loads and uptake of the service.</p>
+      <p class="govuk-body">If the rate limit is exceeded, you’ll get a HTTP 429 response (Too Many Requests). HTTP headers will be provided in the response to inform you when the next request may be made.</p>
+      <p class="govuk-body">We currently promote a sliding window rate limiting policy, this ensures an initial burst of requests can be sent and slowly replenished over time. Where possible, spreading requests out over time is highly advised.</p>
+      <p class="govuk-body">If you are concerned with a rate limit, you can contact us at <a class="govuk-link" href="/">channelpartners@landregistry.gov.uk</a> and we can discuss whether increasing the rate limit is appropriate.</p>
+
+      <p class="govuk-body govuk-!-font-weight-bold">Error registry</p>
+      <p class="govuk-body">If our systems detect a problem with requests to our REST services, an error registry will capture these problems as headings and pages with primers on how to solve them. We will share a link to these problem pages from within the JSON response.</p>
+
+      <p class="govuk-body govuk-!-font-weight-bold">HTTP 500 Errors</p>
+      <p class="govuk-body">Although measures have been taken to ensure the API is robust and highly available, there may be cases where HMLR systems cannot respond to requests correctly. In such cases, the API will respond with a HTTP 500 error (Internal Server Error), meaning we could not process the request due to an issue within HMLR. This error will not provide much detail about the error externally but will alert a member of the HMLR support team to investigate the issue.</p>
+      <p class="govuk-body">If you receive a 500 error from the API, you should wait a short period of time and then retry the request. If, after a few retries, you are still receiving the same error, please contact the support team.</p>
+      <p class="govuk-body">Note that a 500 error does not indicate if the request correct or incorrect, only that there was an issue internal to the API, and the request should be retried. Visit <a class="govuk-link" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">the Mozilla web documentation (opens in new tab)</a> for more information about HTTP response codes.</p>
+
+  </div>
+  </div>
+  <div class="govuk-accordion__section">
+    <div class="govuk-accordion__section-header">
+      <h2 class="govuk-accordion__section-heading">
+        <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
+          SOAP API
+        </span>
+      </h2>
+    </div>
+    <div id="accordion-default-content-2" class="govuk-accordion__section-content">
+      <p class="govuk-body govuk-!-font-weight-bold">Message IDs</p>
+      <p class="govuk-body">Web service requests over HTTP/HTTPS internet protocols are not truly reliable and are known for losing messages between request and response.</p>
+      <p class="govuk-body">To ensure reliable messaging, Business Gateway will rely on your system to produce a unique message ID that is sent with every request. The message ID is used to retrieve a response back from Business Gateway in the case where the original response has been lost (possibly due to network problems).</p>
+      <p class="govuk-body">The unique combination of message ID, user ID and message type will be used by Business Gateway software to ensure that every request is unique in the system. If two requests are made with the same message ID from different CMS systems, although the message ID is the same the user ID will be different. This forms a unique key, and the message is uniquely identified in the system.</p>
+
+<p class="govuk-body govuk-!-font-weight-bold">Outstanding requests</p>
+<p class="govuk-body">We use an outstanding requests service which allows you to obtain a list of available responses from our SOAP services. Each service offered has a corresponding poll request service, that can then be used to retrieve the full response.</p>
+
+  </div>
+  </div>
+</div>
+
+                      <div class="govuk-grid-column-one-third"></div>
+
+
+
+                    </div>
+
+
+
+                  </main>
+
+
+
+                </div>
+
+
+
+              {% endblock %}

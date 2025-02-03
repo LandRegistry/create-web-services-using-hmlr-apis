@@ -1,0 +1,175 @@
+{% extends "layouts/main.html" %}
+
+show_subnav: true
+
+
+{% block header %}
+
+
+
+  <!-- Blank header with no service name for the start page -->
+
+
+
+  {{ govukHeader() }}
+
+
+
+{% endblock %}
+
+
+
+{% block main %}
+
+
+
+  <div class="govuk-width-container {{ containerClasses }}">
+
+
+
+    <div class="govuk-phase-banner">
+
+
+
+      <p class="govuk-phase-banner__content">
+
+
+
+        <strong class="govuk-tag govuk-tag--pink">
+
+
+
+          Prototype
+
+
+
+        </strong>
+
+
+
+        <span class="govuk-phase-banner__text">
+
+
+
+          This is not a full service. It is not production code and you might experience problems.
+
+
+
+        </span>
+
+
+
+      </p>
+
+
+
+    </div>
+
+
+
+    <main class="govuk-main-wrapper {{ mainClasses }}" id="main-content" role="main" {% if mainLang %} lang="{{ mainLang }}" {% endif %}>
+
+
+      <div class="govuk-grid-row">
+
+
+
+        <div class="govuk-grid-column-one-third">
+
+
+
+
+          <p class="govuk-body govuk-!-font-size-19" style="color:#505a5f">Before you start</p>
+          <ul class="govuk-list">
+            <li>
+              <a class="govuk-link govuk-!-font-weight-bold" href="/what-to-expect-from-the-developer-pack">What to expect from the developer pack</a>
+            </li>
+            <li>
+              <a class="govuk-link" href="/introduction-to-business-gateway">Introduction to Business Gateway</a>
+            </li>
+            <li>
+              <a class="govuk-link" href="/terms-of-use">Terms of use</a>
+            </li>
+          </ul>
+          <br>
+
+          <p class="govuk-body govuk-!-font-size-19" style="color:#505a5f">Explore APIs</p>
+          <ul class="govuk-list">
+            <li>
+              <a class="govuk-link" href="/learn-about-the-apis-we-use">Learn about the APIs we use</a>
+            </li>
+            <li>
+              <a class="govuk-link" href="/find-a-service-api">Find a service API</a>
+            </li>
+            <li>
+              <a class="govuk-link" href="/a-guide-to-testing">A guide to testing</a>
+            </li>
+          </ul>
+          <br>
+
+          <p class="govuk-body govuk-!-font-size-19" style="color:#505a5f">Support</p>
+          <ul class="govuk-list">
+            <li>
+              <a class="govuk-link" href="/contact-us">Contact us</a>
+            </li>
+          </ul>
+          <br>
+
+
+
+
+
+
+
+        </div>
+
+
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <span class="govuk-caption-xl">Before you start</span>
+          <h1 class="govuk-heading-xl">What to expect from the developer pack</h1>
+
+
+          <div class="govuk-grid-row">
+
+            <p class="govuk-body govuk-!-font-weight-regular govuk-!-margin-left-3">The Business Gateway developer pack provides a set of tools, documentation and examples for developers who create software applications for customers. Although the pack is designed to support developers, it may also help others looking to understand how Business Gateway works.</p>
+            <p class="govuk-body govuk-!-font-weight-regular govuk-!-margin-left-3">In this pack, you'll find:
+
+<ul class="govuk-list govuk-list--bullet govuk-!-margin-left-3">
+  <li>an introduction to Business Gateway</li>
+  <li>our terms of use policies</li>
+  <li>a list of the APIs we use and how to access them</li>
+  <li>a list of available API services to integrate</li>
+  <li>a guide to testing what you’ve created</li>
+  <li>additional support and contact information</li>
+</ul>
+
+<p class="govuk-body govuk-!-font-weight-regular govuk-!-margin-left-3">If you are new to Business Gateway and would like an overview of how it works, you may find it useful to explore the Before you start section first.</p>
+<p class="govuk-body govuk-!-font-weight-regular govuk-!-margin-left-3">If you are looking for specific service and API information, you may find it useful to jump straight to the Explore APIs section.</p>
+<p class="govuk-body govuk-!-font-weight-regular govuk-!-margin-left-3">Any updates to the developer pack will appear in the <a class="govuk-link" href="/index">What’s new section</a> on the home page.</p>
+
+<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+            <p class="govuk-body govuk-!-font-weight-regular govuk-!-margin-left-3">We sometimes use technical terms to describe the work we do at HM Land Registry. For a list of commonly used terms and their definitions, visit <a class="govuk-link" href="/glossary">our glossary</a>.</p>
+
+
+</div>
+
+                      <div class="govuk-grid-column-one-third"></div>
+
+
+
+                    </div>
+
+
+
+                  </main>
+
+
+
+                </div>
+
+
+
+              {% endblock %}
