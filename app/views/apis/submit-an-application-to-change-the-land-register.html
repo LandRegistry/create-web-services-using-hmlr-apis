@@ -1,0 +1,111 @@
+{% extends "layouts/main.html" %}
+
+show_subnav: true
+
+
+{% block header %}
+
+
+  <header class="govuk-header govuk-header--hmlr " role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-width-container">
+    <div class="govuk-header__content govuk-header__content--hmlr">
+      <a href="#" class="govuk-header__link govuk-header__service-name">
+        HM Land Registry Developer Pack
+      </a>
+    </div>
+  </div>
+</header>
+
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Submit an application to change the Land Register service API
+      </h1>
+
+<h2 class="govuk-heading-m">Overview</h2>
+      <p>
+      The new Submit an application to change the Land Register service API will help to lodge applications with HMLR to update the register or create a new lease or transfer of part. This service can be integrated using the <a href="/learn-about-the-apis-we-use">REST core API</a>.</p>
+      <p>
+      The new service will be faster and more responsive than before. It’ll help identify errors prior to acceptance of an application, resulting in fewer requisitions and an improved experience for our customers. </p>
+
+      <p class="govuk-body">The new service API will:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>collect and validate more data than the current version</li>
+        <li>increase the number of automated checks on application data prior to submission</li>
+        <li>automatically check the format and structure of data</li>
+        <li>validate information added to the application against information already on the register</li>
+        <li>in future, check, compare and validate the data you provide, and the information contained in the attached documents</li>
+      </ul>
+
+
+        <p class="govuk-body">In return, you'll benefit from:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>increased output and data quality: with built-in checks on all application types, including charge or transfer transactions, you’ll face fewer requisitions</li>
+          <li>consistent results across services: you’ll get parity of outcomes across our digital services</li>
+          <li>greater data confidence and automation: more accurate data will provide opportunities to streamline our processes and improve the service for customers</li>
+          <li>error prevention: the system will help you catch and fix administrative errors before submission</li>
+          <li>improved attachment process: attaching and classifying deeds will be quicker and more straightforward</li>
+          <li>upgraded technology: you’ll benefit from a faster, more responsive platform</li>
+        </ul>
+
+<p> Using the new service API will mean that applications are only accepted onto the day list when the data provided is both valid and correct. Applications with validation errors will not be accepted. This will significantly reduce the number of avoidable administrative requisitions, identify common avoidable mistakes such as name discrepancies or missing details and thus increase our ability to automate applications.</p>
+
+<p class="govuk-body">In return, you'll benefit from:</p>
+<ul class="govuk-list govuk-list--bullet">
+<li>Document uploads before application submission: you will now need to upload documents before submitting an application</li>
+<li>JSON format: instead of using XML, the request bodies for the new APIs will use the simpler, more efficient JSON format</li>
+<li>Asynchronous application submission: when you submit an application, a successful response means the request has been received. Acceptance and prioritisation will occur after validation has been applied</li>
+<li>Renaming applications to transactions: applications from the SOAP request are now referred to as Transactions</li>
+<li>New fields: transaction specific data has been included, initially for transfer and charge transactions including charge values and information on joint tenancies</li>
+<li>Fees will be automatically calculated: this enhancement will come in a later version</li>
+<li>Removing notes: the Notes section is no longer included but additional data fields have been added to collect the data commonly found in this field. These include:</li>
+<ul class="govuk-list govuk-list--bullet govuk-!-margin-left-3">
+  <li>ROE-ID (Registration of Overseas Entity ID) - this should be attached as a document of type <code style="color: #a71d5d">EVIDENCE</code> for the relevant transaction</li>
+  <li>Company charges certificate – a new boolean field, <code style="color: #a71d5d">conveyancers_certificate</code>, has been added to capture this information. This value must be provided when a <code style="color: #a71d5d">CERT_REG_CH</code> document is uploaded</li>
+  <li>name variation – names are now required to be an exact match</li>
+  <li>cover letter – should now be uploaded as a document of type <code style="color: #a71d5d">EVIDENCE</code> with the relevant transaction</li>
+  <li>request to merge or close leasehold titles – the appropriate transaction type should now be selected for this purpose</li>
+</ul>
+
+<p class="govuk-body">The new service will have endpoints to support:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li><a href="/apis/send-a-document">Send a document API</a> - generate an upload URL and request to upload the document</li>
+
+<li><a href="/apis/submit-an-application">Submit an application API</a> -  request to submit an application to HM Land Registry</li>
+
+<li><a href="/apis/application-information">Application information API</a> - fetch the latest information about a specific application</li>
+
+<li><a href="/apis/notifications">Notifications API</a> - collect notifications about applications that have been submitted</li>
+</ul>
+
+<h3 class="govuk-heading-m">API specification</h3>
+
+<ul class="govuk-list">
+  <li>
+    <a class="govuk-link" href="https://landregistry.github.io/bgtechdoc/vcad/v0_2/vcad-spec.html">HTML specification</a>
+  </li>
+  <li>
+    <a class="govuk-link" href="https://landregistry.github.io/bgtechdoc/vcad/v0_2/openapi.json">JSON specification</a>
+  </li>
+</ul>
+
+<h3 class="govuk-heading-m">How the service API works</h3>
+
+<img src="/assets/img/submit-an-application-to-change-the-Land-Register-API.png" alt="A diagram showing the submit an application to change the Land Register API">
+
+    </div>
+  </div>
+
+{% endblock %}
