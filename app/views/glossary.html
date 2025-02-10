@@ -13,14 +13,13 @@
   <div class="govuk-header__container govuk-width-container">
     <div class="govuk-header__content govuk-header__content--hmlr">
       <a href="#" class="govuk-header__link govuk-header__service-name">
-        HM Land Registry Developer Pack
+        HM Land Registry developer pack
       </a>
     </div>
   </div>
 </header>
 
 {% endblock %}
-
 
 
 {% block main %}
@@ -73,7 +72,12 @@
 
     <main class="govuk-main-wrapper {{ mainClasses }}" id="main-content" role="main" {% if mainLang %} lang="{{ mainLang }}" {% endif %}>
 
-<a href="#" class="govuk-back-link">Back</a>
+      {% block beforeContent %}
+        {{ govukBackLink({
+          text: "Back",
+          href: "javascript:window.history.back()"
+        }) }}
+      {% endblock %}
 
       <div class="govuk-grid-row">
         <div class="govuk-grid-full-width">
@@ -212,7 +216,7 @@
         <div class="govuk-grid-column-two-thirds">
           <div class="govuk-grid-row">
 
-            <p class="govuk-body govuk-!-font-weight-regular">This glossary provides a list of commonly used HM Land Registry terms and their definitions. This will help you to understand how they relate to terms used in the business, and in the relevant legislation.</p>
+            <p class="govuk-body govuk-!-font-weight-regular">This glossary provides a list of commonly used HMLR terms and their definitions. This will help you to understand how they relate to terms used in the business, and in the relevant legislation.</p>
 <div>
   <h2 class="govuk-heading-m">A</h2>
   <h3 class="govuk-heading-s">Absolute Title</h3>
@@ -262,7 +266,7 @@
 <div>
   <h2 class="govuk-heading-m">F</h2>
   <h3 class="govuk-heading-s">Field Plan</h3>
-  <p class="govuk-body">A Field Plan is the official plan filed at the HM Land Registry along with the Register of Title. The Filed Plan represents the extent of the boundaries of the property.</p>
+  <p class="govuk-body">A Field Plan is the official plan filed at HMLR along with the Register of Title. The Filed Plan represents the extent of the boundaries of the property.</p>
 </div>
 <div>
   <h2 class="govuk-heading-m">H</h2>
@@ -272,12 +276,12 @@
 <div>
   <h2 class="govuk-heading-m">I</h2>
   <h3 class="govuk-heading-s">Index Map Search</h3>
-  <p class="govuk-body">An Index Map Search is a HM Land Registry application that will reveal if the property is registered or not, revealing the title number if registered.</p>
+  <p class="govuk-body">An Index Map Search is a HMLR application that will reveal if the property is registered or not, revealing the title number if registered.</p>
 </div>
 <div>
   <h2 class="govuk-heading-m">J</h2>
   <h3 class="govuk-heading-s">Joint Tenants</h3>
-  <p class="govuk-body">Joint tenants hold the property on trust for themselves. This means that in the event of the death of one of the joint owners the deceased parties share would automatically revert to the surviving owner. The HM Land Registry would only require a certified copy of the Death Certificate of the deceased owner to update the register.</p>
+  <p class="govuk-body">Joint tenants hold the property on trust for themselves. This means that in the event of the death of one of the joint owners the deceased parties share would automatically revert to the surviving owner. HMLR would only require a certified copy of the Death Certificate of the deceased owner to update the register.</p>
 </div>
 <div>
   <h2 class="govuk-heading-m">L</h2>
