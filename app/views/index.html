@@ -1,20 +1,147 @@
 {% extends "layouts/main.html" %}
 
-{% set pageName="Home" %}
 
-{% block content %}
+
+{% block header %}
+
+
+
+<header class="govuk-header govuk-header--hmlr " role="banner" data-module="govuk-header">
+<div class="govuk-header__container govuk-width-container">
+  <div class="govuk-header__content govuk-header__content--hmlr">
+    <a href="/homepage" class="govuk-header__link govuk-header__service-name">
+      HM Land Registry developer pack
+    </a>
+  </div>
+</div>
+</header>
+
+
+{% endblock %}
+
+
+
+{% block main %}
+
+
+
+<div class="govuk-width-container {{ containerClasses }}">
+
+
+
+  <div class="govuk-phase-banner">
+
+
+
+    <p class="govuk-phase-banner__content">
+
+
+
+      <strong class="govuk-tag govuk-tag--pink">
+
+
+
+        Prototype
+
+
+
+      </strong>
+
+
+
+      <span class="govuk-phase-banner__text">
+
+
+
+        This is not a full service. It is not production code and you might experience problems.
+
+
+
+      </span>
+
+
+
+    </p>
+
+
+
+  </div>
+
+
+
+  <main class="govuk-main-wrapper {{ mainClasses }}" id="main-content" role="main" {% if mainLang %} lang="{{ mainLang }}" {% endif %}>
+
+                {# <div style="background-color: #f3f2f1 ; padding: 10px;;">
+                  <h1 class="govuk-heading-xl">
+                    Create web services using Business Gateway APIs </h1>
+                </div> #}
+
+<div class="fullWidth">
+
+<div class="app-width-container">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full-from-desktop">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl app-masthead__title">Create web services using Business Gateway APIs prototype</h1>
+      <p class="app-masthead__description govuk-body">A prototype designed for user research purposes to show a proposed journey for HM Land Registry's developer pack. The developer pack has been created for users to explore APIs, review documentation and check endpoints.</p>
+
+    </div>
+  </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {% include "govuk-prototype-kit/includes/homepage-top.njk" %}
+    <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+      <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+          <h2 class="govuk-accordion__section-heading">
+            <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+              Iteration 1 (February 2025)
+            </span>
+          </h2>
+        </div>
+        <div id="accordion-default-content-1" class="govuk-accordion__section-content">
+          <section>
+              <h2 class="govuk-heading-m">
+                Overview
+              </h2>
+              <p class="govuk-body">
+                This prototype demonstrates the new developer pack, designed at risk.
+              </p>
+          </section>
 
-    <h1 class="govuk-heading-xl">
-      {{ serviceName }}
-    </h1>
+          <section>
+              <h2 class="govuk-heading-m">
+                Key Changes
+              </h2>
+              <ul class="govuk-list govuk-list--bullet">
+                  <li class="govuk-body">Overall navigation</li>
+                  <li class="govuk-body">Information architecture and hierachy</li>
+                  <li class="govuk-body">Addition of the 'Submit an application to change the land register API'</li>
+            </ul>
+          </section>
 
-    {% include "govuk-prototype-kit/includes/homepage-bottom.njk" %}
+                {{ govukInsetText({
+                  text: "We plan to review this developer pack with early adopters as part of VCAD early adoption scheme with Business Gateway users as they adopt and begin to integrate the Submit an application to change the land register API with their systems."
+                }) }}
+              </p>
+          </section>
+
+          <a href="/homepage" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+  View prototype
+    </a>
+
   </div>
 </div>
+</main>
+</div>
+
 
 {% endblock %}
