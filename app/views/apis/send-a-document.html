@@ -1,0 +1,281 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+
+  <header class="govuk-header govuk-header--hmlr " role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-width-container">
+    <div class="govuk-header__content govuk-header__content--hmlr">
+      <a href="/homepage" class="govuk-header__link govuk-header__service-name">
+        HM Land Registry developer pack
+      </a>
+    </div>
+  </div>
+</header>
+
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Send a document service API
+      </h1>
+      <p class="govuk-body-l">Use this service to help lodge applications with HMLR to update the register or create a new lease or transfer of part.</p>
+
+
+      <aside class="govuk-prototype-kit-common-templates-mainstream-guide-contents-list" role="complementary">
+        <nav class="govuk-prototype-kit-common-templates-contents-list" aria-label="Pages in this guide" role="navigation">
+          <h2 class="govuk-prototype-kit-common-templates-contents-list__title">
+            Contents
+          </h2>
+          <ol class="govuk-prototype-kit-common-templates-contents-list__list">
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed govuk-prototype-kit-common-templates-contents-list__list-item--active">
+              <a href="#">
+                Overview
+              </a>
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="#">
+                View API specification
+              </a>
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="#">
+                How the service API works
+              </a>
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="#">
+                How to test this service API
+              </a>
+            </li>
+          </ol>
+        </nav>
+      </aside>
+
+    </div>
+
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds govuk-prototype-kit-common-templates-mainstream-guide-body">
+
+      <div>
+      <h2 class="govuk-heading-m"><br>Overview</h2>
+            <p class="govuk-body">
+          The Send a document service API should be used to attach documents to your application. This service can be integrated using the REST core API.</p>
+
+          <p class="govuk-body">There are two steps for sending a document:</p>
+          <ol class="govuk-list govuk-list--number">
+          <li>A POST request to generate an upload URL</li>
+          <li>A PUT request to upload the document</li>
+
+        </div>
+        <div>
+
+          <h3 class="govuk-heading-s govuk-!-margin-left-0">How to create an upload URL</h3>
+          <p class="govuk-body">Making a POST request to the create upload URL endpoint will result in the following items being returned:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li><code style="color: #a71d5d">upload_url</code> - this is the URL to make the PUT request to. This URL will only be valid for five minutes after generation. Five minutes is timed from the generation of the URL to the start of the upload. Neither the size of the document nor the speed of internet connection will cause the upload to timeout</li>
+  <li><code style="color: #a71d5d">document_id</code> - this is a unique ID for this document, and must be included in the application submission payload</li>
+</ul>
+
+</div>
+<div>
+
+  <h3 class="govuk-heading-s">How to upload a document</h3>
+  <p class="govuk-body">To upload a document, make a PUT request to the URL returned from the create an upload URL POST request above. This request should contain the document as the body content. A 200 HTTP code will be returned if the upload was successful.</p>
+
+  <p class="govuk-body">Documents will be scanned for viruses and validated asynchronously. Issues found during this process will be surfaced via the Application information service API. Do not modify the URL received in the response.</p>
+
+  <p class="govuk-body">Documents that have been uploaded can be used for up to 180 days, after which point they will be removed.</p>
+
+
+
+  <p class="govuk-body">Given the extra requirements for uploading documents and the new two-step process, you’ll find additional guidance for uploading documents below. This example uses python but can be applied to other computer programming languages.</p>
+
+  <p class="govuk-body">Firstly, the file must be loaded into memory. In this example, we are reading a file from the filesystem:</p>
+<code>with open("test.pdf", "rb") as f:<br>
+    file_bytes = f.read()</code>
+<div class="govuk-!-padding-bottom-2"></div>
+<p class="govuk-body">Once you have the bytes, the next step is to generate the file sha256 and the file length variables, using the python “hashlib” library:</p>
+<code>hash = sha256(file_bytes)<br>
+file_sha256 = b64encode(hash.digest()) <br>
+file_length = len(file_bytes) </code>
+<div class="govuk-!-padding-bottom-2"></div>
+<p class="govuk-body">Now you make the request to the document capture service, using the python “requests” library (note: authentication is removed for brevity):</p>
+
+<code>response = requests.post(url, json = {  <br>
+    "data": {  <br>
+        "document_type": "TR1",  <br>
+        "file_sha256": file_sha256,  <br>
+        "file_length": file_length  <br>
+    } <br>
+})</code>
+<div class="govuk-!-padding-bottom-2"></div>
+<p class="govuk-body">The final step is to check we received a 200 HTTP response:</p>
+<code>if response.status_code != 200:  <br>
+    print(response)  <br>
+    raise RuntimeError("Failed to upload document")  <br>
+print(f"Document with id {doc_id} uploaded successfully") </code>
+<div class="govuk-!-padding-bottom-2"></div>
+<p class="govuk-body">The whole process should be repeated for each document being uploaded. The document IDs should be stored, so they can be used during the application submission process.</p>
+
+</div>
+
+<div>
+      <h2 class="govuk-heading-m">View API specification</h2>
+
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-body govuk-link" href="https://landregistry.github.io/bgtechdoc/vcad/v0_2/vcad-spec.html#tag/Submit-an-application-API/operation/Submit%20an%20application%20API" rel="noreferrer noopener" target="_blank">HTML specification (opens in new tab)</a>
+        </li>
+      </ul>
+</div>
+
+<div>
+      <h3 class="govuk-heading-m">How the service API works</h3>
+
+      <img src="/assets/img/submit-an-application-to-change-the-Land-Register-API.png" alt="A diagram showing the send a document service API">
+</div>
+<br>
+
+<div>
+  <h3 class="govuk-heading-m">How to test this service API</h3>
+<p class="govuk-body">HMLR does not currently provide a test environment for integrators using our Business Gateway APIs. Instead, we’ve provided example code to demonstrate what you should expect to see when developing your own services. For general testing guidance, visit <a class="govuk-body govuk-link" href="/a-guide-to-testing">A guide to testing</a>.</p>
+
+<h4 class="govuk-body"><b>POST /v1/documents/url - Request</b></h4>
+<code>
+{ <br>
+  "data": { <br>
+    "document_type": "TR1", <br>
+    "file_length": 6362, <br>
+    "file_sha256": "XHepSrLEhDPShYnPJwWArZERIvLcpvn8f8pyCS7crQA=" <br>
+  } <br>
+}
+</code>
+
+<h4 class="govuk-body"><b>POST /v1/documents/url - Response</b></h4>
+<code>
+{<br>
+  "upload_url": "documentcapture.landregistry.gov.uk/04c5c3fe-aa08-473b-9944-64ef5506f8e2", <br>
+  "document_id": "04c5c3fe-aa08-473b-9944-64ef5506f8e2"<br>
+}
+</code>
+
+<br>
+<br>
+
+<p class="govuk-body-s">Note: The URL in the example may not be representative of the actual URL received. </p>
+</div>
+
+<h4 class="govuk-body"><b>URL matches upload_url in /v1/documents/url response</b></h>
+<div class="govuk-!-padding-bottom-4"></div>
+<p class="govuk-body-s">Body content is the document to upload</p>
+
+<h4 class="govuk-body"><b>PUT document - Response</h4>
+
+<p class="govuk-body-s">HTTP 200 on successful upload</p>
+
+<p class="govuk-body-s">HTTP 4xx on failure</p>
+</div>
+
+<div>
+{# <h3 class="govuk-heading-m">Technical details</h3>
+
+<h4 class="govuk-heading-s">File length/SHA-256</h4>
+<p class="govuk-body">As part of the API to generate an upload URL, the API expects <cide>file_length</code> and <code>file_sha256</code> parameters. These parameters refer to the file that will be uploaded to the URL.</p>
+<p class="govuk-body">These values must also be provided when making the PUT request to the upload URL, as headers:</p>
+<li><code style="color: #a71d5d">Content-Length : value of file_length </code></li>
+<li><code style="color: #a71d5d">X-Amz-Checksum-Sha256 : value of file_sha256 </code></li>
+
+<p class="govuk-body">Where <value of x> are the values that were given to the request to generate the upload URL and match the file that is included in the body of the request. If either of these values do not match or are not provided, you will receive a signature verification failure (HTTP 403).</p>
+
+<h4 class="govuk-body"><b>File length</h4>
+
+<p class="govuk-body">The <code>file_length</code> should be the size of the file in bytes. See below for code examples in several languages:</p>
+
+<p class="govuk-body">Python</p>
+<br>
+
+<code>with open("test.pdf" "rb") as f:<br>
+    file_bytes = f.read() <br>
+    file_length = len(file_bytes)
+  </code>
+  <div class="govuk-!-padding-bottom-4"></div>
+<p class="govuk-body">Bash</p>
+<div class="govuk-!-padding-bottom-4"></div>
+<code>du -b test.pdf</code>
+<div class="govuk-!-padding-bottom-4"></div>
+<p class="govuk-body">Java</p>
+<div class="govuk-!-padding-bottom-4"></div>
+<code>File f = new File("test.pdf"); <br>
+long fileLength = f.length();</code>
+<div class="govuk-!-padding-bottom-4"></div>
+<p class="govuk-body">JavaScript (Node):</p>
+<div class="govuk-!-padding-bottom-4"></div>
+<code>const fs = require("fs"); <br>
+const stats = fs.statSync("test.pdf"); <br>
+const fileLength = stats.size;</code>
+
+<h4 class="govuk-body"><b>File Sha256</h4>
+
+<p class="govuk-body">The file_sha256 is the base64 encoded 256-bit binary digest of the bytes of the file. This should be exactly 44 characters long, regardless of the length of the file. See below for code examples in several languages:</p>
+
+<p class="govuk-body">Python</p>
+<br>
+
+<code>with open("test.pdf" "rb") as f: <br>
+    file_bytes = f.read()  <br>
+    hash = sha256(file_bytes)  <br>
+    file_sha256 = b64encode(hash.digest())
+  </code>
+  <div class="govuk-!-padding-bottom-4"></div>
+<p class="govuk-body">Bash</p>
+<div class="govuk-!-padding-bottom-4"></div>
+<code>cat test.pdf | openssl sha256 -binary | openssl enc -base64</code>
+<div class="govuk-!-padding-bottom-4"></div>
+<p class="govuk-body">Java</p>
+<div class="govuk-!-padding-bottom-4"></div>
+<code>File f = new File("test.pdf"); <br>
+byte[] data = Files.readAllBytes(f); <br>
+MessageDigest digester = MessageDigest.getInstance("SHA-256"); <br>
+digester.update(data); <br>
+String fileSha256 = Base64.getEncoder().encodeToString(digester.digest()); </code>
+<div class="govuk-!-padding-bottom-4"></div>
+<p class="govuk-body">JavaScript (Node):</p>
+<div class="govuk-!-padding-bottom-4"></div>
+<code>const fs = require("fs"); <br>
+const crypto = require("crypto"); <br>
+ <br>
+const shasum = crypto.createHash("sha256");  <br>
+shasum.update(fs.getBytes());  <br>
+shasum.digest("base64"); </code>
+
+</div> #}
+
+  </div>
+
+  </main>
+
+
+
+
+
+
+    </div>
+  </div>
+
+{% endblock %}
