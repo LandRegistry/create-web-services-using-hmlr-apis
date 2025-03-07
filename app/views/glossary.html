@@ -30,43 +30,13 @@
 
 
 
-    <div class="govuk-phase-banner">
-
-
-
-      <p class="govuk-phase-banner__content">
-
-
-
-        <strong class="govuk-tag govuk-tag--pink">
-
-
-
-          Prototype
-
-
-
-        </strong>
-
-
-
-        <span class="govuk-phase-banner__text">
-
-
-
-          This is not a full service. It is not production code and you might experience problems.
-
-
-
-        </span>
-
-
-
-      </p>
-
-
-
-    </div>
+    {{ govukPhaseBanner({
+      tag: {
+        text: "Prototype",
+        classes: "govuk-tag--pink"
+      },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+    }) }}
 
 
 
