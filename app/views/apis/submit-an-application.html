@@ -36,9 +36,9 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        Send a document service API
+        Submit an application service API
       </h1>
-      <p class="govuk-body-l">Use this service to attach documents to your application.</p>
+      <p class="govuk-body-l">Use this service to provide data to HMLR for updating the register.</p>
 
 
       <aside class="govuk-prototype-kit-common-templates-mainstream-guide-contents-list" role="complementary">
@@ -86,17 +86,24 @@
       <div>
       <h2 class="govuk-heading-m" id="overview"><br>Overview</h2>
             <p class="govuk-body">
-          The Send a document service API should be used to attach documents to your application. This service can be integrated using the REST core API.</p>
+        The Submit an application API will help users provide the necessary data to HMLR for updating the register. This API is asynchronous, returning a unique ID for the submission request which can be used when fetching the application status.</p>
+          <p class="govuk-body">This API supports the following application types:</p>
+          <ul class="govuk-list govuk-list--bullet">
+          <li>Register update</li>
+          <li>Transfer of part</li>
+          <li>Depositionary first lease</li>
+          <li>Removing a default Form A restriction (JP1)</li>
+        </ul>
 
-          <p class="govuk-body">There are two steps for sending a document:</p>
-          <ol class="govuk-list govuk-list--number">
-          <li>A request to generate an upload URL</li>
-          <li>A request to upload the document</li>
-        </ol>
-
-          <p class="govuk-body">The request to generate an upload URL will respond with a HMLR URL that can be used to upload the document to. This URL is only active for 10 minutes after creation. The generate an upload URL endpoint will also return a document ID, that can be used when using the Submit an application API. Documents uploaded via this process will be subject to HMLR security scanning.</p>
-          <p class="govuk-body">Documents that have been uploaded can be used for up to 180 days, after which point they will be removed.</p>
-
+        <p class="govuk-body">
+    The data in the request content contains information about:</p>
+      <ul class="govuk-list govuk-list--bullet">
+      <li>Addresses</li>
+      <li>Documents</li>
+      <li>Parties</li>
+      <li>Transactions</li>
+      <li>Titles</li>
+    </ul>
 
         </div>
 
@@ -105,7 +112,7 @@
 
         <ul class="govuk-list">
           <li>
-            <a class="govuk-body govuk-link" href="/apis/send-a-document-technical-guide">Technical guide</a>
+            <a class="govuk-body govuk-link" href="/apis/submit-an-application-technical-guide">Technical guide</a>
           </li>
         </ul>
   </div>
@@ -115,7 +122,7 @@
 
       <ul class="govuk-list">
         <li>
-          <a class="govuk-body govuk-link" href="https://landregistry.github.io/bgtechdoc/vcad/v0_2/vcad-spec.html#tag/Submit-an-application-API/operation/Submit%20an%20application%20API" rel="noreferrer noopener" target="_blank">HTML specification (opens in new tab)</a>
+          <a class="govuk-body govuk-link" href="https://landregistry.github.io/bgtechdoc/vcad/v0_2/vcad-spec.html#tag/Submit-an-application-API" rel="noreferrer noopener" target="_blank">HTML specification (opens in new tab)</a>
         </li>
       </ul>
 </div>
@@ -123,8 +130,10 @@
 <div>
       <h3 class="govuk-heading-m" id="how-the-service-api-works">How the service API works</h3>
       <div class="govuk-!-padding-bottom-3"></div>
-<img src="/public/images/SendADocumentSequence.png" alt="A diagram showing how the Send a Document API works.">
-  </div>
+{# <img src="/public/images/SendADocumentSequence.png" alt="A diagram showing how the Send a Document API works.">
+  </div> #}
+<p> TO DO </p>
+</div>
 <br>
 
 <div>
@@ -150,8 +159,8 @@
             </a>
           </li>
           <li>
-            <a class="govuk-body govuk-link" href="/apis/submit-an-application">
-              Submit an application API
+            <a class="govuk-body govuk-link" href="/apis/send-a-document">
+              Send a document API
             </a>
           </li>
           <li>

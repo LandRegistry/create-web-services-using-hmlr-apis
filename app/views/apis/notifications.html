@@ -36,10 +36,9 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        Send a document service API
+        Notifications service API
       </h1>
-      <p class="govuk-body-l">Use this service to attach documents to your application.</p>
-
+      <p class="govuk-body-l">Use this service to get updates about multiple applications submitted by the same business unit.</p>
 
       <aside class="govuk-prototype-kit-common-templates-mainstream-guide-contents-list" role="complementary">
         <nav class="govuk-prototype-kit-common-templates-contents-list" aria-label="Pages in this guide" role="navigation">
@@ -85,18 +84,15 @@
 
       <div>
       <h2 class="govuk-heading-m" id="overview"><br>Overview</h2>
-            <p class="govuk-body">
-          The Send a document service API should be used to attach documents to your application. This service can be integrated using the REST core API.</p>
 
-          <p class="govuk-body">There are two steps for sending a document:</p>
-          <ol class="govuk-list govuk-list--number">
-          <li>A request to generate an upload URL</li>
-          <li>A request to upload the document</li>
-        </ol>
+          <p class="govuk-body">The Notifications service API provides a way of fetching updates about multiple applications submitted by the same business unit. Currently, this service only supports a pull interaction model, where notifications must be requested periodically. However, more information about a push interaction model will be shared in future.</p>
+          <p class="govuk-body">This API has two endpoints:</p>
+          <ul class="govuk-list govuk-list--bullet">
+          <li><code style="color: #a71d5d; background-color: #f5f5f5">GET /v1/notifications</code>get all notifications that match the provided filters</li>
+          <li>the priority of the application, <code style="color: #a71d5d; background-color: #f5f5f5">POST /v1/notifications/acknowledge</code> - notify HMLR that notifications have been received</li>
+          </ul>
 
-          <p class="govuk-body">The request to generate an upload URL will respond with a HMLR URL that can be used to upload the document to. This URL is only active for 10 minutes after creation. The generate an upload URL endpoint will also return a document ID, that can be used when using the Submit an application API. Documents uploaded via this process will be subject to HMLR security scanning.</p>
-          <p class="govuk-body">Documents that have been uploaded can be used for up to 180 days, after which point they will be removed.</p>
-
+          <p class="govuk-body">This API can be used to get more information after receiving a notification indicating the application has changed. For information about which notifications will be available, visit the notifications section of the   <a class="govuk-body govuk-link" href="/apis/submit-an-application">Submit an application</a> service API page.</p>
 
         </div>
 
@@ -105,7 +101,7 @@
 
         <ul class="govuk-list">
           <li>
-            <a class="govuk-body govuk-link" href="/apis/send-a-document-technical-guide">Technical guide</a>
+            <a class="govuk-body govuk-link" href="/apis/notifications-technical-guide">Technical guide</a>
           </li>
         </ul>
   </div>
@@ -115,7 +111,7 @@
 
       <ul class="govuk-list">
         <li>
-          <a class="govuk-body govuk-link" href="https://landregistry.github.io/bgtechdoc/vcad/v0_2/vcad-spec.html#tag/Submit-an-application-API/operation/Submit%20an%20application%20API" rel="noreferrer noopener" target="_blank">HTML specification (opens in new tab)</a>
+          <a class="govuk-body govuk-link" href="https://landregistry.github.io/bgtechdoc/vcad/v0_2/vcad-spec.html#tag/Notifications-API" rel="noreferrer noopener" target="_blank">HTML specification (opens in new tab)</a>
         </li>
       </ul>
 </div>
@@ -123,7 +119,7 @@
 <div>
       <h3 class="govuk-heading-m" id="how-the-service-api-works">How the service API works</h3>
       <div class="govuk-!-padding-bottom-3"></div>
-<img src="/public/images/SendADocumentSequence.png" alt="A diagram showing how the Send a Document API works.">
+<img src="/public/images/NotificationInteraction.png" alt="A diagram showing the interaction of the Notification service API.">
   </div>
 <br>
 
@@ -146,12 +142,7 @@
         <ul class="govuk-list govuk-!-font-size-16">
           <li>
             <a class="govuk-body govuk-link" href="/apis/submit-an-application-to-change-the-land-register">
-              Submit an application to change the Land Register service API
-            </a>
-          </li>
-          <li>
-            <a class="govuk-body govuk-link" href="/apis/submit-an-application">
-              Submit an application API
+              Submit an application to change the Land Register API
             </a>
           </li>
           <li>
@@ -160,9 +151,15 @@
             </a>
           </li>
           <li>
-            <a class="govuk-body govuk-link" href="/apis/notifications">
-              Notifications API
+          <a class="govuk-body govuk-link" href="/apis/send-a-document">
+            Send a document API
+          </a>
+          <li>
+            <a class="govuk-body govuk-link" href="/apis/submit-an-application">
+              Submit an application API
             </a>
+          </li>
+          <li>
           </li>
           <li>
             <a class="govuk-body govuk-link govuk-!-font-weight-bold" href="/find-a-service-api">

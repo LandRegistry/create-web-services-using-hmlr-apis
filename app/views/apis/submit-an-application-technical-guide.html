@@ -1,0 +1,2201 @@
+{% extends "layouts/main.html" %}
+
+{% block header %}
+
+
+  <header class="govuk-header govuk-header--hmlr " role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-width-container">
+    <div class="govuk-header__content govuk-header__content--hmlr">
+      <a href="/homepage" class="govuk-header__link govuk-header__service-name">
+        HM Land Registry developer pack
+      </a>
+    </div>
+  </div>
+</header>
+
+{% endblock %}
+
+
+
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype",
+    classes: "govuk-tag--pink"
+  },
+  html: 'This is not a full service. It is not production code and you might experience problems.'
+}) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Submit an application service API- technical guide
+      </h1>
+      <p class="govuk-body-l">Use this service to provide data to HMLR for updating the register.</p>
+
+
+      <aside class="govuk-prototype-kit-common-templates-mainstream-guide-contents-list" role="complementary">
+        <nav class="govuk-prototype-kit-common-templates-contents-list" aria-label="Pages in this guide" role="navigation">
+          <h2 class="govuk-prototype-kit-common-templates-contents-list__title">
+            Contents
+          </h2>
+          <ol class="govuk-prototype-kit-common-templates-contents-list__list">
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed govuk-prototype-kit-common-templates-contents-list__list-item--active">
+              <a href="#how-to-use-the-submit-an-application-api">
+                How to use the Submit an application API
+              </a>
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="#validation-rules">
+                Validation rules
+              </a>
+            </li>
+            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+              <a href="#example-requests-and-responses">
+                Example requests and responses
+              </a>
+            </li>
+          </ol>
+        </nav>
+      </aside>
+
+    </div>
+
+  </div>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds govuk-prototype-kit-common-templates-mainstream-guide-body">
+      <h2 class="govuk-heading-m" id="how-to-use-the-submit-an-application-api">How to use the Submit an application API</h2>
+        <div>
+
+          <p class="govuk-body">To submit an application request, make a HTTP POST request to the application request endpoint, the body of which contains the information about the application using the<code style="color: #a71d5d; background-color: #f5f5f5">application/json</code> content type.</p>
+          <p class="govuk-body">This endpoint will return an object containing a unique ID for the request, <code style="color: #a71d5d; background-color: #f5f5f5">application_request_id</code>, which is then used when fetching the status of the application. Any errors in the schema will be rejected as a 400 HTTP error. Any other validation errors will be returned in the application information response.</p>
+
+</div>
+<div>
+
+  <h3 class="govuk-heading-s">Notifications</h3>
+  <p class="govuk-body">Note: For general information, view the <a class="govuk-body govuk-link" href="/apis/notifications">notifications service API page</a>.</p>
+
+  <p class="govuk-body">During application submission, notifications will be available from the notifications API about changes that happen to the application. These notifications currently include:</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li><code style="color: #a71d5d; background-color: #f5f5f5">APPLICATION_ACCEPTED_ON_DAY_LIST</code> - the application has been accepted and is on the day list</li>
+    <li><code style="color: #a71d5d; background-color: #f5f5f5">APPLICATION_ACCEPTED_QUEUED_FOR_DAY_LIST</code> - the application has been accepted and is queuing for the day list</li>
+    <li><code style="color: #a71d5d; background-color: #f5f5f5">APPLICATION_VALIDATION_FAILED</code> - the application submission has failed</li>
+    <li><code style="color: #a71d5d; background-color: #f5f5f5">APPLICATION_ERROR</code> - the application has not been added to the day list due to an error</li>
+  </ul>
+
+  <p class="govuk-body">The notifications will contain the following information:</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li><code style="color: #a71d5d; background-color: #f5f5f5">APPLICATION_ACCEPTED_QUEUED_FOR_DAY_LIST</code>, <code style="color: #a71d5d; background-color: #f5f5f5">APPLICATION_VALIDATION_FAILED</code> and <code style="color: #a71d5d; background-color: #f5f5f5">APPLICATION_ERROR</code> will contain the updated order status only</li>
+    <li><code style="color: #a71d5d; background-color: #f5f5f5">APPLICATION_ACCEPTED_ON_DAY_LIST</code> will contain the updated order status, the priority of the application and the HMLR reference for the accepted application</li>
+  </ul>
+  <p class="govuk-body">To get more detailed information about an application that caused the notification, use the <a class="govuk-body govuk-link" href="https://customer-documentation-business-gateway-35cf334e5a1aeb361fcf62d.git.tooling.stp.hmlr.zone/vcad/v0_3/application-information.html">application information API</a>. For example, after receiving an <code style="color: #a71d5d; background-color: #f5f5f5">APPLICATION_VALIDATION_FAILED</code> notification, use the application information API to get a list of the validation errors.</p>
+
+
+  <h3 class="govuk-heading-s">Schemas</h3>
+  <p class="govuk-body">JSON schemas can be found below:</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li><a class="govuk-body govuk-link" href="https://customer-documentation-business-gateway-35cf334e5a1aeb361fcf62d.git.tooling.stp.hmlr.zone/vcad/schemas/accepted-priority-protected.json"><code style="color: 	#1d70b8; background-color: #f5f5f5">APPLICATION_ACCEPTED_ON_DAY_LIST</code></a></li>
+    <li><a class="govuk-body govuk-link" href="https://customer-documentation-business-gateway-35cf334e5a1aeb361fcf62d.git.tooling.stp.hmlr.zone/vcad/schemas/accepted-awaiting-priority.json"><code style="color: 	#1d70b8; background-color: #f5f5f5">APPLICATION_ACCEPTED_QUEUED_FOR_DAY_LIST</code></a></li>
+    <li><a class="govuk-body govuk-link" href="https://customer-documentation-business-gateway-35cf334e5a1aeb361fcf62d.git.tooling.stp.hmlr.zone/vcad/schemas/validation-failed.json"><code style="color: 	#1d70b8; background-color: #f5f5f5">APPLICATION_VALIDATION_FAILED</code></a></li>
+    <li><a class="govuk-body govuk-link" href="https://customer-documentation-business-gateway-35cf334e5a1aeb361fcf62d.git.tooling.stp.hmlr.zone/vcad/schemas/system-error.json"><code style="color: 	#1d70b8; background-color: #f5f5f5">APPLICATION_ERROR</code></a></li>
+  </ul>
+
+  <h2 class="govuk-heading-m" id="validation-rules">Validation rules</h2>
+    <div>
+
+      <p class="govuk-body">The structure has changed between the SOAP and REST APIs. Most fields retain their existing names, but some have changed, as noted below:</p>
+
+      <table class="govuk-table">
+        <caption class="govuk-table__caption govuk-table__caption--m">SOAP migration guide</caption>
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row">
+            <th scope="col" class="govuk-table__header">SOAP field</th>
+            <th scope="col" class="govuk-table__header">REST field</th>
+            <th scope="col" class="govuk-table__header">Comment</th>
+          </tr>
+        </thead>
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">ChargeDate</td>
+            <td class="govuk-table__cell govuk-table__cell">date</td>
+            <td class="govuk-table__cell govuk-table__cell">Field on the transaction type <code style="color: #a71d5d; background-color: #f5f5f5">Charge</code></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CompanyName</td>
+            <td class="govuk-table__cell govuk-table__cell">organisation_name</td>
+            <td class="govuk-table__cell govuk-table__cell"></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">ConveyancerName</td>
+            <td class="govuk-table__cell govuk-table__cell">full_name</td>
+            <td class="govuk-table__cell govuk-table__cell">Field on <code style="color: #a71d5d; background-color: #f5f5f5">OtherConveyancer</code> object</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">DisclosableOveridingInterests</td>
+            <td class="govuk-table__cell govuk-table__cell">disclosable_overriding_interests</td>
+            <td class="govuk-table__cell govuk-table__cell"></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CertifiedCopy</td>
+            <td class="govuk-table__cell govuk-table__cell">certification_statement_type</td>
+            <td class="govuk-table__cell govuk-table__cell"></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">DXExchange</td>
+            <td class="govuk-table__cell govuk-table__cell">exchange_name</td>
+            <td class="govuk-table__cell govuk-table__cell">Field on <code style="color: #a71d5d; background-color: #f5f5f5">DxAddress</code> object</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">DXNumber</td>
+            <td class="govuk-table__cell govuk-table__cell">number</td>
+            <td class="govuk-table__cell govuk-table__cell">Field on <code style="color: #a71d5d; background-color: #f5f5f5">DxAddress</code> object</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">Product.Email</td>
+            <td class="govuk-table__cell govuk-table__cell">email</td>
+            <td class="govuk-table__cell govuk-table__cell">Field on <code style="color: #a71d5d; background-color: #f5f5f5">ApplicationLodger</code> object</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">EmailAddress.Email</td>
+            <td class="govuk-table__cell govuk-table__cell">email</td>
+            <td class="govuk-table__cell govuk-table__cell">Field on <code style="color: #a71d5d; background-color: #f5f5f5">Address</code> object, where type is <code style="color: #a71d5d; background-color: #f5f5f5">Email</code></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">IsApplicant</td>
+            <td class="govuk-table__cell govuk-table__cell">applicants[]</td>
+            <td class="govuk-table__cell govuk-table__cell">Array containing PartyReferences for applicants</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">NoMDRef</td>
+            <td class="govuk-table__cell govuk-table__cell">N/A</td>
+            <td class="govuk-table__cell govuk-table__cell">MDref should not be sent</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">OverseasTerritory</td>
+            <td class="govuk-table__cell govuk-table__cell">incorporation_territory</td>
+            <td class="govuk-table__cell govuk-table__cell"></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">RepresentitiveId</td>
+            <td class="govuk-table__cell govuk-table__cell">representation_type</td>
+            <td class="govuk-table__cell govuk-table__cell"></td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">RoleType</td>
+            <td class="govuk-table__cell govuk-table__cell">Role</td>
+            <td class="govuk-table__cell govuk-table__cell">Field on <code style="color: #a71d5d; background-color: #f5f5f5">PartyRole</code> object</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">MessageId</td>
+            <td class="govuk-table__cell govuk-table__cell">Idempotency-Key</td>
+            <td class="govuk-table__cell govuk-table__cell">Idempotency-Key is a HTTP Header</td>
+          </tr>
+        </tbody>
+      </table>
+
+        <h3 class="govuk-heading-s">List of valid territories</h3>
+        <p class="govuk-body">When a party is an overseas company, you must provide the territory of incorporation. This territory must be one of the territories defined below:</p>
+
+        <details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Valid territories
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+  <ul class="govuk-list govuk-list--bullet">
+    <li>Abu Dhabi, United Arab Emirates</li>
+  <li>Afghanistan</li>
+  <li>Ajman Free Zone, United Arab Emirates</li>
+  <li>Ajman, United Arab Emirates</li>
+  <li>Alabama, United States of America</li>
+  <li>Aland</li>
+  <li>Alaska, United States of America</li>
+  <li>Albania</li>
+  <li>Alberta, Canada</li>
+  <li>Alderney</li>
+  <li>Algeria</li>
+  <li>American Samoa</li>
+  <li>Andorra</li>
+  <li>Angola</li>
+  <li>Anguilla</li>
+  <li>Antarctica</li>
+  <li>Antigua & Barbuda</li>
+  <li>Antigua and Barbuda</li>
+  <li>Argentina</li>
+  <li>Arizona, United States of America</li>
+  <li>Arkansas, United States of America</li>
+  <li>Armenia</li>
+  <li>Aruba</li>
+  <li>Ascension Island</li>
+  <li>Australia</li>
+  <li>Australian Antarctic Territory</li>
+  <li>Austria</li>
+  <li>Azerbaijan</li>
+  <li>Azores</li>
+  <li>Bahamas</li>
+  <li>Bahrain</li>
+  <li>Bangladesh</li>
+  <li>Barbados</li>
+  <li>Belarus</li>
+  <li>Belau</li>
+  <li>Belgium</li>
+  <li>Belize</li>
+  <li>Benin</li>
+  <li>Bermuda</li>
+  <li>Bhutan</li>
+  <li>Bolivarian Republic of Venezuela</li>
+  <li>Bolivia</li>
+  <li>Bonaire</li>
+  <li>Bonaire, Sint Eustatius and Saba</li>
+  <li>Bosnia & Herzegovina</li>
+  <li>Bosnia and Herzegovina</li>
+  <li>Botswana</li>
+  <li>Bouvet Island</li>
+  <li>Brazil</li>
+  <li>British Antarctic Territory</li>
+  <li>British Colombia, Canada</li>
+  <li>British Indian Ocean Territory</li>
+  <li>British Virgin Islands</li>
+  <li>Brunei Darussalam</li>
+  <li>Bulgaria</li>
+  <li>Burkina Faso</li>
+  <li>Burundi</li>
+  <li>Cabo Verde</li>
+  <li>California, United States of America</li>
+  <li>Cambodia</li>
+  <li>Cameroon</li>
+  <li>Canada</li>
+  <li>Cape Verde</li>
+  <li>Carolina Islands</li>
+  <li>Cayman Islands</li>
+  <li>Central African Republic</li>
+  <li>Chad</li>
+  <li>Channel Islands</li>
+  <li>Chile</li>
+  <li>China</li>
+  <li>Christmas Island</li>
+  <li>Christmas Island (Indian Ocean)</li>
+  <li>Christmas Island (Pacific Ocean)</li>
+  <li>Cocos (Keeling) Islands</li>
+  <li>Cocos Islands</li>
+  <li>Colombia</li>
+  <li>Colorado, United States of America</li>
+  <li>Comoros</li>
+  <li>Congo</li>
+  <li>Connecticut, United States of America</li>
+  <li>Cook Islands</li>
+  <li>Costa Rica</li>
+  <li>Cote D'Ivoire</li>
+  <li>Cote D’‘Ivoire</li>
+  <li>Croatia</li>
+  <li>Cuba</li>
+  <li>Curacao</li>
+  <li>Cyprus</li>
+  <li>Czech Republic</li>
+  <li>Czechia</li>
+  <li>Delaware, United States of America</li>
+  <li>Democratic People’s Republic of Korea</li>
+  <li>Democratic Republic of Congo</li>
+  <li>Democratic Republic of the Congo</li>
+  <li>Denmark</li>
+  <li>Djibouti</li>
+  <li>Dominica</li>
+  <li>Dominican Republic</li>
+  <li>Dubai International Financial Centre, United Arab Emirates</li>
+  <li>Dubai Silicon Oasis, United Arab Emirates</li>
+  <li>Dubai, United Arab Emirates</li>
+  <li>East Timor</li>
+  <li>Ecuador</li>
+  <li>Egypt</li>
+  <li>Eire</li>
+  <li>El Salvador</li>
+  <li>Equatorial Guinea</li>
+  <li>Eritrea</li>
+  <li>Estonia</li>
+  <li>Eswatini</li>
+  <li>Ethiopia</li>
+  <li>Europe under the Treaty on European Union and the Treaty on the Functioning of the European Union</li>
+  <li>Falkland Islands</li>
+  <li>Faroe Islands</li>
+  <li>Federated States of Micronesia</li>
+  <li>Fiji</li>
+  <li>Finland</li>
+  <li>Florida, United States of America</li>
+  <li>France</li>
+  <li>French Guinea</li>
+  <li>French Polynesia</li>
+  <li>French Southern Antarctic Territory</li>
+  <li>Fujairah Media Free Zone, United Arab Emirates</li>
+  <li>Fujairah, United Arab Emirates</li>
+  <li>Fyr Macedonia</li>
+  <li>Gabon</li>
+  <li>Gambia</li>
+  <li>Georgia</li>
+  <li>Georgia, United States of America</li>
+  <li>Germany</li>
+  <li>Ghana</li>
+  <li>Gibraltar</li>
+  <li>Greece</li>
+  <li>Greenland</li>
+  <li>Grenada</li>
+  <li>Guadeloupe</li>
+  <li>Guam</li>
+  <li>Guatemala</li>
+  <li>Guernsey</li>
+  <li>Guinea</li>
+  <li>Guinea-Bissau</li>
+  <li>Guyana</li>
+  <li>Haiti</li>
+  <li>Hawaii, United States of America</li>
+  <li>Heard & Mcdonald Islands</li>
+  <li>Heard and Mcdonald Islands</li>
+  <li>Holy See</li>
+  <li>Honduras</li>
+  <li>Hong Kong</li>
+  <li>Hungary</li>
+  <li>Iceland</li>
+  <li>Idaho, United States of America</li>
+  <li>Illinois, United States of America</li>
+  <li>India</li>
+  <li>Indiana, United States of America</li>
+  <li>Indonesia</li>
+  <li>Iowa, United States of America</li>
+  <li>Iran</li>
+  <li>Iraq</li>
+  <li>Ireland</li>
+  <li>Isle of Man</li>
+  <li>Israel</li>
+  <li>Italy</li>
+  <li>Ivory Coast</li>
+  <li>Jamaica</li>
+  <li>Japan</li>
+  <li>Jebel Ali Free Zone, United Arab Emirates</li>
+  <li>Jersey</li>
+  <li>Jordan</li>
+  <li>Kansas, United States of America</li>
+  <li>Kazakhstan</li>
+  <li>Kentucky, United States of America</li>
+  <li>Kenya</li>
+  <li>Kiribati</li>
+  <li>Kosovo</li>
+  <li>Kuwait</li>
+  <li>Kyrgyzstan</li>
+  <li>Labuan</li>
+  <li>Labuan, Malaysia</li>
+  <li>Lao People’s Democratic Republic</li>
+  <li>Laos</li>
+  <li>Latvia</li>
+  <li>Lebanon</li>
+  <li>Lesotho</li>
+  <li>Liberia</li>
+  <li>Libya</li>
+  <li>Liechtenstein</li>
+  <li>Lithuania</li>
+  <li>Louisiana, United States of America</li>
+  <li>Luxembourg</li>
+  <li>Macao</li>
+  <li>Madagascar</li>
+  <li>Madeira Free Trade Zone</li>
+  <li>Maine, United States of America</li>
+  <li>Malawi</li>
+  <li>Malaysia</li>
+  <li>Maldives</li>
+  <li>Mali</li>
+  <li>Malta</li>
+  <li>Manitoba, Canada</li>
+  <li>Mariana Islands</li>
+  <li>Marshall Islands</li>
+  <li>Martinique</li>
+  <li>Maryland, United States of America</li>
+  <li>Massachusetts, United States of America</li>
+  <li>Mauritania</li>
+  <li>Mauritius</li>
+  <li>Mayotte</li>
+  <li>Mexico</li>
+  <li>Michigan, United States of America</li>
+  <li>Minnesota, United States of America</li>
+  <li>Mississippi, United States of America</li>
+  <li>Missouri, United States of America</li>
+  <li>Moldova</li>
+  <li>Monaco</li>
+  <li>Mongolia</li>
+  <li>Montana, United States of America</li>
+  <li>Montenegro</li>
+  <li>Montserrat</li>
+  <li>Morocco</li>
+  <li>Mozambique</li>
+  <li>Myanmar</li>
+  <li>Namibia</li>
+  <li>Nauru</li>
+  <li>Nauru Island</li>
+  <li>Nebraska, United States of America</li>
+  <li>Nepal</li>
+  <li>Netherland Antarctic Territory</li>
+  <li>Netherlands</li>
+  <li>Netherlands Antilles</li>
+  <li>Nevada, United States of America</li>
+  <li>Nevis</li>
+  <li>New Brunswick, Canada</li>
+  <li>New Caledonia</li>
+  <li>New Hampshire, United States of America</li>
+  <li>New Jersey, United States of America</li>
+  <li>New Mexico, United States of America</li>
+  <li>New York, United States of America</li>
+  <li>New Zealand</li>
+  <li>New Zealand Antarctic Territory</li>
+  <li>Newfoundland and Labrador, Canada</li>
+  <li>Nicaragua</li>
+  <li>Niger</li>
+<li>Nigeria</li>
+<li>Niue</li>
+<li>Niue</li>
+<li>Norfolk Island</li>
+<li>North Carolina, United States of America</li>
+<li>North Dakota, United States of America</li>
+<li>North Macedonia</li>
+<li>Northern Mariana Islands</li>
+<li>Northwest Territories, Canada</li>
+<li>Norway</li>
+<li>Norwegian Antarctic Territory</li>
+<li>Nova Scotia, Canada</li>
+<li>Nunavut, Canada</li>
+<li>Ohio, United States of America</li>
+<li>Oklahoma, United States of America</li>
+<li>Oman</li>
+<li>Ontario, Canada</li>
+<li>Oregon, United States of America</li>
+<li>Pakistan</li>
+<li>Palau</li>
+<li>Palestine</li>
+<li>Palestine Territory</li>
+<li>Panama</li>
+<li>Papua New Guinea</li>
+<li>Paraguay</li>
+<li>Pennsylvania, United States of America</li>
+<li>Peoples Republic of Congo</li>
+<li>Peru</li>
+<li>Philippines</li>
+<li>Pitcairn Island</li>
+<li>Poland</li>
+<li>Portugal</li>
+<li>Prince Edward Island, Canada</li>
+<li>Puerto Rico</li>
+<li>Qatar</li>
+<li>Quebec, Canada</li>
+<li>Ras Al Khaimah Free Trade Zone, United Arab Emirates</li>
+<li>Ras Al Khaimah, United Arab Emirates</li>
+<li>Republic of Korea</li>
+<li>Republic of Moldova</li>
+<li>Reunion</li>
+<li>Rhode Island, United States of America</li>
+<li>Romania</li>
+<li>Russian Federation</li>
+<li>Rwanda</li>
+<li>S Georgia and S Sandwich Islands</li>
+<li>Saint Barthelemy</li>
+<li>Saint Helena</li>
+<li>Saint Kitts</li>
+<li>Saint Lucia</li>
+<li>Saint Martin</li>
+<li>Saint Pierre and Miquelon</li>
+<li>Saint Vincent & Grenadines</li>
+<li>Saint Vincent and the Grenadines</li>
+<li>Samoa</li>
+<li>San Marino</li>
+<li>Sao Tome & Principe</li>
+<li>Sao Tome and Principe</li>
+<li>Sark</li>
+<li>Saskatchewan, Canada</li>
+<li>Saudi Arabia</li>
+<li>Scattered Islands</li>
+<li>Senegal</li>
+<li>Serbia</li>
+<li>Serbia and Montenegro</li>
+<li>Seychelles</li>
+<li>Sharjah, United Arab Emirates</li>
+<li>Sierra Leone</li>
+<li>Singapore</li>
+<li>Sint Eustatius and Saba</li>
+<li>Sint Maarten</li>
+<li>Slovakia</li>
+<li>Slovenia</li>
+<li>Solomon Islands</li>
+<li>Somalia</li>
+<li>South Africa</li>
+<li>South Carolina, United States of America</li>
+<li>South Dakota, United States of America</li>
+<li>South Sudan</li>
+<li>Spain</li>
+<li>Spanish Territory of North Africa</li>
+<li>Spitzbergen</li>
+<li>Sri Lanka</li>
+<li>St Barthelemy</li>
+<li>St Helena</li>
+<li>St Kitts & Nevis</li>
+<li>St Lucia</li>
+<li>St Martin</li>
+<li>St Pierre and Miquelon</li>
+<li>Sudan</li>
+<li>Sultanate of Oman</li>
+<li>Suriname</li>
+<li>Svalbard and Jan Mayen</li>
+<li>Swaziland</li>
+<li>Sweden</li>
+<li>Switzerland</li>
+<li>Syria</li>
+<li>Syrian Arab Republic</li>
+<li>Tahiti</li>
+<li>Taiwan</li>
+<li>Taiwan, Province of China</li>
+<li>Tajikistan</li>
+<li>Tanzania</li>
+<li>Tasmania</li>
+<li>Tasmania, Australia</li>
+<li>Tennessee, United States of America</li>
+<li>Texas, United States of America</li>
+<li>Thailand</li>
+<li>The Bahamas</li>
+<li>The Congo</li>
+<li>The Democratic Republic of Korea</li>
+<li>The Dominican Republic</li>
+<li>The Peoples Republic of Korea</li>
+<li>Tibet</li>
+<li>Timor-Leste</li>
+<li>Togo</li>
+<li>Tokelau</li>
+<li>Tonga</li>
+<li>Trinidad and Tobago</li>
+<li>Tristan Da Cunha</li>
+<li>Tunisia</li>
+<li>Turkey</li>
+<li>Turkmenistan</li>
+<li>Turks and Caicos Islands</li>
+<li>Tuvalu</li>
+<li>Uganda</li>
+<li>Ukraine</li>
+<li>Umm Al Quwain, United Arab Emirates</li>
+<li>United Arab Emirates</li>
+<li>United Kingdom</li>
+<li>United Republic of Tanzania</li>
+<li>United States Minor Outlying Islands</li>
+<li>United States of America</li>
+<li>Uruguay</li>
+<li>Us Minor Outlying Islands</li>
+<li>Us Virgin Islands</li>
+<li>Utah, United States of America</li>
+<li>Uzbekistan</li>
+<li>Vanuatu</li>
+<li>Vatican</li>
+<li>Venezuela</li>
+<li>Vermont, United States of America</li>
+<li>Vietnam</li>
+<li>Virginia, United States of America</li>
+<li>Wallis and Futuna</li>
+<li>Washington, United States of America</li>
+<li>West Virginia, United States of America</li>
+<li>Western Sahara</li>
+<li>Wisconsin, United States of America</li>
+<li>Wyoming, United States of America</li>
+<li>Yemen</li>
+<li>Yukon, Canada</li>
+<li>Zambia</li>
+<li>Zimbabwe</li>
+</ul>
+  </div>
+</details>
+
+<h3 class="govuk-heading-s">Transaction and document types</h3>
+<p class="govuk-body">The application submission service API accepts several transaction and document types that describe the desired outcome of the application. These types are defined in the schema in their shortened form, but full definitions of each type can be seen below:</p>
+
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Transactions
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m">Transaction types</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Code</th>
+          <th scope="col" class="govuk-table__header">Description</th>
+          </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">ADV1</td>
+          <td class="govuk-table__cell govuk-table__cell">First notice of adverse possession</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">ADV2</td>
+          <td class="govuk-table__cell govuk-table__cell">Adverse possession: notification</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">AGN</td>
+            <td class="govuk-table__cell govuk-table__cell">Agreed notice (AN1)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">APLC</td>
+            <td class="govuk-table__cell govuk-table__cell">Appointment of liquidator (creditor’s voluntary winding up)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">APLCO</td>
+            <td class="govuk-table__cell govuk-table__cell">Appointment of liquidator (compulsory winding up)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">APLM</td>
+            <td class="govuk-table__cell govuk-table__cell">Appointment of liquidator (members’ voluntary winding up)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">APR</td>
+            <td class="govuk-table__cell govuk-table__cell">Apportionment of rent</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">APT</td>
+            <td class="govuk-table__cell govuk-table__cell">Appointment of new trustee</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">ASSTTP</td>
+            <td class="govuk-table__cell govuk-table__cell">Assent (Transfer of Part)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">ASTC</td>
+            <td class="govuk-table__cell govuk-table__cell">Assent of charge</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">ASTT</td>
+            <td class="govuk-table__cell govuk-table__cell">Assent</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">ATP</td>
+            <td class="govuk-table__cell govuk-table__cell">Amendment to title plan</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">AUN</td>
+            <td class="govuk-table__cell govuk-table__cell">Amendment of unilateral notice (UN3)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">BKN</td>
+            <td class="govuk-table__cell govuk-table__cell">Bankruptcy notice/Creditors’ notice</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">BKR</td>
+            <td class="govuk-table__cell govuk-table__cell">Bankruptcy restriction/Bankruptcy inhibition</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">C</td>
+            <td class="govuk-table__cell govuk-table__cell">Charge</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CAG</td>
+            <td class="govuk-table__cell govuk-table__cell">Cancellation of notice (not unilateral) (CN1)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CANI</td>
+            <td class="govuk-table__cell govuk-table__cell">Cancellation of inhibition (RX3)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CANR</td>
+            <td class="govuk-table__cell govuk-table__cell">Cancellation of restriction (RX3)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CANU</td>
+            <td class="govuk-table__cell govuk-table__cell">Cancellation of unilateral notice (UN4)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CBKN</td>
+            <td class="govuk-table__cell govuk-table__cell">Cancellation of bankruptcy notice</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CBKR</td>
+            <td class="govuk-table__cell govuk-table__cell">Cancellation of bankruptcy restriction</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CCT</td>
+            <td class="govuk-table__cell govuk-table__cell">Cancellation of a caution (CCD)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CH2</td>
+            <td class="govuk-table__cell govuk-table__cell">Obligation to make further advances (CH2)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CH3</td>
+            <td class="govuk-table__cell govuk-table__cell">Agreed maximum amount of security (CH3)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CHOA</td>
+            <td class="govuk-table__cell govuk-table__cell">Charging order - Agreed notice (AN1)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CHOU</td>
+            <td class="govuk-table__cell govuk-table__cell">Charging order - Unilateral notice (UN1)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CHR</td>
+            <td class="govuk-table__cell govuk-table__cell">Cancellation of home rights (HR4)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CN</td>
+            <td class="govuk-table__cell govuk-table__cell">Change of name</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CNC</td>
+            <td class="govuk-table__cell govuk-table__cell">Change of name - chargee</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CNL</td>
+            <td class="govuk-table__cell govuk-table__cell">Cancellation of an unregistered noted lease (CN1)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">COA</td>
+            <td class="govuk-table__cell govuk-table__cell">Change of address for service</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">COAC</td>
+            <td class="govuk-table__cell govuk-table__cell">Change of address for service - chargee</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CON</td>
+            <td class="govuk-table__cell govuk-table__cell">Consolidation of charge</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">COP</td>
+            <td class="govuk-table__cell govuk-table__cell">Charge of part</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CPD</td>
+            <td class="govuk-table__cell govuk-table__cell">Change of property description</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CPVK</td>
+            <td class="govuk-table__cell govuk-table__cell">Compulsory purchase (property value known)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CPVU</td>
+            <td class="govuk-table__cell govuk-table__cell">Compulsory purchase (property value unknown)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CTD</td>
+            <td class="govuk-table__cell govuk-table__cell">Commonhold transitional dealing</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">CUR</td>
+            <td class="govuk-table__cell govuk-table__cell">Cancellation of notice of unregistered Rentcharge</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">DB</td>
+            <td class="govuk-table__cell govuk-table__cell">Determined boundary (DB)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">DCLN</td>
+            <td class="govuk-table__cell govuk-table__cell">Disclaimer - notification</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">DCLV</td>
+            <td class="govuk-table__cell govuk-table__cell">Disclaimer - notice</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">DFL1</td>
+            <td class="govuk-table__cell govuk-table__cell">New lease - other</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">DFL3</td>
+            <td class="govuk-table__cell govuk-table__cell">New lease - shared ownership</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">DFL4</td>
+            <td class="govuk-table__cell govuk-table__cell">New lease - right to buy or right to acquire</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">DFL5</td>
+            <td class="govuk-table__cell govuk-table__cell">Dispositionary first lease extension of a term</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">DFT</td>
+            <td class="govuk-table__cell govuk-table__cell">Defect in title s64(1) LRA 2002</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">DIS</td>
+            <td class="govuk-table__cell govuk-table__cell">Discharge of charge</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">DJP</td>
+            <td class="govuk-table__cell govuk-table__cell">Death of a joint proprietor</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">DL</td>
+            <td class="govuk-table__cell govuk-table__cell">Discontinuous lease - non-timeshare</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">DMR</td>
+            <td class="govuk-table__cell govuk-table__cell">Disapplication of restriction (RX2)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">DOG</td>
+            <td class="govuk-table__cell govuk-table__cell">Deed of grant of easement</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">DP</td>
+            <td class="govuk-table__cell govuk-table__cell">Discharge of part</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">DSP</td>
+            <td class="govuk-table__cell govuk-table__cell">Death of a sole proprietor</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">DTL</td>
+            <td class="govuk-table__cell govuk-table__cell">Discontinuous lease - timeshare</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">EXR</td>
+            <td class="govuk-table__cell govuk-table__cell">Extinguishment of rentcharge</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">HR</td>
+            <td class="govuk-table__cell govuk-table__cell">Notice of home rights (HR1)</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">JP1</td>
+            <td class="govuk-table__cell govuk-table__cell">Removal of default Form A restriction</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">LCATCO</td>
+            <td class="govuk-table__cell govuk-table__cell">Lease closure - of assured tenancies following court order</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">LCBD</td>
+            <td class="govuk-table__cell govuk-table__cell">Lease closure - by disclaimer</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">LCBET</td>
+            <td class="govuk-table__cell govuk-table__cell">Lease closure - by effluxion of time</td>
+        </tr>
+        <tr class="govuk-table__row">
+            <td class="govuk-table__cell govuk-table__cell">LCBN</td>
+            <td class="govuk-table__cell govuk-table__cell">Lease closure - by notice</td>
+        </tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">LCF</td>
+    <td class="govuk-table__cell govuk-table__cell">Lease closure - forfeiture</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">LCMRE</td>
+    <td class="govuk-table__cell govuk-table__cell">Lease closure - merger with reversionary estate</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">LCOE</td>
+    <td class="govuk-table__cell govuk-table__cell">Lease closure - on enlargement</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">LCOF</td>
+    <td class="govuk-table__cell govuk-table__cell">Lease closure - on frustration</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">LCSD</td>
+    <td class="govuk-table__cell govuk-table__cell">Lease closure - surrender by deed (not for value or reverse premium)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">LCSDM</td>
+    <td class="govuk-table__cell govuk-table__cell">Lease closure - surrender by deed</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">LCSDWT</td>
+    <td class="govuk-table__cell govuk-table__cell">Lease closure - surrender by deed with a transfer (not for value or reverse premium)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">LCSDMWT</td>
+    <td class="govuk-table__cell govuk-table__cell">Lease closure - surrender by deed (together with transfer)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">LCSOL</td>
+    <td class="govuk-table__cell govuk-table__cell">Lease closure - surrender by operation of law (not for value or reverse premium)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">LCSOLM</td>
+    <td class="govuk-table__cell govuk-table__cell">Lease closure - surrender by operation of law</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">MDR</td>
+    <td class="govuk-table__cell govuk-table__cell">Modification of Restriction</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">NCT</td>
+    <td class="govuk-table__cell govuk-table__cell">Caution amendment, new cautioner</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">NDC</td>
+    <td class="govuk-table__cell govuk-table__cell">Notification of dissolution of company</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">NFR</td>
+    <td class="govuk-table__cell govuk-table__cell">Noting of an affecting franchise</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">NOE</td>
+    <td class="govuk-table__cell govuk-table__cell">Noting an easement</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">NOL</td>
+    <td class="govuk-table__cell govuk-table__cell">Noting a lease</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">NPR</td>
+    <td class="govuk-table__cell govuk-table__cell">Noting of a profit</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">NRT</td>
+    <td class="govuk-table__cell govuk-table__cell">Notice of rentcharge</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">PC</td>
+    <td class="govuk-table__cell govuk-table__cell">Postponement of charge</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">PER</td>
+    <td class="govuk-table__cell govuk-table__cell">Personal covenants</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">PRO</td>
+    <td class="govuk-table__cell govuk-table__cell">Provisions</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">RC</td>
+    <td class="govuk-table__cell govuk-table__cell">Restrictive covenants - entry of</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">RFN</td>
+    <td class="govuk-table__cell govuk-table__cell">Deed of rectification</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">RHR</td>
+    <td class="govuk-table__cell govuk-table__cell">Renewal of home rights (HR2)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">ROCA</td>
+    <td class="govuk-table__cell govuk-table__cell">Release of covenants - agreed notice (AN1)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">ROCC</td>
+    <td class="govuk-table__cell govuk-table__cell">Release of covenants - cancellation (CN1)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">ROCU</td>
+    <td class="govuk-table__cell govuk-table__cell">Release of covenants - unilateral notice (UN1)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">RNT</td>
+    <td class="govuk-table__cell govuk-table__cell">Overriding lease granted under s.19, Landlord &amp; Tenant (Covenants) Act 1995</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">ROE</td>
+    <td class="govuk-table__cell govuk-table__cell">Release of easements</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">RRD</td>
+    <td class="govuk-table__cell govuk-table__cell">Removal of a right to determine</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">RTM</td>
+    <td class="govuk-table__cell govuk-table__cell">Acquisition of right to manage</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">RUN</td>
+    <td class="govuk-table__cell govuk-table__cell">Removal of unilateral notice (UN2)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">RXL</td>
+    <td class="govuk-table__cell govuk-table__cell">Form ll restriction entered - simple request</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">RXN</td>
+    <td class="govuk-table__cell govuk-table__cell">Restriction (non-standard wording) (RX1)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">RXS</td>
+    <td class="govuk-table__cell govuk-table__cell">Restriction (standard wording) (RX1)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">SBC</td>
+    <td class="govuk-table__cell govuk-table__cell">Sub charge</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">SHO</td>
+    <td class="govuk-table__cell govuk-table__cell">Shared ownership - additional share</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">SJT</td>
+    <td class="govuk-table__cell govuk-table__cell">Severance of joint tenancy (SEV, RX1)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">STVC</td>
+    <td class="govuk-table__cell govuk-table__cell">Statutory vestings charge</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">STVL</td>
+    <td class="govuk-table__cell govuk-table__cell">Statutory vestings land</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">T</td>
+    <td class="govuk-table__cell govuk-table__cell">Transfer for value</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TNV</td>
+    <td class="govuk-table__cell govuk-table__cell">Transfer (not for value or reverse premium)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TNVTP</td>
+    <td class="govuk-table__cell govuk-table__cell">Transfer (not for value or reverse premium) (Transfer of part)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TOC</td>
+    <td class="govuk-table__cell govuk-table__cell">Transfer of charge</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TOSNV</td>
+    <td class="govuk-table__cell govuk-table__cell">Transfer of share (not for value or reverse premium)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TOSNVTP</td>
+    <td class="govuk-table__cell govuk-table__cell">Transfer of share (not for value or reverse premium) (Transfer of part)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TOSTP</td>
+    <td class="govuk-table__cell govuk-table__cell">Transfer of share for value (Transfer of part)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TOSV</td>
+    <td class="govuk-table__cell govuk-table__cell">Transfer of share for value</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TPS</td>
+    <td class="govuk-table__cell govuk-table__cell">Transfer under power of sale</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TPSTP</td>
+    <td class="govuk-table__cell govuk-table__cell">Transfer under power of sale (Transfer of part)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TRC</td>
+    <td class="govuk-table__cell govuk-table__cell">Termination of commonhold</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TRM</td>
+    <td class="govuk-table__cell govuk-table__cell">Transfer by operation of law on death</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TSCNV</td>
+    <td class="govuk-table__cell govuk-table__cell">Transfer subject to a charge (not for value or reverse premium)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TSCNVTP</td>
+    <td class="govuk-table__cell govuk-table__cell">Transfer subject to a charge (not for value or reverse premium) (Transfer of part)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TSCTP</td>
+    <td class="govuk-table__cell govuk-table__cell">Transfer subject to a charge for value (Transfer of part)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TSCV</td>
+    <td class="govuk-table__cell govuk-table__cell">	Transfer subject to a charge for value (Transfer of part)</td>
+  </tr>
+  <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell">TTP</td>
+      <td class="govuk-table__cell govuk-table__cell">Transfer for value (Transfer of part)</td>
+  </tr>
+  <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell">TVR</td>
+      <td class="govuk-table__cell govuk-table__cell">Transfer for value RTB/RTA</td>
+  </tr>
+  <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell">TVRTP</td>
+      <td class="govuk-table__cell govuk-table__cell">Transfer for value RTB/RTA (Transfer of part)</td>
+  </tr>
+  <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell">UNN</td>
+      <td class="govuk-table__cell govuk-table__cell">Unilateral notice (UN1)</td>
+  </tr>
+  <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell">UPT</td>
+      <td class="govuk-table__cell govuk-table__cell">Upgrade class of title (UT1)</td>
+  </tr>
+  <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell">VC</td>
+      <td class="govuk-table__cell govuk-table__cell">Variation of charge</td>
+  </tr>
+  <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell">VLAN</td>
+      <td class="govuk-table__cell govuk-table__cell">Variation of lease - agreed notice (AN1)</td>
+  </tr>
+  <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell">VLAP</td>
+      <td class="govuk-table__cell govuk-table__cell">Deed of variation of a lease - not increasing the term of or adding new land to the extent demised</td>
+  </tr>
+  <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell">VLUN</td>
+      <td class="govuk-table__cell govuk-table__cell">Variation of lease - unilateral notice (UN1)</td>
+  </tr>
+  <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell">VO</td>
+      <td class="govuk-table__cell govuk-table__cell">Vesting order</td>
+  </tr>
+  <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell">VOC</td>
+      <td class="govuk-table__cell govuk-table__cell">Variation of covenants</td>
+  </tr>
+  <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell">VOCA</td>
+      <td class="govuk-table__cell govuk-table__cell">Variation of covenants - agreed notice (AN1)</td>
+  </tr>
+  <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell">VOCU</td>
+      <td class="govuk-table__cell govuk-table__cell">Variation of covenants - unilateral notice (UN1)</td>
+  </tr>
+  <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell">VOE</td>
+      <td class="govuk-table__cell govuk-table__cell">Variation of easements</td>
+  </tr>
+  <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell">VOEA</td>
+      <td class="govuk-table__cell govuk-table__cell">Variation of easements - agreed notice (AN1)</td>
+  </tr>
+  <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell">VOEU</td>
+      <td class="govuk-table__cell govuk-table__cell">Variation of easements - unilateral notice (UN1)</td>
+  </tr>
+  <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell">WCT</td>
+      <td class="govuk-table__cell govuk-table__cell">Withdrawal of caution</td>
+  </tr>
+  <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell">WDR</td>
+      <td class="govuk-table__cell govuk-table__cell">Withdraw a restriction (RX4)</td>
+  </tr>
+
+    </tbody>
+    </table>
+
+  </div>
+</details>
+
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Documents
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m">Document types</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Type</th>
+          <th scope="col" class="govuk-table__header">Details</th>
+          </tr>
+      </thead>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">ABSTRACT</td>
+          <td class="govuk-table__cell govuk-table__cell">Abstract</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">ACKAPU</td>
+          <td class="govuk-table__cell govuk-table__cell">Adjudicator’s Letter Confirming a Court’s Decision (ACKAPU)</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">ADJAR</td>
+          <td class="govuk-table__cell govuk-table__cell">Adjudicator’s Letter of Refusal (ADJAR)</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">ADJREVU</td>
+          <td class="govuk-table__cell govuk-table__cell">Adjudicator’s Letter of Confirmation (ADJREVU)</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">ADMIN_LTRS</td>
+          <td class="govuk-table__cell govuk-table__cell">Letters of Administration</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">ADV1</td>
+          <td class="govuk-table__cell govuk-table__cell">Adverse possession: registration (ADV1)</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">ADV2</td>
+          <td class="govuk-table__cell govuk-table__cell">Adverse possession: notification (ADV2)</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">AGREEMENT</td>
+          <td class="govuk-table__cell govuk-table__cell">Agreement</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">AMS1</td>
+          <td class="govuk-table__cell govuk-table__cell">Application to use Application Management Service (AMS1)</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">AN1</td>
+          <td class="govuk-table__cell govuk-table__cell">AN1 Agreed notice</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">AP1</td>
+          <td class="govuk-table__cell govuk-table__cell">AP1 Application to change the register</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">APPL_FRM</td>
+          <td class="govuk-table__cell govuk-table__cell">Application Form</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">APPOINTMENT_OF_TRUSTEE</td>
+          <td class="govuk-table__cell govuk-table__cell">Deed of Appointment of New Trustee</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">AS1</td>
+          <td class="govuk-table__cell govuk-table__cell">AS1 registered title(s): assent of whole</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">AS2</td>
+          <td class="govuk-table__cell govuk-table__cell">AS2: Assent of Charge</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">AS3</td>
+          <td class="govuk-table__cell govuk-table__cell">AS3 Assent of Part</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">ASSENT</td>
+          <td class="govuk-table__cell govuk-table__cell">Assent</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">ASSIGNMENT</td>
+          <td class="govuk-table__cell govuk-table__cell">Assignment</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">BIRTH_CERT</td>
+          <td class="govuk-table__cell govuk-table__cell">Birth Certificate</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">BOUND_PLAN</td>
+          <td class="govuk-table__cell govuk-table__cell">Determined Boundary Plan</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">CC</td>
+          <td class="govuk-table__cell govuk-table__cell">CC</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">CCD</td>
+          <td class="govuk-table__cell govuk-table__cell">CCD Cancel caution against dealings</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">CERT_CON_CH</td>
+          <td class="govuk-table__cell govuk-table__cell">Original or certified copy of the certificate of incorporation of change of name issued by Companies House</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">CERT_DEATH</td>
+          <td class="govuk-table__cell govuk-table__cell">Certificate of Presumed Death</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">CERT_REG_CH</td>
+          <td class="govuk-table__cell govuk-table__cell">Certificate of registration issued by Companies House</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">CERT_S89</td>
+          <td class="govuk-table__cell govuk-table__cell">Certificate of Filing to Comply with s. 89 of the Insolvency Act 1987</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">CH1</td>
+          <td class="govuk-table__cell govuk-table__cell">CH1 Legal charge (mortgage) of a registered estate</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">CH2</td>
+          <td class="govuk-table__cell govuk-table__cell">CH2 Obligation to make further advances</td>
+      </tr>
+      <tr class="govuk-table__row">
+          <td class="govuk-table__cell govuk-table__cell">CH3</td>
+          <td class="govuk-table__cell govuk-table__cell">CH3 Note agreed maximum amount of security</td>
+      </tr>
+      <tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CHARGE</td>
+    <td class="govuk-table__cell govuk-table__cell">Charge</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CHARG_ORD</td>
+    <td class="govuk-table__cell govuk-table__cell">Charging Order</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CIVIL_CERT</td>
+    <td class="govuk-table__cell govuk-table__cell">Marriage/civil partnership certificate</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CM2</td>
+    <td class="govuk-table__cell govuk-table__cell">Commonhold land: registered freehold termination (CM2)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CM5</td>
+    <td class="govuk-table__cell govuk-table__cell">Commonhold land: termination (CM5)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CM6</td>
+    <td class="govuk-table__cell govuk-table__cell">Commonhold successor: registration (CM6)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CN1</td>
+    <td class="govuk-table__cell govuk-table__cell">CN1 Cancel notice</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CNFRM_DTMN_LTA_LGHA</td>
+    <td class="govuk-table__cell govuk-table__cell">Confirmation of determination of lease in accordance with the LTA 1954 or the LGHA 1989</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CNFRM_NO_DEED_SUR</td>
+    <td class="govuk-table__cell govuk-table__cell">Confirmation that no deed of surrender has been entered into</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CNFRM_NO_LTA_LGHA</td>
+    <td class="govuk-table__cell govuk-table__cell">Confirmation that neither the LTA 1954 nor the LGHA 1989 affect the lease</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CNSNT_ADMIN_COURT</td>
+    <td class="govuk-table__cell govuk-table__cell">Consent of the administrator or the court (if lessee is in administration)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">COMP_DOC</td>
+    <td class="govuk-table__cell govuk-table__cell">Company Documentation</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CONSENT</td>
+    <td class="govuk-table__cell govuk-table__cell">Consent</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CONST_COMP</td>
+    <td class="govuk-table__cell govuk-table__cell">Document(s) constituting the company</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CONTR_RES</td>
+    <td class="govuk-table__cell govuk-table__cell">Contributory’s resolution appointing the liquidator</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CONV_CERT</td>
+    <td class="govuk-table__cell govuk-table__cell">Conveyancer’s Certificate</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CONV_CERT_DEATH</td>
+    <td class="govuk-table__cell govuk-table__cell">Conveyancer’s Certificate of the fact of death</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CONVEYANCE</td>
+    <td class="govuk-table__cell govuk-table__cell">Conveyance</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">COR_CERT</td>
+    <td class="govuk-table__cell govuk-table__cell">Coroner’s Certificate</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CORRES</td>
+    <td class="govuk-table__cell govuk-table__cell">Correspondence</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">COSR</td>
+    <td class="govuk-table__cell govuk-table__cell">Company search result</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">COURT_ORD</td>
+    <td class="govuk-table__cell govuk-table__cell">Court Order</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CRALIQ</td>
+    <td class="govuk-table__cell govuk-table__cell">Company resolution appointing the liquidator</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CRED_DEC</td>
+    <td class="govuk-table__cell govuk-table__cell">Creditor’s decision notice</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CRED_RES</td>
+    <td class="govuk-table__cell govuk-table__cell">Creditor’s resolution appointing the liquidator</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CRT_FORM_7</td>
+    <td class="govuk-table__cell govuk-table__cell">Certificate in Form 7</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">CRWALIQ</td>
+    <td class="govuk-table__cell govuk-table__cell">Company resolution that it be wound up and appointing the liquidator</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">DB</td>
+    <td class="govuk-table__cell govuk-table__cell">DB Determine the exact line of a boundary</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">DEATH_CERT</td>
+    <td class="govuk-table__cell govuk-table__cell">Death Certificate</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">DEC_AB_NULL_MARR</td>
+    <td class="govuk-table__cell govuk-table__cell">Decree absolute or nullity of marriage</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">DEED</td>
+    <td class="govuk-table__cell govuk-table__cell">Deed</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">DEED_POLL</td>
+    <td class="govuk-table__cell govuk-table__cell">Deed poll</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">DEED_REG_DIS</td>
+    <td class="govuk-table__cell govuk-table__cell">Deed which is a registrable disposition</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">DEED_SUR</td>
+    <td class="govuk-table__cell govuk-table__cell">Deed of Surrender</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">DISCHARGE</td>
+    <td class="govuk-table__cell govuk-table__cell">Discharge</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">DJP</td>
+    <td class="govuk-table__cell govuk-table__cell">DJP Death of joint proprietor</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">DL</td>
+    <td class="govuk-table__cell govuk-table__cell">Document List</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">DOP</td>
+    <td class="govuk-table__cell govuk-table__cell">Deed of postponement</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">DRIVING_LICENCE</td>
+    <td class="govuk-table__cell govuk-table__cell">Driving licence</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">DS1</td>
+    <td class="govuk-table__cell govuk-table__cell">DS1</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">DS2</td>
+    <td class="govuk-table__cell govuk-table__cell">DS2 Cancel entries relating to registered charge</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">DS3</td>
+    <td class="govuk-table__cell govuk-table__cell">DS3 Release of Part of the Land from a registered charge</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">DS3_SHORT</td>
+    <td class="govuk-table__cell govuk-table__cell">DS3</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">EOB</td>
+    <td class="govuk-table__cell govuk-table__cell">Evidence of bankruptcy</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">EOL</td>
+    <td class="govuk-table__cell govuk-table__cell">Evidence of liquidation</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">EVD_NO_RENEW</td>
+    <td class="govuk-table__cell govuk-table__cell">Evidence that any option to renew has not been, and cannot be, exercised</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">EVIDENCE</td>
+    <td class="govuk-table__cell govuk-table__cell">Evidence</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">EV_OV_NAME_CHANGE</td>
+    <td class="govuk-table__cell govuk-table__cell">Evidence of an overseas company name change</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">EX1</td>
+    <td class="govuk-table__cell govuk-table__cell">EX1 Exempt information document</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">EX1A</td>
+    <td class="govuk-table__cell govuk-table__cell">EX1A</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">FORM_600</td>
+    <td class="govuk-table__cell govuk-table__cell">Companies House Form 600</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">FORM_600CH</td>
+    <td class="govuk-table__cell govuk-table__cell">Companies House Form 600CH</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">FORM_DI</td>
+    <td class="govuk-table__cell govuk-table__cell">Form DI</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">FORM_JO</td>
+    <td class="govuk-table__cell govuk-table__cell">Form JO (Trust Information)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">FR1</td>
+    <td class="govuk-table__cell govuk-table__cell">FR1 Application for First Registration</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">GENDER_CERT</td>
+    <td class="govuk-table__cell govuk-table__cell">Gender recognition certificate</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">GVD</td>
+    <td class="govuk-table__cell govuk-table__cell">General vesting declaration</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">HR1</td>
+    <td class="govuk-table__cell govuk-table__cell">HR1 Notice of home rights</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">HR2</td>
+    <td class="govuk-table__cell govuk-table__cell">HR2 Renew notice of home rights</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">HR4</td>
+    <td class="govuk-table__cell govuk-table__cell">HR4 Cancel notice of home rights</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">ID1</td>
+    <td class="govuk-table__cell govuk-table__cell">ID1 - Verify identity: citizen</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">ID2</td>
+    <td class="govuk-table__cell govuk-table__cell">ID2 - Verify identity: body corporate</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">ID3</td>
+    <td class="govuk-table__cell govuk-table__cell">ID3 - Certificate of identity for a private individual</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">ID4</td>
+    <td class="govuk-table__cell govuk-table__cell">ID4 - Certificate of identity for a body corporate</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">ID5</td>
+    <td class="govuk-table__cell govuk-table__cell">ID5 - Certificate to be given by a conveyancer where a person’s identity has been verified by way of an online video call</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">ID_EV</td>
+    <td class="govuk-table__cell govuk-table__cell">Identity Evidence</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">ID_FRM</td>
+    <td class="govuk-table__cell govuk-table__cell">Identity Form</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">INDENTURE</td>
+    <td class="govuk-table__cell govuk-table__cell">Indenture</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">JP1</td>
+    <td class="govuk-table__cell govuk-table__cell">JP1 Letter</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">K17_OR_K18</td>
+    <td class="govuk-table__cell govuk-table__cell">Land Charge Search in Form K17 or K18</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">K20</td>
+    <td class="govuk-table__cell govuk-table__cell">Certificate of Cancellation of Bankruptcy Notice in Form K20</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">K22</td>
+    <td class="govuk-table__cell govuk-table__cell">Acknowledgement of Application for Cancellation of Bankruptcy Notice in Form K22</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">K3</td>
+    <td class="govuk-table__cell govuk-table__cell">HMLR Form K3</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">K4</td>
+    <td class="govuk-table__cell govuk-table__cell">HMLR Form K4</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">LEASE</td>
+    <td class="govuk-table__cell govuk-table__cell">Lease</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">LICENCE</td>
+    <td class="govuk-table__cell govuk-table__cell">Licence</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">LIQ01</td>
+    <td class="govuk-table__cell govuk-table__cell">Companies House Form LIQ01</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">LIQ_CERT_1</td>
+    <td class="govuk-table__cell govuk-table__cell">Liquidator’s certificate confirming liquidator’s appointment or that no resolution was passed nominating one</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">LIQ_CERT_2</td>
+    <td class="govuk-table__cell govuk-table__cell">Liquidator’s certificate that a meeting was held in accordance with s. 98(1) of the Insolvency Act 1986</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">LIQ_CERT_3</td>
+    <td class="govuk-table__cell govuk-table__cell">Liquidator’s certificate that appointment confirmed by a creditor’s qualifying decision procedure</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">LNDLD_CNSNT</td>
+    <td class="govuk-table__cell govuk-table__cell">Landlord’s consent</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">LONP</td>
+    <td class="govuk-table__cell govuk-table__cell">Letter or notice of postponement</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">LR_CORRES</td>
+    <td class="govuk-table__cell govuk-table__cell">LR Correspondence</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">LTT</td>
+    <td class="govuk-table__cell govuk-table__cell">Land Transaction Tax</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">MARR_CERT</td>
+    <td class="govuk-table__cell govuk-table__cell">Marriage Certificate</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">MEMO</td>
+    <td class="govuk-table__cell govuk-table__cell">Memorandum</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">MORD</td>
+    <td class="govuk-table__cell govuk-table__cell">Ministerial order</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">MRTG_DEED</td>
+    <td class="govuk-table__cell govuk-table__cell">Mortgage Deed</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">NOD</td>
+    <td class="govuk-table__cell govuk-table__cell">Notice of disclaimer</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">ORD_DISS_NULL_CP</td>
+    <td class="govuk-table__cell govuk-table__cell">Order of dissolution or nullity of civil partnership</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">PASSPORT</td>
+    <td class="govuk-table__cell govuk-table__cell">Passport</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">PLAN</td>
+    <td class="govuk-table__cell govuk-table__cell">Plan</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">POA</td>
+    <td class="govuk-table__cell govuk-table__cell">Power of Attorney</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">PROBATE</td>
+    <td class="govuk-table__cell govuk-table__cell">Probate</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">PSS1</td>
+    <td class="govuk-table__cell govuk-table__cell">Application to use Pre-submission Enquiry Service (PSS1)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">REVERS_INT</td>
+    <td class="govuk-table__cell govuk-table__cell">Examined Abstract of Reversionary Interest(s)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">RN</td>
+    <td class="govuk-table__cell govuk-table__cell">Receipted Notice</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">RX1</td>
+    <td class="govuk-table__cell govuk-table__cell">RX1 Restriction</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">RX2</td>
+    <td class="govuk-table__cell govuk-table__cell">RX2 Disapply or modify restriction</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">RX3</td>
+    <td class="govuk-table__cell govuk-table__cell">RX3 Cancel restriction</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">RX4</td>
+    <td class="govuk-table__cell govuk-table__cell">RX4 Withdraw restriction</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">RXC</td>
+    <td class="govuk-table__cell govuk-table__cell">RXC Restriction: consent or certificate</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">SC</td>
+    <td class="govuk-table__cell govuk-table__cell">SC Note overriding priority of statutory charge</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">SDLT</td>
+    <td class="govuk-table__cell govuk-table__cell">Stamp Duty Land Tax</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">SEV</td>
+    <td class="govuk-table__cell govuk-table__cell">SEV Severance of Joint Tenancy</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">SHRF_RTN</td>
+    <td class="govuk-table__cell govuk-table__cell">Sheriff’s Return</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">SIDE_LTR</td>
+    <td class="govuk-table__cell govuk-table__cell">Side Letter</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">SOT</td>
+    <td class="govuk-table__cell govuk-table__cell">Statement Of Truth</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">SSALIQ</td>
+    <td class="govuk-table__cell govuk-table__cell">Appointment of Liquidator by The Secretary of State</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">STAT_DEC</td>
+    <td class="govuk-table__cell govuk-table__cell">Statutory Declaration</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">SUB_CHARGE</td>
+    <td class="govuk-table__cell govuk-table__cell">Sub Charge</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TP1</td>
+    <td class="govuk-table__cell govuk-table__cell">TP1 Transfer of part of registered title(s)</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TP2</td>
+    <td class="govuk-table__cell govuk-table__cell">TP2 Transfer of part under power of sale</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TR1</td>
+    <td class="govuk-table__cell govuk-table__cell">TR1 Registered title(s): whole transfer</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TR2</td>
+    <td class="govuk-table__cell govuk-table__cell">TR2 Registered title(s) under power of sale: whole transfer</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TR4</td>
+    <td class="govuk-table__cell govuk-table__cell">TR4</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TRANSFER</td>
+    <td class="govuk-table__cell govuk-table__cell">Transfer</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">TRUSTEE_RESOLUTION</td>
+    <td class="govuk-table__cell govuk-table__cell">Trustee resolution</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">UN1</td>
+    <td class="govuk-table__cell govuk-table__cell">UN1 Unilateral notice</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">UN2</td>
+    <td class="govuk-table__cell govuk-table__cell">UN2 Remove unilateral notice</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">UN3</td>
+    <td class="govuk-table__cell govuk-table__cell">UN3 Beneficiary of an existing unilateral notice</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">UN4</td>
+    <td class="govuk-table__cell govuk-table__cell">UN4 Cancel unilateral notice</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">UT1</td>
+    <td class="govuk-table__cell govuk-table__cell">UT1 Upgrade of title</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">VAR_CHARGE</td>
+    <td class="govuk-table__cell govuk-table__cell">Deed of Variation of Charge</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">VAR_COV</td>
+    <td class="govuk-table__cell govuk-table__cell">Deed of Variation of Covenants</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">VAR_EAS</td>
+    <td class="govuk-table__cell govuk-table__cell">Deed of Variation of Easements</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">VAR_LEASE</td>
+    <td class="govuk-table__cell govuk-table__cell">Deed of Variation of Lease</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">VESTING_ORDER</td>
+    <td class="govuk-table__cell govuk-table__cell">Vesting order</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">WCT</td>
+    <td class="govuk-table__cell govuk-table__cell">WCT Withdraw caution</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">WINDING_UP</td>
+    <td class="govuk-table__cell govuk-table__cell">Winding up order</td>
+</tr>
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell">WIT_STATE</td>
+    <td class="govuk-table__cell govuk-table__cell">Witness Statement</td>
+</tr>
+
+    </tbody>
+    </table>
+
+  </div>
+</details>
+
+<p class="govuk-body">As well as the definition of each transaction/document, we have also provided a mapping, showing the required documents for each transaction type. There are three categories of documents that can be uploaded for a transaction:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li><b>Compulsory</b> - this document is required for the transaction type</li>
+  <li><b>Either</b> - at least one of the documents marked as Either must be submitted with the transaction</li>
+  <li><b>Suggested</b> - these documents are not required, but are commonly attached alongside the transaction</li>
+</ul>
+
+<p class="govuk-body">For example, for an <code style="color: #a71d5d; background-color: #f5f5f5">ADV1</code> transaction type, the following documents need to be uploaded:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>An <code style="color: #a71d5d; background-color: #f5f5f5">ADV1</code> document must be uploaded </li>
+  <li>At least one of a <code style="color: #a71d5d; background-color: #f5f5f5">SOT</code>or <code style="color: #a71d5d; background-color: #f5f5f5">STAT_DEC</code> document must be uploaded</li>
+  <li><code style="color: #a71d5d; background-color: #f5f5f5">COSR</code>, <code style="color: #a71d5d; background-color: #f5f5f5">EVIDENCE</code>, <code style="color: #a71d5d; background-color: #f5f5f5">PLAN</code> and <code style="color: #a71d5d; background-color: #f5f5f5">POA</code> documents are not required, but may help when processing your application</p>
+</ul>
+
+          <p class="govuk-body">During application submission, validation will be applied for each transaction to ensure the rules regarding the Compulsory and Either document types have been satisfied correctly:</p>
+
+  <h3 class="govuk-heading-s">File length</h3>
+  <p class="govuk-body">The <code style="color: #a71d5d; background-color: #f5f5f5">file_length</code> should be the size of the file in bytes. See below for code examples in several languages:</p>
+
+<p class="govuk-body">Python</p>
+
+
+<div class="container">
+  <div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
+    <pre>  <code style="color: #a71d5d">with</code><code> open(</code><code style="color: #1d70b8">"test.pdf" "rb"</code><code>)</code><code style="color: #a71d5d"> as</code><code> f:
+    file_bytes <code style="color: #1d70b8">=</code> f.read()
+    file_length <code style="color: #1d70b8">=</code> len(file_bytes) </code>
+    </pre>
+  </div>
+</div>
+
+<div class="govuk-!-padding-bottom-6"></div>
+
+<p class="govuk-body">Bash</p>
+
+<div class="container">
+  <div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
+    <pre>  <code>du</code><code style="color: #0E7754"> -b</code><code> test.pdf</code>
+    </pre>
+  </div>
+</div>
+
+<div class="govuk-!-padding-bottom-6"></div>
+
+<p class="govuk-body">Java</p>
+
+<div class="container">
+  <div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
+    <pre>  <code style="color: #4C4077">File</code><code> f(</code> <code style="color: #1d70b8">=</code><code style="color: #a71d5d"> new</code><code style="color: #4C4077"> File</code><code style="color: #1d70b8">("test.pdf")</code>;
+  <code style="color: #4C4077">long</code><code> fileLength(</code> <code style="color: #1d70b8">=</code><code> f</code><code style="color: #1d70b8">.</code><code style="color: #4C4077">length</code><code style="color: #1d70b8">()</code>;
+    </pre>
+  </div>
+</div>
+
+<div class="govuk-!-padding-bottom-6"></div>
+
+<p class="govuk-body">JavaScript (Node)</p>
+
+<div class="container">
+  <div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
+    <pre>  <code style="color: #a71d5d">const</code><code style="color: #0E7754"> fs</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> require</code>("<code style="color: #1d70b8">fs</code>")
+  <code style="color: #a71d5d">const</code><code style="color: #0E7754"> stats</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> fs</code>.<code style="color: #0E7754">statSync</code>("<code style="color: #1d70b8">test.pdf</code>")
+  <code style="color: #a71d5d">const</code><code style="color: #0E7754"> fileLength</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> stats</code>.<code style="color: #0E7754">size</code>;
+  </pre>
+  </div>
+</div>
+
+<div class="govuk-!-padding-bottom-6"></div>
+
+<h3 class="govuk-heading-s">File Sha256</h3>
+<p class="govuk-body">The <code style="color: #a71d5d; background-color: #f5f5f5">file_sha256</code> is the base64 encoded 256-bit binary digest of the bytes of the file. This should be exactly 44 characters long, regardless of the length of the file. See below for code examples in several languages:</p>
+
+<p class="govuk-body">Python</p>
+
+<div class="container">
+<div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
+  <pre>  <code style="color: #a71d5d">with</code><code> open(</code><code style="color: #1d70b8">"test.pdf" "rb"</code><code>)</code><code style="color: #a71d5d"> as</code><code> f:
+  file_bytes <code style="color: #1d70b8">=</code> f.read()
+  hash <code style="color: #1d70b8">=</code>sha256(file_bytes)
+  file_sha256 <code style="color: #1d70b8">=</code> b64encode(hash.digest())</code>
+  </pre>
+</div>
+</div>
+
+<div class="govuk-!-padding-bottom-6"></div>
+
+<p class="govuk-body">Bash</p>
+
+<div class="container">
+<div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
+  <pre>  cat test.pdf | openssl sha256<code style="color: #0E7754"> -binary</code>| openssl enc<code style="color: #0E7754"> -base64</code>
+  </pre>
+</div>
+</div>
+
+<div class="govuk-!-padding-bottom-6"></div>
+
+<p class="govuk-body">Java</p>
+
+<div class="container">
+<div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
+  <pre>  <code style="color: #4C4077">File</code><code> f </code> <code style="color: #1d70b8">=</code><code style="color: #a71d5d"> new</code><code style="color: #4C4077"> File</code><code style="color: #1d70b8">("test.pdf");</code>
+  <code style="color: #4C4077">byte</code><code style="color: #1d70b8">[] </code>data<code style="color: #1d70b8"> = </code><code style="color: #4C4077"> Files</code><code style="color: #1d70b8">.</code><code style="color: #4C4077">readsAllBytes</code><code style="color: #1d70b8">(</code>f<code style="color: #1d70b8">);</code>
+  <code style="color: #4C4077">MessageDigest</code> digester<code style="color: #1d70b8"> = </code><code style="color: #4C4077"> MessageDigest</code><code style="color: #1d70b8">.</code><code style="color: #4C4077">getInstance</code><code style="color: #1d70b8">("SHA256");</code>
+  digester.<code style="color: #4C4077">update</code><code style="color: #1d70b8">(</code>data<code style="color: #1d70b8">);</code>
+  <code style="color: #4C4077">String</code><code> fileSha256 </code> <code style="color: #1d70b8">=</code><code style="color: #4C4077"> Base64.getEncoder</code><code style="color: #1d70b8">().</code><code style="color: #4C4077">encodeToString</code><code style="color: #1d70b8">(</code>digester<code style="color: #1d70b8">.</code><code style="color: #4C4077">digest</code><code style="color: #1d70b8">());</code>
+  </pre>
+</div>
+</div>
+
+<div class="govuk-!-padding-bottom-6"></div>
+
+<p class="govuk-body">JavaScript (Node)</p>
+
+<div class="container">
+<div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
+  <pre>  <code style="color: #a71d5d">const</code><code style="color: #0E7754"> fs</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> require</code>("<code style="color: #1d70b8">fs</code>")
+<code style="color: #a71d5d">const</code><code style="color: #0E7754"> stats</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> fs</code>.<code style="color: #0E7754">statSync</code>("<code style="color: #1d70b8">test.pdf</code>")
+<code style="color: #a71d5d">const</code><code style="color: #0E7754"> fileLength</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> stats</code>.<code style="color: #0E7754">size</code>;
+</pre>
+</div>
+</div>
+
+<div class="govuk-!-padding-bottom-6"></div>
+
+<h2 class="govuk-heading-m" id="example-requests-and-responses">Example requests and responses</h2>
+
+<h3 class="govuk-heading-s"> <code>POST /v1/documents/url</code> - Request</h3>
+
+<div class="container">
+<div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
+  <pre>  <code style="color: #a71d5d">const</code><code style="color: #0E7754"> fs</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> require</code>("<code style="color: #1d70b8">fs</code>")
+<code style="color: #a71d5d">const</code><code style="color: #0E7754"> stats</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> fs</code>.<code style="color: #0E7754">statSync</code>("<code style="color: #1d70b8">test.pdf</code>")
+<code style="color: #a71d5d">const</code><code style="color: #0E7754"> fileLength</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> stats</code>.<code style="color: #0E7754">size</code>;
+</pre>
+</div>
+</div>
+
+<div class="govuk-!-padding-bottom-6"></div>
+
+<h3 class="govuk-heading-s"> <code>POST /v1/documents/url</code> - Response</h3>
+
+<div class="container">
+<div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
+  <pre>  <code style="color: #a71d5d">const</code><code style="color: #0E7754"> fs</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> require</code>("<code style="color: #1d70b8">fs</code>")
+<code style="color: #a71d5d">const</code><code style="color: #0E7754"> stats</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> fs</code>.<code style="color: #0E7754">statSync</code>("<code style="color: #1d70b8">test.pdf</code>")
+<code style="color: #a71d5d">const</code><code style="color: #0E7754"> fileLength</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> stats</code>.<code style="color: #0E7754">size</code>;
+</pre>
+</div>
+</div>
+
+<div class="govuk-!-padding-bottom-3"></div>
+
+<p class="govuk-body">Note: The URL in the example may not be representative of the actual URL received.</p>
+
+<p class="govuk-body"><b>PUT document - Request</b></p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>URL matches upload_url in<code style="color: #a71d5d; background-color: #f5f5f5">/v1/documents/url</code> response</li>
+  <li>Body content is the document to upload</li>
+</ul>
+
+<p class="govuk-body"><b>PUT document - Response</b></p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>HTTP 200 on successful upload</li>
+  <li>HTTP 4xx on failure</li>
+</ul>
+
+
+
+
+
+  {# <p class="govuk-body">Firstly, the file must be loaded into memory. In this example, we are reading a file from the filesystem:</p>
+<code>with open("test.pdf", "rb") as f:<br>
+    file_bytes = f.read()</code>
+<div class="govuk-!-padding-bottom-2"></div>
+<p class="govuk-body">Once you have the bytes, the next step is to generate the file sha256 and the file length variables, using the python “hashlib” library:</p>
+<code>hash = sha256(file_bytes)<br>
+file_sha256 = b64encode(hash.digest()) <br>
+file_length = len(file_bytes) </code>
+<div class="govuk-!-padding-bottom-2"></div>
+<p class="govuk-body">Now you make the request to the document capture service, using the python “requests” library (note: authentication is removed for brevity):</p>
+
+<code>response = requests.post(url, json = {  <br>
+    "data": {  <br>
+        "document_type": "TR1",  <br>
+        "file_sha256": file_sha256,  <br>
+        "file_length": file_length  <br>
+    } <br>
+})</code>
+<div class="govuk-!-padding-bottom-2"></div>
+<p class="govuk-body">The final step is to check we received a 200 HTTP response:</p>
+<code>if response.status_code != 200:  <br>
+    print(response)  <br>
+    raise RuntimeError("Failed to upload document")  <br>
+print(f"Document with id {doc_id} uploaded successfully") </code>
+<div class="govuk-!-padding-bottom-2"></div>
+<p class="govuk-body">The whole process should be repeated for each document being uploaded. The document IDs should be stored, so they can be used during the application submission process.</p>
+
+</div>
+
+<div>
+      <h2 class="govuk-heading-m">View API specification</h2>
+
+      <ul class="govuk-list">
+        <li>
+          <a class="govuk-body govuk-link" href="https://landregistry.github.io/bgtechdoc/vcad/v0_2/vcad-spec.html#tag/Submit-an-application-API/operation/Submit%20an%20application%20API" rel="noreferrer noopener" target="_blank">HTML specification (opens in new tab)</a>
+        </li>
+      </ul>
+</div>
+
+<div>
+      <h3 class="govuk-heading-m">How the service API works</h3>
+
+      <img src="/assets/img/submit-an-application-to-change-the-Land-Register-API.png" alt="A diagram showing the send a document service API">
+</div>
+<br>
+
+<div>
+  <h3 class="govuk-heading-m">How to test this service API</h3>
+<p class="govuk-body">HMLR does not currently provide a test environment for integrators using our Business Gateway APIs. Instead, we’ve provided example code to demonstrate what you should expect to see when developing your own services. For general testing guidance, visit <a class="govuk-body govuk-link" href="/a-guide-to-testing">A guide to testing</a>.</p>
+
+<h4 class="govuk-body"><b>POST /v1/documents/url - Request</b></h4>
+<code>
+{ <br>
+  "data": { <br>
+    "document_type": "TR1", <br>
+    "file_length": 6362, <br>
+    "file_sha256": "XHepSrLEhDPShYnPJwWArZERIvLcpvn8f8pyCS7crQA=" <br>
+  } <br>
+}
+</code>
+
+<h4 class="govuk-body"><b>POST /v1/documents/url - Response</b></h4>
+<code>
+{<br>
+  "upload_url": "documentcapture.landregistry.gov.uk/04c5c3fe-aa08-473b-9944-64ef5506f8e2", <br>
+  "document_id": "04c5c3fe-aa08-473b-9944-64ef5506f8e2"<br>
+}
+</code>
+
+<br>
+<br>
+
+<p class="govuk-body-s">Note: The URL in the example may not be representative of the actual URL received. </p>
+</div>
+
+<h4 class="govuk-body"><b>URL matches upload_url in /v1/documents/url response</b></h>
+<div class="govuk-!-padding-bottom-4"></div>
+<p class="govuk-body-s">Body content is the document to upload</p>
+
+<h4 class="govuk-body"><b>PUT document - Response</h4>
+
+<p class="govuk-body-s">HTTP 200 on successful upload</p>
+
+<p class="govuk-body-s">HTTP 4xx on failure</p> #}
+</div>
+
+<div>
+{# <h3 class="govuk-heading-m">Technical details</h3>
+
+<h4 class="govuk-heading-s">File length/SHA-256</h4>
+<p class="govuk-body">As part of the API to generate an upload URL, the API expects <cide>file_length</code> and <code>file_sha256</code> parameters. These parameters refer to the file that will be uploaded to the URL.</p>
+<p class="govuk-body">These values must also be provided when making the PUT request to the upload URL, as headers:</p>
+<li><code style="color: #a71d5d">Content-Length : value of file_length </code></li>
+<li><code style="color: #a71d5d">X-Amz-Checksum-Sha256 : value of file_sha256 </code></li>
+
+<p class="govuk-body">Where <value of x> are the values that were given to the request to generate the upload URL and match the file that is included in the body of the request. If either of these values do not match or are not provided, you will receive a signature verification failure (HTTP 403).</p>
+
+<h4 class="govuk-body"><b>File length</h4>
+
+<p class="govuk-body">The <code>file_length</code> should be the size of the file in bytes. See below for code examples in several languages:</p>
+
+<p class="govuk-body">Python</p>
+<br>
+
+<code>with open("test.pdf" "rb") as f:<br>
+    file_bytes = f.read() <br>
+    file_length = len(file_bytes)
+  </code>
+  <div class="govuk-!-padding-bottom-4"></div>
+<p class="govuk-body">Bash</p>
+<div class="govuk-!-padding-bottom-4"></div>
+<code>du -b test.pdf</code>
+<div class="govuk-!-padding-bottom-4"></div>
+<p class="govuk-body">Java</p>
+<div class="govuk-!-padding-bottom-4"></div>
+<code>File f = new File("test.pdf"); <br>
+long fileLength = f.length();</code>
+<div class="govuk-!-padding-bottom-4"></div>
+<p class="govuk-body">JavaScript (Node):</p>
+<div class="govuk-!-padding-bottom-4"></div>
+<code>const fs = require("fs"); <br>
+const stats = fs.statSync("test.pdf"); <br>
+const fileLength = stats.size;</code>
+
+<h4 class="govuk-body"><b>File Sha256</h4>
+
+<p class="govuk-body">The file_sha256 is the base64 encoded 256-bit binary digest of the bytes of the file. This should be exactly 44 characters long, regardless of the length of the file. See below for code examples in several languages:</p>
+
+<p class="govuk-body">Python</p>
+<br>
+
+<code>with open("test.pdf" "rb") as f: <br>
+    file_bytes = f.read()  <br>
+    hash = sha256(file_bytes)  <br>
+    file_sha256 = b64encode(hash.digest())
+  </code>
+  <div class="govuk-!-padding-bottom-4"></div>
+<p class="govuk-body">Bash</p>
+<div class="govuk-!-padding-bottom-4"></div>
+<code>cat test.pdf | openssl sha256 -binary | openssl enc -base64</code>
+<div class="govuk-!-padding-bottom-4"></div>
+<p class="govuk-body">Java</p>
+<div class="govuk-!-padding-bottom-4"></div>
+<code>File f = new File("test.pdf"); <br>
+byte[] data = Files.readAllBytes(f); <br>
+MessageDigest digester = MessageDigest.getInstance("SHA-256"); <br>
+digester.update(data); <br>
+String fileSha256 = Base64.getEncoder().encodeToString(digester.digest()); </code>
+<div class="govuk-!-padding-bottom-4"></div>
+<p class="govuk-body">JavaScript (Node):</p>
+<div class="govuk-!-padding-bottom-4"></div>
+<code>const fs = require("fs"); <br>
+const crypto = require("crypto"); <br>
+ <br>
+const shasum = crypto.createHash("sha256");  <br>
+shasum.update(fs.getBytes());  <br>
+shasum.digest("base64"); </code>
+
+</div> #}
+
+  </div>
+
+  </main>
+
+
+
+
+
+
+    </div>
+  </div>
+
+{% endblock %}

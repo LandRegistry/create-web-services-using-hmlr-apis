@@ -41,10 +41,10 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        Send a document service API- technical guide
+        Notifications API- technical guide
       </h1>
-      <p class="govuk-body-l">Use this service to attach documents to your application.</p>
-
+      <p class="govuk-body-l">Use this service to get updates about multiple applications submitted by the same business unit.</p>
+</p>
 
       <aside class="govuk-prototype-kit-common-templates-mainstream-guide-contents-list" role="complementary">
         <nav class="govuk-prototype-kit-common-templates-contents-list" aria-label="Pages in this guide" role="navigation">
@@ -53,8 +53,8 @@
           </h2>
           <ol class="govuk-prototype-kit-common-templates-contents-list__list">
             <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed govuk-prototype-kit-common-templates-contents-list__list-item--active">
-              <a href="#how-to-use-the-send-a-document-api">
-                How to use the Send a document API
+              <a href="#how-to-use-the-notifications-api">
+                How to use the Notifications API
               </a>
             </li>
             <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
@@ -77,170 +77,39 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds govuk-prototype-kit-common-templates-mainstream-guide-body">
-      <h2 class="govuk-heading-m" id="how-to-use-the-send-a-document-api">How to use the Send a document API</h2>
+      <h2 class="govuk-heading-m" id="how-to-use-the-notifications-api">How to use the Notifications API</h2>
         <div>
-
-          <p class="govuk-body">This API consists of two endpoints that must be used together to upload a single document.</p>
-
-<ol class="govuk-list govuk-list--number">
-  <li><code style="color: #a71d5d; background-color: #f5f5f5">POST /v1/documents/url</code> - The generate an upload URL endpoint. The HTTP 	body of the request contains information about the file being uploaded</li>
-  <li><code style="color: #a71d5d; background-color: #f5f5f5">PUT documentcapture.landregistry.gov.uk/...</code> - The upload a document endpoint. The HTTP body of the request is the bytes of the document</li>
-</ol>
+<h3 class="govuk-heading-s">Recieve notifications</h3>
+<p class="govuk-body">The GET request to fetch all notifications takes the following URL query parameters (which are optional):</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li><code style="color: #a71d5d; background-color: #f5f5f5">created_after</code> -  only retrieve notifications with a <code style="color: #a71d5d; background-color: #f5f5f5">created_timestamp</code> after this date</li>
+  <li><code style="color: #a71d5d; background-color: #f5f5f5">created_before</code> - only retrieve notifications with a <code style="color: #a71d5d; background-color: #f5f5f5">created_timestamp</code> before this date</li>
+  <li><code style="color: #a71d5d; background-color: #f5f5f5">status</code> - only retrieve notifications with a specific status, either <code style="color: #a71d5d; background-color: #f5f5f5">NEW</code> or <code style="color: #a71d5d; background-color: #f5f5f5">ACKNOWLEDGED</code></li>
+  <li><code style="color: #a71d5d; background-color: #f5f5f5">occured_after</code> - only retrieve notifications with a <code style="color: #a71d5d; background-color: #f5f5f5">event_timestamp</code> after this date</li>
+  <li><code style="color: #a71d5d; background-color: #f5f5f5">occured_before</code> - only retrieve notifications with a <code style="color: #a71d5d; background-color: #f5f5f5">event_timestamp</code> before this date</li>
+  <li><code style="color: #a71d5d; background-color: #f5f5f5">notification_type</code> - only retrieve notifications with the specific <code style="color: #a71d5d; background-color: #f5f5f5">notification_type</code></li>
+  <li><code style="color: #a71d5d; background-color: #f5f5f5">subject</code> - only retrieve notifications with the specific <code style="color: #a71d5d; background-color: #f5f5f5">subject</code></li>
+  <li><code style="color: #a71d5d; background-color: #f5f5f5">additional_provider_filter</code> - only retrieve notifications that match the provided <code style="color: #a71d5d; background-color: #f5f5f5">additional_provider_filter</code></li>
+</ul>
 
 </div>
 <div>
 
-  <h3 class="govuk-heading-s">Generate an upload URL</h3>
-  <p class="govuk-body">Making a POST request to the create upload URL endpoint will result in the following items being returned:</p>
-  <p class="govuk-body"><code style="color: #a71d5d; background-color: #f5f5f5">upload_url</code> - This is the URL to make the PUT request to. This URL will only be valid for five minutes after generation. Five minutes is timed from the generation of the URL to the start of the upload. Neither the size of the document nor the speed of internet connection will cause the upload to timeout</p>
-  <p class="govuk-body"><code style="color: #a71d5d; background-color: #f5f5f5">document_id</code> - This is a unique ID for this document, and must be included in the application submission payload</p>
+  <p class="govuk-body">Notification delivery is ‘at least once’, meaning a specific event at a specific time may result in one or more notifications (i.e. duplicate notifications for the same event).</p>
+  <p class="govuk-body">Duplicate events will have the same <code style="color: #a71d5d; background-color: #f5f5f5">source_datetime</code> field and <code style="color: #a71d5d; background-color: #f5f5f5">notification_type</code>, which can be used to locate and ignore duplicates when receiving notifications. Notifications will continue to be returned by the endpoint until they are acknowledged.</p>
 
-  <h3 class="govuk-heading-s">Upload a document</h3>
-  <p class="govuk-body">To upload a document, make a PUT request to the URL returned from the ‘Create an upload URL’ POST request above. This request should contain the document as the body content. A 200 HTTP code will be returned if the upload was successful. Documents will asynchronously be virus scanned and validated. Issues found during this process will be surfaced via the Application information API. Do not modify the URL received in the response.</p>
+  <h3 class="govuk-heading-s">Acknowledge notifications</h3>
+  <p class="govuk-body">Once a notification has been processed by your system, the notification should be acknowledged. To do this, send a list of <code style="color: #a71d5d; background-color: #f5f5f5">notification_ids</code>to the Acknowledge notifications API as a POST request. This will change the status of those notifications to <code style="color: #a71d5d; background-color: #f5f5f5">ACKNOWLEDGED</code></p>
 
   <h2 class="govuk-heading-m" id="validation-rules">Validation rules</h2>
     <div>
 
-      <p class="govuk-body">To pass validation, you must follow the guidance for implementing this service API below.</p>
-
-      <h3 class="govuk-heading-s">File types</h3>
-
-      <p class="govuk-body">Only four file types are supported by HMLR document upload:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>PDFs (must not be password protected)</li>
-        <li>TIFFs</li>
-        <li>GIFs</li>
-        <li>PNGs</li>
-      </ul>
-
-        <p class="govuk-body">Any other file types are not supported and will cause application submission to fail.</p>
-
-        <h3 class="govuk-heading-s">File length/SHA-256</h3>
-        <p class="govuk-body">As part of the API to generate an upload URL, the API expects <code style="color: #a71d5d; background-color: #f5f5f5">file_length</code> and <code style="color: #a71d5d; background-color: #f5f5f5">file_sha256</code> parameters. These parameters refer to the file that will be uploaded to the URL.</p>
-
-        <p class="govuk-body">These values must also be provided when making the PUT request to the upload URL, as headers:</p>
-        <ul class="govuk-list govuk-list--bullet">
-          <li><code style="color: #a71d5d; background-color: #f5f5f5">Content-Length : &ltvalue of file_length&gt </code></li>
-          <li><code style="color: #a71d5d; background-color: #f5f5f5">X-Amz-Checksum-Sha256 : &ltvalue of file_sha256&gt </code></li>
-        </ul>
-
-          <p class="govuk-body">Where <code style="color: #a71d5d; background-color: #f5f5f5"> &ltvalue of x&gt</code> are the values that were given to the request to generate the upload URL and match the file that is included in the body of the request. If either of these values do not match or are not provided, you will receive a signature verification failure (HTTP 403).</p>
-
-  <p class="govuk-body">The maximum size permitted for a single document upload is 40MiB (41943040 bytes).</p>
-
-
-  <h3 class="govuk-heading-s">File length</h3>
-  <p class="govuk-body">The <code style="color: #a71d5d; background-color: #f5f5f5">file_length</code> should be the size of the file in bytes. See below for code examples in several languages:</p>
-
-<p class="govuk-body">Python</p>
-
-
-<div class="container">
-  <div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
-    <pre>  <code style="color: #a71d5d">with</code><code> open(</code><code style="color: #1d70b8">"test.pdf" "rb"</code><code>)</code><code style="color: #a71d5d"> as</code><code> f:
-    file_bytes <code style="color: #1d70b8">=</code> f.read()
-    file_length <code style="color: #1d70b8">=</code> len(file_bytes) </code>
-    </pre>
-  </div>
-</div>
-
-<div class="govuk-!-padding-bottom-6"></div>
-
-<p class="govuk-body">Bash</p>
-
-<div class="container">
-  <div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
-    <pre>  <code>du</code><code style="color: #0E7754"> -b</code><code> test.pdf</code>
-    </pre>
-  </div>
-</div>
-
-<div class="govuk-!-padding-bottom-6"></div>
-
-<p class="govuk-body">Java</p>
-
-<div class="container">
-  <div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
-    <pre>  <code style="color: #4C4077">File</code><code> f(</code> <code style="color: #1d70b8">=</code><code style="color: #a71d5d"> new</code><code style="color: #4C4077"> File</code><code style="color: #1d70b8">("test.pdf")</code>;
-  <code style="color: #4C4077">long</code><code> fileLength(</code> <code style="color: #1d70b8">=</code><code> f</code><code style="color: #1d70b8">.</code><code style="color: #4C4077">length</code><code style="color: #1d70b8">()</code>;
-    </pre>
-  </div>
-</div>
-
-<div class="govuk-!-padding-bottom-6"></div>
-
-<p class="govuk-body">JavaScript (Node)</p>
-
-<div class="container">
-  <div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
-    <pre>  <code style="color: #a71d5d">const</code><code style="color: #0E7754"> fs</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> require</code>("<code style="color: #1d70b8">fs</code>")
-  <code style="color: #a71d5d">const</code><code style="color: #0E7754"> stats</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> fs</code>.<code style="color: #0E7754">statSync</code>("<code style="color: #1d70b8">test.pdf</code>")
-  <code style="color: #a71d5d">const</code><code style="color: #0E7754"> fileLength</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> stats</code>.<code style="color: #0E7754">size</code>;
-  </pre>
-  </div>
-</div>
-
-<div class="govuk-!-padding-bottom-6"></div>
-
-<h3 class="govuk-heading-s">File Sha256</h3>
-<p class="govuk-body">The <code style="color: #a71d5d; background-color: #f5f5f5">file_sha256</code> is the base64 encoded 256-bit binary digest of the bytes of the file. This should be exactly 44 characters long, regardless of the length of the file. See below for code examples in several languages:</p>
-
-<p class="govuk-body">Python</p>
-
-<div class="container">
-<div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
-  <pre>  <code style="color: #a71d5d">with</code><code> open(</code><code style="color: #1d70b8">"test.pdf" "rb"</code><code>)</code><code style="color: #a71d5d"> as</code><code> f:
-  file_bytes <code style="color: #1d70b8">=</code> f.read()
-  hash <code style="color: #1d70b8">=</code>sha256(file_bytes)
-  file_sha256 <code style="color: #1d70b8">=</code> b64encode(hash.digest())</code>
-  </pre>
-</div>
-</div>
-
-<div class="govuk-!-padding-bottom-6"></div>
-
-<p class="govuk-body">Bash</p>
-
-<div class="container">
-<div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
-  <pre>  cat test.pdf | openssl sha256<code style="color: #0E7754"> -binary</code>| openssl enc<code style="color: #0E7754"> -base64</code>
-  </pre>
-</div>
-</div>
-
-<div class="govuk-!-padding-bottom-6"></div>
-
-<p class="govuk-body">Java</p>
-
-<div class="container">
-<div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
-  <pre>  <code style="color: #4C4077">File</code><code> f </code> <code style="color: #1d70b8">=</code><code style="color: #a71d5d"> new</code><code style="color: #4C4077"> File</code><code style="color: #1d70b8">("test.pdf");</code>
-  <code style="color: #4C4077">byte</code><code style="color: #1d70b8">[] </code>data<code style="color: #1d70b8"> = </code><code style="color: #4C4077"> Files</code><code style="color: #1d70b8">.</code><code style="color: #4C4077">readsAllBytes</code><code style="color: #1d70b8">(</code>f<code style="color: #1d70b8">);</code>
-  <code style="color: #4C4077">MessageDigest</code> digester<code style="color: #1d70b8"> = </code><code style="color: #4C4077"> MessageDigest</code><code style="color: #1d70b8">.</code><code style="color: #4C4077">getInstance</code><code style="color: #1d70b8">("SHA256");</code>
-  digester.<code style="color: #4C4077">update</code><code style="color: #1d70b8">(</code>data<code style="color: #1d70b8">);</code>
-  <code style="color: #4C4077">String</code><code> fileSha256 </code> <code style="color: #1d70b8">=</code><code style="color: #4C4077"> Base64.getEncoder</code><code style="color: #1d70b8">().</code><code style="color: #4C4077">encodeToString</code><code style="color: #1d70b8">(</code>digester<code style="color: #1d70b8">.</code><code style="color: #4C4077">digest</code><code style="color: #1d70b8">());</code>
-  </pre>
-</div>
-</div>
-
-<div class="govuk-!-padding-bottom-6"></div>
-
-<p class="govuk-body">JavaScript (Node)</p>
-
-<div class="container">
-<div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
-  <pre>  <code style="color: #a71d5d">const</code><code style="color: #0E7754"> fs</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> require</code>("<code style="color: #1d70b8">fs</code>")
-<code style="color: #a71d5d">const</code><code style="color: #0E7754"> stats</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> fs</code>.<code style="color: #0E7754">statSync</code>("<code style="color: #1d70b8">test.pdf</code>")
-<code style="color: #a71d5d">const</code><code style="color: #0E7754"> fileLength</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> stats</code>.<code style="color: #0E7754">size</code>;
-</pre>
-</div>
-</div>
-
-<div class="govuk-!-padding-bottom-6"></div>
+      <p class="govuk-body">There are currently no validation rules for implementing this service API.</p>
 
 <h2 class="govuk-heading-m" id="example-requests-and-responses">Example requests and responses</h2>
+<p class="govuk-body">For specific examples of notification payloads produced during application submission, view <a class="govuk-body govuk-link" href="https://customer-documentation-business-gateway-35cf334e5a1aeb361fcf62d.git.tooling.stp.hmlr.zone/vcad/v0_3/submit-an-application.html#notifications">Submit an application notifications</a>.</p>
 
-<h3 class="govuk-heading-s"> <code>POST /v1/documents/url</code> - Request</h3>
+<h3 class="govuk-heading-s">Get notifications request</h3>
 
 <div class="container">
 <div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
@@ -253,7 +122,7 @@
 
 <div class="govuk-!-padding-bottom-6"></div>
 
-<h3 class="govuk-heading-s"> <code>POST /v1/documents/url</code> - Response</h3>
+<h3 class="govuk-heading-s">Get notifications response</h3>
 
 <div class="container">
 <div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
@@ -264,25 +133,31 @@
 </div>
 </div>
 
-<div class="govuk-!-padding-bottom-3"></div>
+<div class="govuk-!-padding-bottom-6"></div>
 
-<p class="govuk-body">Note: The URL in the example may not be representative of the actual URL received.</p>
+<h3 class="govuk-heading-s">Acknowledge notifications request</h3>
 
-<p class="govuk-body"><b>PUT document - Request</b></p>
-<ul class="govuk-list govuk-list--bullet">
-  <li>URL matches upload_url in<code style="color: #a71d5d; background-color: #f5f5f5">/v1/documents/url</code> response</li>
-  <li>Body content is the document to upload</li>
-</ul>
+<div class="container">
+<div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
+  <pre>  <code style="color: #a71d5d">const</code><code style="color: #0E7754"> fs</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> require</code>("<code style="color: #1d70b8">fs</code>")
+<code style="color: #a71d5d">const</code><code style="color: #0E7754"> stats</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> fs</code>.<code style="color: #0E7754">statSync</code>("<code style="color: #1d70b8">test.pdf</code>")
+<code style="color: #a71d5d">const</code><code style="color: #0E7754"> fileLength</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> stats</code>.<code style="color: #0E7754">size</code>;
+</pre>
+</div>
+</div>
 
-<p class="govuk-body"><b>PUT document - Response</b></p>
-<ul class="govuk-list govuk-list--bullet">
-  <li>HTTP 200 on successful upload</li>
-  <li>HTTP 4xx on failure</li>
-</ul>
+<div class="govuk-!-padding-bottom-6"></div>
 
+<h3 class="govuk-heading-s">Acknowledge notifications response</h3>
 
-
-
+<div class="container">
+<div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
+  <pre>  <code style="color: #a71d5d">const</code><code style="color: #0E7754"> fs</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> require</code>("<code style="color: #1d70b8">fs</code>")
+<code style="color: #a71d5d">const</code><code style="color: #0E7754"> stats</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> fs</code>.<code style="color: #0E7754">statSync</code>("<code style="color: #1d70b8">test.pdf</code>")
+<code style="color: #a71d5d">const</code><code style="color: #0E7754"> fileLength</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> stats</code>.<code style="color: #0E7754">size</code>;
+</pre>
+</div>
+</div>
 
   {# <p class="govuk-body">Firstly, the file must be loaded into memory. In this example, we are reading a file from the filesystem:</p>
 <code>with open("test.pdf", "rb") as f:<br>

@@ -91,15 +91,13 @@
           <li>the status of an application</li>
           <li>fees deducted from the VDD account number set up with the submitting user’s HMLR account. This will be confirmation of the fees entered into the request payload until automatic fee calculation is enabled</li>
           <li>the application_request_id used in the request</li>
-          <li>an ID for the accepted application, once accepted (previously known as ABR)</li>
-          <li>the priority of the application once accepted</li>
+          <li>an ID for the accepted application, <code style="color: #a71d5d; background-color: #f5f5f5">hmlr_reference</code>, once accepted (previously known as ABR)</li>
+          <li>the priority of the application, <code style="color: #a71d5d; background-color: #f5f5f5">priority_timestamp</code>, once accepted</li>
           <li>any errors that prevented application submission</li>
           <li>any warnings that did not prevent submission but need to be addressed before a caseworker can process the application (otherwise a requisition may occur)</li>
         </ul>
 
-          <p class="govuk-body">The request to generate an upload URL will respond with a HMLR URL that can be used to upload the document to. This URL is only active for 10 minutes after creation. The generate an upload URL endpoint will also return a document ID, that can be used when using the Submit an application API. Documents uploaded via this process will be subject to HMLR security scanning.</p>
-          <p class="govuk-body">Documents that have been uploaded can be used for up to 180 days, after which point they will be removed.</p>
-
+          <p class="govuk-body">This API can be used to get more information after receiving a notification indicating the application has changed. For information about which notifications will be available, visit the notifications section of the   <a class="govuk-body govuk-link" href="/apis/submit-an-application">Submit an application</a> service API page.</p>
 
         </div>
 
@@ -108,7 +106,7 @@
 
         <ul class="govuk-list">
           <li>
-            <a class="govuk-body govuk-link" href="//apis/send-a-document-technical-guide">Technical guide</a>
+            <a class="govuk-body govuk-link" href="/apis/application-information-technical-guide">Technical guide</a>
           </li>
         </ul>
   </div>
@@ -118,7 +116,7 @@
 
       <ul class="govuk-list">
         <li>
-          <a class="govuk-body govuk-link" href="https://landregistry.github.io/bgtechdoc/vcad/v0_2/vcad-spec.html#tag/Submit-an-application-API/operation/Submit%20an%20application%20API" rel="noreferrer noopener" target="_blank">HTML specification (opens in new tab)</a>
+          <a class="govuk-body govuk-link" href="https://landregistry.github.io/bgtechdoc/vcad/v0_2/vcad-spec.html#tag/Application-information-API" rel="noreferrer noopener" target="_blank">HTML specification (opens in new tab)</a>
         </li>
       </ul>
 </div>
@@ -131,7 +129,7 @@
 <img src="/public/images/ApplicationInformation_interaction_diagram.png" alt="A diagram showing the interaction of the Application Information service API.">
 <h4 class="govuk-heading-m">State diagram</h4>
 <div class="govuk-!-padding-bottom-3"></div>
-<img src="/public/images/ApplicationInformation_state_diagram.png" alt="A diagram showing how the Application Information service API works.">
+<img src="/public/images/ApplicationInformation_State_diagram.png" alt="A diagram showing how the Application Information service API works.">
   </div>
 <br>
 
@@ -157,11 +155,13 @@
               Submit an application to change the Land Register API
             </a>
           </li>
+          <li>
           <a class="govuk-body govuk-link" href="/apis/send-a-document">
             Send a document API
           </a>
+        </li>
           <li>
-            <a class="govuk-body govuk-link" href="/apis/submit-application">
+            <a class="govuk-body govuk-link" href="/apis/submit-an-application">
               Submit an application API
             </a>
           </li>
