@@ -295,13 +295,18 @@ file_length = len(file_bytes) </code>
 <div class="govuk-!-padding-bottom-2"></div>
 <p class="govuk-body">Now you make the request to the document capture service, using the python “requests” library (note: authentication is removed for brevity):</p>
 
-<code>response = requests.post(url, json = {  <br>
-    "data": {  <br>
-        "document_type": "TR1",  <br>
-        "file_sha256": file_sha256,  <br>
-        "file_length": file_length  <br>
-    } <br>
-})</code>
+  <pre>
+    <code class="language-javascript">
+      response = requests.post(url, json = {
+        "data": {
+            "document_type": "TR1",
+            "file_sha256": "file_sha256",
+            "file_length": "file_length"
+        }
+    })
+    </code>
+  </pre>
+
 <div class="govuk-!-padding-bottom-2"></div>
 <p class="govuk-body">The final step is to check we received a 200 HTTP response:</p>
 <code>if response.status_code != 200:  <br>
