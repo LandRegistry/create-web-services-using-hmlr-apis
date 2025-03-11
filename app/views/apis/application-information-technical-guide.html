@@ -2,25 +2,22 @@
 
 {% block header %}
 
-
   <header class="govuk-header govuk-header--hmlr " role="banner" data-module="govuk-header">
-  <div class="govuk-header__container govuk-width-container">
-    <div class="govuk-header__content govuk-header__content--hmlr">
-      <a href="/homepage" class="govuk-header__link govuk-header__service-name">
-        HM Land Registry developer pack
-      </a>
+    <div class="govuk-header__container govuk-width-container">
+      <div class="govuk-header__content govuk-header__content--hmlr">
+        <a href="/homepage" class="govuk-header__link govuk-header__service-name">
+          HM Land Registry developer pack
+        </a>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
 {% endblock %}
 
-
-
 {% block beforeContent %}
-{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 
-{{ govukPhaseBanner({
+  {{ govukPhaseBanner({
   tag: {
     text: "Prototype",
     classes: "govuk-tag--pink"
@@ -34,7 +31,6 @@
   }) }}
 {% endblock %}
 
-
 {% block content %}
 
   <div class="govuk-grid-row">
@@ -44,282 +40,212 @@
         Application information API- technical guide
       </h1>
       <p class="govuk-body-l">Use this service to get information about a specific application.</p>
-</p>
+    </p>
 
-      <aside class="govuk-prototype-kit-common-templates-mainstream-guide-contents-list" role="complementary">
-        <nav class="govuk-prototype-kit-common-templates-contents-list" aria-label="Pages in this guide" role="navigation">
-          <h2 class="govuk-prototype-kit-common-templates-contents-list__title">
-            Contents
-          </h2>
-          <ol class="govuk-prototype-kit-common-templates-contents-list__list">
-            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed govuk-prototype-kit-common-templates-contents-list__list-item--active">
-              <a href="#how-to-use-the-application-information-api">
-                How to use the Application information API
-              </a>
-            </li>
-            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
-              <a href="#validation-rules">
-                Validation rules
-              </a>
-            </li>
-            <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
-              <a href="#example-requests-and-responses">
-                Example requests and responses
-              </a>
-            </li>
-          </ol>
-        </nav>
-      </aside>
-
-    </div>
+    <aside class="govuk-prototype-kit-common-templates-mainstream-guide-contents-list" role="complementary">
+      <nav class="govuk-prototype-kit-common-templates-contents-list" aria-label="Pages in this guide" role="navigation">
+        <h2 class="govuk-prototype-kit-common-templates-contents-list__title">
+          Contents
+        </h2>
+        <ol class="govuk-prototype-kit-common-templates-contents-list__list">
+          <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed govuk-prototype-kit-common-templates-contents-list__list-item--active">
+            <a href="#how-to-use-the-application-information-api">
+              How to use the Application information API
+            </a>
+          </li>
+          <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+            <a href="#validation-rules">
+              Validation rules
+            </a>
+          </li>
+          <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+            <a href="#example-requests-and-responses">
+              Example requests and responses
+            </a>
+          </li>
+        </ol>
+      </nav>
+    </aside>
 
   </div>
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds govuk-prototype-kit-common-templates-mainstream-guide-body">
-      <h2 class="govuk-heading-m" id="how-to-use-the-application-information-api">How to use the Application information service API</h2>
-        <div>
-
-          <p class="govuk-body">The Application information API is used to get detailed information about a specific application, using the <code style="color: #a71d5d; background-color: #f5f5f5">application_request_id</code> returned by the Submit an application API request.</p>
-<p class="govuk-body">The status of an application can currently be one of the following:</p>
-<ol class="govuk-list govuk-list--number">
-  <li><code style="color: #a71d5d; background-color: #f5f5f5">VALIDATING</code> -  HM Land Registry are still processing the application, and it has not yet been added to the day list</li>
-  <li><code style="color: #a71d5d; background-color: #f5f5f5">VALIDATION_FAILED</code> - The application has not been added to the day list due to errors during validation. The errors found are included in the errors section of the response</li>
-  <li><code style="color: #a71d5d; background-color: #f5f5f5">ACCEPTED_AWAITING_PRIORITY</code> - The application has passed validation but has not yet been added to the day list as it is currently closed. The application will be added to the day list and moved to an <code style="color: #a71d5d; background-color: #f5f5f5">ACCEPTED</code> state when the day list reopens</li>
-  <li><code style="color: #a71d5d; background-color: #f5f5f5">ACCEPTED_PRIORITY_PROTECTED</code> - The application has been accepted onto the day list, and has priority</li>
-  <li><code style="color: #a71d5d; background-color: #f5f5f5">SYSTEM_ERROR</code> - The application has not been added to the day list due to an HM Land Registry system error. The request should be retried, or the support team contacted</li>
-</ol>
-
 </div>
-<div>
 
-  <p class="govuk-body">This API will always return a HTTP 200 response for a valid request, regardless of the status of the application.</p>
-
-  <h2 class="govuk-heading-m" id="validation-rules">Validation rules</h2>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds govuk-prototype-kit-common-templates-mainstream-guide-body">
+    <h2 class="govuk-heading-m" id="how-to-use-the-application-information-api">How to use the Application information service API</h2>
     <div>
 
-      <p class="govuk-body">There are currently no validation rules for implementing this service API.</p>
-
-<h2 class="govuk-heading-m" id="example-requests-and-responses">Example requests and responses</h2>
-
-<h3 class="govuk-heading-s"> <code>GET /v1/applications/{id}/status</code> - VALIDATING status</h3>
-
-<div class="container">
-<div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
-  <pre>  <code style="color: #a71d5d">const</code><code style="color: #0E7754"> fs</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> require</code>("<code style="color: #1d70b8">fs</code>")
-<code style="color: #a71d5d">const</code><code style="color: #0E7754"> stats</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> fs</code>.<code style="color: #0E7754">statSync</code>("<code style="color: #1d70b8">test.pdf</code>")
-<code style="color: #a71d5d">const</code><code style="color: #0E7754"> fileLength</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> stats</code>.<code style="color: #0E7754">size</code>;
-</pre>
-</div>
-</div>
-
-<div class="govuk-!-padding-bottom-6"></div>
-
-<h3 class="govuk-heading-s"> <code>GET /v1/applications/{id}/status</code> - ACCEPTED_PRIORITY_PROTECTED status</h3>
-
-<div class="container">
-<div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
-  <pre>  <code style="color: #a71d5d">const</code><code style="color: #0E7754"> fs</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> require</code>("<code style="color: #1d70b8">fs</code>")
-<code style="color: #a71d5d">const</code><code style="color: #0E7754"> stats</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> fs</code>.<code style="color: #0E7754">statSync</code>("<code style="color: #1d70b8">test.pdf</code>")
-<code style="color: #a71d5d">const</code><code style="color: #0E7754"> fileLength</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> stats</code>.<code style="color: #0E7754">size</code>;
-</pre>
-</div>
-</div>
-
-<div class="govuk-!-padding-bottom-6"></div>
-
-<h3 class="govuk-heading-s"> <code>GET /v1/applications/{id}/status</code> - VALIDATION_FAILED status</h3>
-
-<div class="container">
-<div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
-  <pre>  <code style="color: #a71d5d">const</code><code style="color: #0E7754"> fs</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> require</code>("<code style="color: #1d70b8">fs</code>")
-<code style="color: #a71d5d">const</code><code style="color: #0E7754"> stats</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> fs</code>.<code style="color: #0E7754">statSync</code>("<code style="color: #1d70b8">test.pdf</code>")
-<code style="color: #a71d5d">const</code><code style="color: #0E7754"> fileLength</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> stats</code>.<code style="color: #0E7754">size</code>;
-</pre>
-</div>
-</div>
-
-<div class="govuk-!-padding-bottom-6"></div>
-
-<h3 class="govuk-heading-s"> <code>GET /v1/applications/{id}/status</code> - ACCEPTED_AWAITING_PRIORITY status</h3>
-
-<div class="container">
-<div class="box" style="background-color: #f3f2f1 ; padding: 5px;">
-  <pre>  <code style="color: #a71d5d">const</code><code style="color: #0E7754"> fs</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> require</code>("<code style="color: #1d70b8">fs</code>")
-<code style="color: #a71d5d">const</code><code style="color: #0E7754"> stats</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> fs</code>.<code style="color: #0E7754">statSync</code>("<code style="color: #1d70b8">test.pdf</code>")
-<code style="color: #a71d5d">const</code><code style="color: #0E7754"> fileLength</code><code style="color: #1d70b8"> =</code><code style="color: #0E7754"> stats</code>.<code style="color: #0E7754">size</code>;
-</pre>
-</div>
-</div>
-
-  {# <p class="govuk-body">Firstly, the file must be loaded into memory. In this example, we are reading a file from the filesystem:</p>
-<code>with open("test.pdf", "rb") as f:<br>
-    file_bytes = f.read()</code>
-<div class="govuk-!-padding-bottom-2"></div>
-<p class="govuk-body">Once you have the bytes, the next step is to generate the file sha256 and the file length variables, using the python “hashlib” library:</p>
-<code>hash = sha256(file_bytes)<br>
-file_sha256 = b64encode(hash.digest()) <br>
-file_length = len(file_bytes) </code>
-<div class="govuk-!-padding-bottom-2"></div>
-<p class="govuk-body">Now you make the request to the document capture service, using the python “requests” library (note: authentication is removed for brevity):</p>
-
-<code>response = requests.post(url, json = {  <br>
-    "data": {  <br>
-        "document_type": "TR1",  <br>
-        "file_sha256": file_sha256,  <br>
-        "file_length": file_length  <br>
-    } <br>
-})</code>
-<div class="govuk-!-padding-bottom-2"></div>
-<p class="govuk-body">The final step is to check we received a 200 HTTP response:</p>
-<code>if response.status_code != 200:  <br>
-    print(response)  <br>
-    raise RuntimeError("Failed to upload document")  <br>
-print(f"Document with id {doc_id} uploaded successfully") </code>
-<div class="govuk-!-padding-bottom-2"></div>
-<p class="govuk-body">The whole process should be repeated for each document being uploaded. The document IDs should be stored, so they can be used during the application submission process.</p>
-
-</div>
-
-<div>
-      <h2 class="govuk-heading-m">View API specification</h2>
-
-      <ul class="govuk-list">
+      <p class="govuk-body">The Application information API is used to get detailed information about a specific application, using the
+        <code style="color: #a71d5d; background-color: #f5f5f5">application_request_id</code>
+        returned by the Submit an application API request.</p>
+      <p class="govuk-body">The status of an application can currently be one of the following:</p>
+      <ol class="govuk-list govuk-list--number">
         <li>
-          <a class="govuk-body govuk-link" href="https://landregistry.github.io/bgtechdoc/vcad/v0_2/vcad-spec.html#tag/Submit-an-application-API/operation/Submit%20an%20application%20API" rel="noreferrer noopener" target="_blank">HTML specification (opens in new tab)</a>
-        </li>
-      </ul>
-</div>
+          <code style="color: #a71d5d; background-color: #f5f5f5">VALIDATING</code>
+          - HM Land Registry are still processing the application, and it has not yet been added to the day list</li>
+        <li>
+          <code style="color: #a71d5d; background-color: #f5f5f5">VALIDATION_FAILED</code>
+          - The application has not been added to the day list due to errors during validation. The errors found are included in the errors section of the response</li>
+        <li>
+          <code style="color: #a71d5d; background-color: #f5f5f5">ACCEPTED_AWAITING_PRIORITY</code>
+          - The application has passed validation but has not yet been added to the day list as it is currently closed. The application will be added to the day list and moved to an
+          <code style="color: #a71d5d; background-color: #f5f5f5">ACCEPTED</code>
+          state when the day list reopens</li>
+        <li>
+          <code style="color: #a71d5d; background-color: #f5f5f5">ACCEPTED_PRIORITY_PROTECTED</code>
+          - The application has been accepted onto the day list, and has priority</li>
+        <li>
+          <code style="color: #a71d5d; background-color: #f5f5f5">SYSTEM_ERROR</code>
+          - The application has not been added to the day list due to an HM Land Registry system error. The request should be retried, or the support team contacted</li>
+      </ol>
 
-<div>
-      <h3 class="govuk-heading-m">How the service API works</h3>
+    </div>
+    <div>
 
-      <img src="/assets/img/submit-an-application-to-change-the-Land-Register-API.png" alt="A diagram showing the send a document service API">
-</div>
-<br>
+      <p class="govuk-body">This API will always return a HTTP 200 response for a valid request, regardless of the status of the application.</p>
 
-<div>
-  <h3 class="govuk-heading-m">How to test this service API</h3>
-<p class="govuk-body">HMLR does not currently provide a test environment for integrators using our Business Gateway APIs. Instead, we’ve provided example code to demonstrate what you should expect to see when developing your own services. For general testing guidance, visit <a class="govuk-body govuk-link" href="/a-guide-to-testing">A guide to testing</a>.</p>
+      <h2 class="govuk-heading-m" id="validation-rules">Validation rules</h2>
+      <div>
 
-<h4 class="govuk-body"><b>POST /v1/documents/url - Request</b></h4>
-<code>
-{ <br>
-  "data": { <br>
-    "document_type": "TR1", <br>
-    "file_length": 6362, <br>
-    "file_sha256": "XHepSrLEhDPShYnPJwWArZERIvLcpvn8f8pyCS7crQA=" <br>
-  } <br>
-}
+        <p class="govuk-body">There are no validation rules for implementing this service API.</p>
+
+        <h2 class="govuk-heading-m" id="example-requests-and-responses">Example requests and responses</h2>
+
+        <h3 class="govuk-heading-s">
+          <code>GET /v0/applications/{id}/status</code>
+          - VALIDATING status</h3>
+
+        <pre>
+
+<code class="language-json" style="background-color: #f3f2f1">
+  {
+    "data": {
+      "status": "validating",
+      "application_request_id": "3e4f6da2-ada7-4081-957c-b23542466715"
+    }
+  }
 </code>
+</pre>
 
-<h4 class="govuk-body"><b>POST /v1/documents/url - Response</b></h4>
-<code>
-{<br>
-  "upload_url": "documentcapture.landregistry.gov.uk/04c5c3fe-aa08-473b-9944-64ef5506f8e2", <br>
-  "document_id": "04c5c3fe-aa08-473b-9944-64ef5506f8e2"<br>
-}
+        <div class="govuk-!-padding-bottom-6"></div>
+
+        <h3 class="govuk-heading-s">
+          <code>GET /v0/applications/{id}/status</code>
+          - ACCEPTED_PRIORITY_PROTECTED status</h3>
+
+        <pre>
+<code class="language-json" style="background-color: #f3f2f1">
+  {
+    "data": {
+      "status": "accepted_priority_protected",
+      "application_request_id": "3e4f6da2-ada7-4081-957c-b23542466715",
+      "hmlr_reference": "ab1234",
+      "priority_timestamp": "2024-09-25t18:18:49.478z",
+      "warnings": [
+        "you must upload document x"
+      ],
+      "calculated_fees": {
+        "total_fee": 45,
+        "per_transaction": [
+          {
+            "transaction_reference": "transfer-1",
+            "fee": 45
+          }
+        ]
+      }
+    }
+  }
 </code>
+</pre>
 
-<br>
-<br>
+        <div class="govuk-!-padding-bottom-6"></div>
 
-<p class="govuk-body-s">Note: The URL in the example may not be representative of the actual URL received. </p>
+        <h3 class="govuk-heading-s">
+          <code>GET /v0/applications/{id}/status</code>
+          - VALIDATION_FAILED status</h3>
+
+        <pre>
+
+<code class="language-json" style="background-color: #f3f2f1">
+  {
+    "data": {
+      "status": "validation_failed",
+      "application_request_id": "3e4f6da2-ada7-4081-957c-b23542466715",
+      "errors": [
+        {
+          "type": "oc018",
+          "summary": "failed to get document '00001'.",
+          "detail": "failed to get document '00001'.",
+          "pointer": null
+        }
+      ]
+    }
+  }
+</code>
+</pre>
+
+        <div class="govuk-!-padding-bottom-6"></div>
+
+        <h3 class="govuk-heading-s">
+          <code>GET /v0/applications/{id}/status</code>
+          - ACCEPTED_AWAITING_PRIORITY status</h3>
+
+        <pre>
+
+<code class="language-json" style="background-color: #f3f2f1">
+  {
+    "data": {
+      "status": "accepted_awaiting_priority",
+      "application_request_id": "3e4f6da2-ada7-4081-957c-b23542466715"
+    }
+  }
+</code>
+</pre>
+
+      </div>
+</div>
 </div>
 
-<h4 class="govuk-body"><b>URL matches upload_url in /v1/documents/url response</b></h>
-<div class="govuk-!-padding-bottom-4"></div>
-<p class="govuk-body-s">Body content is the document to upload</p>
+      <div class="govuk-grid-column-one-third">
 
-<h4 class="govuk-body"><b>PUT document - Response</h4>
-
-<p class="govuk-body-s">HTTP 200 on successful upload</p>
-
-<p class="govuk-body-s">HTTP 4xx on failure</p> #}
-</div>
-
-<div>
-{# <h3 class="govuk-heading-m">Technical details</h3>
-
-<h4 class="govuk-heading-s">File length/SHA-256</h4>
-<p class="govuk-body">As part of the API to generate an upload URL, the API expects <cide>file_length</code> and <code>file_sha256</code> parameters. These parameters refer to the file that will be uploaded to the URL.</p>
-<p class="govuk-body">These values must also be provided when making the PUT request to the upload URL, as headers:</p>
-<li><code style="color: #a71d5d">Content-Length : value of file_length </code></li>
-<li><code style="color: #a71d5d">X-Amz-Checksum-Sha256 : value of file_sha256 </code></li>
-
-<p class="govuk-body">Where <value of x> are the values that were given to the request to generate the upload URL and match the file that is included in the body of the request. If either of these values do not match or are not provided, you will receive a signature verification failure (HTTP 403).</p>
-
-<h4 class="govuk-body"><b>File length</h4>
-
-<p class="govuk-body">The <code>file_length</code> should be the size of the file in bytes. See below for code examples in several languages:</p>
-
-<p class="govuk-body">Python</p>
-<br>
-
-<code>with open("test.pdf" "rb") as f:<br>
-    file_bytes = f.read() <br>
-    file_length = len(file_bytes)
-  </code>
-  <div class="govuk-!-padding-bottom-4"></div>
-<p class="govuk-body">Bash</p>
-<div class="govuk-!-padding-bottom-4"></div>
-<code>du -b test.pdf</code>
-<div class="govuk-!-padding-bottom-4"></div>
-<p class="govuk-body">Java</p>
-<div class="govuk-!-padding-bottom-4"></div>
-<code>File f = new File("test.pdf"); <br>
-long fileLength = f.length();</code>
-<div class="govuk-!-padding-bottom-4"></div>
-<p class="govuk-body">JavaScript (Node):</p>
-<div class="govuk-!-padding-bottom-4"></div>
-<code>const fs = require("fs"); <br>
-const stats = fs.statSync("test.pdf"); <br>
-const fileLength = stats.size;</code>
-
-<h4 class="govuk-body"><b>File Sha256</h4>
-
-<p class="govuk-body">The file_sha256 is the base64 encoded 256-bit binary digest of the bytes of the file. This should be exactly 44 characters long, regardless of the length of the file. See below for code examples in several languages:</p>
-
-<p class="govuk-body">Python</p>
-<br>
-
-<code>with open("test.pdf" "rb") as f: <br>
-    file_bytes = f.read()  <br>
-    hash = sha256(file_bytes)  <br>
-    file_sha256 = b64encode(hash.digest())
-  </code>
-  <div class="govuk-!-padding-bottom-4"></div>
-<p class="govuk-body">Bash</p>
-<div class="govuk-!-padding-bottom-4"></div>
-<code>cat test.pdf | openssl sha256 -binary | openssl enc -base64</code>
-<div class="govuk-!-padding-bottom-4"></div>
-<p class="govuk-body">Java</p>
-<div class="govuk-!-padding-bottom-4"></div>
-<code>File f = new File("test.pdf"); <br>
-byte[] data = Files.readAllBytes(f); <br>
-MessageDigest digester = MessageDigest.getInstance("SHA-256"); <br>
-digester.update(data); <br>
-String fileSha256 = Base64.getEncoder().encodeToString(digester.digest()); </code>
-<div class="govuk-!-padding-bottom-4"></div>
-<p class="govuk-body">JavaScript (Node):</p>
-<div class="govuk-!-padding-bottom-4"></div>
-<code>const fs = require("fs"); <br>
-const crypto = require("crypto"); <br>
- <br>
-const shasum = crypto.createHash("sha256");  <br>
-shasum.update(fs.getBytes());  <br>
-shasum.digest("base64"); </code>
-
-</div> #}
-
-  </div>
-
-  </main>
-
-
-
-
-
+        <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+          <h2 class="govuk-heading-m" id="related-apis">
+            Related APIs
+          </h2>
+          <nav role="navigation" aria-labelledby="subsection-title">
+            <ul class="govuk-list govuk-!-font-size-16">
+              <li>
+                <a class="govuk-body govuk-link" href="/apis/submit-an-application-to-change-the-land-register">
+                  Submit an application to change the Land Register
+                </a>
+              </li>
+              <li>
+              <a class="govuk-body govuk-link" href="/apis/send-a-document">
+                Send a document
+              </a>
+            </li>
+              <li>
+                <a class="govuk-body govuk-link" href="/apis/submit-an-application">
+                  Submit an application
+                </a>
+              </li>
+              <li>
+              </li>
+              <li>
+                <a class="govuk-body govuk-link" href="/apis/notifications">
+                  Notifications
+                </a>
+              </li>
+              <li>
+                <a class="govuk-body govuk-link govuk-!-font-weight-bold" href="/find-a-service-api">
+                  More <span class="govuk-visually-hidden">in Subsection</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+      </main>
 
     </div>
   </div>
