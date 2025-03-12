@@ -37,7 +37,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        Send a document service API- technical guide
+        Send a document service API technical guide
       </h1>
       <p class="govuk-body-l">Use this service to attach documents to your application.</p>
 
@@ -49,7 +49,7 @@
           <ol class="govuk-prototype-kit-common-templates-contents-list__list">
             <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed govuk-prototype-kit-common-templates-contents-list__list-item--active">
               <a href="#how-to-use-the-send-a-document-api">
-                How to use the Send a document API
+                How to use the Send a document service API
               </a>
             </li>
             <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
@@ -72,7 +72,7 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds govuk-prototype-kit-common-templates-mainstream-guide-body">
-      <h2 class="govuk-heading-m" id="how-to-use-the-send-a-document-api">How to use the Send a document API</h2>
+      <h2 class="govuk-heading-m" id="how-to-use-the-send-a-document-api">How to use the Send a document service API</h2>
       <div>
 
         <p class="govuk-body">This API consists of two endpoints that must be used together to upload a single document.</p>
@@ -92,12 +92,14 @@
         <h3 class="govuk-heading-s">Generate an upload URL</h3>
         <p class="govuk-body">Making a POST request to the create upload URL endpoint will result in the following items being returned:</p>
         <p class="govuk-body">
-          <code style="color: #a71d5d; background-color: #f5f5f5">upload_url</code>
+          <ul class="govuk-list govuk-list--bullet">
+          <li><code style="color: #a71d5d; background-color: #f5f5f5">upload_url</code>
           - This is the URL to make the PUT request to. This URL will only be valid for five minutes after generation. Five minutes is timed from the generation of the URL to the start of the upload. Neither the size of the document nor the speed of internet
-          connection will cause the upload to timeout</p>
+          connection will cause the upload to timeout</p></li>
         <p class="govuk-body">
-          <code style="color: #a71d5d; background-color: #f5f5f5">document_id</code>
-          - This is a unique ID for this document, and must be included in the application submission payload</p>
+          <li><code style="color: #a71d5d; background-color: #f5f5f5">document_id</code>
+          - This is a unique ID for this document, and must be included in the application submission payload</p></li>
+        </ul>
 
         <h3 class="govuk-heading-s">Upload a document</h3>
         <p class="govuk-body">To upload a document, make a PUT request to the URL returned from the ‘Create an upload URL’ POST request above. This request should contain the document as the body content. A 200 HTTP code will be returned if the upload was
@@ -150,7 +152,7 @@
           <h3 class="govuk-heading-s">File length</h3>
           <p class="govuk-body">The
             <code style="color: #a71d5d; background-color: #f5f5f5">file_length</code>
-            should be the size of the file in bytes. See below for code examples in several languages:</p>
+            should be the size of the file in bytes. See below for code examples in different languages:</p>
 
           <p class="govuk-body">Python</p>
 

@@ -37,7 +37,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        Notifications API- technical guide
+        Notifications service API technical guide
       </h1>
       <p class="govuk-body-l">Use this service to get updates about multiple applications submitted by the same business unit.</p>
     </p>
@@ -50,7 +50,7 @@
         <ol class="govuk-prototype-kit-common-templates-contents-list__list">
           <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed govuk-prototype-kit-common-templates-contents-list__list-item--active">
             <a href="#how-to-use-the-notifications-api">
-              How to use the Notifications API
+              How to use the Notifications service API
             </a>
           </li>
           <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
@@ -73,7 +73,7 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds govuk-prototype-kit-common-templates-mainstream-guide-body">
-    <h2 class="govuk-heading-m" id="how-to-use-the-notifications-api">How to use the Notifications API</h2>
+    <h2 class="govuk-heading-m" id="how-to-use-the-notifications-api">How to use the Notifications service API</h2>
     <div>
       <h3 class="govuk-heading-s">Recieve notifications</h3>
       <p class="govuk-body">The GET request to fetch all notifications takes the following URL query parameters (which are optional):</p>
@@ -97,12 +97,12 @@
         </li>
         <li>
           <code style="color: #a71d5d; background-color: #f5f5f5">occured_after</code>
-          - only retrieve notifications with a
+          - only retrieve notifications with an
           <code style="color: #a71d5d; background-color: #f5f5f5">event_timestamp</code>
           after this date</li>
         <li>
           <code style="color: #a71d5d; background-color: #f5f5f5">occured_before</code>
-          - only retrieve notifications with a
+          - only retrieve notifications with an
           <code style="color: #a71d5d; background-color: #f5f5f5">event_timestamp</code>
           before this date</li>
         <li>
@@ -126,9 +126,8 @@
         </li>
       </ul>
 
-      <p class="govuk-body">A <code style="color: #a71d5d; background-color: #f5f5f5">business_unit</code> header is also required for this request, which is the business unit ID found in portal for the business
-the request is on behalf of. Only notifications related to applications submitted by the business unit ID provided will be returned.</p>
-    
+      <p class="govuk-body">A <code style="color: #a71d5d; background-color: #f5f5f5">business_unit</code> header is also required for this request. This is the business unit ID found in portal for the business the request is on behalf of. Only notifications related to applications submitted by the business unit ID provided will be returned.</p>
+
     </div>
     <div>
 
@@ -136,12 +135,12 @@ the request is on behalf of. Only notifications related to applications submitte
       <p class="govuk-body">Duplicate events will have the same
         <code style="color: #a71d5d; background-color: #f5f5f5">source_datetime</code>
         field and
-        <code style="color: #a71d5d; background-color: #f5f5f5">notification_type</code>, which can be used to locate and ignore duplicates when receiving notifications. Notifications will continue to be returned by the endpoint until they are acknowledged.</p>
+        <code style="color: #a71d5d; background-color: #f5f5f5">notification_type</code> which can be used to locate and ignore duplicates when receiving notifications. Notifications will continue to be returned by the endpoint until they are acknowledged.</p>
 
       <h3 class="govuk-heading-s">Acknowledge notifications</h3>
       <p class="govuk-body">Once a notification has been processed by your system, the notification should be acknowledged. To do this, send a list of
-        <code style="color: #a71d5d; background-color: #f5f5f5">notification_ids</code>to the Acknowledge notifications API as a POST request. This will change the status of those notifications to
-        <code style="color: #a71d5d; background-color: #f5f5f5">ACKNOWLEDGED</code>
+        <code style="color: #a71d5d; background-color: #f5f5f5">notification_ids</code> to the Acknowledge notifications API as a POST request. This will change the status of those notifications to
+        <code style="color: #a71d5d; background-color: #f5f5f5">ACKNOWLEDGED</code>.
       </p>
 
       <h2 class="govuk-heading-m" id="validation-rules">Validation rules</h2>

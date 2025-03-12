@@ -122,11 +122,11 @@
       <li>Asynchronous application submission: when you submit an application, a successful response means the request has been received. Acceptance and prioritisation will occur after validation has been applied</li>
       <li>Renaming applications to transactions: applications from the SOAP request are now referred to as Transactions</li>
       <li>New fields: transaction specific data has been included, initially for transfer and charge transactions including charge values and information on joint tenancies</li>
-      <li>Fees will be automatically calculated: this enhancement will come in a later version</li>
+      {# <li>Fees will be automatically calculated: this enhancement will come in a later version</li> #}
       <li>Removing notes: the Notes section is no longer included but additional data fields have been added to collect the data commonly found in this field. These include:</li>
       <ul class="govuk-list govuk-list--bullet govuk-!-margin-left-3">
         <li>ROE-ID (Registration of Overseas Entity ID) - this should be attached as a document of type <code style="color: #a71d5d">EVIDENCE</code> for the relevant transaction</li>
-        <li>Company charges certificate – a new boolean field, <code style="color: #a71d5d">conveyancers_certificate</code>, has been added to capture this information. This value must be provided when a <code style="color: #a71d5d">CERT_REG_CH</code> document is uploaded</li>
+        <li>company charges certificate – a new boolean field, <code style="color: #a71d5d">conveyancers_certificate</code>, has been added to capture this information. This value must be provided when a <code style="color: #a71d5d">CERT_REG_CH</code> document is uploaded</li>
         <li>name variation – names are now required to be an exact match</li>
         <li>cover letter – should now be uploaded as a document of type <code style="color: #a71d5d">EVIDENCE</code> with the relevant transaction</li>
         <li>request to merge or close leasehold titles – the appropriate transaction type should now be selected for this purpose</li>
@@ -141,7 +141,7 @@
 
       <li><a class="govuk-body govuk-link" href="/apis/submit-an-application">Submit an application API</a> -  request to submit an application to HMLR</li>
 
-      <li><a class="govuk-body govuk-link" href="/apis/application-information">Application information API</a> - fetch the latest information about a specific application</li>
+      <li><a class="govuk-body govuk-link" href="/apis/application-information">Application information API</a> - get information about a specific application</li>
 
       <li><a class="govuk-body govuk-link" href="/apis/notifications">Notifications API</a> - collect notifications about applications that have been submitted</li>
       </ul>
@@ -168,8 +168,9 @@
 
   <h3 class="govuk-heading-m" id="how-to-test-this-service-api">How to test this service API</h3>
 
-  <p class="govuk-body">HMLR does not currently provide a test environment for integrators using our Business Gateway APIs. Instead, we’ve provided example code to demonstrate what you should  expect to see when developing your own services. For general testing guidance, visit our <a class="govuk-body govuk-link" href="/a-guide-to-testing">guide to testing</a>.</p>
-
+  <p class="govuk-body">HMLR does not currently provide a test environment for integrators using our Business Gateway APIs. Instead, we’ve provided example code to demonstrate what you should  expect to see when developing your own services.</p>
+  <p class="govuk-body">This information is coming soon.</p>
+  <p class="govuk-body">For general testing guidance, visit our <a class="govuk-body govuk-link" href="/a-guide-to-testing">guide to testing</a>.</p>
 </div>
 </div>
 
