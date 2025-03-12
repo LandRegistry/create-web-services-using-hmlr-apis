@@ -103,12 +103,12 @@ show_subnav: true
 
           <div class="govuk-grid-row">
 
-            <p class="govuk-body govuk-!-font-weight-regular govuk-!-margin-left-3">Business Gateway provides two core API options for developers – REST and SOAP. Using one or both APIs allows developers to integrate different HM Land Registry (HMLR) services with their own platforms.</p>
+            <p class="govuk-body govuk-!-font-weight-regular govuk-!-margin-left-3">Business Gateway provides two core API options for developers – REST and SOAP. Using one or both APIs allows developers to integrate different HMLR services with their own platforms.</p>
 
             <p class="govuk-body govuk-!-font-weight-regular govuk-!-margin-left-3">Learn more about these two APIs and how to integrate them below. For a list of service APIs, visit <a class="govuk-link" href="/find-a-service-api">Find a service API</a>. Here, you’ll find a SOAP or REST tag next to each service title. This shows which of the two core APIs you’ll need to integrate that service.</p>
 
             <h3 class="govuk-heading-m govuk-!-margin-left-3">How to use our APIs to build services</h3>
-            <p class="govuk-body govuk-!-font-weight-regular govuk-!-margin-left-3">This section will provide an overview of how to use Business Gateway APIs to build HMLR services (with flow).</p>
+            <p class="govuk-body govuk-!-font-weight-regular govuk-!-margin-left-3">We're working on this section. It will provide an overview of how to use Business Gateway APIs to build HMLR services.</p>
 
             <h3 class="govuk-heading-m govuk-!-margin-left-3">API limitations</h3>
             <p class="govuk-body govuk-!-font-weight-regular govuk-!-margin-left-3">There are limitations to using REST or SOAP when integrating Business Gateway services.</p>
@@ -117,16 +117,16 @@ show_subnav: true
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-left-3">Rate limiting</p>
             <p class="govuk-body govuk-!-margin-left-3">HMLR may need to restrict the usage of an API to protect it from excessive use. These rate limits are subject to change based on expected loads and uptake of the service.</p>
             <p class="govuk-body govuk-!-margin-left-3">If the rate limit is exceeded, you’ll get a HTTP 429 response (Too Many Requests). HTTP headers will be provided in the response to inform you when the next request may be made.</p>
-            <p class="govuk-body govuk-!-margin-left-3">We currently promote a sliding window rate limiting policy, this ensures an initial burst of requests can be sent and slowly replenished over time. Where possible, spreading requests out over time is highly advised.</p>
-            <p class="govuk-body govuk-!-margin-left-3">If you are concerned with a rate limit, you can contact us at <a class="govuk-link" href="/">channelpartners@landregistry.gov.uk</a> and we can discuss whether increasing the rate limit is appropriate.</p>
+            <p class="govuk-body govuk-!-margin-left-3">We currently promote a sliding window rate limiting policy. This ensures an initial burst of requests can be sent and slowly replenished over time. Where possible, spreading requests out over time is highly advised.</p>
+            <p class="govuk-body govuk-!-margin-left-3">If you are concerned with a rate limit, you can <a class="govuk-link" href="/contact-us">contact us</a> and we can discuss whether increasing the rate limit is appropriate.</p>
 
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-left-3">Error registry</p>
             <p class="govuk-body govuk-!-margin-left-3">If our systems detect a problem with requests to our REST services, an error registry will capture these problems as headings and pages with primers on how to solve them. We will share a link to these problem pages from within the JSON response.</p>
 
-            <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-left-3">HTTP 500 Errors</p>
-            <p class="govuk-body govuk-!-margin-left-3">Although measures have been taken to ensure the API is robust and highly available, there may be cases where HMLR systems cannot respond to requests correctly. In such cases, the API will respond with a HTTP 500 error (Internal Server Error), meaning we could not process the request due to an issue within HMLR. This error will not provide much detail about the error externally but will alert a member of the HMLR support team to investigate the issue.</p>
+            <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-left-3">HTTP 500 errors</p>
+            <p class="govuk-body govuk-!-margin-left-3">Although measures have been taken to ensure the API is robust and readily available, there may be cases where HMLR systems cannot respond to requests correctly. In such cases, the API will respond with a HTTP 500 error (Internal Server Error), meaning we could not process the request due to an issue within HMLR. This error will not provide much detail about the error externally but will alert a member of the HMLR support team to investigate the issue.</p>
             <p class="govuk-body govuk-!-margin-left-3">If you receive a 500 error from the API, you should wait a short period of time and then retry the request. If, after a few retries, you are still receiving the same error, please contact the support team.</p>
-            <p class="govuk-body govuk-!-margin-left-3">Note that a 500 error does not indicate if the request correct or incorrect, only that there was an issue internal to the API, and the request should be retried. Visit <a class="govuk-link" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" rel="noreferrer noopener" target="_blank">the Mozilla web documentation (opens in new tab)</a> for more information about HTTP response codes.</p>
+            <p class="govuk-body govuk-!-margin-left-3">Note that a 500 error does not indicate if the request is correct or incorrect, only that there was an issue internal to the API, and the request should be retried. Visit <a class="govuk-link" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status" rel="noreferrer noopener" target="_blank">the Mozilla web documentation (opens in new tab)</a> for more information about HTTP response codes.</p>
 
             <h3 class="govuk-heading-m govuk-!-margin-left-3">SOAP API limitations</h3>
             <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-left-3">Message IDs</p>
