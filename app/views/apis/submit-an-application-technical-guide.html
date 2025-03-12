@@ -80,7 +80,7 @@
       <h2 class="govuk-heading-m" id="how-to-use-the-submit-an-application-api">How to use the Submit an application service API</h2>
         <div>
 
-          <p class="govuk-body">To submit an application request, make a HTTP POST request to the application request endpoint, the body of which contains the information about the application using the<code style="color: #a71d5d; background-color: #f5f5f5">application/json</code> content type.</p>
+          <p class="govuk-body">To submit an application request, make an HTTP POST request to the application request endpoint, the body of which contains the information about the application using the <code style="color: #a71d5d; background-color: #f5f5f5">application/json</code> content type.</p>
           <p class="govuk-body">This endpoint will return an object containing a unique ID for the request, <code style="color: #a71d5d; background-color: #f5f5f5">application_request_id</code>, which is then used when fetching the status of the application. Any errors in the schema will be rejected as a 400 HTTP error. Any other validation errors will be returned in the application information response.</p>
 
 </div>
@@ -102,7 +102,7 @@
     <li><code style="color: #a71d5d; background-color: #f5f5f5">APPLICATION_ACCEPTED_QUEUED_FOR_DAY_LIST</code>, <code style="color: #a71d5d; background-color: #f5f5f5">APPLICATION_VALIDATION_FAILED</code> and <code style="color: #a71d5d; background-color: #f5f5f5">APPLICATION_ERROR</code> will contain the updated order status only</li>
     <li><code style="color: #a71d5d; background-color: #f5f5f5">APPLICATION_ACCEPTED_ON_DAY_LIST</code> will contain the updated order status, the priority of the application and the HMLR reference for the accepted application</li>
   </ul>
-  <p class="govuk-body">To get more detailed information about an application that caused the notification, use the <a class="govuk-body govuk-link" href="https://customer-documentation-business-gateway-35cf334e5a1aeb361fcf62d.git.tooling.stp.hmlr.zone/vcad/v0_3/application-information.html">application information API</a>. For example, after receiving an <code style="color: #a71d5d; background-color: #f5f5f5">APPLICATION_VALIDATION_FAILED</code> notification, use the application information API to get a list of the validation errors.</p>
+  <p class="govuk-body">To get more detailed information about an application that caused the notification, use the <a class="govuk-body govuk-link" href="https://customer-documentation-business-gateway-35cf334e5a1aeb361fcf62d.git.tooling.stp.hmlr.zone/vcad/v0_3/application-information.html">Application information service API</a>. For example, after receiving an <code style="color: #a71d5d; background-color: #f5f5f5">APPLICATION_VALIDATION_FAILED</code> notification, use the Application information service API to get a list of the validation errors.</p>
 
 
   <h3 class="govuk-heading-s">Schemas</h3>
@@ -620,7 +620,7 @@
 </details>
 
 <h3 class="govuk-heading-s">Transaction and document types</h3>
-<p class="govuk-body">The application submission service API accepts several transaction and document types that describe the desired outcome of the application. These types are defined in the schema in their shortened form, but full definitions of each type can be seen below:</p>
+<p class="govuk-body">The application submission service API accepts several transaction and document types that describe the desired outcome of the application. These types are defined in the schema in their shortened form, but full definitions of each type can be viewed below:</p>
 
 <details class="govuk-details">
   <summary class="govuk-details__summary">
@@ -1866,7 +1866,7 @@
 <p class="govuk-body">For example, for an <code style="color: #a71d5d; background-color: #f5f5f5">ADV1</code> transaction type, the following documents need to be uploaded:</p>
 <ul class="govuk-list govuk-list--bullet">
   <li>An <code style="color: #a71d5d; background-color: #f5f5f5">ADV1</code> document must be uploaded </li>
-  <li>At least one of a <code style="color: #a71d5d; background-color: #f5f5f5">SOT</code>or <code style="color: #a71d5d; background-color: #f5f5f5">STAT_DEC</code> document must be uploaded</li>
+  <li>At least one of an <code style="color: #a71d5d; background-color: #f5f5f5">SOT</code> or <code style="color: #a71d5d; background-color: #f5f5f5">STAT_DEC</code> document must be uploaded</li>
   <li><code style="color: #a71d5d; background-color: #f5f5f5">COSR</code>, <code style="color: #a71d5d; background-color: #f5f5f5">EVIDENCE</code>, <code style="color: #a71d5d; background-color: #f5f5f5">PLAN</code> and <code style="color: #a71d5d; background-color: #f5f5f5">POA</code> documents are not required, but may help when processing your application</p>
 </ul>
 
@@ -1875,7 +1875,7 @@
 <details class="govuk-details">
   <summary class="govuk-details__summary">
     <span class="govuk-details__summary-text">
-      Transaction/ document mapping
+      Transaction/document mapping
     </span>
   </summary>
   <div class="govuk-details__text">
@@ -5165,7 +5165,7 @@
 </details>
 
 <h3 class="govuk-heading-s">Valid transaction types per application type</h3>
-<p class="govuk-body">For each application type (<code style="color: #a71d5d">REGISTER_UPDATE</code>, <code style="color: #a71d5d">DISPOSITIONARY_FIRST_LEASE</code>, <code style="color: #a71d5d">TRANSFER_OF_PART</code> and <code style="color: #a71d5d">REMOVE_JP1</code>), only certain transaction types can be supplied. The sections below detail which transaction types are valid for each application type.</p>
+<p class="govuk-body">For each application type (<code style="color: #a71d5d; background-color: #f5f5f5">REGISTER_UPDATE</code>, <code style="color: #a71d5d; background-color: #f5f5f5">DISPOSITIONARY_FIRST_LEASE</code>, <code style="color: #a71d5d; background-color: #f5f5f5">TRANSFER_OF_PART</code> and <code style="color: #a71d5d; background-color: #f5f5f5">REMOVE_JP1</code>), only certain transaction types can be supplied. The sections below detail which transaction types are valid for each application type.</p>
 
 <h3 class="govuk-heading-s"><code>REGISTER_UPDATE</code></h3>
 
@@ -5720,7 +5720,7 @@
 
   <p class="govuk-body">The only valid transaction type for the <code style="color: #a71d5d; background-color: #f5f5f5">REMOVE_JP1</code> application type is <code style="color: #a71d5d; background-color: #f5f5f5">JP1</code>. This must be the only transaction, and there must only be a single <code style="color: #a71d5d; background-color: #f5f5f5">JP1</code> transaction per application.</p>
 
-  <p class="govuk-body">Transaction details</p>
+  <h3 class="govuk-heading-s">Transaction details</h3>
 
   <p class="govuk-body">For certain transaction types, more detailed information is needed (via the <code style="color: #a71d5d; background-color: #f5f5f5">Transaction.details</code> field). This field can be one of several different types:</p>
 
@@ -5820,7 +5820,7 @@
     <li><code style="color: #a71d5d; background-color: #f5f5f5">ADDITIONAL_TITLE</code> - any other titles on the application</li>
   </ul>
 
-  <p class="govuk-body">For a lease extension application (where the transaction type is <code style="color: #a71d5d; background-color: #f5f5f5">DFL5</code> Dispositionary first lease extension of a term) a single title with type <code style="color: #a71d5d; background-color: #f5f5f5">TENANT_TITLE</code>must also be provided, which is related to the tenant on the application.</p>
+  <p class="govuk-body">For a lease extension application (where the transaction type is <code style="color: #a71d5d; background-color: #f5f5f5">DFL5</code> Dispositionary first lease extension of a term) a single title with type <code style="color: #a71d5d; background-color: #f5f5f5">TENANT_TITLE</code> must also be provided, which is related to the tenant on the application.</p>
 
   <h3 class="govuk-heading-s">Change of name / Death of a joint proprietor (DJP)</h3>
 
@@ -5919,8 +5919,8 @@
 <p class="govuk-body">Customer provided names must match the names in the charge deed. If the borrower is a registered proprietor, the customer provided names must match the register. If they do not then relevant evidence needs to be attached.</p>
 
 <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--m">Borrower name validation</caption>
-  <thead class="govuk-table__head">
+  <caption class="govuk-table__caption govuk-table__caption--s">Borrower name validation error codes</caption>
+<thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Error code</th>
       <th scope="col" class="govuk-table__header">Description</th>
@@ -5946,7 +5946,7 @@
 <p class="govuk-body">For a charge, borrower names must be present.</p>
 
 <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--m">Borrower validation</caption>
+  <caption class="govuk-table__caption govuk-table__caption--s">Borrower validation error codes</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Error code</th>
@@ -5974,10 +5974,10 @@
 <p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
 
 <h3 class="govuk-heading-s">Conveyancers certificate validation</h3>
-<p class="govuk-body">Checks that the <code style="color: #a71d5d; background-color: #f5f5f5">conveyancers_certificate</code> field is set for any document of type <code style="color: #a71d5d; background-color: #f5f5f5">CERT_REG_CH</code>.</p>
+<p class="govuk-body">Checks the <code style="color: #a71d5d; background-color: #f5f5f5">conveyancers_certificate</code> field is set for any document of type <code style="color: #a71d5d; background-color: #f5f5f5">CERT_REG_CH</code>.</p>
 
 <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--m">Conveyancer certificate validation</caption>
+  <caption class="govuk-table__caption govuk-table__caption--s">Conveyancer certificate validation error codes</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Error code</th>
@@ -6000,7 +6000,7 @@
 
 <p class="govuk-body">The declaration of trust field must include one of the following options:</p>
 <ol class="govuk-list govuk-list--number">
-  <li>Joint tenants</li>
+  <li>Joint Tenants</li>
   <li>Tenants in Common</li>
   <li>Trust Details</li>
   <li>Form JO</li>
@@ -6011,10 +6011,10 @@
 <p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
 
 <h3 class="govuk-heading-s">Disclosable overriding interests validation</h3>
-<p class="govuk-body">When <code style="color: #a71d5d; background-color: #f5f5f5">disclosable_overriding_interests</code> is set to <code style="color: #a71d5d; background-color: #f5f5f5">true</code> on any transaction, a <code style="color: #a71d5d; background-color: #f5f5f5">FORM_DI</code>document must be provided with the application.</p>
+<p class="govuk-body">When <code style="color: #a71d5d; background-color: #f5f5f5">disclosable_overriding_interests</code> is set to <code style="color: #a71d5d; background-color: #f5f5f5">true</code> on any transaction, a <code style="color: #a71d5d; background-color: #f5f5f5">FORM_DI</code> document must be provided with the application.</p>
 
 <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--m">Disclosable overriding interests validation</caption>
+  <caption class="govuk-table__caption govuk-table__caption--s">Disclosable overriding interests validation error codes</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Error code</th>
@@ -6038,10 +6038,10 @@
 <p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
 
 <h3 class="govuk-heading-s">Identity evidence validation</h3>
-<p class="govuk-body">An HMLR identity form must be provided for each unrepresented party when required - see Practice Guide 67.</p>
+<p class="govuk-body">An HMLR identity form must be provided for each unrepresented party when required - view <a class="govuk-body govuk-link" href="https://www.gov.uk/government/publications/evidence-of-identity-conveyancers/practice-guide-67-evidence-of-identity-conveyancers" rel="noreferrer noopener" target="_blank">Practice Guide 67 (opens in new tab)</a>.</p>
 
 <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--m">Identity evidence validation</caption>
+  <caption class="govuk-table__caption govuk-table__caption--s">Identity evidence validation error codes</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Error code</th>
@@ -6078,7 +6078,7 @@
 
 <h3 class="govuk-heading-s">Lender address validation</h3>
 
-<p class="govuk-body">Lender address not required if a valid MD reference is provided. If the charge does not have an MD reference, a full postal address for the lender is required.</p>
+<p class="govuk-body">The lender address is not required if a valid MD reference is provided. If the charge does not have an MD reference, a full postal address for the lender is required.</p>
 
 <p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
 
@@ -6086,7 +6086,7 @@
 <p class="govuk-body">The pre-approved MD reference included in the charge should be included in the application.</p>
 
 <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--m">Lender name validation</caption>
+  <caption class="govuk-table__caption govuk-table__caption--s">Lender name validation error codes</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Error code</th>
@@ -6112,14 +6112,14 @@
 
 <h3 class="govuk-heading-s">Lender validation</h3>
 
-<p class="govuk-body">All charges require at least one party with role type of lender. If there is no MD ref on the transaction, all lenders must have at least one address.</p>
+<p class="govuk-body">All charges require at least one party with the role type of lender. If there is no MD reference on the transaction, all lenders must have at least one address.</p>
 
 <p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
 
 <h3 class="govuk-heading-s">Mandatory documents validation</h3>
 <p class="govuk-body">Validation will be applied for each transaction to ensure the rules regarding the Compulsory and Either document types have been satisfied correctly.</p>
 <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--m">Mandatory documents validation</caption>
+  <caption class="govuk-table__caption govuk-table__caption--s">Mandatory documents validation error codes</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Error code</th>
@@ -6135,9 +6135,9 @@
 </table>
 
 <h3 class="govuk-heading-s">MD reference validation</h3>
-<p class="govuk-body">The MD reference included in the application must be in the right format, exist as a live MD reference and match the MD ref contained in the charge.</p>
+<p class="govuk-body">The MD reference included in the application must be in the right format, exist as a live MD reference and match the MD reference contained in the charge.</p>
   <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--m">MD reference validation</caption>
+  <caption class="govuk-table__caption govuk-table__caption--s">MD reference validation error codes</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Error code</th>
@@ -6165,7 +6165,7 @@
 <h3 class="govuk-heading-s">Submission warning validation</h3>
 <p class="govuk-body">The <code style="color: #a71d5d; background-color: #f5f5f5">submission_warning_understood</code> field must be <code style="color: #a71d5d; background-color: #f5f5f5">true</code>.</p>
   <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--m">Submission warning validation</caption>
+  <caption class="govuk-table__caption govuk-table__caption--s">Submission warning validation error codes</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Error code</th>
@@ -6175,7 +6175,7 @@
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
       <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">SUBMISSION_WARNING_NOT_UNDERSTOOD</code></td>
-      <td class="govuk-table__cell govuk-table__cell">A legal declaration is made when submitting an application with regards to dishonesty etc. The conveyancer must agree to comply with the warning.</td>
+      <td class="govuk-table__cell govuk-table__cell">A legal declaration is made when submitting an application with regards to dishonesty etc. The conveyancer must agree to comply with the warning</td>
     </tr>
   </tbody>
 </table>
@@ -6183,7 +6183,7 @@
 <h3 class="govuk-heading-s">Title number validation</h3>
 <p class="govuk-body">The title number in the application must be valid. The title number provided must also match with one of the attached deeds. For multi-title applications please provide each title once.</p>
 <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--m">Title number validation</caption>
+  <caption class="govuk-table__caption govuk-table__caption--s">Title number validation error codes</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Error code</th>
@@ -6193,7 +6193,7 @@
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
       <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">TITLE_NUMBER_MISSING</code></td>
-      <td class="govuk-table__cell govuk-table__cell">At least one title number must be provided (including applications for New Lease, Lease Extension or Transfer of Part). In these circumstances, at least a lessor’s or vendor’s title will be required.</td>
+      <td class="govuk-table__cell govuk-table__cell">At least one title number must be provided (including applications for New Lease, Lease Extension or Transfer of Part). In these circumstances, at least a lessor’s or vendor’s title will be required</td>
     </tr>
     <tr class="govuk-table__row">
       <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">TITLE_NUMBER_NOT_FOUND</code></td>
@@ -6205,7 +6205,7 @@
 <h3 class="govuk-heading-s">Title scope validation</h3>
 <p class="govuk-body">Application of whole or part must be provided for each title number within a transaction.</p>
 <table class="govuk-table">
-<caption class="govuk-table__caption govuk-table__caption--m">Title scope validation</caption>
+<caption class="govuk-table__caption govuk-table__caption--s">Title scope validation error codes</caption>
 <thead class="govuk-table__head">
   <tr class="govuk-table__row">
     <th scope="col" class="govuk-table__header">Error code</th>
@@ -6215,7 +6215,7 @@
 <tbody class="govuk-table__body">
   <tr class="govuk-table__row">
     <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">PART_TITLE_SCOPE_NO_PART_DESCRIPTION</code></td>
-    <td class="govuk-table__cell govuk-table__cell">Title scopes of ‘part’ must have a part description.</td>
+    <td class="govuk-table__cell govuk-table__cell">Title scopes of ‘part’ must have a part description</td>
   </tr>
   <tr class="govuk-table__row">
     <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">WHOLE_TITLE_SCOPE_HAS_PART_DESCRIPTION</code></td>
@@ -6248,9 +6248,9 @@
 <p class="govuk-body">The transfer date must match what is on the transfer deed to be correct.</p>
 
 <h3 class="govuk-heading-s">Transferee validation</h3>
-<p class="govuk-body">The transferee name provided in the application must match the transferee name in the transfer deed. Proprietor address for service must be a valid postal address, customer provided address will be validated. If overseas, must have country.</p>
+<p class="govuk-body">The transferee name provided in the application must match the transferee name in the transfer deed. The proprietor address for service must be a valid postal address. The customer provided address will be validated. If overseas, the address must have a country.</p>
 <table class="govuk-table">
-<caption class="govuk-table__caption govuk-table__caption--m">Transferee validation</caption>
+<caption class="govuk-table__caption govuk-table__caption--s">Transferee validation error codes</caption>
 <thead class="govuk-table__head">
   <tr class="govuk-table__row">
     <th scope="col" class="govuk-table__header">Error code</th>
@@ -6272,7 +6272,7 @@
 <h3 class="govuk-heading-s">Transferor validation</h3>
 <p class="govuk-body">For a transfer, there must be at least one transferor name without the register action of <code style="color: #a71d5d; background-color: #f5f5f5">REMOVE</code>.</p>
 <table class="govuk-table">
-<caption class="govuk-table__caption govuk-table__caption--m">Transferor validation</caption>
+<caption class="govuk-table__caption govuk-table__caption--s">Transferor validation error codes</caption>
 <thead class="govuk-table__head">
   <tr class="govuk-table__row">
     <th scope="col" class="govuk-table__header">Error code</th>
@@ -6282,7 +6282,7 @@
 <tbody class="govuk-table__body">
   <tr class="govuk-table__row">
     <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">NO_TRANSFERORS</code></td>
-    <td class="govuk-table__cell govuk-table__cell">A transfer involves a change of proprietor(s). If making an application for a transfer, there must be at least one transferor.</td>
+    <td class="govuk-table__cell govuk-table__cell">A transfer involves a change of proprietor(s). If making an application for a transfer, there must be at least one transferor</td>
 </tr>
 </tbody>
 </table>
@@ -6316,8 +6316,8 @@
 
 <p class="govuk-body">There are several rules regarding value band usage:</p>
 <ul class="govuk-list govuk-list--bullet">
-  <li>Both <code style="color: #a71d5d; background-color: #f5f5f5">value</code> (i.e. value of equity being transferred) and <code style="color: #a71d5d; background-color: #f5f5f5">full_value_of_property</code>must be either value bands, or exact values</li>
-  <li>The <code style="color: #a71d5d; background-color: #f5f5f5">full_value_of_property_band</code> must be greater than or equal to the <code style="color: #a71d5d; background-color: #f5f5f5">value_band</code>(i.e. the value of equity being transferred)</li>
+  <li>Both <code style="color: #a71d5d; background-color: #f5f5f5">value</code> (i.e. value of equity being transferred) and <code style="color: #a71d5d; background-color: #f5f5f5">full_value_of_property</code> must be either value bands, or exact values</li>
+  <li>The <code style="color: #a71d5d; background-color: #f5f5f5">full_value_of_property_band</code> must be greater than or equal to the <code style="color: #a71d5d; background-color: #f5f5f5">value_band</code> (i.e. the value of equity being transferred)</li>
 <div class="govuk-!-padding-bottom-6"></div>
   <p class="govuk-body">Example:</p>
 
