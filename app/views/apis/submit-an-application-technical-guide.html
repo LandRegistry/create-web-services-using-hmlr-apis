@@ -5720,7 +5720,7 @@
 
   <p class="govuk-body">The only valid transaction type for the <code style="color: #a71d5d; background-color: #f5f5f5">REMOVE_JP1</code> application type is <code style="color: #a71d5d; background-color: #f5f5f5">JP1</code>. This must be the only transaction, and there must only be a single <code style="color: #a71d5d; background-color: #f5f5f5">JP1</code> transaction per application.</p>
 
-  <h3 class="govuk-heading-s">Transaction details</h3>
+  <h3 class="govuk-heading-s">Additional transaction details</h3>
 
   <p class="govuk-body">For certain transaction types, more detailed information is needed (via the <code style="color: #a71d5d; background-color: #f5f5f5">Transaction.details</code> field). This field can be one of several different types:</p>
 
@@ -5833,7 +5833,7 @@
   </ul>
 
   <h3 class="govuk-heading-s">Amend</h3>
-<p class="govuk-body">A value of amend will trigger a change of name transaction to be created internally. The party information must be the new proprietor information. Identity evidence must be provided as documents on the Transfer.</p>
+<p class="govuk-body">A value of amend will trigger a change of name transaction to be created internally. The party information must be the new proprietor information. Identity evidence must be provided as documents on the transaction.</p>
 
 <p class="govuk-body">Example:</p>
 
@@ -5861,7 +5861,7 @@
 
 
 <h3 class="govuk-heading-s">Remove</h3>
-<p class="govuk-body">A value of remove will trigger a DJP transaction to be created internally. The party information must be the existing proprietor information. Identity evidence must be provided as documents on the Transfer.</p>
+<p class="govuk-body">A value of remove will trigger a DJP transaction to be created internally. The party information must be the existing proprietor information. Identity evidence must be provided as documents on the transaction.</p>
 <p class="govuk-body">Example:</p>
 
 <pre>
@@ -6319,6 +6319,8 @@
   <li>Both <code style="color: #a71d5d; background-color: #f5f5f5">value</code> (i.e. value of equity being transferred) and <code style="color: #a71d5d; background-color: #f5f5f5">full_value_of_property</code> must be either value bands, or exact values</li>
   <li>The <code style="color: #a71d5d; background-color: #f5f5f5">full_value_of_property_band</code> must be greater than or equal to the <code style="color: #a71d5d; background-color: #f5f5f5">value_band</code> (i.e. the value of equity being transferred)</li>
 <div class="govuk-!-padding-bottom-6"></div>
+
+<div>
   <p class="govuk-body">Example:</p>
 
   <pre>
@@ -6345,11 +6347,17 @@
   </pre>
 
   <div class="govuk-!-padding-bottom-3"></div>
+
+</div>
+
   <h2 class="govuk-heading-m" id="example-requests-and-responses">Example requests and responses</h2>
 
   <h3 class="govuk-heading-s">
+
 <code>APPLICATION_ACCEPTED_ON_DAY_LIST</code> notification</h3>
+
   <pre>
+
   <code class="language-json" style="background-color: #f3f2f1">
     {
       "data": [
@@ -6373,6 +6381,7 @@
       ]
     }
   </code>
+
   </pre>
 
   <h3 class="govuk-heading-s">

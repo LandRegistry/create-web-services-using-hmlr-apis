@@ -94,7 +94,7 @@
         <p class="govuk-body">
           <ul class="govuk-list govuk-list--bullet">
           <li><code style="color: #a71d5d; background-color: #f5f5f5">upload_url</code>
-          - This is the URL to make the PUT request to. This URL will only be valid for five minutes after generation. Five minutes is timed from the generation of the URL to the start of the upload. Neither the size of the document nor the speed of internet
+          - This is the URL to make the PUT request to. This URL will only be valid for 10 minutes after generation. Five minutes is timed from the generation of the URL to the start of the upload. Neither the size of the document nor the speed of internet
           connection will cause the upload to timeout</p></li>
         <p class="govuk-body">
           <li><code style="color: #a71d5d; background-color: #f5f5f5">document_id</code>
@@ -159,7 +159,7 @@
           <pre>
 
   <code class="language-python" style="background-color: #f3f2f1">
-    with open("test.pdf" "rb") as f:
+    with open("test.pdf", "rb") as f:
         file_bytes = f.read()
         file_length = len(file_bytes)
 </code>
@@ -214,7 +214,7 @@
           <pre>
 
   <code class="language-python" style="background-color: #f3f2f1">
-  with open("test.pdf" "rb") as f:
+  with open("test.pdf", "rb") as f:
       file_bytes = f.read()
       hash = sha256(file_bytes)
       file_sha256 = b64encode(hash.digest())
