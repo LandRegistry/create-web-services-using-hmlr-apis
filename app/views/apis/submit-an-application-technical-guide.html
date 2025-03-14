@@ -5902,6 +5902,19 @@
 <h3 class="govuk-heading-s">Bypass validation</h3>
 <p class="govuk-body">If an application fails validation, there may be legitimate reasons why you might want HMLR to ignore specific rules. In this case, we provide a <code style="color: #a71d5d; background-color: #f5f5f5">bypass_validation</code> array that can be used to ignore validation rules for specific objects, as defined by the <code style="color: #a71d5d; background-color: #f5f5f5">pointer</code>.</p>
 <p class="govuk-body">Usage of validation bypass will be monitored. To use the bypass functionality, the following information is required:</p>
+<p class="govuk-body">Value bands are only applicable to the following transaction types:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li><code style="color: #a71d5d; background-color: #f5f5f5">validation_type</code> - the type of validation rule you want to bypass. This is returned in the <code style="color: #a71d5d; background-color: #f5f5f5">type</code> field from any validation erro</li>
+  <li><code style="color: #a71d5d; background-color: #f5f5f5">validation_pointer</code> - the location of the object in the payload structure. This is returned in the <code style="color: #a71d5d; background-color: #f5f5f5">pointer</code>field from some validation errors</li>
+  <li><code style="color: #a71d5d; background-color: #f5f5f5">reason</code> - the specific reason the bypass was required. Must be one of:</li>
+  <ul class="govuk-list govuk-list--bullet"> <li><code style="color: #a71d5d; background-color: #f5f5f5">DISAGREE_WITH_REGISTER</code> - the validation rule is incorrect because the data on the register is incorrect</li>
+    <li><code style="color: #a71d5d; background-color: #f5f5f5">HMLR_DATA_INCORRECT_OR_OUTDATEDR</code> - there is missing, outdated or incorrect data in a comparison database</li>
+    <li><code style="color: #a71d5d; background-color: #f5f5f5">EXCEPTION_NOT_COVERED_BY_BUSINESS_RULES</code> - the application is valid. An exception should apply but is not covered by current business rules</li>
+  </ul>
+  <li><code style="color: #a71d5d; background-color: #f5f5f5">comment</code> - a user inputted description of why the validation is being bypassed</li>
+</ul>
+
+<p class="govuk-body">Bypassing validation can only be done for specific rules, and each rule is only permitted to have specific reasons for bypassing the validation. Information about which validation types support bypassing and which reasons are valid for those types are defined below:-color:</p>
 
 <table class="govuk-table">
   <caption class="govuk-table__caption govuk-table__caption--s">Validation bypass rules</caption>
