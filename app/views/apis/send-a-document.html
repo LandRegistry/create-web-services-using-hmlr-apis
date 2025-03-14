@@ -21,7 +21,7 @@
     text: "Prototype",
     classes: "govuk-tag--pink"
   },
-  html: 'This is not a full service. It is not production code and you might experience problems.'
+  html: 'This is a prototype of a new design for the Business Gateway developer pack. You might experience problems.'
 }) }}
   {{ govukBackLink({
     text: "Back",
@@ -40,6 +40,13 @@
       </h1>
       <p class="govuk-body-l">Use this service to attach documents to your application.</p>
 
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-visually-hidden">Warning</span>
+          These API endpoints are not currently live.
+        </strong>
+      </div>
 
       <aside class="govuk-prototype-kit-common-templates-mainstream-guide-contents-list" role="complementary">
         <nav class="govuk-prototype-kit-common-templates-contents-list" aria-label="Pages in this guide" role="navigation">
@@ -82,8 +89,8 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds govuk-prototype-kit-common-templates-mainstream-guide-body">
-
       <div>
+
       <h2 class="govuk-heading-m" id="overview"><br>Overview</h2>
             <p class="govuk-body">
           The Send a document service API should be used to attach documents to your application. This service can be integrated using the REST core API.</p>
@@ -96,7 +103,6 @@
 
           <p class="govuk-body">The request to generate an upload URL will respond with an HMLR URL that can be used to upload the document to. This URL is only active for 10 minutes after creation. The generate an upload URL endpoint will also return a document ID that can be used when using the Submit an application API. Documents uploaded via this process will be subject to HMLR security scanning.</p>
           <p class="govuk-body">Documents that have been uploaded can be used for up to 180 days, after which point they will be removed.</p>
-
 
         </div>
 
@@ -115,7 +121,7 @@
 
       <ul class="govuk-list">
         <li>
-          <a class="govuk-body govuk-link" href="https://landregistry.github.io/bgtechdoc/vcad/v0_3/vcad-spec.html#tag/Send-a-document-API" rel="noreferrer noopener" target="_blank">HTML specification (opens in new tab)</a>
+          <a class="govuk-body govuk-link" href="https://landregistry.github.io/bgtechdoc/vcad/v0_3/vcad-spec.html#tag/Send-a-document-API" rel="noreferrer noopener" target="_blank">Web version (opens in new tab)</a>
         </li>
       </ul>
 </div>

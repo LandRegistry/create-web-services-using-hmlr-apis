@@ -25,7 +25,7 @@
     text: "Prototype",
     classes: "govuk-tag--pink"
   },
-  html: 'This is not a full service. It is not production code and you might experience problems.'
+  html: 'This is a prototype of a new design for the Business Gateway developer pack. You might experience problems.'
 }) }}
 
   {{ govukBackLink({
@@ -45,7 +45,14 @@
       </h1>
       <p class="govuk-body-l">Use this service to provide data to HMLR for updating the register.</p>
 
-
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-visually-hidden">Warning</span>
+          These API endpoints are not currently live.
+        </strong>
+      </div>
+      
       <aside class="govuk-prototype-kit-common-templates-mainstream-guide-contents-list" role="complementary">
         <nav class="govuk-prototype-kit-common-templates-contents-list" aria-label="Pages in this guide" role="navigation">
           <h2 class="govuk-prototype-kit-common-templates-contents-list__title">

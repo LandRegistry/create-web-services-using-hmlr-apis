@@ -21,7 +21,7 @@
     text: "Prototype",
     classes: "govuk-tag--pink"
   },
-  html: 'This is not a full service. It is not production code and you might experience problems.'
+  html: 'This is a prototype of a new design for the Business Gateway developer pack. You might experience problems.'
 }) }}
   {{ govukBackLink({
     text: "Back",
@@ -135,7 +135,15 @@
     </div>
 <br>
 
+
       <p class="govuk-body">The new service will have endpoints to support:</p>
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-visually-hidden">Warning</span>
+          These API endpoints are not currently live.
+        </strong>
+      </div>
       <ul class="govuk-list govuk-list--bullet">
         <li><a class="govuk-body govuk-link" href="/apis/send-a-document">Send a document API</a> - generate an upload URL and request to upload the document</li>
 
@@ -150,10 +158,10 @@
 
       <ul class="govuk-list">
         <li>
-          <a class="govuk-body govuk-link" href="https://landregistry.github.io/bgtechdoc/vcad/v0_3/vcad-spec.html" rel="noreferrer noopener" target="_blank">HTML specification (opens in new tab)</a>
+          <a class="govuk-body govuk-link" href="https://landregistry.github.io/bgtechdoc/vcad/v0_3/vcad-spec.html" rel="noreferrer noopener" target="_blank">Web version (opens in new tab)</a>
         </li>
         <li>
-          <a class="govuk-body govuk-link" href="https://landregistry.github.io/bgtechdoc/vcad/v0_3/openapi.json" rel="noreferrer noopener" target="_blank">JSON specification (opens in new tab)</a>
+          <a class="govuk-body govuk-link" href="https://landregistry.github.io/bgtechdoc/vcad/v0_3/openapi.json" rel="noreferrer noopener" target="_blank">JSON version (opens in new tab)</a>
         </li>
       </ul>
 
