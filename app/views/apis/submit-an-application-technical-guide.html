@@ -5896,8 +5896,90 @@
 <div class="govuk-!-padding-bottom-6"></div>
 
 
-<h3 class="govuk-heading-s">List of validation rules</h3>
+<h3 class="govuk-heading-m">List of validation rules</h3>
 <p class="govuk-body">During application submission, several validation rules will run against the data provided to ensure it is valid. A number of these rules run synchronously before an <code style="color: #a71d5d; background-color: #f5f5f5">application_request_id</code> is returned and they are documented in the schema documentation. Other rules run asynchronously, after the <code style="color: #a71d5d; background-color: #f5f5f5">application_request_id</code> has been returned.</p>
+
+<h3 class="govuk-heading-s">Bypass validation</h3>
+<p class="govuk-body">If an application fails validation, there may be legitimate reasons why you might want HMLR to ignore specific rules. In this case, we provide a <code style="color: #a71d5d; background-color: #f5f5f5">bypass_validation</code> array that can be used to ignore validation rules for specific objects, as defined by the <code style="color: #a71d5d; background-color: #f5f5f5">pointer</code>.</p>
+<p class="govuk-body">Usage of validation bypass will be monitored. To use the bypass functionality, the following information is required:</p>
+
+<table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--s">Validation bypass rules</caption>
+<thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Validation type</th>
+      <th scope="col" class="govuk-table__header">Valid bypass reasons</th>
+  </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">all-proprietors-matched-to-borrowers</code></td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">DISAGREE_WITH_REGISTER</code><br><code style="color: #a71d5d; background-color: #f5f5f5">EXCEPTION_NOT_COVERED_BY_BUSINESS_RULES</code></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">lender-name-matches-records</code></td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">HMLR_DATA_INCORRECT_OR_OUTDATED</code></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">mdref-on-record</code></td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">HMLR_DATA_INCORRECT_OR_OUTDATED</code></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">all-proprietors-matched-to-transferors</code></td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">DISAGREE_WITH_REGISTER</code><br><code style="color: #a71d5d; background-color: #f5f5f5">EXCEPTION_NOT_COVERED_BY_BUSINESS_RULES</code></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">transferee-has-a-valid-address</code></td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">HMLR_DATA_INCORRECT_OR_OUTDATED</code></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">all-mandatory-documents-provided</code></td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">EXCEPTION_NOT_COVERED_BY_BUSINESS_RULES</code></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">identity-evidence-has-type</code></td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">EXCEPTION_NOT_COVERED_BY_BUSINESS_RULES</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="govuk-body">For an example; if after submitting an application the following error was received:</p>
+<pre>
+<code class="language-json" style="background-color: #f3f2f1">
+  {
+      "status": "VALIDATION_FAILED",
+      "errors": [
+          {
+              "type": "all-proprietors-matched-to-borrowers",
+              "detail": "There was a problem",
+              "pointer": "/data/parties/borrower-1"
+          }
+      ]
+  }
+</pre>
+</code>
+
+<p class="govuk-body">The validation rule could then be overridden by submitting the same payload, but with the following addition:</p>
+<pre>
+<code class="language-json" style="background-color: #f3f2f1">
+  {
+      "data": {
+          "bypass_validation": [
+              {
+                  "validation_type": "all-proprietors-matched-to-borrowers",
+                  "validation_pointer": "/data/parties/borrower-1",
+                  "reason": "DISAGREE_WITH_REGISTER",
+                  "comment": "A comment about why the validation was incorrect"
+              }
+          ],
+          "addresses": {...},
+          "parties": {...},
+          // etc.
+      }
+  }
+</code>
+</pre>
+<p class="govuk-body">This would resubmit the application, but this time ignoring the validation rule for the specific field identified by the pointer.</p>
 
 <h3 class="govuk-heading-s">Additional provisions validation</h3>
 
@@ -5908,54 +5990,50 @@
   <li>Details entered</li>
 </ol>
 
-<p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
+<p class="govuk-body">Error types for this validator will be provided at a later date.</p>
 
 <h3 class="govuk-heading-s">Applicant validation</h3>
 
 <p class="govuk-body">Applicant name must be present using the English alphabet. Applicant must not have a party type of <code style="color: #a71d5d; background-color: #f5f5f5">UNKNOWN</code>.</p>
-<p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
+<p class="govuk-body">Error types for this validator will be provided at a later date.</p>
 
 <h3 class="govuk-heading-s">Borrower name validation</h3>
 <p class="govuk-body">Customer provided names must match the names in the charge deed. If the borrower is a registered proprietor, the customer provided names must match the register. If they do not then relevant evidence needs to be attached.</p>
 
 <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--s">Borrower name validation error codes</caption>
+  <caption class="govuk-table__caption govuk-table__caption--s">Borrower name validation error types</caption>
 <thead class="govuk-table__head">
     <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Error code</th>
+      <th scope="col" class="govuk-table__header">Error type</th>
       <th scope="col" class="govuk-table__header">Description</th>
   </tr>
   </thead>
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">INSUFFICIENT_BORROWERS</code></td>
-      <td class="govuk-table__cell govuk-table__cell">There must be at least as many borrowers as there are proprietors. There can be more, but no fewer</td>
-    </tr>
-    <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">INSUFFICIENT_CHANGE_OF_NAME_DOCS</code></td>
-      <td class="govuk-table__cell govuk-table__cell">Where there has been a change of name and the register needs updating evidence must be provided</td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">all-proprietors-matched-to-borrowers</code></td>
+      <td class="govuk-table__cell govuk-table__cell">Can apply to one of the following:<ul><li>There must be at least as many borrowers as there are proprietors. There can be more, but no fewer</li><li>Where there has been a change of name and the register needs updating evidence must be provided.</li></ul></td>
     </tr>
   </tbody>
 </table>
 
 <h3 class="govuk-heading-s">Borrower representation validation</h3>
 <p class="govuk-body">Representation is always required for the borrower role type.</p>
-<p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
+<p class="govuk-body">Error types for this validator will be provided at a later date.</p>
 
 <h3 class="govuk-heading-s">Borrower validation</h3>
 <p class="govuk-body">For a charge, borrower names must be present.</p>
 
 <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--s">Borrower validation error codes</caption>
+  <caption class="govuk-table__caption govuk-table__caption--s">Borrower representation validation error types</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Error code</th>
+      <th scope="col" class="govuk-table__header">Error type</th>
       <th scope="col" class="govuk-table__header">Description</th>
   </tr>
   </thead>
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">TRANSACTION_MISSING_BORROWER</code></td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">transaction-has-valid-borrower</code></td>
       <td class="govuk-table__cell govuk-table__cell">Subcharge transactions or charge transactions unaccompanied by a transfer transaction must have a borrower</td>
     </tr>
   </tbody>
@@ -5963,30 +6041,44 @@
 
 <h3 class="govuk-heading-s">Charge amount validation</h3>
 <p class="govuk-body">Must be a positive number.</p>
-<p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
-
-<h3 class="govuk-heading-s">Charge date validation</h3>
-<p class="govuk-body">Charge date must be present and not a date in the future. Customer provided date must match the date in the charge deed.</p>
-<p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
-
-<h3 class="govuk-heading-s">Consideration type validation</h3>
-<p class="govuk-body">The request must contain the appropriate statement - Monetary Value, No Monetary Value, or Other. Monetary Value requires a value to be present.</p>
-<p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
-
-<h3 class="govuk-heading-s">Conveyancers certificate validation</h3>
-<p class="govuk-body">Checks the <code style="color: #a71d5d; background-color: #f5f5f5">conveyancers_certificate</code> field is set for any document of type <code style="color: #a71d5d; background-color: #f5f5f5">CERT_REG_CH</code>.</p>
-
 <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--s">Conveyancer certificate validation error codes</caption>
+  <caption class="govuk-table__caption govuk-table__caption--s">Charge amount validation error types</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Error code</th>
+      <th scope="col" class="govuk-table__header">Error type</th>
       <th scope="col" class="govuk-table__header">Description</th>
   </tr>
   </thead>
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">CONVEYANCERS_CERTIFICATE_REQUIRED</code></td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">charge-must-have-non-negative-value</code></td>
+      <td class="govuk-table__cell govuk-table__cell">Charge value must be non-negative</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 class="govuk-heading-s">Charge date validation</h3>
+<p class="govuk-body">Charge date must be present and not a date in the future. Customer provided date must match the date in the charge deed.</p>
+<p class="govuk-body">Error types for this validator will be provided at a later date.</p>
+
+<h3 class="govuk-heading-s">Consideration type validation</h3>
+<p class="govuk-body">The request must contain the appropriate statement - Monetary Value, No Monetary Value, or Other. Monetary Value requires a value to be present.</p>
+<p class="govuk-body">Error types for this validator will be provided at a later date.</p>
+
+<h3 class="govuk-heading-s">Conveyancers certificate validation</h3>
+<p class="govuk-body">Checks the <code style="color: #a71d5d; background-color: #f5f5f5">conveyancers_certificate</code> field is set for any document of type <code style="color: #a71d5d; background-color: #f5f5f5">CERT_REG_CH</code>.</p>
+
+<table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--s">Conveyancer certificate validation error types</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Error type</th>
+      <th scope="col" class="govuk-table__header">Description</th>
+  </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">conveyancers-certificate-provided</code></td>
       <td class="govuk-table__cell govuk-table__cell">Conveyancers certificate was not provided for Certificate of registration issued by Companies House documents</td>
     </tr>
   </tbody>
@@ -5994,7 +6086,7 @@
 
 <h3 class="govuk-heading-s">Customer type validation</h3>
 <p class="govuk-body">Customer type of conveyancer or non-conveyancer must be present.</p>
-<p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
+<p class="govuk-body">Error types for this validator will be provided at a later date.</p>
 
 <h3 class="govuk-heading-s">Declaration of trust validation</h3>
 
@@ -6008,22 +6100,36 @@
 
 <p class="govuk-body">For option three, details must be provided. For option four, HMLR form JO must be provided as an attachment.</p>
 
-<p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
-
-<h3 class="govuk-heading-s">Disclosable overriding interests validation</h3>
-<p class="govuk-body">When <code style="color: #a71d5d; background-color: #f5f5f5">disclosable_overriding_interests</code> is set to <code style="color: #a71d5d; background-color: #f5f5f5">true</code> on any transaction, a <code style="color: #a71d5d; background-color: #f5f5f5">FORM_DI</code> document must be provided with the application.</p>
-
 <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--s">Disclosable overriding interests validation error codes</caption>
+  <caption class="govuk-table__caption govuk-table__caption--s">Declaration of trust validation error types</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Error code</th>
+      <th scope="col" class="govuk-table__header">Error type</th>
       <th scope="col" class="govuk-table__header">Description</th>
   </tr>
   </thead>
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">DI_FORM_REQUIRED</code></td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">declaration-of-trust</code></td>
+      <td class="govuk-table__cell govuk-table__cell">	The declaration of trust option must be provided for the application</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 class="govuk-heading-s">Disclosable overriding interests validation</h3>
+<p class="govuk-body">When <code style="color: #a71d5d; background-color: #f5f5f5">disclosable_overriding_interests</code> is set to <code style="color: #a71d5d; background-color: #f5f5f5">true</code> on any transaction, a <code style="color: #a71d5d; background-color: #f5f5f5">FORM_DI</code> document must be provided with the application.</p>
+
+<table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--s">Disclosable overriding interests validation error types</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Error type</th>
+      <th scope="col" class="govuk-table__header">Description</th>
+  </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">di-form-required</code></td>
       <td class="govuk-table__cell govuk-table__cell">A Disclosable Overriding Interests (DI) Form is required but has not been provided</td>
     </tr>
   </tbody>
@@ -6031,26 +6137,26 @@
 
 <h3 class="govuk-heading-s">Evidence of consent to restriction validation</h3>
 <p class="govuk-body">Evidence of consent to a restriction should be provided where required. If it is not provided, a requisition will be sent.</p>
-<p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
+<p class="govuk-body">Error types for this validator will be provided at a later date.</p>
 
 <h3 class="govuk-heading-s">Evidence of consent to restriction validation</h3>
 <p class="govuk-body">If evidence of discharge is not provided and early completion cannot be applied, a requisition will be sent.</p>
-<p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
+<p class="govuk-body">Error types for this validator will be provided at a later date.</p>
 
 <h3 class="govuk-heading-s">Identity evidence validation</h3>
 <p class="govuk-body">An HMLR identity form must be provided for each unrepresented party when required - view <a class="govuk-body govuk-link" href="https://www.gov.uk/government/publications/evidence-of-identity-conveyancers/practice-guide-67-evidence-of-identity-conveyancers" rel="noreferrer noopener" target="_blank">Practice Guide 67 (opens in new tab)</a>.</p>
 
 <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--s">Identity evidence validation error codes</caption>
+  <caption class="govuk-table__caption govuk-table__caption--s">Identity evidence validation error types</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Error code</th>
+      <th scope="col" class="govuk-table__header">Error type</th>
       <th scope="col" class="govuk-table__header">Description</th>
   </tr>
   </thead>
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">IDENTITY_EVIDENCE_TYPE_MISSING</code></td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">identity-evidence-has-type</code></td>
       <td class="govuk-table__cell govuk-table__cell">One of the following options must be provided:
         <ol class="govuk-list govuk-list--number">
         <li>Evidence</li>
@@ -6059,7 +6165,7 @@
       </ol> </td>
     </tr>
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">INSUFFICIENT_IDENTITY_EVIDENCE</code></td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">required-identity-evidence-provided</code></td>
       <td class="govuk-table__cell govuk-table__cell">An HMLR identity form must be provided for each unrepresented party</td>
     </tr>
   </tbody>
@@ -6074,36 +6180,50 @@
   <li>Not represented</li>
 </ol>
 
-<p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
+<p class="govuk-body">Error types for this validator will be provided at a later date.</p>
 
 <h3 class="govuk-heading-s">Lender address validation</h3>
 
 <p class="govuk-body">The lender address is not required if a valid MD reference is provided. If the charge does not have an MD reference, a full postal address for the lender is required.</p>
 
-<p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
-
-<h3 class="govuk-heading-s">Lender name validation</h3>
-<p class="govuk-body">The pre-approved MD reference included in the charge should be included in the application.</p>
-
 <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--s">Lender name validation error codes</caption>
+  <caption class="govuk-table__caption govuk-table__caption--s">Lender address validation error types</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Error code</th>
+      <th scope="col" class="govuk-table__header">Error type</th>
       <th scope="col" class="govuk-table__header">Description</th>
   </tr>
   </thead>
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">LENDER_NOT_UNIQUE</code></td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">charge-has-valid-lender</code></td>
+      <td class="govuk-table__cell govuk-table__cell">The lender has an invalid address for service when an MD reference was not provided</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 class="govuk-heading-s">Lender name validation</h3>
+<p class="govuk-body">The pre-approved MD reference included in the charge should be included in the application.</p>
+
+<table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--s">Lender name validation error types</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Error type</th>
+      <th scope="col" class="govuk-table__header">Description</th>
+  </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">unique-lender</code></td>
       <td class="govuk-table__cell govuk-table__cell">Each charge should only have one lender</td>
     </tr>
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">LENDER_NAME_MISMATCH</code></td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">lender-name-matches-records</code></td>
       <td class="govuk-table__cell govuk-table__cell">The lender name provided in the application data must match that recorded for the lender in our MD reference database</td>
     </tr>
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">DUPLICATE_LENDER_REFS</code></td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">no-duplicate-lender-refs-on-charge</code></td>
       <td class="govuk-table__cell govuk-table__cell">Lender references must be unique</td>
     </tr>
   </tbody>
@@ -6114,21 +6234,34 @@
 
 <p class="govuk-body">All charges require at least one party with the role type of lender. If there is no MD reference on the transaction, all lenders must have at least one address.</p>
 
-<p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
-
-<h3 class="govuk-heading-s">Mandatory documents validation</h3>
-<p class="govuk-body">Validation will be applied for each transaction to ensure the rules regarding the Compulsory and Either document types have been satisfied correctly.</p>
 <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--s">Mandatory documents validation error codes</caption>
+  <caption class="govuk-table__caption govuk-table__caption--s">Lender validation error types</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Error code</th>
+      <th scope="col" class="govuk-table__header">Error type</th>
       <th scope="col" class="govuk-table__header">Description</th>
   </tr>
   </thead>
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">MANDATORY_DOCUMENTS_MISSING</code></td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">charge-has-valid-lender</code></td>
+      <td class="govuk-table__cell govuk-table__cell">There are no lenders on the charge application</td>
+    </tr>
+  </tbody>
+</table>
+<h3 class="govuk-heading-s">Mandatory documents validation</h3>
+<p class="govuk-body">Validation will be applied for each transaction to ensure the rules regarding the Compulsory and Either document types have been satisfied correctly.</p>
+<table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--s">Mandatory documents validation error types</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Error type</th>
+      <th scope="col" class="govuk-table__header">Description</th>
+  </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">all-mandatory-documents-provided</code></td>
       <td class="govuk-table__cell govuk-table__cell">Each transaction must have the mandatory deed or document provided</td>
     </tr>
   </tbody>
@@ -6137,16 +6270,16 @@
 <h3 class="govuk-heading-s">MD reference validation</h3>
 <p class="govuk-body">The MD reference included in the application must be in the right format, exist as a live MD reference and match the MD reference contained in the charge.</p>
   <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--s">MD reference validation error codes</caption>
+  <caption class="govuk-table__caption govuk-table__caption--s">MD reference validation error types</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Error code</th>
+      <th scope="col" class="govuk-table__header">Error type</th>
       <th scope="col" class="govuk-table__header">Description</th>
   </tr>
   </thead>
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">MD_REF_DOES_NOT_EXIST</code></td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">mdref-on-record</code></td>
       <td class="govuk-table__cell govuk-table__cell">The MD reference supplied cannot be found in our database</td>
     </tr>
   </tbody>
@@ -6155,27 +6288,41 @@
 <h3 class="govuk-heading-s">Property address validation</h3>
 
 <p class="govuk-body">The HMLR property description associated with customer supplied title number will be compared against the property description contained in the charge and/or transfer deeds.</p>
-<p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
+<p class="govuk-body">Error types for this validator will be provided at a later date.</p>
 
 <h3 class="govuk-heading-s">Proprietor address for service validation</h3>
 
 <p class="govuk-body">Proprietor address for service must be a valid postal address. The customer provided address will be validated.</p>
-<p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
+<table class="govuk-table">
+<caption class="govuk-table__caption govuk-table__caption--s">Proprietor address for service validation error types</caption>
+<thead class="govuk-table__head">
+  <tr class="govuk-table__row">
+    <th scope="col" class="govuk-table__header">Error type</th>
+    <th scope="col" class="govuk-table__header">Description</th>
+</tr>
+</thead>
+<tbody class="govuk-table__body">
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">address-for-service-option-is-valid</code></td>
+    <td class="govuk-table__cell govuk-table__cell">valid	The address for service option provided for the party is invalid</td>
+  </tr>
+</tbody>
+</table>
 
 <h3 class="govuk-heading-s">Submission warning validation</h3>
-<p class="govuk-body">The <code style="color: #a71d5d; background-color: #f5f5f5">submission_warning_understood</code> field must be <code style="color: #a71d5d; background-color: #f5f5f5">true</code>.</p>
+<p class="govuk-body">A legal declaration is made when submitting an application with regards dishonesty etc. The conveyancer must agree to comply with the warning.</p>
   <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--s">Submission warning validation error codes</caption>
+  <caption class="govuk-table__caption govuk-table__caption--s">Submission warning validation error types</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Error code</th>
+      <th scope="col" class="govuk-table__header">Error type</th>
       <th scope="col" class="govuk-table__header">Description</th>
   </tr>
   </thead>
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">SUBMISSION_WARNING_NOT_UNDERSTOOD</code></td>
-      <td class="govuk-table__cell govuk-table__cell">A legal declaration is made when submitting an application with regards to dishonesty etc. The conveyancer must agree to comply with the warning</td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">submission-warning-understood</code></td>
+      <td class="govuk-table__cell govuk-table__cell">A legal declaration is made when submitting an application with regards dishonesty etc. The conveyancer must agree to comply with the warning</td>
     </tr>
   </tbody>
 </table>
@@ -6183,21 +6330,32 @@
 <h3 class="govuk-heading-s">Title number validation</h3>
 <p class="govuk-body">The title number in the application must be valid. The title number provided must also match with one of the attached deeds. For multi-title applications please provide each title once.</p>
 <table class="govuk-table">
-  <caption class="govuk-table__caption govuk-table__caption--s">Title number validation error codes</caption>
+  <caption class="govuk-table__caption govuk-table__caption--s">Title number validation error types</caption>
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Error code</th>
+      <th scope="col" class="govuk-table__header">Error type</th>
       <th scope="col" class="govuk-table__header">Description</th>
   </tr>
   </thead>
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">TITLE_NUMBER_MISSING</code></td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">request-has-title-number</code></td>
       <td class="govuk-table__cell govuk-table__cell">At least one title number must be provided (including applications for New Lease, Lease Extension or Transfer of Part). In these circumstances, at least a lessor’s or vendor’s title will be required</td>
     </tr>
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">TITLE_NUMBER_NOT_FOUND</code></td>
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">request-has-title-number</code></td>
       <td class="govuk-table__cell govuk-table__cell">Title number not matched to HMLR systems</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">title-must-be-valid</code></td>
+      <td class="govuk-table__cell govuk-table__cell">Can apply to one of the following:
+        <ul class="govuk-list govuk-list--bullet">
+        <li>For an application type of ‘Transfer of Part’, ‘Removal of default form A restriction’ or ‘Dispositionary first lease’, the title number must have a single valid district code</li>
+        <li>An application type of ‘Transfer of Part’ or ‘Dispositionary first lease’ cannot be lodged against a title with an estate interest of ‘Affecting Franchise’ or ‘Relating Franchise’</li>
+        <li>An application cannot be lodged against a caution title</li>
+        <li>The title number must not be recorded as a closed title</li>
+        <li>The title number must exist and not be recorded as a closed title, a scheme title, or a new title allocated to a new title dealing on Land Registry systems</li>
+      </ul> </td>
     </tr>
   </tbody>
 </table>
@@ -6205,22 +6363,22 @@
 <h3 class="govuk-heading-s">Title scope validation</h3>
 <p class="govuk-body">Application of whole or part must be provided for each title number within a transaction.</p>
 <table class="govuk-table">
-<caption class="govuk-table__caption govuk-table__caption--s">Title scope validation error codes</caption>
+<caption class="govuk-table__caption govuk-table__caption--s">Title scope validation error types</caption>
 <thead class="govuk-table__head">
   <tr class="govuk-table__row">
-    <th scope="col" class="govuk-table__header">Error code</th>
+    <th scope="col" class="govuk-table__header">Error type</th>
     <th scope="col" class="govuk-table__header">Description</th>
 </tr>
 </thead>
 <tbody class="govuk-table__body">
   <tr class="govuk-table__row">
-    <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">PART_TITLE_SCOPE_NO_PART_DESCRIPTION</code></td>
-    <td class="govuk-table__cell govuk-table__cell">Title scopes of ‘part’ must have a part description</td>
-  </tr>
-  <tr class="govuk-table__row">
-    <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">WHOLE_TITLE_SCOPE_HAS_PART_DESCRIPTION</code></td>
-    <td class="govuk-table__cell govuk-table__cell">Title scopes of ‘whole’ must not have a part description</td>
-  </tr>
+    <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">title-scope-is-valid</code></td>
+    <td class="govuk-table__cell govuk-table__cell">Can apply to one of the following:
+      <ul class="govuk-list govuk-list--bullet">
+      <li>Title scopes of ‘part’ must have a part description</li>
+      <li>Title scopes of ‘whole’ must not have a part description</li>
+  </ul> </td>
+</tr>
 </tbody>
 </table>
 
@@ -6234,36 +6392,65 @@
 </ol>
 <p class="govuk-body">Each must have a unique, consecutive number.</p>
 
-<p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
-
-
-<h3 class="govuk-heading-s">Transfer amount validation</h3>
-
-<p class="govuk-body">Value must be provided, either as an exact value or a value band (where transfer is not for monetary value).</p>
-
-<p class="govuk-body">Error codes for this validator will be provided at a later date.</p>
-
-<h3 class="govuk-heading-s">Transfer date validation</h3>
-
-<p class="govuk-body">The transfer date must match what is on the transfer deed to be correct.</p>
-
-<h3 class="govuk-heading-s">Transferee validation</h3>
-<p class="govuk-body">The transferee name provided in the application must match the transferee name in the transfer deed. The proprietor address for service must be a valid postal address. The customer provided address will be validated. If overseas, the address must have a country.</p>
 <table class="govuk-table">
-<caption class="govuk-table__caption govuk-table__caption--s">Transferee validation error codes</caption>
+<caption class="govuk-table__caption govuk-table__caption--s">Transaction priority validation error types</caption>
 <thead class="govuk-table__head">
   <tr class="govuk-table__row">
-    <th scope="col" class="govuk-table__header">Error code</th>
+    <th scope="col" class="govuk-table__header">Error type</th>
     <th scope="col" class="govuk-table__header">Description</th>
 </tr>
 </thead>
 <tbody class="govuk-table__body">
   <tr class="govuk-table__row">
-    <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">NO_TRANSFEREES</code></td>
+    <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">OCV_L1A_005</code></td>
+    <td class="govuk-table__cell govuk-table__cell">Non unique transaction priorities were found</td>
+  </tr>
+</tbody>
+</table>
+
+<h3 class="govuk-heading-s">Transfer amount validation</h3>
+
+<p class="govuk-body">Value must be provided, either as an exact value or a value band (where transfer is not for monetary value).</p>
+
+<p class="govuk-body">Error types for this validator will be provided at a later date.</p>
+
+<h3 class="govuk-heading-s">Transfer date validation</h3>
+
+<p class="govuk-body">The transfer date must match what is on the transfer deed to be correct.</p>
+<table class="govuk-table">
+<caption class="govuk-table__caption govuk-table__caption--s">Transfer date validation error types</caption>
+<thead class="govuk-table__head">
+  <tr class="govuk-table__row">
+    <th scope="col" class="govuk-table__header">Error type</th>
+    <th scope="col" class="govuk-table__header">Description</th>
+</tr>
+</thead>
+<tbody class="govuk-table__body">
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">transfer-date-not-in-future</code></td>
+    <td class="govuk-table__cell govuk-table__cell">The date of the transfer must not be in the future</td>
+  </tr>
+</tbody>
+</table>
+
+
+<h3 class="govuk-heading-s">Transferee validation</h3>
+<p class="govuk-body">The transferee name provided in the application must match the transferee name in the transfer deed. The proprietor address for service must be a valid postal address. The customer provided address will be validated. If overseas, the address must have a country.</p>
+<table class="govuk-table">
+<caption class="govuk-table__caption govuk-table__caption--s">Transferee validation error types</caption>
+<thead class="govuk-table__head">
+  <tr class="govuk-table__row">
+    <th scope="col" class="govuk-table__header">Error type</th>
+    <th scope="col" class="govuk-table__header">Description</th>
+</tr>
+</thead>
+<tbody class="govuk-table__body">
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">transfer-has-transferee</code></td>
     <td class="govuk-table__cell govuk-table__cell">A transfer involves a change of proprietor(s). If making an application for a transfer, there must be at least one transferee</td>
   </tr>
   <tr class="govuk-table__row">
-    <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">TRANSFEREE_ADDRESS_INVALID</code></td>
+    <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">transferee-has-valid-address</code></td>
     <td class="govuk-table__cell govuk-table__cell">At least one postal address must be provided in the application</td>
   </tr>
 </tbody>
@@ -6272,16 +6459,16 @@
 <h3 class="govuk-heading-s">Transferor validation</h3>
 <p class="govuk-body">For a transfer, there must be at least one transferor name without the register action of <code style="color: #a71d5d; background-color: #f5f5f5">REMOVE</code>.</p>
 <table class="govuk-table">
-<caption class="govuk-table__caption govuk-table__caption--s">Transferor validation error codes</caption>
+<caption class="govuk-table__caption govuk-table__caption--s">Transferor validation error types</caption>
 <thead class="govuk-table__head">
   <tr class="govuk-table__row">
-    <th scope="col" class="govuk-table__header">Error code</th>
+    <th scope="col" class="govuk-table__header">Error type</th>
     <th scope="col" class="govuk-table__header">Description</th>
 </tr>
 </thead>
 <tbody class="govuk-table__body">
   <tr class="govuk-table__row">
-    <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">NO_TRANSFERORS</code></td>
+    <td class="govuk-table__cell govuk-table__cell"><code style="color: #a71d5d; background-color: #f5f5f5">transfer-has-transferors</code></td>
     <td class="govuk-table__cell govuk-table__cell">A transfer involves a change of proprietor(s). If making an application for a transfer, there must be at least one transferor</td>
 </tr>
 </tbody>
@@ -6411,479 +6598,490 @@
   </pre>
 
   <h3 class="govuk-heading-s">
-<code>POST - /v0/applications/submit</code> - Charge</h3>
+<code>POST - /v0/applications</code> - Charge</h3>
   <pre>
   <code class="language-json" style="background-color: #f3f2f1">
     {
-     "data": {
-        "type": "REGISTER_UPDATE",
-        "submission_warning_understood": true,
-        "customer_reference": "MyApplication",
-        "application_lodger": {
-          "email": "user@company.com",
-          "telephone": "07000000000",
-          "type": "CONVEYANCER"
-        },
-        "addresses": {
-          "borrower-address-1": {
-            "details": {
-              "type": "UK",
-              "number": "1",
-              "postcode": "AA1 00Z"
-            }
-          }
-        },
-        "applicants": [
-          "borrower-1"
-        ],
-        "documents": {
-          "mortgage-deed": {
-            "document_id": "0001",
-            "document_metadata": {
-              "certification_statement_type": "CERTIFIED",
-              "document_filename": "deed.pdf"
+        "data": {
+            "type": "REGISTER_UPDATE",
+            "submission_warning_understood": true,
+            "customer_reference": "MyApplication",
+            "application_lodger": {
+                "email": user@company.com,
+                "telephone": "07000000000",
+                "type": "CONVEYANCER"
             },
-            "type": "MRTG_DEED"
-          }
-        },
-        "parties": {
-          "borrower-1": {
-            "address_for_service_option": "PROVIDED_ADDRESS",
-            "addresses": [
-              "borrower-address-1"
-            ],
-            "details": {
-              "type": "PRIVATE_INDIVIDUAL",
-              "forenames": "Alice",
-              "surname": "Smith"
+            "addresses": {
+                "borrower-address-1": {
+                    "details": {
+                        "type": "UK",
+                        "number": "1",
+                        "postcode": "AA1 00Z"
+                    }
+                }
             },
-            "identity_evidence_type": "NOT_REQUIRED",
-            "representation_type": "LODGING_CONVEYANCER"
-          },
-          "lender-1": {
-            "address_for_service_option": "NOT_REQUIRED",
-            "identity_evidence_type": "NOT_REQUIRED",
-            "details": {
-              "type": "UK_COMPANY",
-              "company_number": "543252345",
-              "organisation_name": "A. Bank"
-            }
-          }
-        },
-        "titles": {
-          "tn1": {
-            "title_number": "TN001",
-            "title_type": "REGISTER_TITLE",
-            "disclosable_overriding_interests": false,
-            "scope_details": {
-              "scope": "WHOLE"
-            }
-          }
-        },
-        "transactions": {
-          "C1": {
-            "type": "C",
-            "fee_in_pence": 100,
-            "priority": 1,
-            "details": {
-              "type": "CHARGE",
-              "date": "2024-01-01",
-              "mdref": "MD00AA",
-              "value": 345000
+            "applicants": [
+                "borrower-1"
+            ],
+            "documents": {
+                "mortgage-deed": {
+                    "document_id": "0001",
+                    "document_metadata": {
+                        "certification_statement_type": "CERTIFIED",
+                        "document_filename": "deed.pdf"
+                    },
+                    "type": "MRTG_DEED"
+                }
             },
-            "documents": [
-              "mortgage-deed"
-            ],
-            "party_roles": [
-              {
-                "capacity": "REGISTERED_PROPRIETOR",
-                "party_reference": "borrower-1",
-                "role": "BORROWER"
-              },
-              {
-                "capacity": "NOT_REQUIRED ",
-                "party_reference": "lender-1",
-                "role": "LENDER"
-              }
-            ],
-            "title_references": [
-              "tn1"
-            ]
-          }
+            "parties": {
+                "borrower-1": {
+                    "address_for_service_option": "PROVIDED_ADDRESS",
+                    "addresses": [
+                        "borrower-address-1"
+                    ],
+                    "details": {
+                        "type": "PRIVATE_INDIVIDUAL",
+                        "forenames": "Alice",
+                        "surname": "Smith"
+                    },
+                    "identity_evidence_type": "NOT_REQUIRED",
+                    "representation_type": "LODGING_CONVEYANCER"
+                },
+                "lender-1": {
+                    "address_for_service_option": "NOT_REQUIRED",
+                    "identity_evidence_type": "NOT_REQUIRED",
+                    "details": {
+                        "type": "UK_COMPANY",
+                        "company_number": "543252345",
+                        "organisation_name": "A. Bank"
+                    },
+                    "representation_type": "NOT_REPRESENTED"
+                }
+            },
+            "titles": {
+                "tn1": {
+                    "title_number": "TN001",
+                    "title_type": "REGISTER_TITLE",
+                    "disclosable_overriding_interests": false,
+                    "scope_details": {
+                        "scope": "WHOLE"
+                    }
+                }
+            },
+            "transactions": {
+                "C1": {
+                    "type": "C",
+                    "fee_in_pence": 100,
+                    "priority": 1,
+                    "details": {
+                        "type": "CHARGE",
+                        "date": "2024-01-01",
+                        "mdref": "MD00AA",
+                        "value": 345000
+                    },
+                    "documents": [
+                        "mortgage-deed"
+                    ],
+                    "party_roles": [
+                        {
+                            "capacity": "REGISTERED_PROPRIETOR",
+                            "party_reference": "borrower-1",
+                            "role": "BORROWER"
+                        },
+                        {
+                            "capacity": "NOT_REQUIRED ",
+                            "party_reference": "lender-1",
+                            "role": "LENDER"
+                        }
+                    ],
+                    "title_references": [
+                        "tn1"
+                    ]
+                }
+            }
         }
-      }
     }
   </code>
   </pre>
 
   <h3 class="govuk-heading-s">
-<code>POST - /v0/applications/submit</code> - Transfer</h3>
+<code>POST - /v0/applications</code> - Transfer</h3>
   <pre>
   <code class="language-json" style="background-color: #f3f2f1">
     {
- "data": {
-    "submission_warning_understood": true,
-    "customer_reference": "MyApplication",
-    "type": "REGISTER_UPDATE",
-    "application_lodger": {
-      "email": "user@company.com",
-      "telephone": "07000000000",
-      "type": "CONVEYANCER"
-    },
-    "applicants": [
-      "transferor-1",
-      "transferor-2"
-    ],
-    "addresses": {
-      "transferor-address-1": {
-        "details": {
-          "type": "UK",
-          "full_address": "1 Fake Street, Madeup Town, Unknown County, AA1 00Z",
-          "number": "1",
-          "postcode": "AA1 00Z"
+        "data": {
+            "submission_warning_understood": true,
+            "customer_reference": "MyApplication",
+            "type": "REGISTER_UPDATE",
+            "application_lodger": {
+                "email": user@company.com,
+                "telephone": "07000000000",
+                "type": "CONVEYANCER"
+            },
+            "applicants": [
+                "transferor-1",
+                "transferor-2"
+            ],
+            "addresses": {
+                "transferor-address-1": {
+                    "details": {
+                        "type": "UK",
+                        "building_description": "1",
+                        "post_town": "Fake Town",
+                        "postcode": "AA1 00Z"
+                    }
+                },
+                "transferee-address-1": {
+                    "details": {
+                        "type": "UK",
+                        "building_description": "2",
+                        "post_town": "Fake Town",
+                        "postcode": "AA1 00Z"
+                    }
+                }
+            },
+            "parties": {
+                "transferor-1": {
+                    "reference": "transferor-1",
+                    "addresses": [
+                        "transferor-address-1"
+                    ],
+                    "details": {
+                        "type": "PRIVATE_INDIVIDUAL",
+                        "forenames": "Jane",
+                        "surname": "Doe"
+                    },
+                    "representation_type": "LODGING_CONVEYANCER",
+                    "address_for_service_option": "PROVIDED_ADDRESS"
+                },
+                "transferor-2": {
+                    "reference": "transferor-2",
+                    "details": {
+                        "type": "PRIVATE_INDIVIDUAL",
+                        "forenames": "John",
+                        "surname": "Doe"
+                    },
+                    "addresses": [
+                        "transferor-address-1"
+                    ],
+                    "representation_type": "LODGING_CONVEYANCER",
+                    "address_for_service_option": "PROVIDED_ADDRESS"
+                },
+                "transferee-1": {
+                    "reference": "transferee-1",
+                    "details": {
+                        "type": "OVERSEAS_COMPANY",
+                        "organisation_name": "OverseaComp Inc.",
+                        "incorporation_territory": "Europe under the Treaty on European Union and the Treaty on the Functioning of the European Union",
+                        "company_number": "123456"
+                    },
+                    "addresses": [
+                        "transferee-address-1"
+                    ],
+                    "representation_type": "NOT_REPRESENTED",
+                    "identity_evidence_type": "VERIFIED",
+                    "address_for_service_option": "PROVIDED_ADDRESS"
+                },
+                "lender-1": {
+                    "reference": "lender-1",
+                    "address_for_service_option": "NOT_REQUIRED",
+                    "identity_evidence_type": "NOT_REQUIRED",
+                    "representation_type": "NOT_REPRESENTED",
+                    "details": {
+                        "type": "UK_COMPANY",
+                        "company_number": "543252345",
+                        "organisation_name": "A. Bank"
+                    }
+                }
+            },
+            "titles": {
+                "tn1": {
+                    "title_number": "TN001",
+                    "title_type": "REGISTER_TITLE",
+                    "disclosable_overriding_interests": false,
+                    "scope_details": {
+                        "scope": "WHOLE"
+                    }
+                },
+                "tn2": {
+                    "title_number": "TN002",
+                    "title_type": "REGISTER_TITLE",
+                    "disclosable_overriding_interests": false,
+                    "scope_details": {
+                        "scope": "PART",
+                        "part_description": "The field on the north side of the property"
+                    }
+                }
+            },
+            "transactions": {
+                "dis": {
+                    "type": "DIS",
+                    "fee_in_pence": 0,
+                    "priority": 1,
+                    "details": {
+                        "type": "DISCHARGE",
+                        "discharge_submission_type": "ATTACHED"
+                    },
+                    "party_roles": [
+                        {
+                            "party_reference": "transferor-1",
+                            "role": "BORROWER",
+                            "capacity": "REGISTERED_PROPRIETOR"
+                        },
+                        {
+                            "party_reference": "transferor-2",
+                            "role": "BORROWER",
+                            "capacity": "REGISTERED_PROPRIETOR"
+                        }
+                    ],
+                    "title_references": [
+                        "tn1"
+                    ],
+                    "documents": [
+                        "discharge"
+                    ]
+                },
+                "transfer": {
+                    "type": "T",
+                    "fee_in_pence": 135,
+                    "priority": 2,
+                    "details": {
+                        "type": "TRANSFER",
+                        "additional_provisions_code": "MANUAL_TR1_FORM",
+                        "date": "2024-01-01",
+                        "value": 500000,
+                        "consideration_type": "MONETARY_VALUE",
+                        "consideration_description": "Value of 500000 including VAT",
+                        "title_guarantee_code": "FULL",
+                        "trust_declaration_type": "JOINT_TENANTS"
+                    },
+                    "party_roles": [
+                        {
+                            "party_reference": "transferor-1",
+                            "role": "TRANSFEROR",
+                            "capacity": "REGISTERED_PROPRIETOR"
+                        },
+                        {
+                            "party_reference": "transferor-2",
+                            "role": "TRANSFEROR",
+                            "capacity": "REGISTERED_PROPRIETOR"
+                        },
+                        {
+                            "party_reference": "transferee-1",
+                            "role": "TRANSFEREE",
+                            "capacity": "ENTITLED_REGISTERED_PROPRIETOR"
+                        }
+                    ],
+                    "title_references": [
+                        "tn1",
+                        "tn2"
+                    ],
+                    "documents": [
+                        "tr1",
+                        "identity-evidence"
+                    ]
+                },
+                "charge": {
+                    "type": "C",
+                    "fee_in_pence": 0,
+                    "priority": 3,
+                    "details": {
+                        "type": "CHARGE",
+                        "date": "2024-01-01",
+                        "mdref": "MD00AA",
+                        "value": 200000
+                    },
+                    "documents": [
+                        "mortgage-deed"
+                    ],
+                    "party_roles": [
+                        {
+                            "capacity": "REGISTERED_PROPRIETOR",
+                            "party_reference": "transferee-1",
+                            "role": "BORROWER"
+                        },
+                        {
+                            "capacity": "NOT_REQUIRED",
+                            "party_reference": "lender-1",
+                            "role": "LENDER"
+                        }
+                    ],
+                    "title_references": [
+                        "tn1",
+                        "tn2"
+                    ]
+                }
+            },
+            "documents": {
+                "tr1": {
+                    "type": "TR1",
+                    "document_id": "00001",
+                    "document_metadata": {
+                        "certification_statement_type": "CERTIFIED",
+                        "document_filename": "tr1.pdf"
+                    }
+                },
+                "identity-evidence": {
+                    "type": "EVIDENCE",
+                    "document_id": "00002",
+                    "document_metadata": {
+                        "certification_statement_type": "CERTIFIED_BY_ANOTHER",
+                        "document_filename": "evidence.pdf"
+                    }
+                },
+                "discharge": {
+                    "type": "DISCHARGE",
+                    "document_id": "00003",
+                    "document_metadata": {
+                        "certification_statement_type": "CERTIFIED",
+                        "document_filename": "discharge.pdf"
+                    }
+                },
+                "mortgage-deed": {
+                    "type": "MRTG_DEED",
+                    "document_id": "00004",
+                    "document_metadata": {
+                        "certification_statement_type": "CERTIFIED_BY_ANOTHER",
+                        "document_filename": "deed.pdf"
+                    }
+                }
+            }
         }
-      },
-      "transferee-address-1": {
-        "details": {
-          "type": "UK",
-          "full_address": "2 Fake Street, Madeup Town, Unknown County, AA1 00Z",
-          "number": "2",
-          "postcode": "AA1 00Z"
-        }
-      }
-    },
-    "parties": {
-      "transferor-1": {
-        "reference": "transferor-1",
-        "addresses": [
-          "transferor-address-1"
-        ],
-        "details": {
-          "type": "PRIVATE_INDIVIDUAL",
-          "forenames": "Jane",
-          "surname": "Doe"
-        },
-        "representation_type": "LODGING_CONVEYANCER"
-      },
-      "transferor-2": {
-        "reference": "transferor-2",
-        "details": {
-          "type": "PRIVATE_INDIVIDUAL",
-          "forenames": "John",
-          "surname": "Doe"
-        },
-        "addresses": [
-          "transferor-address-1"
-        ],
-        "representation_type": "LODGING_CONVEYANCER"
-      },
-      "transferee-1": {
-        "reference": "transferee-1",
-        "details": {
-          "type": "OVERSEAS_COMPANY",
-          "organisation_name": "OverseaComp Inc.",
-          "incorporation_territory": "Europe under the Treaty on European Union and the Treaty on the Functioning of the European Union",
-          "company_number": "123456"
-        },
-        "addresses": [
-          "transferee-address-1"
-        ],
-        "representation_type": "NOT_REPRESENTED",
-        "identity_evidence_type": "VERIFIED"
-      },
-      "lender-1": {
-        "reference": "lender-1",
-        "address_for_service_option": "NOT_REQUIRED",
-        "identity_evidence_type": "NOT_REQUIRED",
-        "details": {
-          "type": "UK_COMPANY",
-          "company_number": "543252345",
-          "organisation_name": "A. Bank"
-        }
-      }
-    },
-    "titles": {
-      "tn1": {
-        "title_number": "TN001",
-        "title_type": "REGISTER_TITLE",
-        "disclosable_overriding_interests": false,
-        "scope_details": {
-          "scope": "WHOLE"
-        }
-      },
-      "tn2": {
-        "title_number": "TN002",
-        "title_type": "REGISTER_TITLE",
-        "disclosable_overriding_interests": false,
-        "scope_details": {
-          "scope": "PART",
-          "part_description": "The field on the north side of the property"
-        }
-      }
-    },
-    "transactions": {
-      "dis": {
-        "type": "DIS",
-        "fee_in_pence": 0,
-        "priority": 1,
-        "details": {
-          "type": "DISCHARGE",
-          "discharge_submission_type": "ATTACHED"
-        },
-        "party_roles": [
-          {
-            "party_reference": "transferor-1",
-            "role": "BORROWER",
-            "capacity": "REGISTERED_PROPRIETOR"
-          },
-          {
-            "party_reference": "transferor-2",
-            "role": "BORROWER",
-            "capacity": "REGISTERED_PROPRIETOR"
-          }
-        ],
-        "title_references": [
-          "TN001"
-        ],
-        "documents": [
-          "discharge"
-        ]
-      },
-      "transfer": {
-        "type": "T",
-        "fee_in_pence": 135,
-        "priority": 2,
-        "details": {
-          "type": "TRANSFER",
-          "additional_provisions_code": "MANUAL_TR1_FORM",
-          "date": "2024-01-01",
-          "value": 500000,
-          "consideration_type": "MONETARY_VALUE",
-          "consideration_description": "Value of 500000 including VAT",
-          "title_guarantee_code": "FULL",
-          "trust_declaration_type": "JOINT_TENANTS"
-        },
-        "party_roles": [
-          {
-            "party_reference": "transferor-1",
-            "role": "TRANSFEROR",
-            "capacity": "REGISTERED_PROPRIETOR"
-          },
-          {
-            "party_reference": "transferor-2",
-            "role": "TRANSFEROR",
-            "capacity": "REGISTERED_PROPRIETOR"
-          },
-          {
-            "party_reference": "transferee-1",
-            "role": "TRANSFEREE",
-            "capacity": "ENTITLED_REGISTERED_PROPRIETOR"
-          }
-        ],
-        "title_references": [
-          "tn1",
-          "tn2"
-        ],
-        "documents": [
-          "tr1",
-          "identity-evidence"
-        ]
-      },
-      "charge": {
-        "type": "C",
-        "fee_in_pence": 0,
-        "priority": 3,
-        "details": {
-          "type": "CHARGE",
-          "date": "2024-01-01",
-          "mdref": "MD00AA",
-          "value": 200000
-        },
-        "documents": [
-          "mortgage-deed"
-        ],
-        "party_roles": [
-          {
-            "capacity": "REGISTERED_PROPRIETOR",
-            "party_reference": "transferee-1",
-            "role": "BORROWER"
-          },
-          {
-            "capacity": "NOT_REQUIRED",
-            "party_reference": "lender-1",
-            "role": "LENDER"
-          }
-        ],
-        "title_references": [
-          "tn1",
-          "tn2"
-        ]
-      }
-    },
-    "documents": {
-      "tr1": {
-        "type": "TR1",
-        "document_id": "00001",
-        "document_metadata": {
-          "certification_statement_type": "CERTIFIED",
-          "document_filename": "tr1.pdf"
-        }
-      },
-      "identity-evidence": {
-        "type": "EVIDENCE",
-        "document_id": "00002",
-        "document_metadata": {
-          "certification_statement_type": "CERTIFIED_BY_ANOTHER",
-          "document_filename": "evidence.pdf"
-        }
-      },
-      "discharge": {
-        "type": "DISCHARGE",
-        "document_id": "00003",
-        "document_metadata": {
-          "certification_statement_type": "CERTIFIED",
-          "document_filename": "discharge.pdf"
-        }
-      },
-      "mortgage-deed": {
-        "type": "MRTG_DEED",
-        "document_id": "00004",
-        "document_metadata": {
-          "certification_statement_type": "CERTIFIED_BY_ANOTHER",
-          "document_filename": "deed.pdf"
-        }
-      }
     }
-  }
-}
   </code>
   </pre>
 
   <h3 class="govuk-heading-s">
-<code>POST - /v0/applications/submit</code> - Transfer of Part</h3>
+<code>POST - /v0/applications</code> - Transfer of Part</h3>
   <pre>
   <code class="language-json" style="background-color: #f3f2f1">
     {
-      "data": {
-        "type": "TRANSFER_OF_PART",
-        "customer_reference": "tp-not-for-value",
-        "submission_warning_understood": true,
-        "application_lodger": {
-          "email": "user@company.com",
-          "telephone": "07000000000",
-          "type": "NON_CONVEYANCER"
-        },
-        "addresses": {
-          "transferor-address-1": {
-            "details": {
-              "type": "UK",
-              "number": "1",
-              "postcode": "AA1 00Z"
-            }
-          },
-          "transferee-address-1": {
-            "details": {
-              "type": "UK",
-              "number": "2",
-              "postcode": "AA1 00Z"
-            }
-          }
-        },
-        "applicants": [
-          "transferor-1"
-        ],
-        "parties": {
-          "transferor-1": {
-            "addresses": [
-              "transferor-address-1"
-            ],
-            "details": {
-              "type": "PRIVATE_INDIVIDUAL",
-              "forenames": "Jane",
-              "surname": "Doe"
+        "data": {
+            "type": "TRANSFER_OF_PART",
+            "customer_reference": "tp-not-for-value",
+            "submission_warning_understood": true,
+            "application_lodger": {
+                "email": user@company.com,
+                "telephone": "07000000000",
+                "type": "NON_CONVEYANCER"
             },
-            "representation_type": "LODGING_CONVEYANCER"
-          },
-          "transferee-1": {
-            "addresses": [
-              "transferee-address-1"
-            ],
-            "details": {
-              "type": "PRIVATE_INDIVIDUAL",
-              "forenames": "John",
-              "surname": "Doe"
+            "addresses": {
+                "transferor-address-1": {
+                    "details": {
+                        "type": "UK",
+                        "building_description": "1",
+                        "post_town": "Fake Town",
+                        "postcode": "AA1 00Z"
+                    }
+                },
+                "transferee-address-1": {
+                    "details": {
+                        "type": "UK",
+                        "building_description": "2",
+                        "post_town": "Fake Town",
+                        "postcode": "AA1 00Z"
+                    }
+                }
             },
-            "representation_type": "OTHER_CONVEYANCER",
-            "other_conveyancer": {
-              "conveyancer_reference": "ABC123",
-              "full_name": "Mike Ross",
-              "registered_address": "1234 56th Street, New York, 10001"
-            }
-          }
-        },
-        "titles": {
-          "tn1": {
-            "title_number": "TN001",
-            "title_type": "TRANSFEROR_TITLE",
-            "disclosable_overriding_interests": false,
-            "scope_details": {
-              "scope": "PART",
-              "part_description": "The field on the north side of the property"
-            }
-          }
-        },
-        "transactions": {
-          "tnv": {
-            "type": "TNVTP",
-            "fee_in_pence": 45,
-            "priority": 1,
-            "details": {
-              "type": "TRANSFER",
-              "value_band": {
-                "lower_value_band": 100001,
-                "upper_value_band": 200000
-              },
-              "outstanding_charge": 0,
-              "full_value_of_property_band": {
-                "lower_value_band": 1000001
-              },
-              "date": "2024-01-01",
-              "title_guarantee_code": "LIMITED",
-              "consideration_type": "NO_MONETARY_VALUE"
+            "applicants": [
+                "transferor-1"
+            ],
+            "parties": {
+                "transferor-1": {
+                    "addresses": [
+                        "transferor-address-1"
+                    ],
+                    "details": {
+                        "type": "PRIVATE_INDIVIDUAL",
+                        "forenames": "Jane",
+                        "surname": "Doe"
+                    },
+                    "representation_type": "LODGING_CONVEYANCER",
+                    "address_for_service_option": "PROVIDED_ADDRESS"
+                },
+                "transferee-1": {
+                    "addresses": [
+                        "transferee-address-1"
+                    ],
+                    "details": {
+                        "type": "PRIVATE_INDIVIDUAL",
+                        "forenames": "John",
+                        "surname": "Doe"
+                    },
+                    "representation_type": "OTHER_CONVEYANCER",
+                    "other_conveyancer": {
+                        "conveyancer_reference": "ABC123",
+                        "full_name": "Mike Ross",
+                        "registered_address": "1234 56th Street, New York, 10001"
+                    },
+                    "address_for_service_option": "PROVIDED_ADDRESS"
+                }
             },
-            "documents": [
-              "tp-1"
-            ],
-            "party_roles": [
-              {
-                "party_reference": "transferor-1",
-                "role": "TRANSFEROR",
-                "capacity": "REGISTERED_PROPRIETOR"
-              },
-              {
-                "party_reference": "transferee-1",
-                "role": "TRANSFEREE",
-                "capacity": "ENTITLED_REGISTERED_PROPRIETOR"
-              }
-            ],
-            "title_references": [
-              "tn1"
-            ]
-          }
-        },
-        "documents": {
-          "tp-1": {
-            "reference": "tp-1",
-            "type": "TP1",
-            "document_id": "00001",
-            "document_metadata": {
-              "certification_statement_type": "CERTIFIED_BY_ANOTHER",
-              "document_filename": "tp1.gif"
+            "titles": {
+                "tn1": {
+                    "title_number": "TN001",
+                    "title_type": "TRANSFEROR_TITLE",
+                    "disclosable_overriding_interests": false,
+                    "scope_details": {
+                        "scope": "PART",
+                        "part_description": "The field on the north side of the property"
+                    }
+                }
+            },
+            "transactions": {
+                "tnv": {
+                    "type": "TNVTP",
+                    "fee_in_pence": 45,
+                    "priority": 1,
+                    "details": {
+                        "type": "TRANSFER",
+                        "value_band": {
+                            "lower_value_band": 100001,
+                            "upper_value_band": 200000
+                        },
+                        "outstanding_charge": 0,
+                        "full_value_of_property_band": {
+                            "lower_value_band": 1000001
+                        },
+                        "date": "2024-01-01",
+                        "title_guarantee_code": "LIMITED",
+                        "consideration_type": "NO_MONETARY_VALUE",
+                        "additional_provisions_code": "NO_PROVISIONS"
+                    },
+                    "documents": [
+                        "tp-1"
+                    ],
+                    "party_roles": [
+                        {
+                            "party_reference": "transferor-1",
+                            "role": "TRANSFEROR",
+                            "capacity": "REGISTERED_PROPRIETOR"
+                        },
+                        {
+                            "party_reference": "transferee-1",
+                            "role": "TRANSFEREE",
+                            "capacity": "ENTITLED_REGISTERED_PROPRIETOR"
+                        }
+                    ],
+                    "title_references": [
+                        "tn1"
+                    ]
+                }
+            },
+            "documents": {
+                "tp-1": {
+                    "reference": "tp-1",
+                    "type": "TP1",
+                    "document_id": "00001",
+                    "document_metadata": {
+                        "certification_statement_type": "CERTIFIED_BY_ANOTHER",
+                        "document_filename": "tp1.gif"
+                    }
+                }
             }
-          }
         }
-      }
     }
+
   </code>
   </pre>
 

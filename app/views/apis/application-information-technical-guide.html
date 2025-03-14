@@ -90,7 +90,7 @@
         <li>
           <code style="color: #a71d5d; background-color: #f5f5f5">ACCEPTED_AWAITING_PRIORITY</code>
           - The application has passed validation but has not yet been added to the day list as it is currently closed. The application will be added to the day list and moved to an
-          <code style="color: #a71d5d; background-color: #f5f5f5">ACCEPTED</code>
+          <code style="color: #a71d5d; background-color: #f5f5f5">ACCEPTED_PRIORITY_PROTECTED</code>
           state when the day list reopens</li>
         <li>
           <code style="color: #a71d5d; background-color: #f5f5f5">ACCEPTED_PRIORITY_PROTECTED</code>
@@ -138,22 +138,13 @@
 <code class="language-json" style="background-color: #f3f2f1">
   {
     "data": {
-      "status": "accepted_priority_protected",
+      "status": "ACCEPTED_PRIORITY_PROTECTED",
       "application_request_id": "3e4f6da2-ada7-4081-957c-b23542466715",
-      "hmlr_reference": "ab1234",
-      "priority_timestamp": "2024-09-25t18:18:49.478z",
+      "hmlr_reference": "AB1234",
+      "priority_timestamp": "2024-09-25T18:18:49.478Z",
       "warnings": [
-        "you must upload document x"
-      ],
-      "calculated_fees": {
-        "total_fee": 45,
-        "per_transaction": [
-          {
-            "transaction_reference": "transfer-1",
-            "fee": 45
-          }
-        ]
-      }
+        "You must upload document X"
+      ]
     }
   }
 </code>
@@ -170,13 +161,12 @@
 <code class="language-json" style="background-color: #f3f2f1">
   {
     "data": {
-      "status": "validation_failed",
+      "status": "VALIDATION_FAILED",
       "application_request_id": "3e4f6da2-ada7-4081-957c-b23542466715",
       "errors": [
         {
-          "type": "oc018",
-          "summary": "failed to get document '00001'.",
-          "detail": "failed to get document '00001'.",
+          "type": "OC018",
+          "detail": "Failed to get document '00001'.",
           "pointer": null
         }
       ]
