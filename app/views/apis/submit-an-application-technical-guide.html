@@ -6537,6 +6537,7 @@ Valid transaction types
 <ul class="govuk-list govuk-list--bullet">
   <li>Both <code style="color: #a71d5d; background-color: #f5f5f5">value</code> (i.e. value of equity being transferred) and <code style="color: #a71d5d; background-color: #f5f5f5">full_value_of_property</code> must be either value bands, or exact values</li>
   <li>The <code style="color: #a71d5d; background-color: #f5f5f5">full_value_of_property_band</code> must be greater than or equal to the <code style="color: #a71d5d; background-color: #f5f5f5">value_band</code> (i.e. the value of equity being transferred)</li>
+</ul>
 <div class="govuk-!-padding-bottom-6"></div>
 
 <div>
@@ -6570,13 +6571,11 @@ Valid transaction types
 </div>
 
   <h2 class="govuk-heading-m" id="example-requests-and-responses">Example requests and responses</h2>
+  <div class="govuk-!-padding-bottom-3"></div>
 
-  <h3 class="govuk-heading-s">
-
-<code>APPLICATION_ACCEPTED_ON_DAY_LIST</code> notification</h3>
+  <h3 class="govuk-heading-s"><code>APPLICATION_ACCEPTED_ON_DAY_LIST</code> notification</h3>
 
   <pre>
-
   <code class="language-json" style="background-color: #f3f2f1">
     {
       "data": [
@@ -6603,8 +6602,7 @@ Valid transaction types
 
   </pre>
 
-  <h3 class="govuk-heading-s">
-<code>APPLICATION_VALIDATION_FAILED</code> notification</h3>
+  <h3 class="govuk-heading-s"><code>APPLICATION_VALIDATION_FAILED</code> notification</h3>
   <pre>
   <code class="language-json" style="background-color: #f3f2f1">
     {
@@ -6628,9 +6626,7 @@ Valid transaction types
     }
   </code>
   </pre>
-
-  <h3 class="govuk-heading-s">
-<code>POST - /v0/applications</code> - Charge</h3>
+  <h3 class="govuk-heading-s"><code>POST - /v0/applications</code> - Charge</h3>
   <pre>
   <code class="language-json" style="background-color: #f3f2f1">
     {
@@ -6736,8 +6732,8 @@ Valid transaction types
   </code>
   </pre>
 
-  <h3 class="govuk-heading-s">
-<code>POST - /v0/applications</code> - Transfer</h3>
+  <h3 class="govuk-heading-s"><code>POST - /v0/applications</code> - Transfer</h3>
+
   <pre>
   <code class="language-json" style="background-color: #f3f2f1">
     {
@@ -6983,8 +6979,8 @@ Valid transaction types
   </code>
   </pre>
 
-  <h3 class="govuk-heading-s">
-<code>POST - /v0/applications</code> - Transfer of Part</h3>
+  <h3 class="govuk-heading-s"><code>POST - /v0/applications</code> - Transfer of Part</h3>
+
   <pre>
   <code class="language-json" style="background-color: #f3f2f1">
     {
