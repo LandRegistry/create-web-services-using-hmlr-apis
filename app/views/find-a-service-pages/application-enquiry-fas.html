@@ -1,0 +1,219 @@
+{% extends "layouts/main.html" %}
+
+show_subnav: true
+
+
+{% block header %}
+
+
+
+  <!-- Blank header with no service name for the start page -->
+
+
+
+  {# {{ govukHeader() }} #}
+
+  <header class="govuk-header govuk-header--hmlr " role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-width-container">
+    <div class="govuk-header__content govuk-header__content--hmlr">
+      <a href="/homepage" class="govuk-header__link govuk-header__service-name">
+        HM Land Registry developer pack
+      </a>
+    </div>
+  </div>
+</header>
+
+
+
+{% endblock %}
+
+
+
+{% block main %}
+
+
+
+  <div class="govuk-width-container {{ containerClasses }}">
+
+
+
+    {{ govukPhaseBanner({
+      tag: {
+        text: "Prototype",
+        classes: "govuk-tag--pink"
+      },
+      html: 'This is a prototype of a new design for the Business Gateway developer pack. You might experience problems.'
+    }) }}
+
+
+
+    <main class="govuk-main-wrapper {{ mainClasses }}" id="main-content" role="main" {% if mainLang %} lang="{{ mainLang }}" {% endif %}>
+
+          <div class="govuk-grid-row">
+
+            <div class="govuk-grid-column-one-third">
+
+              <nav class="moj-side-navigation" aria-label="Side navigation">
+                <h4 class="moj-side-navigation__title">Before you start</h4>
+                <ul class="moj-side-navigation__list">
+                  <li class="moj-side-navigation__item">
+                    <a href="/what-to-expect-from-the-developer-pack">What to expect from the developer pack</a>
+                  </li>
+
+                  <li class="moj-side-navigation__item">
+                    <a href="/how-to-access-business-gateway">How to access Business Gateway</a>
+                  </li>
+
+                  <li class="moj-side-navigation__item">
+                    <a href="/terms-of-use">Terms of use</a>
+                  </li>
+                </ul>
+
+                <h4 class="moj-side-navigation__title">Explore APIs</h4>
+                <ul class="moj-side-navigation__list">
+                  <li class="moj-side-navigation__item">
+                    <a href="/learn-about-the-apis-we-use">Learn about the APIs we use</a>
+                  </li>
+
+                  <li class="moj-side-navigation__item moj-side-navigation__item--active">
+                    <a href="/find-a-service-api" aria-current="location">Find a service API</a>
+                  </li>
+
+                  <li class="moj-side-navigation__item">
+                    <a href="/a-guide-to-testing">A guide to testing</a>
+                  </li>
+                </ul>
+
+                <h4 class="moj-side-navigation__title">Support</h4>
+                <ul class="moj-side-navigation__list">
+                  <li class="moj-side-navigation__item">
+                    <a href="/contact-us">Contact us</a>
+                  </li>
+                  <ul>
+              </nav>
+
+            </div>
+
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <span class="govuk-caption-xl">Explore APIs</span>
+          <h1 class="govuk-heading-xl">Find a service API</h1>
+
+
+          <div class="govuk-grid-row">
+
+            <p class="govuk-body govuk-!-font-weight-regular govuk-!-margin-left-3">View documentation for our Business Gateway service APIs below.</p>
+
+            <p class="govuk-body govuk-!-font-weight-regular govuk-!-margin-left-3">To read more about our core APIs and how to integrate them, visit <a class="govuk-link" href="/learn-about-the-apis-we-use">Learn about the APIs we use</a>. For a list of HMLR terms and their definitions, visit <a class="govuk-link" href="/glossary">our glossary</a>.</p>
+
+<p class="govuk-body govuk-!-font-weight-regular govuk-!-margin-left-3"> Below you'll find a list of APIs relevant to the new Submit an application to change the land register service. Other SOAP and REST APIs will be added a later date.</p>
+            <div class="govuk-form-group govuk-!-margin-left-3">
+              <label class="govuk-label" for="sort">
+                Service
+              </label>
+              <div class="dropdown">
+              <select class="govuk-select" id="sort" name="sort">
+                <span class="govuk-select"></span></button>
+                 <ul class="dropdown-menu">
+                   <input class="form-control" id="myInput" type="text" placeholder="Choose service API">
+                {# <li> <option value="choose-service-api" id="choose-service-api-choice">Choose service API</option> </li> #}
+                  <li> <option value="application-enquiry-choice" id="application-enquiry-choice" href="/find-a-service-pages/application-enquiry-fas">Application Enquiry</option> </li>
+                  <li> <option value="discharge-activity" id="discharge-activity-choice">Discharge Activity</option> </li>
+                  <li> <option value="e-document-registration-service" id="edrs-choice">e-Document Registration Service</option> </li>
+                  <li> <option value="estimated-completion-date" id="estimated-completion-date-choice">Estimated Completion Date</option> </li>
+                  <li> <option value="land-charges-full-search" id="land-charges-full-search-choice">Land Charges Full Search</option> </li>
+                  <li> <option value="land-charges-bankruptcy-search" id="land-charges-bankruptcy-search-choice">Land Charges Bankruptcy Search</option> </li>
+                  <li> <option value="local-land-charges-search" id="local-land-charges-search-choice">Local Land Charges Search</option> </li>
+                  <li> <option value="notifications">Notifications</option> </li>
+                  <li> <option value="official-copy-document-availability-v1">Official Copy Document Availability V1</option> </li>
+                  <li> <option value="official-copy-document-availability-v2">Official Copy Document Availability V2</option> </li>
+                  <li> <option value="official-copy-title-known">Official Copy Title Known</option> </li>
+                  <li> <option value="official-search-of-whole-with-priority">Official Search of Whole (with priority)</option> </li>
+                  <li> <option value="official-search-of-whole-with-priority-with-data">Official Search if Whole (with priority) with Data</option> </li>
+                  <li> <option value="official-search-of-part">Official Search of Part</option> </li>
+                  <li> <option value="online-owner-verification">Online Owner Verification</option> </li>
+                  <li> <option value="outstanding-requests-service">Outstanding Requests Service</option> </li>
+                  <li> <option value="poll-request-service">Poll Request Service</option> </li>
+                  <li> <option value="search-by-property-description">Search by Property Description</option> </li>
+                  <li> <option value="search-of-the-index-map">Search of the Index Map</option> </li>
+                  <li> <option value="submit-an-application-to-change-the-land-register">Submit an application to change the Land Register</option> </li>
+                  <li> <option value="register-extract-service">Register Extract Service</option> </li>
+                  <li> <option value="registered-proprietor-names" href="/find-a-service-pages/registered-proprietor-name-fas">Registered Proprietor Names</option> </li>
+              </select>
+            </div>
+
+<div id="application-enquiry" class="filterDiv application-enquiry">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/application-enquiry">Application Enquiry<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--blue">
+          SOAP API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service to view applications that are not yet completed by HMLR.</p>
+</div>
+
+                      <div class="govuk-grid-column-one-third"></div>
+
+
+
+                    </div>
+
+
+
+                  </main>
+
+
+
+                </div>
+              </div>
+
+
+
+              {% endblock %}
+
+              {% block pageScripts %}
+
+              <script>
+
+
+                // //FILTER WITH A SELECT COMPONENT
+                //
+                //   // Reveal all content based on the select - application enquiry
+                //   $('#application-enquiry-choice').click(function () {
+                //   $('#application-enquiry').show();
+                //   //then hide the other content
+                //   $('#discharge-activity').hide();
+                //   $('#edrs').hide();
+                //   $('#estimated-completion-date').hide();
+                //   $('#land-charges-bankruptcy-search').hide();
+                //   $('#land-charges-full-search').hide();
+                //   $('#local-land-charges-search').hide();
+                //   $('#notifications').hide();
+                //   $('#official-copy-document-availability-v1').hide();
+                //   $('#official-copy-document-availability-v2').hide();
+                //   $('#official-copy-title-known').hide();
+                //   $('#official-search-of-whole-with-priority').hide();
+                //   $('#official-search-of-whole-with-priority-with-data').hide();
+                //   $('#official-search-of-part').hide();
+                //   $('#online-owner-verification').hide();
+                //   $('#outstanding-requests-service').hide();
+                //   $('#poll-request-service').hide();
+                //   $('#search-by-property-description').hide();
+                //   $('#search-of-the-index-map').hide();
+                //   $('#submit-an-application-to-change-the-land-register').hide();
+                //   $('#register-extract-service').hide();
+                //   $('#registered-proprietor-name').hide();
+                // });
+
+
+
+                $(document).ready(function(){
+                  $("#myInput").on("keyup", function() {
+                    var value = $(this).val().toLowerCase();
+                    $(".dropdown-menu li").filter(function() {
+                      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                  });
+                });
+
+
+                </script>
+
+              {% endblock %}
