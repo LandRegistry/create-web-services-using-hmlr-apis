@@ -36,7 +36,7 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        Notifications service API
+        Notifications API
       </h1>
       <p class="govuk-body-l">Use this service to get updates about multiple applications submitted by the same business unit.</p>
 
@@ -71,12 +71,12 @@
             </li>
             <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
               <a href="#how-the-service-api-works">
-                How the service API works
+                How the API works
               </a>
             </li>
             <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
               <a href="#how-to-test-this-service-api">
-                How to test this service API
+                How to test this API
               </a>
             </li>
           </ol>
@@ -93,14 +93,14 @@
       <div>
       <h2 class="govuk-heading-m" id="overview"><br>Overview</h2>
 
-          <p class="govuk-body">The Notifications service API provides a way of fetching updates about multiple applications submitted by the same business unit. Currently, this service only supports a pull interaction model, where notifications must be requested periodically. However, more information about a push interaction model will be shared in future.</p>
+          <p class="govuk-body">The Notifications API provides a way of fetching updates about multiple applications submitted by the same business unit. Currently, this service only supports a pull interaction model, where notifications must be requested periodically. However, more information about a push interaction model will be shared in future.</p>
           <p class="govuk-body">This API has two endpoints:</p>
           <ul class="govuk-list govuk-list--bullet">
           <li><code style="color: #a71d5d; background-color: #f5f5f5">GET /v0/notifications</code> get all notifications that match the provided filters</li>
           <li><code style="color: #a71d5d; background-color: #f5f5f5">POST /v0/notifications/acknowledge</code> - notify HMLR that notifications have been received</li>
           </ul>
 
-          <p class="govuk-body">This API can be used to get more information after receiving a notification indicating the application has changed. For information about which notifications will be available, visit the notifications section of the   <a class="govuk-body govuk-link" href="/apis/submit-an-application">Submit an application</a> service API page.</p>
+          <p class="govuk-body">This API can be used to get more information after receiving a notification indicating the application has changed. For information about which notifications will be available, visit the notifications section of the   <a class="govuk-body govuk-link" href="/apis/submit-an-application">Submit an application</a> API page.</p>
 
         </div>
 
@@ -125,14 +125,14 @@
 </div>
 
 <div>
-      <h3 class="govuk-heading-m" id="how-the-service-api-works">How the service API works</h3>
+      <h3 class="govuk-heading-m" id="how-the-service-api-works">How the API works</h3>
       <div class="govuk-!-padding-bottom-3"></div>
-<img src="/public/images/NotificationInteraction.png" alt="A diagram showing the interaction of the Notification service API.">
+<img src="/public/images/NotificationInteraction.png" alt="A diagram showing the interaction of the Notification API.">
   </div>
 <br>
 
 <div>
-  <h3 class="govuk-heading-m" id="how-to-test-this-service-api">How to test this service API</h3>
+  <h3 class="govuk-heading-m" id="how-to-test-this-service-api">How to test this API</h3>
   <p class="govuk-body">HMLR does not currently provide a test environment for integrators using our Business Gateway APIs. Instead, we’ve provided example code to demonstrate what you should  expect to see when developing your own services.</p>
   <ul class="govuk-list">
     <li>
