@@ -1,0 +1,331 @@
+{% extends "layouts/main.html" %}
+
+show_subnav: true
+
+
+{% block header %}
+
+
+
+  <!-- Blank header with no service name for the start page -->
+
+
+
+  {# {{ govukHeader() }} #}
+
+  <header class="govuk-header govuk-header--hmlr " role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-width-container">
+    <div class="govuk-header__content govuk-header__content--hmlr">
+      <a href="/homepage" class="govuk-header__link govuk-header__service-name">
+        HM Land Registry developer pack
+      </a>
+    </div>
+  </div>
+</header>
+
+
+
+{% endblock %}
+
+
+
+{% block main %}
+
+
+
+  <div class="govuk-width-container {{ containerClasses }}">
+
+
+
+    {{ govukPhaseBanner({
+      tag: {
+        text: "Prototype",
+        classes: "govuk-tag--pink"
+      },
+      html: 'This is a prototype of a new design for the Business Gateway developer pack. You might experience problems.'
+    }) }}
+
+
+
+    <main class="govuk-main-wrapper {{ mainClasses }}" id="main-content" role="main" {% if mainLang %} lang="{{ mainLang }}" {% endif %}>
+
+          <div class="govuk-grid-row">
+
+            <div class="govuk-grid-column-one-third">
+
+              <nav class="moj-side-navigation" aria-label="Side navigation">
+                <h4 class="moj-side-navigation__title">Before you start</h4>
+                <ul class="moj-side-navigation__list">
+                  <li class="moj-side-navigation__item">
+                    <a href="/what-to-expect-from-the-developer-pack">What to expect from the developer pack</a>
+                  </li>
+
+                  <li class="moj-side-navigation__item">
+                    <a href="/how-to-access-business-gateway">How to access Business Gateway</a>
+                  </li>
+
+                  <li class="moj-side-navigation__item">
+                    <a href="/terms-of-use">Terms of use</a>
+                  </li>
+                </ul>
+
+                <h4 class="moj-side-navigation__title">Explore APIs</h4>
+                <ul class="moj-side-navigation__list">
+                  <li class="moj-side-navigation__item">
+                    <a href="/learn-about-the-apis-we-use">Learn about the APIs we use</a>
+                  </li>
+
+                  <li class="moj-side-navigation__item moj-side-navigation__item--active">
+                    <a href="/find-a-service-api" aria-current="location">Find a service API</a>
+                  </li>
+
+                  <li class="moj-side-navigation__item">
+                    <a href="/a-guide-to-testing">A guide to testing</a>
+                  </li>
+                </ul>
+
+                <h4 class="moj-side-navigation__title">Support</h4>
+                <ul class="moj-side-navigation__list">
+                  <li class="moj-side-navigation__item">
+                    <a href="/contact-us">Contact us</a>
+                  </li>
+                  <ul>
+              </nav>
+
+            </div>
+
+
+        <div class="govuk-grid-column-two-thirds">
+
+          <span class="govuk-caption-xl">Explore APIs</span>
+          <h1 class="govuk-heading-xl">Find a service API</h1>
+
+
+          <div class="govuk-grid-row">
+
+            <p class="govuk-body govuk-!-font-weight-regular govuk-!-margin-left-3">View documentation for our Business Gateway service APIs below.</p>
+
+            <p class="govuk-body govuk-!-font-weight-regular govuk-!-margin-left-3">To read more about our core APIs and how to integrate them, visit <a class="govuk-link" href="/learn-about-the-apis-we-use">Learn about the APIs we use</a>. For a list of HMLR terms and their definitions, visit <a class="govuk-link" href="/glossary">our glossary</a>.</p>
+
+<p class="govuk-body govuk-!-font-weight-regular govuk-!-margin-left-3"> Below you'll find a list of APIs relevant to the new Submit an application to change the land register service. Other SOAP and REST APIs will be added a later date.</p>
+            <div class="govuk-form-group govuk-!-margin-left-3">
+              <label class="govuk-label" for="sort">
+                Service
+              </label>
+              <select class="govuk-select" id="sort" name="sort">
+                <option value="choose-service-api" id="choose-service-api-choice">Choose service API</option>
+                  {# <option value="application-enquiry-choice" id="application-enquiry-choice" onclick="filterSelection('application-enquiry')">Application Enquiry</option>
+                  <option value="discharge-activity" id="discharge-activity-choice">Discharge Activity</option>
+                  <option value="e-document-registration-service" id="edrs-choice">e-Document Registration Service</option>
+                  <option value="estimated-completion-date" id="estimated-completion-date-choice">Estimated Completion Date</option>
+                  <option value="land-charges-full-search" id="land-charges-full-search-choice">Land Charges Full Search</option>
+                  <option value="land-charges-bankruptcy-search" id="land-charges-bankruptcy-search-choice">Land Charges Bankruptcy Search</option>
+                  <option value="local-land-charges-search" id="local-land-charges-search-choice">Local Land Charges Search</option> #}
+                  <option value="notifications">Notifications</option>
+                  {# <option value="official-copy-document-availability-v1">Official Copy Document Availability V1</option>
+                  <option value="official-copy-document-availability-v2">Official Copy Document Availability V2</option>
+                  <option value="official-copy-title-known">Official Copy Title Known</option>
+                  <option value="official-search-of-whole-with-priority">Official Search of Whole (with priority)</option>
+                  <option value="official-search-of-whole-with-priority-with-data">Official Search if Whole (with priority) with Data</option>
+                  <option value="official-search-of-part">Official Search of Part</option>
+                  <option value="online-owner-verification">Online Owner Verification</option>
+                  <option value="outstanding-requests-service">Outstanding Requests Service</option>
+                  <option value="poll-request-service">Poll Request Service</option>
+                  <option value="search-by-property-description">Search by Property Description</option>
+                  <option value="search-of-the-index-map">Search of the Index Map</option> #}
+                  <option value="submit-an-application-to-change-the-land-register">Submit an application to change the Land Register</option>
+                  {# <option value="register-extract-service">Register Extract Service</option>
+                  <option value="registered-proprietor-names">Registered Proprietor Names</option> #}
+              </select>
+            </div>
+
+{# <div id="application-enquiry" class="filterDiv application-enquiry">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/application-enquiry">Application Enquiry<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--blue">
+          SOAP API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service to view applications that are not yet completed by HMLR.</p>
+</div>
+
+<div id="discharge-activity">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/discharge-activity">Discharge Activity<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--blue">
+          SOAP API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service to check if any charges have been removed in the previous 30 days.</p>
+</div>
+
+<div id="edrs">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/e-document-registration-service">e-Document Registration Service<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--blue">
+          SOAP API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service to send applications to change the register, automate the collection of correspondence and responses and receive completed applications.</p>
+</div>
+
+<div id="estimated-completion-date">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/estimated-completion-date">Estimated Completion Date<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--orange">
+          REST API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">The Estimated Completion Date (ECD) is a date by which the application is likely to be completed.</p>
+</div>
+
+<div id="land-charges-bankruptcy-search">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/land-charges-bankruptcy-search">Land Charges Bankruptcy Search<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--blue">
+          SOAP API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service to find bankruptcy details on the Land Charges Register.</p>
+</div>
+
+<div id="land-charges-full-search">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/land-charges-full-search">Land Charges Full Search<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--blue">
+          SOAP API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service to request an official search of the Land Charges Register.</p>
+</div>
+
+<div id="local-land-charges-search">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/local-land-charges-search">Local Land Charges Search<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--blue">
+          SOAP API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use the Local Land Charges service to find details of entries relating to land or property.</p>
+</div> #}
+
+<div id="notifications">
+<a id="notifications" class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/notifications">Notifications<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--orange">
+          REST API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service to get updates about multiple applications submitted by the same business unit.</p>
+</div>
+
+{# <div id="official-copy-document-availability-v1">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/official-copy-document-availability-v1">Official Copy Document Availability V1<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--orange">
+          REST API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service to order the Official Copy Document.</p>
+</div>
+
+<div id="official-copy-document-availability-v2">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/official-copy-document-availability-v2">Official Copy Document Availability V2<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--orange">
+          REST API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service to order the Official Copy Document.</p>
+</div>
+
+<div id="official-copy-title-known">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/official-copy-title-known">Official Copy Title Known<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--blue">
+          SOAP API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service to order an official copy of the register, title plan, conveyance referred to on the register, deed referred to on the register and lease.</p>
+</div>
+
+<div id="official-search-of-whole-with-priority">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/official-search-of-whole-with-priority">Official Search of Whole (with Priority)<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--blue">
+          SOAP API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service when your application relates to the whole of the registered title to protect transfers, leases and mortgages.</p>
+</div>
+
+<div id="official-search-of-whole-with-priority-with-data">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/official-search-of-whole-with-priority-with-data">Official Search of Whole (with Priority) with Data<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--orange">
+          REST API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service when your application relates to the whole of the registered title to protect transfers, leases and mortgages.</p>
+</div>
+
+<div id="official-search-of-part">
+<a class="govuk-heading-s govuk-link govuk-link govuk-!-margin-left-3" href="/apis/official-search-of-part">Official Search of Part<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--blue">
+          SOAP API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service when your application relates to the whole of the registered title to protect transfers, leases and mortgages.</p>
+</div>
+
+<div id="online-owner-verification">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/online-owner-verification">Online Owner Verification<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--blue">
+          SOAP API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service to verify property ownership data against HMLR property titles in real time.</p>
+</div>
+
+<div id="outstanding-requests-service">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/outstanding-requests-service">Outstanding Requests Service<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--blue">
+          SOAP API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service to submit a request to return (or obtain) a list of applications with a new response to collect.</p>
+</div>
+
+<div id="poll-request-service">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/poll-request-service">Poll Request Service<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--blue">
+          SOAP API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service to collect responses for applications that have been manually processed or submitted outside of working hours.</p>
+</div>
+
+<div id="search-by-property-description">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/search-by-property-description">Search by Property Description<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--blue">
+          SOAP API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service to find out the title number and tenure of a property based on the address supplied.</p>
+</div>
+
+<div id="search-of-the-index-map">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/search-of-the-index-map">Search of the Index Map<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--blue">
+          SOAP API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service to find out if land is registered and to get the title number.</p>
+</div> #}
+
+<div id="submit-an-application-to-change-the-land-register">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/submit-an-application-to-change-the-land-register">Submit an application to change the Land Register<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--orange">
+          REST API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service to help lodge applications with HMLR to update the register or create a new lease or transfer of part.</p>
+</div>
+{#
+<div id="register-extract-service">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/register-extract-service">Register Extract Service<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--blue">
+          SOAP API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service to get source data from the Land Register in an electronic data stream (alongside the usual supply of the official copy).</p>
+</div>
+
+<div id="registered-proprietor-name">
+<a class="govuk-heading-s govuk-link govuk-!-margin-left-3" href="/apis/registered-proprietor-name">Registered Proprietor Names<strong class="govuk-tag govuk-!-margin-left-3 govuk-tag--orange">
+          REST API</strong> </a>
+<p class="govuk-body govuk-!-margin-left-3">Use this service to check the name and type of registered proprietors of a registered title throughout the process from instruction to application submission.</p>
+</div> #}
+
+                      <div class="govuk-grid-column-one-third"></div>
+
+
+
+                    </div>
+
+
+
+                  </main>
+
+
+
+                </div>
+              </div>
+
+
+
+              {% endblock %}
+
+              {% block pageScripts %}
+
+              <script>
+
+
+                //FILTER WITH A SELECT COMPONENT
+
+                  // Reveal all content based on the select - application enquiry
+                  $('#application-enquiry-choice').click(function () {
+                  $('#application-enquiry').show();
+                  //then hide the other content
+                  $('#discharge-activity').hide();
+                  $('#edrs').hide();
+                  $('#estimated-completion-date').hide();
+                  $('#land-charges-bankruptcy-search').hide();
+                  $('#land-charges-full-search').hide();
+                  $('#local-land-charges-search').hide();
+                  $('#notifications').hide();
+                  $('#official-copy-document-availability-v1').hide();
+                  $('#official-copy-document-availability-v2').hide();
+                  $('#official-copy-title-known').hide();
+                  $('#official-search-of-whole-with-priority').hide();
+                  $('#official-search-of-whole-with-priority-with-data').hide();
+                  $('#official-search-of-part').hide();
+                  $('#online-owner-verification').hide();
+                  $('#outstanding-requests-service').hide();
+                  $('#poll-request-service').hide();
+                  $('#search-by-property-description').hide();
+                  $('#search-of-the-index-map').hide();
+                  $('#submit-an-application-to-change-the-land-register').hide();
+                  $('#register-extract-service').hide();
+                  $('#registered-proprietor-name').hide();
+                });
+
+
+
+                </script>
+
+              {% endblock %}
