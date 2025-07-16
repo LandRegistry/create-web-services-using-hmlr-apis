@@ -123,11 +123,10 @@
 
   <h2 class="govuk-heading-m" id="validation-rules">Validation rules</h2>
     <div>
-
+      <p class="govuk-body">To pass validation, you must follow the guidance for implementing this API below.</p>
+      <h3 class="govuk-heading-s">SOAP migration guide</h3>
       <p class="govuk-body">The structure has changed between the SOAP and REST APIs. Most fields retain their existing names, but some have changed, as noted below:</p>
-
       <table class="govuk-table">
-        <caption class="govuk-table__caption govuk-table__caption--m">SOAP migration guide</caption>
         <thead class="govuk-table__head">
           <tr class="govuk-table__row">
             <th scope="col" class="govuk-table__header">SOAP field</th>
@@ -324,9 +323,8 @@
         </tbody>
       </table>
 
-        <h3 class="govuk-heading-s">List of valid territories</h3>
-        <p class="govuk-body">When a party is an overseas company, you must provide the territory of incorporation. This territory must be one of the territories defined below:</p>
-
+      <h3 class="govuk-heading-s">List of valid territories</h3>
+      <p class="govuk-body">When a party is an overseas company, you must provide the territory of incorporation. This territory must be one of the territories defined below:</p>
         <details class="govuk-details">
   <summary class="govuk-details__summary">
     <span class="govuk-details__summary-text">
@@ -2437,7 +2435,7 @@
   <td class="govuk-table__cell">Suggested</td>
 </tr>
 <tr class="govuk-table__row">
-  <td class="govuk-table__cell">Compulsory</td>
+  <td class="govuk-table__cell">C</td>
   <td class="govuk-table__cell">CH1</td>
   <td class="govuk-table__cell">Either</td>
 </tr>
@@ -6024,6 +6022,109 @@ Valid transaction types
 
 <div class="govuk-!-padding-bottom-6"></div>
 
+<h3 class="govuk-heading-s">Capacity fields</h3>
+<p class="govuk-body">The capacity field can be applied to Landlords, Tenants, Borrowers and Transferors when they are added as additional parties to transactions.</p>
+<p class="govuk-body">Example request for capacity field:</p>
+<p class="govuk-body">“Select the capacity the Transferor is acting in. You’ll need to evidence of the capacity to act and check whether ID evidence will be required.”</p>
+<p class="govuk-body">The capacity field is currently optional, but it may become mandatory in the future.</p>
+<div class="govuk-inset-text">
+  Field type: This field is a type String, with a set of enumerated values.</div>
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+  <span class="govuk-details__summary-text">
+  Acceptable values
+  </span>
+  </summary>
+  <div class="govuk-details__text">
+  <p class="govuk-body">The following values are acceptable:</p>
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">Value</th>
+        <th scope="col" class="govuk-table__header">Description</th>
+        <th scope="col" class="govuk-table__header">Additional notes</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell govuk-table__cell">ADDITIONAL_TRUSTEE</td>
+        <td class="govuk-table__cell govuk-table__cell">Trustee</td>
+        <td class="govuk-table__cell govuk-table__cell">For example, for the purposes of over-reaching</td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell govuk-table__cell">DEPUTY</td>
+        <td class="govuk-table__cell govuk-table__cell"></td>
+        <td class="govuk-table__cell govuk-table__cell">Appointed under the Mental Capacity Act 2005</td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell govuk-table__cell">ENTITLED_REGISTERED_PROPRIETOR</td>
+        <td class="govuk-table__cell govuk-table__cell"></td>
+        <td class="govuk-table__cell govuk-table__cell">Person entitled to be registered as proprietor</td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell govuk-table__cell">GUARDIAN</td>
+        <td class="govuk-table__cell govuk-table__cell"></td>
+        <td class="govuk-table__cell govuk-table__cell">Appointed under the Guardianship (Missing Persons) Act 2017</td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell govuk-table__cell">INSOLVENCY_PRACTITIONER</td>
+        <td class="govuk-table__cell govuk-table__cell">Trustee</td>
+        <td class="govuk-table__cell govuk-table__cell">In bankruptcy, liquidator, supervisor, administrator or administrative receiver appointed under the Insolvency Act 1986</td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell govuk-table__cell">PERSONAL_REPRESENTATIVE</td>
+        <td class="govuk-table__cell govuk-table__cell"></td>
+        <td class="govuk-table__cell govuk-table__cell">Such as an executor, who assents or transfers the land or charge</td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell govuk-table__cell">RECEIVER</td>
+        <td class="govuk-table__cell govuk-table__cell"></td>
+        <td class="govuk-table__cell govuk-table__cell">Appointed under the Law of Property Act 1925</td>
+      </tr>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell govuk-table__cell">REGISTERED_PROPRIETOR</td>
+        <td class="govuk-table__cell govuk-table__cell">The proprietor is registered</td>
+        <td class="govuk-table__cell govuk-table__cell">Default for those already on the Land Register. Applies to any manually entered details</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</details>
+
+<p class="govuk-body">Example:</p>
+<p class="govuk-body">The following JSON extract begins at the transactions node for an application’s submission. It is taken from the open API specification Exhaustive Example.</p>
+
+<pre>
+
+<code class="language-json" style="background-color: #f3f2f1">
+  "transactions": {
+    "discharge-transaction-reference": {
+      "type": "DIS",
+      "documents": [
+      "document-reference"
+    ],
+    "party_roles": [
+    {
+      "party_reference": "private-individual-reference",
+      "role": "ATTORNEY",
+      "capacity": "REGISTERED_PROPRIETOR"
+    }
+    ],
+    "details": {
+      "type": "DISCHARGE",
+      "discharge_submission_type": "ATTACHED"
+    },
+    "fee_in_pence": 0,
+    "relates_to_new_title": false,
+    "priority": 1,
+    "title_references": [
+    "title-ref"
+  ]
+},
+</code>
+</pre>
+
+<div class="govuk-!-padding-bottom-6"></div>
 
 <h3 class="govuk-heading-m">List of validation rules</h3>
 <p class="govuk-body">During application submission, several validation rules will run against the data provided to ensure it is valid. A number of these rules run synchronously before an <code style="color: #a71d5d; background-color: #f5f5f5">application_request_id</code> is returned and they are documented in the schema documentation. Other rules run asynchronously, after the <code style="color: #a71d5d; background-color: #f5f5f5">application_request_id</code> has been returned.</p>

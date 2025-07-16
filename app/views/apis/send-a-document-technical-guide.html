@@ -110,8 +110,9 @@
         </ul>
 
         <h3 class="govuk-heading-s">Upload a document</h3>
-        <p class="govuk-body">To upload a document, make a PUT request to the URL returned from the ‘Create an upload URL’ POST request above. This request should contain the document as the body content. A 200 HTTP code will be returned if the upload was
-          successful. Documents will asynchronously be virus scanned and validated. Issues found during this process will be surfaced via the Application information API. Do not modify the URL received in the response.</p>
+        <p class="govuk-body">To upload a document, make a PUT request to the URL returned from the ‘Create an upload URL’ POST request above. This request should contain the document as the body content. Do not add a <code style="color: #a71d5d; background-color: #f5f5f5">Content-Type</code> header. A 200 HTTP code will be returned if the upload was
+          successful.</p>
+        <p class="govuk-body">Documents will asynchronously be virus scanned and validated. Issues found during this process will be surfaced via the Application information API. Do not modify the URL received in the response.</p>
 
         <h2 class="govuk-heading-m" id="validation-rules">Validation rules</h2>
         <div>
