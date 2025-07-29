@@ -101,101 +101,93 @@
 <pre>
 <code class="language-json" style="background-color: #f3f2f1">
   {
-    "data": {
-      "submission_warning_understood": true,
-      "applicants": [
-        "Borrower1",
-        "Borrower2"
-      ],
-      "customer_reference": "CustomerRef",
-      "documents": {
-        "AP1": {
-          "type": "AP1",
-          "document_id": "4fd53325-d120-4366-b151-b006d0ef9a5d",
-          "document_metadata": {
+  "data": {
+    "submission_warning_understood": true,
+    "applicants": [
+      "Borrower1",
+      "Borrower2"
+    ],
+    "customer_reference": "CustomerRef",
+    "documents": {
+      "Deed": {
+        "type": "MRTG_DEED",
+        "document_id": "0d7bd3a5-1aec-4862-9fc9-f796dfc11d35",
+        "document_metadata": {
           "certification_statement_type": "CERTIFIED",
-          "document_filename": "e-AP1.pdf"
-          }
+          "document_filename": "Deed.pdf"
+        }
+      }
+    },
+    "application_lodger": {
+      "email": "valid.email@landregistry.gov.uk",
+      "type": "CONVEYANCER"
+    },
+    "parties": {
+      "Borrower1": {
+        "address_for_service_option": "NOT_REQUIRED",
+        "representation_type": "LODGING_CONVEYANCER",
+        "details": {
+          "type": "PRIVATE_INDIVIDUAL",
+          "forenames": "Tony",
+          "surname": "Bonito"
+        }
+      },
+      "Borrower2": {
+        "address_for_service_option": "NOT_REQUIRED",
+        "representation_type": "LODGING_CONVEYANCER",
+        "details": {
+          "type": "PRIVATE_INDIVIDUAL",
+          "forenames": "Toni",
+          "surname": "Bonito"
+        }
+      },
+      "TheBank": {
+        "address_for_service_option": "NOT_REQUIRED",
+        "representation_type": "LODGING_CONVEYANCER",
+        "details": {
+          "type": "UK_COMPANY",
+          "company_number": "12345",
+          "organisation_name": "Albion Home Loans Limited"
+        }
+      }
+    },
+    "titles": {
+      "MS305610": {
+        "disclosable_overriding_interests": "false",
+        "title_number": "MS305610",
+        "scope_details": {
+          "scope": "WHOLE",
+          "part_description": null
         },
-        "Deed": {
-          "type": "MRTG_DEED",
-          "document_id": "0d7bd3a5-1aec-4862-9fc9-f796dfc11d35",
-          "document_metadata": {
-            "certification_statement_type": "CERTIFIED",
-            "document_filename": "Deed.pdf"
-          }
-        }
-      },
-      "application_lodger": {
-        "email": "valid.email@landregistry.gov.uk",
-        "type": "CONVEYANCER"
-      },
-      "parties": {
-        "Borrower1": {
-          "address_for_service_option": "NOT_REQUIRED",
-          "representation_type": "LODGING_CONVEYANCER",
-          "details": {
-            "type": "PRIVATE_INDIVIDUAL",
-            "forenames": "Tony",
-            "surname": "Bonito"
-          }
+        "title_type": "REGISTER_TITLE"
+      }
+    },
+    "transactions": {
+      "Charge": {
+        "details": {
+          "type": "CHARGE",
+          "date": "2024-01-01",
+          "mdref": "MD006A",
+          "value": 120000
         },
-        "Borrower2": {
-          "address_for_service_option": "NOT_REQUIRED",
-          "representation_type": "LODGING_CONVEYANCER",
-          "details": {
-            "type": "PRIVATE_INDIVIDUAL",
-            "forenames": "Toni",
-            "surname": "Bonito"
-          }
-        },
-        "TheBank": {
-          "address_for_service_option": "NOT_REQUIRED",
-          "representation_type": "LODGING_CONVEYANCER",
-          "details": {
-            "type": "UK_COMPANY",
-            "company_number": "12345",
-            "organisation_name": "Albion Home Loans Limited"
-          }
-        }
-      },
-      "titles": {
-        "MS305610": {
-          "disclosable_overriding_interests": "false",
-          "title_number": "MS305610",
-          "scope_details": {
-            "scope": "WHOLE",
-            "part_description": null
-          },
-          "title_type": "REGISTER_TITLE"
-        }
-      },
-      "transactions": {
-        "Charge": {
-          "details": {
-            "type": "CHARGE",
-            "date": "2024-01-01",
-            "mdref": "MD006A",
-            "value": 120000
-          },
-          "documents": ["Deed"],
-          "priority": 1,
-          "fee_in_pence": 3000,
-          "party_roles": [{
-            "party_reference": "Borrower1",
-            "role": "BORROWER"
-          }, {
-            "party_reference": "Borrower2",
-            "role": "BORROWER"
-          }, {
-            "party_reference": "TheBank",
-            "role": "LENDER"
-          }],
-          "type": "C",
-          "title_references": ["MS305610"]
-        }
-      },
-      "type": "REGISTER_UPDATE"
+        "documents": ["Deed"],
+        "priority": 1,
+        "fee_in_pence": 3000,
+        "party_roles": [{
+          "party_reference": "Borrower1",
+          "role": "BORROWER"
+        }, {
+          "party_reference": "Borrower2",
+          "role": "BORROWER"
+        }, {
+          "party_reference": "TheBank",
+          "role": "LENDER"
+        }],
+        "type": "C",
+        "title_references": ["MS305610"]
+      }
+    },
+    "type": "REGISTER_UPDATE"
     }
   }
 
@@ -269,14 +261,6 @@
         }
       },
       "documents": {
-        "AP1": {
-          "document_id": "ed4f0f00-ff14-4f95-869b-9b11c9b3ac73",
-          "type": "AP1",
-          "document_metadata": {
-            "certification_statement_type": "CERTIFIED",
-            "document_filename": "e-AP1.pdf"
-          }
-        },
         "TR1": {
           "document_id": "a40d6fe0-bd45-4c49-b72a-0d80cf43db83",
           "type": "TR1",
@@ -293,7 +277,7 @@
             "forenames": "John",
             "surname": "Smith"
           },
-          "address_for_service_option": "NOT_REQUIRED",
+          "address_for_service_option": "PROVIDED_ADDRESS",
           "representation_type": "LODGING_CONVEYANCER",
           "addresses": "transferee_address"
         },
@@ -303,8 +287,13 @@
             "forenames": "Tony",
             "surname": "Bonito"
           },
+          "other_conveyancer": {
+            "full_name": "ABC Conveyancers",
+            "registered_address": "13 Coral Close, Tuffley, Gloucester, GL4 0RG",
+            "conveyancer_reference": "abc-conveyancers-ref"
+          },
           "address_for_service_option": "NOT_REQUIRED",
-          "representation_type": "LODGING_CONVEYANCER"
+          "representation_type": "OTHER_CONVEYANCER"
         },
         "Transferor2": {
           "details": {
@@ -312,8 +301,13 @@
             "forenames": "Toni",
             "surname": "Bonito"
           },
+          "other_conveyancer": {
+            "full_name": "ABC Conveyancers",
+            "registered_address": "13 Coral Close, Tuffley, Gloucester, GL4 0RG",
+            "conveyancer_reference": "abc-conveyancers-ref"
+          },
           "address_for_service_option": "NOT_REQUIRED",
-          "representation_type": "LODGING_CONVEYANCER"
+          "representation_type": "OTHER_CONVEYANCER"
         }
       },
       "applicants": [
@@ -421,104 +415,96 @@
 <pre>
 <code class="language-json" style="background-color: #f3f2f1">
   {
-    "data": {
-      "submission_warning_understood": true,
-      "applicants": [
-        "Borrower1",
-        "Borrower2"
-      ],
-      "customer_reference": "CustomerRef",
-      "documents": {
-        "AP1": {
-          "type": "AP1",
-          "document_id": "4fd53325-d120-4366-b151-b006d0ef9a5d",
-          "document_metadata": {
-            "certification_statement_type": "CERTIFIED",
-            "document_filename": "e-AP1.pdf"
-          }
-        },
-        "Deed": {
-          "type": "MRTG_DEED",
-          "document_id": "0d7bd3a5-1aec-4862-9fc9-f796dfc11d35",
-          "document_metadata": {
-            "certification_statement_type": "CERTIFIED",
-            "document_filename": "Deed.pdf"
-          }
+  "data": {
+    "submission_warning_understood": true,
+    "applicants": [
+      "Borrower1",
+      "Borrower2"
+    ],
+    "customer_reference": "CustomerRef",
+    "documents": {
+      "Deed": {
+        "type": "MRTG_DEED",
+        "document_id": "0d7bd3a5-1aec-4862-9fc9-f796dfc11d35",
+        "document_metadata": {
+          "certification_statement_type": "CERTIFIED",
+          "document_filename": "Deed.pdf"
+        }
+      }
+    },
+    "parties": {
+      "Borrower1": {
+        "representation_type": "LODGING_CONVEYANCER",
+        "details": {
+          "type": "PRIVATE_INDIVIDUAL",
+          "forenames": "Tony",
+          "surname": "Bonito"
         }
       },
-      "parties": {
-        "Borrower1": {
-          "representation_type": "LODGING_CONVEYANCER",
-          "details": {
-            "type": "PRIVATE_INDIVIDUAL",
-            "forenames": "Tony",
-            "surname": "Bonito"
-          }
-        },
-        "Borrower2": {
-          "representation_type": "LODGING_CONVEYANCER",
-          "details": {
-            "type": "PRIVATE_INDIVIDUAL",
-            "forenames": "Toni",
-            "surname": "Bonito"
-          }
-        },
-        "TheBank": {
-          "representation_type": "LODGING_CONVEYANCER",
-          "details": {
-            "type": "UK_COMPANY",
-            "company_number": "12345",
-            "organisation_name": "Albion Home Loans Limited"
-          }
+      "Borrower2": {
+        "representation_type": "LODGING_CONVEYANCER",
+        "details": {
+          "type": "PRIVATE_INDIVIDUAL",
+          "forenames": "Toni",
+          "surname": "Bonito"
         }
       },
-      "application_lodger": {
-        "email": "valid.email@landregistry.gov.uk",
-        "type": "CONVEYANCER"
-      },
-      "titles": {
-        "MS305610": {
-          "disclosable_overriding_interests": "false",
-          "title_number": "MS305610",
-          "scope_details": {
-            "scope": "WHOLE",
-            "part_description": null
+      "TheBank": {
+        "representation_type": "LODGING_CONVEYANCER",
+        "details": {
+          "type": "UK_COMPANY",
+          "company_number": "12345",
+          "organisation_name": "Albion Home Loans Limited"
+        }
+      }
+    },
+    "application_lodger": {
+      "email": "valid.email@landregistry.gov.uk",
+      "type": "CONVEYANCER"
+    },
+    "titles": {
+      "MS305610": {
+        "disclosable_overriding_interests": "false",
+        "title_number": "MS305610",
+        "scope_details": {
+          "scope": "WHOLE",
+          "part_description": null
+        },
+        "title_type": "REGISTER_TITLE"
+      }
+    },
+    "transactions": {
+      "Charge": {
+        "documents": [
+          "Deed"
+        ],
+        "type": "C",
+        "priority": 1,
+        "fee_in_pence": 3000,
+        "details": {
+          "type": "CHARGE",
+          "date": "3000-01-01",
+          "mdref": "MD006A"
+        },
+        "party_roles": [
+          {
+            "party_reference": "Borrower1",
+            "role": "BORROWER"
           },
-          "title_type": "REGISTER_TITLE"
-        }
-      },
-      "transactions": {
-        "Charge": {
-          "documents": [
-            "Deed"
-          ],
-          "type": "C",
-          "priority": 1,
-          "fee_in_pence": 3000,
-          "details": {
-            "type": "CHARGE",
-            "date": "3000-01-01",
-            "mdref": "MD006A"
+          {
+            "party_reference": "Borrower2",
+            "role": "BORROWER"
           },
-          "party_roles": [
-            {
-              "party_reference": "Borrower1",
-              "role": "BORROWER"
-            },
-            {
-              "party_reference": "Borrower2",
-              "role": "BORROWER"
-            },
-            {
-              "party_reference": "TheBank",
-              "role": "LENDER"
-            }
-          ]
-        }
-      },
-      "type": null
-    }
+          {
+            "party_reference": "TheBank",
+            "role": "LENDER"
+          }
+        ]
+      }
+    },
+    "type": null
   }
+}
 
 </code>
 </pre>
@@ -578,164 +564,156 @@
 <pre>
 <code class="language-json" style="background-color: #f3f2f1">
   {
-    "data": {
-      "submission_warning_understood": true,
-      "customer_reference": "CustomerRef",
-      "addresses": {
-        "transferee_address": {
-          "details": {
-            "type": "UK",
-            "uprn": 100040203976,
-            "organisation_name": null,
-            "department_name": null,
-            "sub_building_description": null,
-            "building_description": "Apartment 11",
-            "street": "113 Newton Street",
-            "dependent_street": null,
-            "dependent_locality": null,
-            "double_dependent_locality": null,
-            "post_town": "MANCHESTER",
-            "postcode": "M1 1AE",
-            "full_address": "Apartment 11 ,113 Newton Street, MANCHESTER, M1 1AE",
-            "care_of_name": "SP"
-          }
+  "data": {
+    "submission_warning_understood": true,
+    "customer_reference": "CustomerRef",
+    "addresses": {
+      "transferee_address": {
+        "details": {
+          "type": "UK",
+          "uprn": 100040203976,
+          "organisation_name": null,
+          "department_name": null,
+          "sub_building_description": null,
+          "building_description": "Apartment 11",
+          "street": "113 Newton Street",
+          "dependent_street": null,
+          "dependent_locality": null,
+          "double_dependent_locality": null,
+          "post_town": "MANCHESTER",
+          "postcode": "M1 1AE",
+          "full_address": "Apartment 11 ,113 Newton Street, MANCHESTER, M1 1AE",
+          "care_of_name": "SP"
+        }
+      }
+    },
+    "documents": {
+      "TR1": {
+        "document_id": "a40d6fe0-bd45-4c49-b72a-0d80cf43db83",
+        "type": "TR1",
+        "document_metadata": {
+          "certification_statement_type": "CERTIFIED",
+          "document_filename": "TR1.pdf"
         }
       },
-      "documents": {
-        "AP1": {
-          "document_id": "ed4f0f00-ff14-4f95-869b-9b11c9b3ac73",
-          "type": "AP1",
-          "document_metadata": {
-            "certification_statement_type": "CERTIFIED",
-            "document_filename": "e-AP1.pdf"
-          }
-        },
-        "TR1": {
-          "document_id": "a40d6fe0-bd45-4c49-b72a-0d80cf43db83",
-          "type": "TR1",
-          "document_metadata": {
-            "certification_statement_type": "CERTIFIED",
-            "document_filename": "TR1.pdf"
-          }
-        },
-        "Deed": {
-          "type": "MRTG_DEED",
-          "document_id": "e10f5369-a623-43fb-aeaa-5e02625e9f83",
-          "document_metadata": {
-            "certification_statement_type": "CERTIFIED",
-            "document_filename": "Deed.pdf"
-          }
+      "Deed": {
+        "type": "MRTG_DEED",
+        "document_id": "e10f5369-a623-43fb-aeaa-5e02625e9f83",
+        "document_metadata": {
+          "certification_statement_type": "CERTIFIED",
+          "document_filename": "Deed.pdf"
         }
+      }
+    },
+    "parties": {
+      "Transferee": {
+        "details": {
+          "type": "PRIVATE_INDIVIDUAL",
+          "forenames": "John",
+          "surname": "Smith"
+        },
+        "addresses": "transferee_address",
+        "representation_type": "LODGING_CONVEYANCER"
       },
-      "parties": {
-        "Transferee": {
-          "details": {
-            "type": "PRIVATE_INDIVIDUAL",
-            "forenames": "John",
-            "surname": "Smith"
-          },
-          "addresses": "transferee_address",
-          "representation_type": "LODGING_CONVEYANCER"
+      "Transferor1": {
+        "details": {
+          "type": "PRIVATE_INDIVIDUAL",
+          "forenames": "Tony",
+          "surname": "Bonito"
         },
-        "Transferor1": {
-          "details": {
-            "type": "PRIVATE_INDIVIDUAL",
-            "forenames": "Tony",
-            "surname": "Bonito"
-          },
-          "representation_type": "LODGING_CONVEYANCER"
+        "representation_type": "LODGING_CONVEYANCER"
+      },
+      "Transferor2": {
+        "details": {
+          "type": "PRIVATE_INDIVIDUAL",
+          "forenames": "Toni",
+          "surname": "Bonito"
         },
-        "Transferor2": {
-          "details": {
-            "type": "PRIVATE_INDIVIDUAL",
-            "forenames": "Toni",
-            "surname": "Bonito"
-          },
-          "representation_type": "LODGING_CONVEYANCER"
+        "representation_type": "LODGING_CONVEYANCER"
+      },
+      "TheBank": {
+        "details": {
+          "type": "UK_COMPANY",
+          "company_number": "12345",
+          "organisation_name": "Albion Home Loans Limited"
         },
-        "TheBank": {
-          "details": {
-            "type": "UK_COMPANY",
-            "company_number": "12345",
-            "organisation_name": "Albion Home Loans Limited"
-          },
-          "representation_type": "LODGING_CONVEYANCER"
+        "representation_type": "LODGING_CONVEYANCER"
+      }
+    },
+    "applicants": [
+      "Transferee"
+    ],
+    "application_lodger": {
+      "email": "valid.email@landregistry.gov.uk",
+      "type": "CONVEYANCER"
+    },
+    "titles": {
+      "MS312531": {
+        "disclosable_overriding_interests": "false",
+        "title_number": "MS312531",
+        "scope_details": {
+          "scope": "WHOLE",
+          "part_description": null
         }
-      },
-      "applicants": [
-        "Transferee"
-      ],
-      "application_lodger": {
-        "email": "valid.email@landregistry.gov.uk",
-        "type": "CONVEYANCER"
-      },
-      "titles": {
-        "MS312531": {
-          "disclosable_overriding_interests": "false",
-          "title_number": "MS312531",
-          "scope_details": {
-            "scope": "WHOLE",
-            "part_description": null
+      }
+    },
+    "transactions": {
+      "Transfer": {
+        "documents": [],
+        "type": "T",
+        "priority": 1,
+        "fee_in_pence": 3000,
+        "details": {
+          "type": "TRANSFER",
+          "title_guarantee_code": "FULL",
+          "additional_provisions_code": "NO_PROVISIONS",
+          "consideration_description": "string",
+          "consideration_type": "MONETARY_VALUE",
+          "value": 1300000,
+          "date": "2023-12-12"
+        },
+        "party_roles": [
+          {
+            "party_reference": "Transferee",
+            "role": "TRANSFEREE"
+          },
+          {
+            "party_reference": "Transferor1",
+            "role": "TRANSFEROR"
+          },
+          {
+            "party_reference": "Transferor2",
+            "role": "TRANSFEROR"
           }
-        }
+        ],
+        "title_references": ["MS312531"]
       },
-      "transactions": {
-        "Transfer": {
-          "documents": [],
-          "type": "T",
-          "priority": 1,
-          "fee_in_pence": 3000,
-          "details": {
-            "type": "TRANSFER",
-            "title_guarantee_code": "FULL",
-            "additional_provisions_code": "NO_PROVISIONS",
-            "consideration_description": "string",
-            "consideration_type": "MONETARY_VALUE",
-            "value": 1300000,
-            "date": "2023-12-12"
-          },
-          "party_roles": [
-            {
-              "party_reference": "Transferee",
-              "role": "TRANSFEREE"
-            },
-            {
-              "party_reference": "Transferor1",
-              "role": "TRANSFEROR"
-            },
-            {
-              "party_reference": "Transferor2",
-              "role": "TRANSFEROR"
-            }
-          ],
-          "title_references": ["MS312531"]
+      "Charge": {
+        "documents": [
+          "Deed"
+        ],
+        "type": "C",
+        "priority": 2,
+        "fee_in_pence": 3000,
+        "details": {
+          "type": "CHARGE",
+          "date": "2024-01-01",
+          "mdref": "MD007A"
         },
-        "Charge": {
-          "documents": [
-            "Deed"
-          ],
-          "type": "C",
-          "priority": 2,
-          "fee_in_pence": 3000,
-          "details": {
-            "type": "CHARGE",
-            "date": "2024-01-01",
-            "mdref": "MD007A"
+        "party_roles": [
+          {
+            "party_reference": "Transferee",
+            "role": "BORROWER"
           },
-          "party_roles": [
-            {
-              "party_reference": "Transferee",
-              "role": "BORROWER"
-            },
-            {
-              "party_reference": "TheBank",
-              "role": "LENDER"
-            }
-          ],
-          "title_references": ["MS312531"]
-        }
-      },
-      "type": "REGISTER_UPDATE"
+          {
+            "party_reference": "TheBank",
+            "role": "LENDER"
+          }
+        ],
+        "title_references": ["MS312531"]
+      }
+    },
+    "type": "REGISTER_UPDATE"
     }
   }
 
