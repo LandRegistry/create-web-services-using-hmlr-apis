@@ -62,8 +62,14 @@
 
 <p class="govuk-body">As this is just a prototype of the new developer pack, you may experience some issues. It has not been accessibility tested.</p>
 <div class="govuk-inset-text">
-<b>Version 2.1 June 2025:</b> This version has been agreed for build, considering the capacity of Team Bobin and use of Eleventy (11ty).<br>Luke Gilfoyle is the Front End Developer, working with Jamal Edwards as Business Analyst.</p>
-<p class="govuk-body">Notes regarding the build and process of 11ty can be found <a  class="govuk-link" href="/https://landregistryuk.sharepoint.com/:p:/r/sites/V-CADUCDteam/Shared%20Documents/General/Show%20and%20tell/Show%20and%20Tell%20250625%20-%20Copy.pptx?d=wd8ca4535499a4aa5bed4234822e1b7b9&csf=1&web=1&e=J9Icays">here</a>.</div>
+<b>Version 2.1 June 2025:</b> This version has been agreed for build, considering the capacity of Team Bobin and use of Eleventy (11ty).<br>Luke Gilfoyle is the Front End Developer, working with Jamal Edwards as Business Analyst. There are some items of the design that cannot be pushed into this version, due to the disruptions these could provide for users.<br>These are:</p>
+<ul class="govuk-list govuk-list--bullet">
+<li>Step by step navigation</li>
+<li>All APIs on Find an API page (linking to bgtechdocs)</li>
+<li>World search bar in header</li>
+</ul>
+These features can be found coded in the 'content-amends' branch and found in the latest <a  class="govuk-link" href="https://www.figma.com/design/5z3mSGo7xlBMOBcXqDoYST/Business-Gateway?node-id=2622-3466&t=U4PPDOnqexTDAzn4-1">Figma designs</a>.</p>
+<p class="govuk-body">Notes regarding the build and process of 11ty can be found <a  class="govuk-link" href="https://landregistryuk.sharepoint.com/:w:/r/sites/V-CADUCDteam/Shared%20Documents/General/Developer%20Pack/Eleventy%20notes.docx?d=w4203645ce7b54f5994dd8831e904fb93&csf=1&web=1&e=ldultV">here</a>.</div>
 
     </div>
   </div>
@@ -73,7 +79,7 @@
 </div>
 
 
-<a href="/v2.1/homepage.html" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+<a href="https://create-web-services-hmlr-apis-9c6b9d6e2a58.herokuapp.com/" role="button" draggable="false" class="govuk-button govuk-button--secondary" data-module="govuk-button">
 View developer pack
 </a>
 
@@ -89,8 +95,8 @@ View developer pack
         </span>
       </h2>
     </h2>
-    <p class="govuk-body">
-         This version considers what would be considered 'MVP' for Team Bobin build to meet October go-live.</p>
+    <p class="govuk-body">This version is following the feedback from the rounds of user research in February 2025, carried out by Katie Mason and Bryony Lindon. The objectives of this user research was to understand how users would naivgate to the VCAD related API information and consider non-technical users use of the documentation.</p>
+    <p class="govuk-body">Feedback has been analysed and <a class="govuk-link" href="https://landregistryuk.sharepoint.com/:x:/r/sites/DataSchema/Shared%20Documents/Customer%20Adoption/Dev%20Pack%20Feedback.xlsx?d=wb0dddc1ee59947b0b7d9fe53c5b905d2&csf=1&web=1&e=l2DJVW">actions</a> have been created and agreed.
     </p>
     </div>
     <div id="accordion-default-content-1" class="govuk-accordion__section-content">
@@ -99,11 +105,12 @@ View developer pack
     </h2>
     <p class="govuk-body">This prototype consists of:</p>
     <ul class="govuk-list govuk-list--bullet">
-      <li>User begins on <a class="govuk-link" href="/homepage_v2">homepage</a></li>
+      <li>User begins on <a class="govuk-link" href="/v2/homepage">homepage</a></li>
       <li>Testing guide is awaiting full content, pending approval of policy</li>
       <li>User can proceed to Find an API <br>This is a limited list for pages that are in scope for redesign. These APIs are Notifications and Submit an application to change the land register</li>
   </li>
       <li>Removal of "What's new" banner on the homepage</li>
+      <li>Remove references to 'Core APIs' and 'Service APIs'
     </ul>
 
     <table class="govuk-table">
@@ -140,61 +147,7 @@ View developer pack
   </table>
     </div>
   </div>
-  <div class="govuk-accordion__section">
-    <div class="govuk-accordion__section-header">
-      <h2 class="govuk-accordion__section-heading">
-        <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
-          Version 1.1- February 2025
-        </span>
-      </h2>
-    </h2>
-    <p class="govuk-body">
-       </p>
-    <p class="govuk-body">This version is following the feedback from the rounds of user research in February 2025, carried out by Katie Mason and Bryony Lindon. The objectives of this user research was to understand how users would naivgate to the VCAD related API information and consider non-technical users use of the documentation.</p>
-    <p class="govuk-body">Feedback has been analysed and <a class="govuk-link" href="https://landregistryuk.sharepoint.com/:x:/r/sites/DataSchema/Shared%20Documents/Customer%20Adoption/Dev%20Pack%20Feedback.xlsx?d=wb0dddc1ee59947b0b7d9fe53c5b905d2&csf=1&web=1&e=l2DJVW">actions</a> have been created and agreed.
-    </p>
-    </div>
-    <div id="accordion-default-content-1" class="govuk-accordion__section-content">
-    <h2 class="govuk-heading-s">
-      High level overview
-    </h2>
-    <p class="govuk-body">This prototype consists of:</p>
-    <ul class="govuk-list govuk-list--bullet">
-      <li>User begins on <a class="govuk-link" href="/v1.1/homepage">homepage</a></li>
-      <li>Testing guide is awaiting full content, pending approval of policy</li>
-      <li>"What's new" removed from the homepage following UR feedback</li>
-  </li>
-    </ul>
-    <table class="govuk-table">
-    <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">Prototype checklist</caption>
-    <tbody class="govuk-table__body">
-      <tr class="govuk-table__row">
-        <tr class="govuk-table__row">
-          <th scope="row" class="govuk-table__header">Status</th>
-          <td class="govuk-table__cell"><strong class="govuk-tag">
-    Experimental
-  </strong></td>
-        </tr>
-        <tr class="govuk-table__row">
-        <th scope="row" class="govuk-table__header">GOV.UK Prototype Kit version</th>
-        <td class="govuk-table__cell"> 13.16.2</td>
-      </tr>
-      <tr class="govuk-table__row">
-        <th scope="row" class="govuk-table__header">Prototype phase banner</th>
-        <td class="govuk-table__cell">Yes</td>
-      </tr>
-      <tr class="govuk-table__row">
-        <th scope="row" class="govuk-table__header">Keyboard navigation</th>
-        <td class="govuk-table__cell">Yes</td>
-      </tr>
-      <tr class="govuk-table__row">
-        <th scope="row" class="govuk-table__header">Screen reader</th>
-        <td class="govuk-table__cell">Testing required</td>
-      </tr>
-    </tbody>
-  </table>
-    </div>
-  </div>
+
   <div class="govuk-accordion__section">
     <div class="govuk-accordion__section-header">
       <h2 class="govuk-accordion__section-heading">
