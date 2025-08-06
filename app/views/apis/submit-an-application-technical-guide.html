@@ -735,8 +735,44 @@
 </details>
 
 <h3 class="govuk-heading-s">Transaction and document types</h3>
-<p class="govuk-body">The application submission API accepts several transaction and document types that describe the desired outcome of the application. These types are defined in the schema in their shortened form, but full definitions of each type can be viewed below:</p>
 
+<p class="govuk-body">The application submission API accepts several transaction and document types that describe the desired outcome of the application. </p>
+ 
+<p class="govuk-body">The Lease, Determination of lease and Surrender of lease transaction types no longer exist. A list of replacement transactions can be found below.</p>
+<p class="govuk-body">Instead of Lease, use: </p>
+<ul class="govuk-list govuk-list--bullet">
+<li><code style="color: #a71d5d; background-color: #f5f5f5">DFL1</code> New lease – other </li>
+<li><code style="color: #a71d5d; background-color: #f5f5f5">DL3</code> New lease – shared ownership </li>
+<li><code style="color: #a71d5d; background-color: #f5f5f5">DL4</code> New lease – right to buy or right to acquire </li>
+<li> <code style="color: #a71d5d; background-color: #f5f5f5">DL</code> Discontinuous lease – non-timeshare</li>
+<li><code style="color: #a71d5d; background-color: #f5f5f5">DTL</code> Discontinuous lease – timeshare </li>
+<li><code style="color: #a71d5d; background-color: #f5f5f5">RNT</code> Overriding lease granted under s.19, Landlord & Tenant (Covenants) Act 1995 </li>
+ <li><code style="color: #a71d5d; background-color: #f5f5f5">DFL5</code> Dispositionary first lease extension of a term </li>
+ </ul>
+ 
+<p class="govuk-body">Instead of Determination of lease, use:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li><code style="color: #a71d5d; background-color: #f5f5f5">LCATCO</code> Lease closure – of assured tenancies following court order </li>
+<li><code style="color: #a71d5d; background-color: #f5f5f5">LCBD</code> Lease closure – by disclaimer </li>
+<li><code style="color: #a71d5d; background-color: #f5f5f5">LCBET</code> Lease closure – by effluxion of time</li> 
+<li><code style="color: #a71d5d; background-color: #f5f5f5">LCBN</code> Lease closure – by notice </li>
+<li><code style="color: #a71d5d; background-color: #f5f5f5">LCF</code> Lease closure - forfeiture </li>
+<li><code style="color: #a71d5d; background-color: #f5f5f5">LCMRE</code> Lease closure – merger with reversionary estate </li>
+<li><code style="color: #a71d5d; background-color: #f5f5f5">LCOE</code> Lease closure – on enlargement </li>
+<li><code style="color: #a71d5d; background-color: #f5f5f5">LCOF</code> Lease closure – on frustration </li>
+</ul>
+
+<p class="govuk-body">Instead of Surrender of lease, use: </p>
+<ul class="govuk-list govuk-list--bullet">
+<li><code style="color: #a71d5d; background-color: #f5f5f5">LCSD</code> Lease closure – surrender by deed (not for value or reverse premium)</li> 
+<li><code style="color: #a71d5d; background-color: #f5f5f5">LCSDM</code> Lease closure – surrender by deed </li> 
+<li><code style="color: #a71d5d; background-color: #f5f5f5">LCSDMWT</code> Lease closure – surrender by deed (together with transfer) </li>
+<li><code style="color: #a71d5d; background-color: #f5f5f5">LCSDWT</code> Lease closure – surrender by deed with a transfer (not for value or reverse premium) </li>
+<li><code style="color: #a71d5d; background-color: #f5f5f5">LCSOL</code> Lease closure – surrender by operation of law (not for value or reverse premium) </li>
+<li><code style="color: #a71d5d; background-color: #f5f5f5">LCSOLM</code> Lease closure – surrender by operation of law </li>
+</ul>
+<p class="govuk-body">All transaction and document types are defined in the schema in their shortened form, but full definitions of each type can be viewed in the lists below: 
+ </p>
 <details class="govuk-details">
   <summary class="govuk-details__summary">
     <span class="govuk-details__summary-text">
@@ -5282,12 +5318,7 @@
 <h3 class="govuk-heading-s">Valid transaction types per application type</h3>
 <p class="govuk-body">For each application type (<code style="color: #a71d5d; background-color: #f5f5f5">REGISTER_UPDATE</code>, <code style="color: #a71d5d; background-color: #f5f5f5">DISPOSITIONARY_FIRST_LEASE</code>, <code style="color: #a71d5d; background-color: #f5f5f5">TRANSFER_OF_PART</code> and <code style="color: #a71d5d; background-color: #f5f5f5">REMOVE_JP1</code>), only certain transaction types can be supplied.</p>
 
-<p class="govuk-body">The following three transaction types no longer exist:</p>
-<ul class="govuk-list govuk-list--bullet">
-  <li>Lease</li>
-  <li>Determination of lease</li>
-  <li>Surrender of lease</li>
-</ul>
+
 
 <p class="govuk-body">The sections below detail which transaction types are valid for each application type.</p>
 </p>
