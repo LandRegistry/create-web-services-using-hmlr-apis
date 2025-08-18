@@ -89,7 +89,16 @@
         <div class="govuk-!-padding-bottom-3"></div>
         <img src="/public/images/ApplicationInformation_State_diagram.png" alt="A diagram showing how the Application Information API works.">
         <br><br>
-</p>  
+
+<p class="govuk-body">The state diagram demonstrates how the validation process works once an application has been submitted.</p>
+<p class="govuk-body">When the system starts the validation process, there are several potential outcomes which can each trigger a different response. A response may include:</p>
+<ul class="govuk-list--bullet">
+  <li class="govuk-body">informing the user that an application has passed validation and has been added to the day list</li>
+  <li class="govuk-body">informing the user that an application has passed validation but is awaiting priority as the day list is closed. Once the day list reopens, the application will be added</li>
+  <li class="govuk-body">informing the user that an application has not passed validation. In this case, the system will indicate whether a validation or system error has occurred. The user must correct the error and resubmit the application</li>
+</ul>
+<br><br>
+
       </div>
 <div class="govuk-!-padding-bottom-3"></div>
       
