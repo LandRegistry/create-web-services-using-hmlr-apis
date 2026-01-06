@@ -1,3 +1,8 @@
 {
-  "serviceName": "HM Land Registry developer pack"
+  "serviceName": "HM Land Registery Developer Pack",
+  "plugins": {
+    "govuk-frontend": {
+      "rebrand": false
+    }
+  }
 }
