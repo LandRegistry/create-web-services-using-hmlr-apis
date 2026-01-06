@@ -1,5 +1,5 @@
 {
-  "serviceName": "HM Land Registery Developer Pack",
+  "serviceName": "HM Land Registery Business Gateway Prototypes",
   "plugins": {
     "govuk-frontend": {
       "rebrand": false
