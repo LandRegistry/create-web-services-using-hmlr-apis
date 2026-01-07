@@ -4,18 +4,13 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 #}
 
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
 
-{% block scripts %}
-  {{ super() }}
-  <script src="/public/javascripts/highlight.min.js"></script>
-  <script>
-    window.addEventListener("load", function(){
-        hljs.highlightAll()
-    });
-  </script>
-{% endblock %}
+{% block header %}
 
-{% block stylesheets %}
-  {{ super() }}
-  <link href="/public/css/github.css" rel="stylesheet" type="text/css" />
+    {{ govukHeader() }}
+    {{ govukServiceNavigation({
+        serviceName: serviceName
+    })}}
+
 {% endblock %}

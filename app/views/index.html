@@ -10,17 +10,6 @@
 <div class="govuk-width-container {{ containerClasses }}">
 
 
-
-  {{ govukPhaseBanner({
-  tag: {
-  text: "Prototype",
-  classes: "govuk-tag--pink"
-  },
-  html: 'This is a prototype of a new design for the Business Gateway developer pack. You might experience problems.'
-  }) }}
-
-
-
   <main class="govuk-main-wrapper {{ mainClasses }}" id="main-content" role="main" {% if mainLang %}
     lang="{{ mainLang }}" {% endif %}>
 
@@ -45,7 +34,7 @@
                 <br>
                 <h2 class="govuk-heading-m">Active prototypes</h2>
 
-                <h3 class="govuk-heading-s govuk-link"><a href="/sandbox-proto/homepage">Sandbox documentation</a></h3>
+                <h3 class="govuk-heading-s govuk-link"><a href="/sandbox/how-to-test">Sandbox documentation</a></h3>
                 <p class="govuk-body">This prototype is being used to test the documentation for the new Sandbox environment.</p>
 
                 <h3 class="govuk-heading-s govuk-link"><a href="order-management-support-tool-429a39baf1eb.herokuapp.com">Integration Support Tool</a></h3>
