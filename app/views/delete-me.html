@@ -1,0 +1,79 @@
+{% extends "layouts/main.html" %}
+
+
+
+
+{% block main %}
+
+
+
+<div class="govuk-width-container {{ containerClasses }}">
+
+
+
+  {{ govukPhaseBanner({
+  tag: {
+  text: "Prototype",
+  classes: "govuk-tag--pink"
+  },
+  html: 'This is a prototype of a new design for the Business Gateway developer pack. You might experience problems.'
+  }) }}
+
+
+
+  <main class="govuk-main-wrapper {{ mainClasses }}" id="main-content" role="main" {% if mainLang %}
+    lang="{{ mainLang }}" {% endif %}>
+
+    {# <div style="background-color: #f3f2f1 ; padding: 10px;;">
+      <h1 class="govuk-heading-xl">
+        Create web services using Business Gateway APIs </h1>
+    </div> #}
+
+    <p>this page should be deleted, its a change maden just to allow testing of a deployment</p>
+
+    <div class="fullWidth">
+
+      <div class="app-width-container">
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full-from-desktop">
+            <div class="govuk-grid-row">
+              <div class="govuk-grid-column-two-thirds">
+                <h1 class="govuk-heading-xl app-masthead__title">Create web services using Business Gateway APIs
+                  prototypes</h1>
+                <p class="app-masthead__description govuk-body">This is where we host Business Gateway prototypes to be used for testing.</p>
+
+                <p class="govuk-body">These prototypes are not used as finalised, official services.</p>
+
+                <br>
+                <h2 class="govuk-heading-m">Active prototypes</h2>
+
+                <h3 class="govuk-heading-s"></h3>
+                <h3 class="govuk-heading-s"><a href="/sandbox-proto/homepage">Sandbox documentation</a></h3>
+                <p class="govuk-body">This prototype is being used to test the documentation for the new Sandbox environment.</p>
+
+
+
+                <h2 class="govuk-heading-m">Archived prototypes</h2>
+
+                <h3 class="govuk-heading-s"><a href="/ea-devpack/homepage">Developer pack, early adopters testing</a></h3>
+                <p class="govuk-body">This prototype was used with early adopters of the new APIs. It was replaced with the official Devpack in mid-2025.</p>
+
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  
+
+    
+
+</div>
+</div>
+</main>
+</div>
+
+
+{% endblock %}
