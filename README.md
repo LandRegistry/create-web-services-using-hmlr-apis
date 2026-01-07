@@ -1,8 +1,8 @@
-# Business Gateway Developer Pack
+# Business Gateway Prototypes
 
-## Private beta: 17th March 2025
 
-The 'main' branch is currently running on the [Business Gateway new design prototype](https://create-web-services-hmlr-apis-9c6b9d6e2a58.herokuapp.com/). This is currently being used by Early Adopters to integrate the new Submit an application to change the land register APIs (Send a document, submit an application, application information and notification).
+
+The 'main' branch is currently running on the [Business Gateway prototype](https://create-web-services-hmlr-apis-9c6b9d6e2a58.herokuapp.com/). This is currently being used to host existing and archived prototypes for the developer pack and other Business Gateway tools.
 
 ## Running this app
 
