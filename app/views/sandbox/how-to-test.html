@@ -115,8 +115,8 @@ GOV.UK page template – {{ test }} – GOV.UK Prototype Kit
       <li>Receive username and password for sandbox.</li>
       <li>Confirm the environment is reachable by making an API request.</li>
     </ol>
-    <h4 class="govuk-heading-s">Internal developers</h4>
-    <p class="govuk-body">If you are an internal developer, you should already have a test account
+    <h4 class="govuk-heading-s">Internal HMLR developers</h4>
+    <p class="govuk-body">If you are an internal HMLR developer, you should already have a test account
       set up. You won't need a TLS certification, and you can bypass the authenticate step.
     </p>
     <p class="govuk-body">You will receive a document upload URL once you have logged into the internal test account.
@@ -333,7 +333,6 @@ GOV.UK page template – {{ test }} – GOV.UK Prototype Kit
           </h2>
         </div>
         <div id="accordion-default-content-4" class="govuk-accordion__section-content">
-          <h4 class="govuk-heading-s">Names of natural persons</h4>
           <p class="govuk-body">Where a person’s name is required in test data, these are taken from a list of fake
             names. 
             These names are not taken from any living person, or organisation, or trademark, or
@@ -362,32 +361,29 @@ GOV.UK page template – {{ test }} – GOV.UK Prototype Kit
       data you submit to the sandbox should follow these principles.</p>
     <ol class="govuk-list govuk-list--number">
       <li>
-        <p class="govuk-body govuk-!-font-weight-bold">Trademark and copyright compliance</p>
+        <p class="govuk-body govuk-!-font-weight-bold">Comply with trademark and copyright</p>
         <p class="govuk-body">Test data should not be based on any trademark, copyrighted work,
           or the name of any current company or corporate body (except for statutory bodies which
           may be required to be present) or any living person. </p>
       </li>
       <li>
-        <p class="govuk-body govuk-!-font-weight-bold">Realistic-looking data</p>
+        <p class="govuk-body govuk-!-font-weight-bold">Test data should look like real data</p>
         <p class="govuk-body">Test data should look as much as possible like real data.
           For example, names should be a mix of single and double-barrelled names, with one,
           two, three, and four forenames. But you should never use real data or commercially
           sensitive data.</p>
       </li>
       <li>
-        <p class="govuk-body govuk-!-font-weight-bold">Easily identifiable as test data</p>
+        <p class="govuk-body govuk-!-font-weight-bold">Data should be easily identifiable as test data</p>
         <p class="govuk-body">Test data should be reasonably easy to recognise as test data.
           This is to help ensure that no test data is accidentally used in a live system.</p>
       </li>
       <li>
-        <p class="govuk-body govuk-!-font-weight-bold">Name patterns</p>
+        <p class="govuk-body govuk-!-font-weight-bold">Check for name patterns</p>
         <p class="govuk-body">If you see a name where the forenames are gemstones, flowers, herbs,
           or trees, and the surname is the name of a town or city in Europe, it is possible that this
           is test data.</p>
-      </li>
-      <li>
-        <p class="govuk-body govuk-!-font-weight-bold">Organisation and corporate body names</p>
-        <p class="govuk-body">If you see a name of a corporate body (such as a limited company or
+          <p class="govuk-body">If you see a name of a corporate body (such as a limited company or
           building society) which contains the word “test,” it is possible (and likely) that this is
           test data. For example, “Ruby Yew Test Mortgages PLC” is a mocked lender name, which may be
           used when submitting test applications with MD Reference “MD9TAB” – which is also mock data.</p>
