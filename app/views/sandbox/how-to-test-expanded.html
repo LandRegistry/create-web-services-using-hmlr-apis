@@ -4,29 +4,6 @@
 Prototype - HMLR Business Gateway Sandbox Documentation
 {% endblock %}
 
-{% block header %}
-
-{% from "govuk/components/header/macro.njk" import govukHeader %}
-
-{{ govukHeader({
-  homepageUrl: "#"
-}) }}
-
-{% endblock %}
-
-{% block beforeContent %}
-  {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
-
-  {{ govukPhaseBanner({
-  tag: {
-    text: "Prototype",
-    classes: "govuk-tag--pink"
-  },
-  html: 'This is a prototype of the sandbox documentation for the Business Gateway developer pack. You might experience problems.'
-}) }}
-
-{% endblock %}
-
 {% block content %}
 <div class="govuk-grid-row">
 </div>
@@ -49,6 +26,9 @@ Prototype - HMLR Business Gateway Sandbox Documentation
           <a href="#start-using-our-apis">Start using our APIs</a>
         </li>
         <li class="moj-side-navigation__item">
+          <a href="#how-to-submit-an-application-in-the-sandbox">How to submit an application in the sandbox</a>
+        </li>
+        <li class="moj-side-navigation__item">
           <a href="#test-data">Test data</a>
         </li>
         <li class="moj-side-navigation__item">
@@ -66,10 +46,6 @@ Prototype - HMLR Business Gateway Sandbox Documentation
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">Testing the Submit an application to change the register APIs</h1>
 
-    <div class="govuk-inset-text guidance-panel">
-            For its initial release, we are focusing on delivering the sandbox for the <a href="#" target="_blank">Submit an application to change the Land Register APIs</a>.<br><br>As we develop the sandbox, it will include our other APIs. In the meantime, the existing test stubs will run alongside the sandbox for a period but will eventually be phased out. 
-          </div>
-
     <!-- overview -->
     <h2 class="govuk-heading-m" id="overview">Overview</h2>
     <p class="govuk-body">Sandbox is a test system that allows you to test your full
@@ -80,6 +56,12 @@ Prototype - HMLR Business Gateway Sandbox Documentation
       risk and ensure changes are well-tested before deployment. This enables you to try new
       configurations, understand potential impacts, and catch issues early without impacting
       your live environment.
+    </p>
+    <p class="govuk-body">For its initial release, we are focusing on delivering the sandbox
+      for the ‘Submit an application to change the Land Register APIs’.
+    </p>
+    <p class="govuk-body">As we develop the sandbox, it will include our other APIs. In the meantime,
+      the existing test stubs will run alongside the sandbox for a period but will eventually be phased out. 
     </p>
 
     <!-- about the sandbox -->
@@ -113,7 +95,7 @@ Prototype - HMLR Business Gateway Sandbox Documentation
     <p class="govuk-body">Before you can use the sandbox, you will need your account credentials.
       To get your credentials, you will need a TLS client certificate and a password.
     </p>
-   <!--  <p class="govuk-body">If don't already have a certificate or password, email <a href="#">Channel Partners</a>
+    <p class="govuk-body">If don't already have a certificate or password, email <a href="#">Channel Partners</a>
       (channelpartners@landregistry.gov.uk)
       to request them.
     </p>
@@ -123,29 +105,19 @@ Prototype - HMLR Business Gateway Sandbox Documentation
       <li>Install or configure certificates (installation will vary based on your test setup).</li>
       <li>Receive username and password for sandbox.</li>
       <li>Confirm the environment is reachable by making an API request.</li>
-    </ol> -->
+    </ol>
 
 
     <!-- start using our apis -->
     <h2 class="govuk-heading-m" id="start-using-our-apis">Start using our APIs</h2>
-    <p class="govuk-body"><a href="#">View our APIs</a> from the Submit an application to change the Land Register
-      APIs to learn more about how they work.
+    <p class="govuk-body"><a href="#">View our APIs</a> from the ‘Submit an application to change the Land Register
+      APIs’
+      to learn more about how they work.
     </p>
-    <p class="govuk-body">To view the guidance, select the API you want to test in sandbox from the list. The APIs currently supported in the sandbox are:
+    <p class="govuk-body">To view the guidance, select the API you want to test in sandbox from the list.
     </p>
-    <ul class="govuk-list govuk-list--bullet">
-      <li><a href="#" target="_blank">Send a document API</a></li>
-      <li><a href="#" target="_blank">Submit an application API</a></li>
-      <li><a href="#" target="_blank">Notifications API</a></li>
-      <li><a href="#" target="_blank">Application information API</a></li>
-      <li><a href="#" target="_blank">Attach a document API</a></li>
-      <li><a href="#" target="_blank">Download a document API</a></li>
-    </ul>
 
-    <img src="/public/images/sandbox-api-flow-diagram.png"
-      alt="A diagram showing the submit an application to change the Land Register API" style="width: 700px">
-
-    <!-- <h3 class="govuk-heading-s">How does the API work</h3>
+    <h3 class="govuk-heading-s">How does the API work</h3>
     <h4 class="govuk-heading-s">Overview of the end-to-end process</h4>
     <p class="govuk-body">First, gather the necessary information from your customer and ensure all information has
       been checked. This should include the documents, in one of the accepted formats (such as PDF,
@@ -186,13 +158,59 @@ Prototype - HMLR Business Gateway Sandbox Documentation
     <p class="govuk-body">If the application proceeds to <code
         style="color: #a71d5d; background-color: #f5f5f5">ACCEPTED_PRIORITY_PROTECTED</code>, your application has been
       accepted
-      and has been assigned a priority.  </p> -->
+      and has been assigned a priority.  </p>
 
-    
+    <!-- how to submit an application in the sandbox -->
+    <h2 class="govuk-heading-m" id="how-to-submit-an-application-in-the-sandbox">How to submit an application in the
+      sandbox</h2>
+    <p>some content about this diagram</p>
+    <img src="/public/images/sandbox-api-flow-diagram.png"
+      alt="A diagram showing the submit an application to change the Land Register API" style="width: 700px">
     <div class="govuk-!-padding-bottom-3"></div>
-   
+    <!-- <h3 class="govuk-heading-s">At a glance</h3>
+    <ol class="govuk-list govuk-list--number">
+      <li>Request and retrieve the document upload URL</li>
+      <li>Upload the document and receive the document reference</li>
+      <li>Add the document reference/ID into the application</li>
+      <li>Submit the application for validation</li>
+      <li>Confirm submission is done</li>
+      <li>Find out if validation succeeded or failed</li>
+    </ol> -->
 
-    
+    <h3 class="govuk-heading-s">Example of submitting an application in the sandbox</h3>
+    <p class="govuk-body">Imagine you wish to submit a simple charge against a single title.</p>
+    <p class="govuk-body">To do this, you would follow these steps:</p>
+    <ol class="govuk-list govuk-list--number">
+      <li>Collect the relevant test title data. This should include all the details needed to
+        submit the application, such as:
+        <ul class="govuk-list govuk-list--bullet">
+          <li>the title number</li>
+          <li>the existing proprietors </li>
+          <li>the applicants</li>
+          <li>the details of the charge to be added </li>
+          <li>it should also include binary data for any documents required, in one of the accepted formats such as PDF,
+            JPG, GIF or TIFF </li>
+        </ul>
+      </li>
+      <li>Upload the documents (in this example, a Charge deed or CH1 form).<br><br>
+        To do this you need to obtain the document upload URL by calling by the API of your choice.
+        To obtain the document upload URL you must supply:
+        <ul class="govuk-list govuk-list--bullet">
+          <li>the size</li>
+          <li>the <code style="color: #a71d5d; background-color: #f5f5f5">sha256</code> hash of the document file</li>
+          <li>other information specified in the documentation</li>
+        </ul>
+        You must then record the identifier returned by the API of your choice. Once done, upload the
+        document (in the sandbox, this should be one of the supplied sample files).<br>
+      </li>
+      <li>Record the document ID in your system</li>
+      <li>Submit a new application by calling the API of your choice. You need to send a JSON object,
+        and the documents you mention should refer to the document IDs you got earlier.</li>
+      <li>Check if the application has passed or failed validation. If it has failed, review that
+        specific API from the <a href="#">Submit an application to change the Land Register APIs</a>. Validation in
+        sandbox follows the same as validation rules as those used in the live system</li>
+    </ol>
+
     <!-- Test data -->
     <h2 class="govuk-heading-m" id="test-data">Test data</h2>
     <p class="govuk-body">Test data within a sandbox environment is designed to mimic real-world data,
@@ -382,14 +400,11 @@ Prototype - HMLR Business Gateway Sandbox Documentation
       </li>
     </ol> -->
 
-    <div class="govuk-inset-text guidance-panel">
-            <h3 class="govuk-heading-s">Reporting test data errors</h3>
+    <h3 class="govuk-heading-s">Reporting test data errors</h3>
     <p class="govuk-body">If you see any data that is not referenced in this guide, it is likely we
       made an error.</p>
     <p class="govuk-body">Report any errors in deployment to <a href="#">Channel Partners</a>, or to the <a
-        href="#">Service Desk</a> if errors are affecting the live environment.</p> 
-          </div>
-    
+        href="#">Service Desk</a> if errors are affecting the live environment.</p>
 
 
     <!-- Testing scenarios -->
@@ -403,41 +418,6 @@ Prototype - HMLR Business Gateway Sandbox Documentation
       wish to run. For example, for a DJP (death of joint proprietor), the title must have two
       proprietors.
     </p>
-
-    <h3 class="govuk-heading-s">Example of submitting an application in the sandbox</h3>
-    <p class="govuk-body">Imagine you wish to submit a simple charge against a single title.</p>
-    <p class="govuk-body">To do this, you would follow these steps:</p>
-    <ol class="govuk-list govuk-list--number">
-      <li>Collect the relevant test title data. This should include all the details needed to
-        submit the application, such as:
-        <ul class="govuk-list govuk-list--bullet">
-          <li>the title number</li>
-          <li>the existing proprietors </li>
-          <li>the applicants</li>
-          <li>the details of the charge to be added </li>
-          <li>it should also include binary data for any documents required, in one of the accepted formats such as PDF,
-            JPG, GIF or TIFF </li>
-        </ul>
-      </li>
-      <li>Upload the documents (in this example, a Charge deed or CH1 form).<br><br>
-        To do this you need to obtain the document upload URL by calling by the API of your choice.
-        To obtain the document upload URL you must supply:
-        <ul class="govuk-list govuk-list--bullet">
-          <li>the size</li>
-          <li>the <code style="color: #a71d5d; background-color: #f5f5f5">sha256</code> hash of the document file</li>
-          <li>other information specified in the documentation</li>
-        </ul>
-        You must then record the identifier returned by the API of your choice. Once done, upload the
-        document (in the sandbox, this should be one of the supplied sample files).<br>
-      </li>
-      <li>Record the document ID in your system</li>
-      <li>Submit a new application by calling the API of your choice. You need to send a JSON object,
-        and the documents you mention should refer to the document IDs you got earlier.</li>
-      <li>Check if the application has passed or failed validation. If it has failed, review that
-        specific API from the <a href="#">Submit an application to change the Land Register APIs</a>. Validation in
-        sandbox follows the same as validation rules as those used in the live system</li>
-    </ol>
-
 
     <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
       <div class="govuk-accordion__section">
