@@ -9,20 +9,29 @@ Prototype - HMLR Business Gateway Sandbox Documentation
 {% from "govuk/components/header/macro.njk" import govukHeader %}
 
 {{ govukHeader({
-  homepageUrl: "#"
+homepageUrl: "#"
 }) }}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+<!-- and it's easy to individually load additional languages -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/go.min.js"></script>
+
+<script>hljs.highlightAll();</script>
 
 {% endblock %}
 
 {% block beforeContent %}
-  {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 
-  {{ govukPhaseBanner({
-  tag: {
-    text: "Prototype",
-    classes: "govuk-tag--pink"
-  },
-  html: 'This is a prototype of the sandbox documentation for the Business Gateway developer pack. You might experience problems.'
+{{ govukPhaseBanner({
+tag: {
+text: "Prototype",
+classes: "govuk-tag--pink"
+},
+html: 'This is a prototype of the sandbox documentation for the Business Gateway developer pack. You might experience
+problems.'
 }) }}
 
 {% endblock %}
@@ -67,8 +76,12 @@ Prototype - HMLR Business Gateway Sandbox Documentation
     <h1 class="govuk-heading-l">Testing the Submit an application to change the register APIs</h1>
 
     <div class="govuk-inset-text guidance-panel">
-            For its initial release, we are focusing on delivering the sandbox for the <a href="#" target="_blank">Submit an application to change the Land Register APIs</a>.<br><br>As we develop the sandbox, it will include our other APIs. In the meantime, the existing test stubs will run alongside the sandbox for a period but will eventually be phased out. 
-          </div>
+      For this initial release of the sandbox, we are focusing on delivering the sandbox for the <a href="#"
+        target="_blank">Submit an
+        application to change the Land Register APIs</a>.<br><br>As we develop the sandbox, it will include our other
+      APIs. In the meantime, the existing test stubs will run alongside the sandbox for a period but will eventually be
+      phased out. 
+    </div>
 
     <!-- overview -->
     <h2 class="govuk-heading-m" id="overview">Overview</h2>
@@ -113,7 +126,7 @@ Prototype - HMLR Business Gateway Sandbox Documentation
     <p class="govuk-body">Before you can use the sandbox, you will need your account credentials.
       To get your credentials, you will need a TLS client certificate and a password.
     </p>
-   <!--  <p class="govuk-body">If don't already have a certificate or password, email <a href="#">Channel Partners</a>
+    <!--  <p class="govuk-body">If don't already have a certificate or password, email <a href="#">Channel Partners</a>
       (channelpartners@landregistry.gov.uk)
       to request them.
     </p>
@@ -131,7 +144,8 @@ Prototype - HMLR Business Gateway Sandbox Documentation
     <p class="govuk-body"><a href="#">View our APIs</a> from the Submit an application to change the Land Register
       APIs to learn more about how they work.
     </p>
-    <p class="govuk-body">To view the guidance, select the API you want to test in sandbox from the list. The APIs currently supported in the sandbox are:
+    <p class="govuk-body">To view the guidance, select the API you want to test in sandbox from the list. The APIs
+      currently supported in the sandbox are:
     </p>
     <ul class="govuk-list govuk-list--bullet">
       <li><a href="#" target="_blank">Send a document API</a></li>
@@ -188,11 +202,11 @@ Prototype - HMLR Business Gateway Sandbox Documentation
       accepted
       and has been assigned a priority.  </p> -->
 
-    
-    <div class="govuk-!-padding-bottom-3"></div>
-   
 
-    
+    <div class="govuk-!-padding-bottom-3"></div>
+
+
+
     <!-- Test data -->
     <h2 class="govuk-heading-m" id="test-data">Test data</h2>
     <p class="govuk-body">Test data within a sandbox environment is designed to mimic real-world data,
@@ -383,13 +397,13 @@ Prototype - HMLR Business Gateway Sandbox Documentation
     </ol> -->
 
     <div class="govuk-inset-text guidance-panel">
-            <h3 class="govuk-heading-s">Reporting test data errors</h3>
-    <p class="govuk-body">If you see any data that is not referenced in this guide, it is likely we
-      made an error.</p>
-    <p class="govuk-body">Report any errors in deployment to <a href="#">Channel Partners</a>, or to the <a
-        href="#">Service Desk</a> if errors are affecting the live environment.</p> 
-          </div>
-    
+      <h3 class="govuk-heading-s">Reporting test data errors</h3>
+      <p class="govuk-body">If you see any data that is not referenced in this guide, it is likely we
+        made an error.</p>
+      <p class="govuk-body">Report any errors in deployment to <a href="#">Channel Partners</a>, or to the <a
+          href="#">Service Desk</a> if errors are affecting the live environment.</p> 
+    </div>
+
 
 
     <!-- Testing scenarios -->
@@ -790,20 +804,299 @@ Prototype - HMLR Business Gateway Sandbox Documentation
           </ol>
           <p class="govuk-body">This results in eight API calls.</p>
 
-          <h4 class="govuk-heading-s">Example of generated application data in JSON format</h4>
-          <div class="code-block-styling">
-          <pre>
-            <code class="language-json" style="background-color: #f3f2f1">
-                {
-                   "data": {
-                   "application_request_id": "3be62ad3-c542-452d-975e-6cd18d77196f"
-                          }
-                }
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                View example JSON for application
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <pre>
+<code class="language-json" style="background-color: #f3f2f1">
+  {  
+   "submission_warning_understood": true,  
+   "applicants": [  
+       "Seller1",  
+       "Seller2",  
+       "Buyer",  
+       "Buyer2"  
+   ],  
+   "addresses": {  
+       "Address1": {  
+           "details": {  
+               "type": "UK",  
+               "building_description": "4 Chanter Court",  
+               "street": "Bishop Westall Road",  
+               "post_town": "Exeter",  
+               "postcode": "EX2 6NH"  
+           }  
+       },  
+       "Address2": {  
+           "details": {  
+               "type": "UK",  
+               "building_description": "24",  
+               "street": "Briar Crescent",  
+               "post_town": "Exeter",  
+               "postcode": "EX2 6DU"  
+           }  
+       }  
+   },  
+   "parties": {  
+       "Seller1": {  
+           "representation_type": "LODGING_CONVEYANCER",  
+           "addresses": "Address1",  
+           "address_for_service_option": "PROVIDED_ADDRESS",  
+           "details": {  
+               "type": "PRIVATE_INDIVIDUAL",  
+               "forenames": "Garnet",  
+               "surname": "Riga"  
+           }  
+       },  
+       "Seller2": {  
+           "representation_type": "LODGING_CONVEYANCER",  
+           "addresses": "Address2",  
+           "address_for_service_option": "PROVIDED_ADDRESS",  
+           "details": {  
+               "type": "PRIVATE_INDIVIDUAL",  
+               "forenames": "Garnet Obsidian",  
+               "surname": "Courbevoie"  
+           }  
+       },  
+       "Buyer": {  
+           "representation_type": "LODGING_CONVEYANCER",  
+           "addresses": "Address2",  
+           "address_for_service_option": "PROVIDED_ADDRESS",  
+           "details": {  
+               "type": "PRIVATE_INDIVIDUAL",  
+               "forenames": "Madeup",  
+               "surname": "One"  
+           }  
+       },  
+       "Buyer2": {  
+           "representation_type": "LODGING_CONVEYANCER",  
+           "addresses": "Address2",  
+           "address_for_service_option": "PROVIDED_ADDRESS",  
+           "details": {  
+               "type": "PRIVATE_INDIVIDUAL",  
+               "forenames": "Madeup",  
+               "surname": "Two"  
+           }  
+       },  
+       "Lender": {  
+           "representation_type": "NOT_REQUIRED",  
+           "addresses": "Address1",  
+           "address_for_service_option": "PROVIDED_ADDRESS",  
+           "details": {  
+               "type": "UK_COMPANY",  
+               "organisation_name": "Ruby Yew Test Mortgages PLC",  
+               "company_number": "2294747"  
+           }  
+       }  
+   },  
+   "titles": {  
+       "title-1": {  
+           "title_number": "TT000100",  
+           "scope_details": {  
+               "scope": "WHOLE"  
+           },  
+           "disclosable_overriding_interests": false,  
+           "title_type": "ADDITIONAL_TITLE"  
+       },  
+       "title-2": {  
+           "title_number": "TT000400",  
+           "scope_details": {  
+               "scope": "WHOLE"  
+           },  
+           "disclosable_overriding_interests": false,  
+           "title_type": "ADDITIONAL_TITLE"  
+       }  
+   },  
+   "customer_reference": "ref-20251210150455357504",  
+   "application_lodger": {  
+       "email": "John.Doe@conveyencingcompany.co.uk",  
+       "type": "CONVEYANCER"  
+   },  
+   "jp1_reference": null,  
+   "total_fee_in_pence": 0,  
+   "transactions": {  
+       "transaction-001": {  
+           "type": "T",  
+           "title_references": [  
+               "title-1"  
+           ],  
+           "priority": 1,  
+           "documents": [  
+               "DOC1"  
+           ],  
+           "party_roles": [  
+               {  
+                   "party_reference": "Seller1",  
+                   "role": "TRANSFEROR",  
+                   "capacity": "NOT_REQUIRED"  
+               },  
+               {  
+                   "party_reference": "Seller2",  
+                   "role": "TRANSFEROR",  
+                   "capacity": "NOT_REQUIRED"  
+               },  
+               {  
+                   "party_reference": "Buyer",  
+                   "role": "TRANSFEREE",  
+                   "capacity": "NOT_REQUIRED"  
+               },  
+               {  
+                   "party_reference": "Buyer2",  
+                   "role": "TRANSFEREE",  
+                   "capacity": "NOT_REQUIRED"  
+               }  
+           ],  
+           "details": {  
+               "type": "TRANSFER",  
+               "value": 140000,  
+               "value_band": null,  
+               "date": "2024-08-13",  
+               "trust_declaration_type": "JOINT_TENANTS",  
+               "trust_details": null,  
+               "title_guarantee_code": "FULL",  
+               "additional_provisions_code": "NO_PROVISIONS",  
+               "additional_provisions": null,  
+               "consideration_type": "MONETARY_VALUE",  
+               "consideration_description": null,  
+               "full_value_of_property": 140000,  
+               "full_value_of_property_band": null,  
+               "outstanding_charge": 140000  
+           },  
+           "fee_in_pence": 3000  
+       },  
+       "transaction-002": {  
+           "type": "C",  
+           "title_references": [  
+               "title-1"  
+           ],  
+           "priority": 2,  
+           "documents": [  
+               "DOC2"  
+           ],  
+           "party_roles": [  
+               {  
+                   "party_reference": "Buyer",  
+                   "role": "BORROWER",  
+                   "capacity": "REGISTERED_PROPRIETOR"  
+               },  
+               {  
+                   "party_reference": "Buyer2",  
+                   "role": "BORROWER",  
+                   "capacity": "REGISTERED_PROPRIETOR"  
+               },  
+               {  
+                   "party_reference": "Lender",  
+                   "role": "LENDER",  
+                   "capacity": "NOT_REQUIRED"  
+               }  
+           ],  
+           "details": {  
+               "type": "CHARGE",  
+               "value": 140000,  
+               "mdref": "MD9TAB",  
+               "date": "2024-08-13",  
+               "value_band": {  
+                   "lower_value_band": 100001,  
+                   "upper_value_band": 200000  
+               },  
+               "full_value_of_property_band": {  
+                   "lower_value_band": 100001,  
+                   "upper_value_band": 200000  
+               },  
+               "outstanding_charge": null  
+           },  
+           "fee_in_pence": 0  
+       },  
+       "transaction-003": {  
+           "type": "C",  
+           "title_references": [  
+               "title-2"  
+           ],  
+           "priority": 3,  
+           "documents": [  
+               "DOC3"  
+           ],  
+           "party_roles": [  
+               {  
+                   "party_reference": "Buyer",  
+                   "role": "BORROWER",  
+                   "capacity": "REGISTERED_PROPRIETOR"  
+               },  
+               {  
+                   "party_reference": "Buyer2",  
+                   "role": "BORROWER",  
+                   "capacity": "REGISTERED_PROPRIETOR"  
+               },  
+               {  
+                   "party_reference": "Lender",  
+                   "role": "LENDER",  
+                   "capacity": "NOT_REQUIRED"  
+               }  
+           ],  
+           "details": {  
+               "type": "CHARGE",  
+               "value": 140000,  
+               "mdref": "MD9TAB",  
+               "date": "2024-08-13",  
+               "value_band": {  
+                   "lower_value_band": 100001,  
+                   "upper_value_band": 200000  
+               },  
+               "full_value_of_property_band": {  
+                   "lower_value_band": 100001,  
+                   "upper_value_band": 200000  
+               },  
+               "outstanding_charge": null  
+           },  
+           "fee_in_pence": 0  
+       }  
+   },  
+   "documents": {  
+       "DOC0": {  
+           "document_id": "d920204b-1399-4028-864c-b12202954ba2",  
+           "type": "AP1",  
+           "document_metadata": {  
+               "certification_statement_type": "CERTIFIED",  
+               "document_filename": "DOC0-AP1.pdf"  
+           }  
+       },  
+       "DOC1": {  
+           "document_id": "2acff1e9-889c-4cdc-a89c-5f564ec0072a",  
+           "type": "TR1",  
+           "document_metadata": {  
+               "certification_statement_type": "CERTIFIED",  
+               "document_filename": "DOC1-TR1.pdf"  
+           }  
+       },  
+       "DOC2": {  
+           "document_id": "f557261d-e047-49e0-86dd-b677288cc9a9",  
+           "type": "MRTG_DEED",  
+           "document_metadata": {  
+               "certification_statement_type": "CERTIFIED",  
+               "document_filename": "DOC2-MRTG_DEED.pdf"  
+           }  
+       },  
+       "DOC3": {  
+           "document_id": "09180ffe-b01c-44de-93e5-3ddddae63ee8",  
+           "type": "MRTG_DEED",  
+           "document_metadata": {  
+               "certification_statement_type": "CERTIFIED",  
+               "document_filename": "DOC3-MRTG_DEED.pdf"  
+           }  
+       }  
+   },  
+   "disagree_with_validation_results": [],  
+   "type": "REGISTER_UPDATE"  
+}
 
-            </code>
-          </pre>
-          </div>
-          <p>input the JSON here!</p>
+</code>
+</pre>
+            </div>
+          </details>
 
 
 
@@ -1013,8 +1306,306 @@ Prototype - HMLR Business Gateway Sandbox Documentation
             </tbody>
           </table>
 
-          <h4 class="govuk-heading-s">Example of the generated application data</h4>
-          <p class="govuk-body">put JSON here!</p>
+           <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                View example JSON for application
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <pre>
+<code class="language-json" style="background-color: #f3f2f1">
+  {  
+
+    "submission_warning_understood": true,  
+
+    "applicants": [  
+
+        "Borrower1",  
+
+        "Borrower2"  
+
+    ],  
+
+    "addresses": {  
+
+        "Address1": {  
+
+            "details": {  
+
+                "type": "UK",  
+
+                "building_description": "24",  
+
+                "street": "Briar Crescent",  
+
+                "post_town": "Exeter",  
+
+                "postcode": "EX2 6DU"  
+
+            }  
+
+        }  
+
+    },  
+
+    "parties": {  
+
+        "Borrower1": {  
+
+            "representation_type": "LODGING_CONVEYANCER",  
+
+            "addresses": "Address1",  
+
+            "address_for_service_option": "PROVIDED_ADDRESS",  
+
+            "details": {  
+
+                "type": "PRIVATE_INDIVIDUAL",  
+
+                "forenames": "Artichoke",  
+
+                "surname": "Waltz"  
+
+            }  
+
+        },  
+
+        "Borrower2": {  
+
+            "representation_type": "LODGING_CONVEYANCER",  
+
+            "addresses": "Address1",  
+
+            "address_for_service_option": "PROVIDED_ADDRESS",  
+
+            "details": {  
+
+                "type": "PRIVATE_INDIVIDUAL",  
+
+                "forenames": "Garnet Obsidian",  
+
+                "surname": "Courbevoie"  
+
+            }  
+
+        },  
+
+        "Lender": {  
+
+            "representation_type": "NOT_REQUIRED",  
+
+            "addresses": "Address1",  
+
+            "address_for_service_option": "PROVIDED_ADDRESS",  
+
+            "details": {  
+
+                "type": "UK_COMPANY",  
+
+                "organisation_name": "Ruby Yew Test Mortgages PLC",  
+
+                "company_number": "2294747"  
+
+            }  
+
+        }  
+
+    },  
+
+    "titles": {  
+
+        "title-1": {  
+
+            "title_number": "TT000400",  
+
+            "scope_details": {  
+
+                "scope": "WHOLE"  
+
+            },  
+
+            "disclosable_overriding_interests": false,  
+
+            "title_type": "ADDITIONAL_TITLE"  
+
+        }  
+
+    },  
+
+    "customer_reference": "ref-20251212165338113475",  
+
+    "application_lodger": {  
+
+        "email": "John.Doe@conveyencingcompany.co.uk",  
+
+        "type": "CONVEYANCER"  
+
+    },  
+
+    "jp1_reference": null,  
+
+    "total_fee_in_pence": 0,  
+
+    "transactions": {  
+
+        "transaction-001": {  
+
+            "type": "C",  
+
+            "title_references": [  
+
+                "title-1"  
+
+            ],  
+
+            "priority": 1,  
+
+            "documents": [  
+
+                "DOC1"  
+
+            ],  
+
+            "party_roles": [  
+
+                {  
+
+                    "party_reference": "Borrower1",  
+
+                    "role": "BORROWER",  
+
+                    "capacity": "REGISTERED_PROPRIETOR"  
+
+                },  
+
+                {  
+
+                    "party_reference": "Borrower2",  
+
+                    "role": "BORROWER",  
+
+                    "capacity": "REGISTERED_PROPRIETOR"  
+
+                },  
+
+                {  
+
+                    "party_reference": "Lender",  
+
+                    "role": "LENDER",  
+
+                    "capacity": "NOT_REQUIRED"  
+
+                }  
+
+            ],  
+
+            "details": {  
+
+                "type": "CHARGE",  
+
+                "value": 140000,  
+
+                "mdref": "MD9TAB",  
+
+                "date": "2024-08-13",  
+
+                "value_band": {  
+
+                    "lower_value_band": 100001,  
+
+                    "upper_value_band": 200000  
+
+                },  
+
+                "full_value_of_property_band": {  
+
+                    "lower_value_band": 100001,  
+
+                    "upper_value_band": 200000  
+
+                },  
+
+                "outstanding_charge": 123  
+
+            },  
+
+            "fee_in_pence": 3000  
+
+        }  
+
+    },  
+
+    "documents": {  
+
+        "DOC1": {  
+
+            "document_id": "70d5e5bf-50c1-48c2-8ecd-a2640dc5d570",  
+
+            "type": "MRTG_DEED",  
+
+            "document_metadata": {  
+
+                "certification_statement_type": "CERTIFIED",  
+
+                "document_filename": "DOC1-MRTG_DEED.pdf"  
+
+            }  
+
+        }  
+
+    },  
+
+    "disagree_with_validation_results": [],  
+
+    "type": "REGISTER_UPDATE"  
+
+}  
+
+  
+
+Example of validation failure data 
+
+  
+
+{  
+
+    "data": {  
+
+        "status": "VALIDATION_FAILED",  
+
+        "hmlr_reference": null,  
+
+        "priority_timestamp": null,  
+
+        "errors": [  
+
+            {  
+
+                "type": "all-proprietors-matched-to-borrowers",  
+
+                "detail": "1 proprietor(s) on title 'TT000400' cannot be matched to a borrower on transaction 'transaction-001'",  
+
+                "pointer": "/data/parties"  
+
+            }  
+
+        ],  
+
+        "warnings": [],  
+
+        "correspondences": null,  
+
+        "application_request_id": "74700416-d22c-49e7-9f2a-c168e7df121f"  
+
+    }  
+
+}  
+  </code>
+  </pre>
+  </div>
+  </details>
 
 
 
