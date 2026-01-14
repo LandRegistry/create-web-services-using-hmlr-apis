@@ -85,8 +85,7 @@ problems.'
 
     <!-- overview -->
     <h2 class="govuk-heading-m" id="overview">Overview</h2>
-    <p class="govuk-body">Sandbox is a test system that allows you to test your full
-      end-to-end scenarios in a secure, controlled environment. It offers a wide range
+    <p class="govuk-body">Sandbox is a test system that allows you to test your scenarios in a secure, controlled environment. It offers a wide range
       of test scenarios and provides realistic results, closely matching the live environment.
     </p>
     <p class="govuk-body">Sandbox supports safe, repeatable experimentation to help reduce
@@ -101,31 +100,28 @@ problems.'
       allows you to create unlimited test scenarios to optimise integration testing. 
       Sandbox simulates real test scenarios by providing test title data.
     </p>
-    <p class="govuk-body"> In sandbox, there is no limit to the type of application you can submit.
-      You can submit any kind of application with any combination of transactions and get realistic
-      results.
+    <p class="govuk-body"> In sandbox, you can submit any kind of application with any combination of transactions and get realistic
+      results, provided it is found within the <a href="/public/docs/test-title-data.docx" download>test title data</a>.
     </p>
     <p class="govuk-body">Sandbox simulates everything up to the submission or rejection of an
-      application. There are no further stages after this point. In addition, for successful
-      submissions, it also allows you to do the following:
-    </p>
-    <ul class="govuk-list govuk-list--bullet">
-      <li>testing of requisitions</li>
-      <li>under certain conditions, it will produce notifications for a requisition </li>
-    </ul>
-    <p>Validation is usually quicker in sandbox than in the live system. This is to allow
-      integrators to run automated tests in a reasonable time.</p>
+      application. There are no further stages after this point.</p>
+    <p>Validation has been made quicker in sandbox than in the live system, as it utilises artificial time constraints. For example, out of hours requests are returned instantly. This is to allow
+      integrators to run tests in a reasonable time.</p>
     <p>In sandbox, you may find that validation results are available in a few seconds.
-      But, in the live system, you may find that it takes a few minutes. However, you should
+      But, in the live system, you may find that it takes longer. However, you should
       not expect validation to complete immediately, and you must poll the notification API for
       validation results.
     </p>
 
     <!-- how to access the sandbox -->
     <h2 class="govuk-heading-m" id="how-to-access-the-sandbox">How to access the sandbox</h2>
-    <p class="govuk-body">Before you can use the sandbox, you will need your account credentials.
-      To get your credentials, you will need a TLS client certificate and a password.
-    </p>
+    <p>If you are an existing user of our APIs, you must:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>reuse your current test TLS certificate</li>
+      <li>request access credentials (a username and password) from the <a href="#">Channel Partners</a> (channelpartners@landregistry.gov.uk). You may have already recieved this as part of onboarding to use the sandbox environment</li>
+    </ul>
+
+    <p class="govuk-body">This sandbox is a closely managed test environment for the initial release, so access is controlled.</p>
     <!--  <p class="govuk-body">If don't already have a certificate or password, email <a href="#">Channel Partners</a>
       (channelpartners@landregistry.gov.uk)
       to request them.
@@ -224,6 +220,11 @@ problems.'
       have
       your own test data environment. This means you are able to use this test title data without it
       affecting anything.</p>
+    
+      <div class="govuk-inset-text guidance-panel">
+      <h3 class="govuk-heading-s">Limitations of test data</h3>
+      <p class="govuk-body">Currently, the test data only supports freehold titles.</p>
+        </div>
 
     <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
       <div class="govuk-accordion__section">
@@ -310,7 +311,7 @@ problems.'
           </h2>
         </div>
         <div id="accordion-default-content-4" class="govuk-accordion__section-content">
-          <p class="govuk-body">When submitting applications, use this <a href="/public/docs/Test_Title_Data_w_split.xlsx" download>list of MD Reference charges</a>.
+          <p class="govuk-body">When submitting applications, use this <a href="/public/docs/md_ref.xlsx" download>list of MD Reference charges</a>.
             These all
             begin with the
             characters MD9T.</p>
@@ -402,19 +403,18 @@ problems.'
       <h3 class="govuk-heading-s">Reporting test data errors</h3>
       <p class="govuk-body">If you see any data that is not referenced in this guide, it is likely we
         made an error.</p>
-      <p class="govuk-body">Report any errors in deployment to <a href="channelpartners@landregistry.gov.uk">Channel Partners</a>, or to the <a
-          href="https://customerhelp.landregistry.gov.uk/guide-page-external/?stepid=2b31bc48-eb96-eb11-b1ac-002248413956">Service Desk</a> if errors are affecting the live environment.</p> 
+      <p class="govuk-body">Report any errors in the sandbox to <a href="channelpartners@landregistry.gov.uk">Channel Partners</a> (channelpartners@landregistry.gov.uk).</p> 
     </div>
 
 
 
     <!-- Testing scenarios -->
     <h2 class="govuk-heading-m" id="testing-scenarios">Testing scenarios</h2>
-    <p class="govuk-body">There are an unlimited amount of possible test scenarios. It is not possible
-      to provide all test scenarios for this reason. </p>
+    <!-- <p class="govuk-body">There are an unlimited amount of possible test scenarios. It is not possible
+      to provide all test scenarios for this reason. </p> -->
     <p class="govuk-body">We have supplied an example of a successful and unsuccessful application submission.</p>
     <p class="govuk-body">Before you start the test scenarios, familiarise yourself with the
-      <a href="/public/docs/Test_Title_Data_w_split" download>test title data</a>. The title you choose should be suitable for the test you
+      <a href="/public/docs/test-title-data.docx" download>test title data</a>. The title you choose should be suitable for the test you
       wish to run. For example, for a DJP (death of joint proprietor), the title must have two
       proprietors.
     </p>
@@ -446,7 +446,7 @@ problems.'
         document (in the sandbox, this should be one of the supplied sample files).<br>
       </li>
       <li>Record the document ID in your system</li>
-      <li>Submit a new application by calling the API of your choice. You need to send a JSON object,
+      <li>Submit a new application to change the Land Register by calling the appropriate API. You need to send a JSON object,
         and the documents you mention should refer to the document IDs you got earlier.</li>
       <li>Check if the application has passed or failed validation. If it has failed, review that
         specific API from the <a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/">Submit an application to change the Land Register APIs</a>. Validation in
@@ -1622,8 +1622,8 @@ Example of validation failure data
     <!-- validation rules -->
     <h2 class="govuk-heading-m" id="validation-rules">Validation rules</h2>
     <p class="govuk-body">The sandbox follows the same validation rules as the
-      ones used in the live system, and it supplies almost-complete coverage of
-      the validation phases.</p>
+     live system, and it supplies coverage of
+      all validation phases, with the help of test data.</p>
     <p class="govuk-body">To learn about the API validation rules, review the
       API guidance in the <a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/">Submit an application to change the Land Register APIs</a>.</p>
 
