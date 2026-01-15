@@ -58,6 +58,9 @@ problems.'
           <a href="#start-using-our-apis">Start using our APIs</a>
         </li>
         <li class="moj-side-navigation__item">
+          <a href="#validation-rules">Validation rules</a>
+        </li>
+        <li class="moj-side-navigation__item">
           <a href="#test-data">Test data</a>
         </li>
         <li class="moj-side-navigation__item">
@@ -65,9 +68,6 @@ problems.'
         </li>
         <li class="moj-side-navigation__item">
           <a href="#data-policy">Data policy</a>
-        </li>
-        <li class="moj-side-navigation__item">
-          <a href="#validation-rules">Validation rules</a>
         </li>
       </ul>
     </nav>
@@ -151,11 +151,19 @@ problems.'
       <li><a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/attach-a-document/1.0" target="_blank">Attach a document API</a></li>
       <li><a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/download-a-document/1.0" target="_blank">Download a document API</a></li>
     </ul>
+    <p class="govuk-body">Coming soon to the sandbox:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li><a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/attach-a-message/1.0" target="_blank">Attach a message API</a></li>
+    </ul>
     <br><br>
     <h3 class="govuk-heading-s">The APIs at a glance</h3>
 
     <img src="/public/images/sandbox-api-flow-diagram.png"
       alt="A diagram showing the submit an application to change the Land Register API" style="width: 700px">
+
+    <h3 class="govuk-heading-s">Accessing API endpoints for use with the sandbox environment</h3>
+    <p class="govuk-body">The sandbox environment uses diffrent API endpoints than the live environment. Those endpoints can be found in the API specification for the sandbox.</p>
+    <p class="govuk-body"><a href="https://bgtest.landregistry.gov.uk/bg2sandbox/api" target="_blank">View API specification</a></p>
 
     <!-- <h3 class="govuk-heading-s">How does the API work</h3>
     <h4 class="govuk-heading-s">Overview of the end-to-end process</h4>
@@ -444,18 +452,18 @@ problems.'
         </ul>
       </li>
       <li>Upload the documents (in this example, a Charge deed or CH1 form).<br><br>
-        To do this you need to obtain the document upload URL by calling by the API of your choice.
+        To do this you need to obtain the document upload URL by calling by the <a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/send-a-document/1.0/" target="_blank">Send a document API</a>.
         To obtain the document upload URL you must supply:
         <ul class="govuk-list govuk-list--bullet">
           <li>the size</li>
           <li>the <code style="color: #a71d5d; background-color: #f5f5f5">sha256</code> hash of the document file</li>
           <li>other information specified in the documentation</li>
         </ul>
-        You must then record the identifier returned by the API of your choice. Once done, upload the
-        document (in the sandbox, this should be one of the supplied sample files).<br>
+        You must then record the identifier returned by the Send a document API. Once done, upload the
+        document (this should be one of the supplied sample files).<br>
       </li>
-      <li>Record the document ID in your system</li>
-      <li>Submit a new application to change the Land Register by calling the appropriate API. You need to send a JSON object,
+      <li>Record the document ID in your system.</li>
+      <li>Submit a new application to change the Land Register by calling the <a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0/" target="_blank">Submit an application API</a>. You need to send a JSON object,
         and the documents you mention should refer to the document IDs you got earlier.</li>
       <li>Check if the application has passed or failed validation. If it has failed, review that
         specific API from the <a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/">Submit an application to change the Land Register APIs</a>. Validation in
