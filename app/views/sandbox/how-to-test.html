@@ -12,10 +12,11 @@ Prototype - HMLR Business Gateway Sandbox Documentation
 homepageUrl: "#"
 }) }}
 
+<!-- adding highlight.js for code snippets -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
 
-<!-- and it's easy to individually load additional languages -->
+<!-- individually load additional languages -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/go.min.js"></script>
 
 <script>hljs.highlightAll();</script>
@@ -73,14 +74,14 @@ problems.'
     </nav>
   </div>
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-l">Testing the Submit an application to change the register APIs</h1>
+    <h1 class="govuk-heading-l">Testing the Submit an application to change the Land Register APIs</h1>
 
     <div class="govuk-inset-text guidance-panel">
       For this initial release of the sandbox, we are focusing on simulating APIs from the <a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/"
         target="_blank">Submit an
         application to change the Land Register APIs</a> up until the point of application acceptance.
       <br><br>
-      Help us improve this page and the developer pack by providing feedback via <a href="https://forms.office.com/e/iswB5tf1z7" target="_blank">this form</a>.
+      Help us improve this page and the developer pack by providing feedback via <a href="https://forms.office.com/e/iswB5tf1z7" target="_blank">this form</a>. Your feedback is valuable to us and will directly inform future improvements to the sandbox.
     </div>
 
     <!-- overview -->
@@ -116,7 +117,7 @@ problems.'
     <p class="govuk-body"><a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/">View our APIs</a> from the Submit an application to change the Land Register
       APIs to learn more about how they work. To view the guidance, select the API you want to test in the sandbox from the list.
     </p>
-    <p class="govuk-body">In the sandbox, use version 1.0 of the APIs. This is to match version 1.0 which is used in the live environment.
+    <p class="govuk-body">In the sandbox, use version 1.0 of the APIs.
     </p>
      <p class="govuk-body">The APIs currently supported in the sandbox are:
     </p>
@@ -131,7 +132,7 @@ problems.'
     <p class="govuk-body">Provides all notification types that are sent up to the point of an application being accepted or rejected. </p>
     
     <h3 class="govuk-heading-s"><a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/application-information/1.0" target="_blank">Application information API (Version 1.0)</a></h3>
-    <p class="govuk-body">Provides detailed information about a specific application. Will not include any correspondence.</p>
+    <p class="govuk-body">Provides detailed information about a specific application, such as getting the latest application status including validation failures. Will not include any correspondence.</p>
   
     <!-- limitations -->
     <h2 class="govuk-heading-m" id="limitations">Limitations</h2>
@@ -146,10 +147,10 @@ problems.'
     </p>
     <ul class="govuk-list govuk-list--bullet">
       <li>upload files larger than 100KB – we have provided a <a href="" target="_blank">sample file</a> that meets the limit for you to use. </li>
-      <li>view post-accepted statuses, which includes completed and cancelled.</li>
-      <li>reply to a requisition with documents and messages. </li>
-      <li>access requisition documents, completion documents and other correspondence. </li>
-      <li>receive notifications that occur after the acceptance or rejection of an application. </li>
+      <li>view post-accepted statuses, which includes completed and cancelled</li>
+      <li>reply to a requisition with documents and messages</li>
+      <li>access requisition documents, completion documents and other correspondence</li>
+      <li>receive notifications that occur after the acceptance or rejection of an application</li>
     </ul>
     <br><br>
     <h3 class="govuk-heading-s">The sandbox application flow</h3>
@@ -228,9 +229,7 @@ problems.'
         </div>
         <div id="accordion-default-content-1" class="govuk-accordion__section-content">
           <p class="govuk-body"><a href="/public/docs/test-title-data.docx" download>Download the list of generated titles</a>. This list includes where they
-            have
-            charges, the chargee
-            (for example a lender, or charge proprietor).</p>
+            have charges, the chargee (for example a lender, or charge proprietor).</p>
           <p class="govuk-body">All sandbox titles start with 'TT'. The numbers are made up to supply synthetic data and
             meet specific conditions, and don’t match real titles. </p>
           <p class="govuk-body">There are groups of synthetic titles with similar restrictions and numbers of
