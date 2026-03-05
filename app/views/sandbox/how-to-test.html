@@ -77,26 +77,31 @@ problems.'
     <h1 class="govuk-heading-l">Testing the Submit an application to change the Land Register APIs</h1>
 
     <div class="govuk-inset-text guidance-panel">
-      For this initial release of the sandbox, we are focusing on simulating APIs from the <a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/"
+      For this initial release of the sandbox, we are focusing on simulating APIs from the <a
+        href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/"
         target="_blank">Submit an
         application to change the Land Register APIs</a> up until the point of application acceptance.
       <br><br>
-      Help us improve this page and the developer pack by providing feedback via <a href="https://forms.office.com/e/iswB5tf1z7" target="_blank">this form</a>. Your feedback is valuable to us and will directly inform future improvements to the sandbox.
+      Help us improve this page and the developer pack by providing feedback via <a
+        href="https://forms.office.com/e/iswB5tf1z7" target="_blank">this form</a>. Your feedback is valuable to us and
+      will directly inform future improvements to the sandbox.
     </div>
 
     <!-- overview -->
     <h2 class="govuk-heading-m" id="overview">Overview</h2>
-    <p class="govuk-body">The sandbox is a secure, controlled test system that provides your developers 
-      with an integration environment. It enables repeatable experimentation so you can safely explore configuration, 
-      understand potential impacts, and identify issues early. The sandbox does not affect HM Land Registry’s live 
-      production register and will not incur fees. 
+    <p class="govuk-body">The sandbox is a secure, controlled test system that provides your developers
+      with an integration environment. It enables repeatable experimentation so you can safely explore configuration,
+      understand potential impacts, and identify issues early. The sandbox does not affect HM Land Registry’s live
+      production register and will not incur fees.
     </p>
-    <p class="govuk-body">The sandbox simulates real test scenarios by providing dummy data, called  <a href="#test-data">test title data</a>. 
-      It simulates everything up to acceptance or rejection of an application. The sandbox does not currently support 
-      further stages  - applications won't be processed, completed, or cancelled. Correspondence and completion 
-      documents will not be issued for downloading. 
+    <p class="govuk-body">The sandbox simulates real test scenarios by providing dummy data, called  <a
+        href="#test-data">test title data</a>.
+      It simulates everything up to acceptance or rejection of an application. The sandbox does not currently support
+      further stages - applications won't be processed, completed, or cancelled. Correspondence and completion
+      documents will not be issued for downloading.
     </p>
-      <p class="govuk-body">You may find that processing times vary and application validation will not always match the live system.   
+    <p class="govuk-body">You may find that processing times vary and application validation will not always match the
+      live system.
     </p>
 
     <!-- how to access the sandbox -->
@@ -104,49 +109,71 @@ problems.'
     <p>If you are an existing user of our APIs, you must:</p>
     <ul class="govuk-list govuk-list--bullet">
       <li>reuse your current test TLS certificate</li>
-      <li>request access credentials (a username and password) or a new SSl test certificate from <a href="mailto:channelpartners@landregistry.gov.uk">Channel Partners</a> (channelpartners@landregistry.gov.uk). You may have already recieved this as part of onboarding to use the sandbox environment</li>
-      <li>call the APIs from the address <code style="color: #a71d5d; background-color: #f5f5f5">https://bgtest.landregistry.gov.uk/bg2sandbox/api</code></li>
+      <li>request access credentials (a username and password) or a new SSl test certificate from <a
+          href="mailto:channelpartners@landregistry.gov.uk">Channel Partners</a> (channelpartners@landregistry.gov.uk).
+        You may have already recieved this as part of onboarding to use the sandbox environment</li>
+      <li>call the APIs from the address <code
+          style="color: #a71d5d; background-color: #f5f5f5">https://bgtest.landregistry.gov.uk/bg2sandbox/api</code>
+      </li>
     </ul>
 
-    <p class="govuk-body">This sandbox is a closely managed test environment for the initial release, so access is controlled.</p>
-  
+    <p class="govuk-body">This sandbox is a closely managed test environment for the initial release, so access is
+      controlled.</p>
+
 
 
     <!-- start using our apis -->
     <h2 class="govuk-heading-m" id="start-using-our-apis">Start using our APIs</h2>
-    <p class="govuk-body"><a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/">View our APIs</a> from the Submit an application to change the Land Register
-      APIs to learn more about how they work. To view the guidance, select the API you want to test in the sandbox from the list.
+    <p class="govuk-body"><a
+        href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/">View
+        our APIs</a> from the Submit an application to change the Land Register
+      APIs to learn more about how they work. To view the guidance, select the API you want to test in the sandbox from
+      the list.
     </p>
     <p class="govuk-body">In the sandbox, use version 1.0 of the APIs.
     </p>
-     <p class="govuk-body">The APIs currently supported in the sandbox are:
+    <p class="govuk-body">The APIs currently supported in the sandbox are:
     </p>
-    <h3 class="govuk-heading-s"><a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/send-a-document/1.0" target="_blank">Send a document API (Version 1.0)</a></h3>
-    <p class="govuk-body">Allows the request of an upload URL, uploading documents and provides partial security checks.</p>
-    <p class="govuk-body">The sandbox currently supports a restricted file upload size of 100KB. We have provided a sample file that meets this size limit for you to use. <a href="/public/docs/sample-document.pdf" download>Download the sample file</a> to use in sandbox testing. </p>
-    
-    <h3 class="govuk-heading-s"><a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0" target="_blank">Submit an application API (Version 1.0)</a></h3>
-    <p class="govuk-body">Allows for submission of an application up to the point of acceptance or rejection. Will not include cancelled and completed.</p>
-    
-    <h3 class="govuk-heading-s"><a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/notifications/1.0" target="_blank">Notifications API (Version 1.0)</a></h3>
-    <p class="govuk-body">Provides all notification types that are sent up to the point of an application being accepted or rejected. </p>
-    
-    <h3 class="govuk-heading-s"><a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/application-information/1.0" target="_blank">Application information API (Version 1.0)</a></h3>
-    <p class="govuk-body">Provides detailed information about a specific application, such as getting the latest application status including validation failures. Will not include any correspondence.</p>
-  
+    <h3 class="govuk-heading-s"><a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/send-a-document/1.0"
+        target="_blank">Send a document API (Version 1.0)</a></h3>
+    <p class="govuk-body">Allows the request of an upload URL, uploading documents and provides partial security checks.
+    </p>
+    <p class="govuk-body">The sandbox currently supports a restricted file upload size of 100KB. We have provided a
+      sample file that meets this size limit for you to use. <a href="/public/docs/sample-document.pdf"
+        download>Download the sample file</a> to use in sandbox testing. </p>
+
+    <h3 class="govuk-heading-s"><a
+        href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0" target="_blank">Submit
+        an application API (Version 1.0)</a></h3>
+    <p class="govuk-body">Allows for submission of an application up to the point of acceptance or rejection. Will not
+      include cancelled and completed.</p>
+
+    <h3 class="govuk-heading-s"><a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/notifications/1.0"
+        target="_blank">Notifications API (Version 1.0)</a></h3>
+    <p class="govuk-body">Provides all notification types that are sent up to the point of an application being accepted
+      or rejected. </p>
+
+    <h3 class="govuk-heading-s"><a
+        href="https://landregistry.github.io/bg-dev-pack-redesign/apis/application-information/1.0"
+        target="_blank">Application information API (Version 1.0)</a></h3>
+    <p class="govuk-body">Provides detailed information about a specific application, such as getting the latest
+      application status including validation failures. Will not include any correspondence.</p>
+
     <!-- limitations -->
     <h2 class="govuk-heading-m" id="limitations">Limitations</h2>
 
-    <p class="govuk-body">As this is an early release of the sandbox, some functionality is not yet available. 
+    <p class="govuk-body">As this is an early release of the sandbox, some functionality is not yet available.
       We have provided a list of known limitations, but this is not an exhaustive list.
     </p>
     <p class="govuk-body">We’ll continue to improve and resolve these limitations as we develop the sandbox.
-      Please let us know if you encounter any unexpected limitations. 
+      <a href="https://forms.office.com/e/iswB5tf1z7" target="_blank">Please let us know if you encounter any unexpected
+        limitations.</a>
     </p>
-    <p class="govuk-body">Currently, the sandbox is unable to: 
+    <p class="govuk-body">Currently, the sandbox is unable to:
     </p>
     <ul class="govuk-list govuk-list--bullet">
-      <li>upload files larger than 100KB – we have provided a <a href="/public/docs/sample-document.pdf" download>sample file</a> that meets the limit for you to use. </li>
+      <li>upload files larger than 100KB – we have provided a <a href="/public/docs/sample-document.pdf" download>sample
+          file</a> that meets the limit for you to use. </li>
       <li>view post-accepted statuses, which includes completed and cancelled</li>
       <li>reply to a requisition with documents and messages</li>
       <li>access requisition documents, completion documents and other correspondence</li>
@@ -154,41 +181,49 @@ problems.'
     </ul>
     <br><br>
     <h3 class="govuk-heading-s">The sandbox application flow</h3>
-      <p class="govuk-body">This diagram shows the APIs the sandbox currently supports and how they fit together in the sandbox journey. </p>
-      <p class="govuk-body">The sandbox can simulate up to the point of acceptance or rejection of an application.</p>
+    <p class="govuk-body">This diagram shows the APIs the sandbox currently supports and how they fit together in the
+      sandbox journey. </p>
+    <p class="govuk-body">The sandbox can simulate up to the point of acceptance or rejection of an application.</p>
 
-      <img src="/public/images/sandbox-api-diagram-mvp.png"
+    <img src="/public/images/sandbox-api-diagram-mvp.png"
       alt="A diagram showing the submit an application to change the Land Register API" style="width: 700px">
 
-      <p class="govuk-body">The sandbox can simulate up to the point of acceptance or rejection of an application. Therefore it cannot simulate: </p>
+    <p class="govuk-body">The sandbox can simulate up to the point of acceptance or rejection of an application.
+      Therefore it cannot simulate: </p>
 
-      <ul class="govuk-list govuk-list--bullet">
-        <li>Application information API
-          <ul>
-            <li>Cancelled stage</li>
-            <li>Complete stage</li>
-            <li>Requisitions</li>
-          </ul>
-        </li>
-        <li>Attach a message API</li>
-        <li>Attach a document API</li>
-        <li>Download a document API</li>
-        <li>Notifications API
-          <ul>
-            <li>Cancelled</li>
-            <li>Completed</li>
-            <li>Correspondence</li>
-          </ul>
-        </li>
-      </ul>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Application information API
+        <ul>
+          <li>Cancelled stage</li>
+          <li>Complete stage</li>
+          <li>Requisitions</li>
+        </ul>
+      </li>
+      <li>Attach a message API</li>
+      <li>Attach a document API</li>
+      <li>Download a document API</li>
+      <li>Notifications API
+        <ul>
+          <li>Cancelled</li>
+          <li>Completed</li>
+          <li>Correspondence</li>
+        </ul>
+      </li>
+    </ul>
 
-    
+
 
     <h3 class="govuk-heading-s">Accessing API endpoints for use with the sandbox environment</h3>
-    <p class="govuk-body">The sandbox environment uses a different API sub-domain than the live environment. The endpoints can be found in the API specification for the live environment where you can also learn about the OpenAPI validation rules. </p>
+    <p class="govuk-body">The sandbox environment uses a different API sub-domain than the live environment. The
+      endpoints can be found in the API specification for the live environment where you can also learn about the
+      OpenAPI validation rules. </p>
     <ul class="govuk-list">
-      <li><a class="govuk-body" href="https://landregistry.github.io/bgtechdoc/documents/submit-an-application-to-change-the-register/v1.0/openapi.html" target="_blank">Web version (opens in a new tab)</a></li>
-      <li><a class="govuk-body" href="https://landregistry.github.io/bgtechdoc/documents/submit-an-application-to-change-the-register/v1.0/openapi.json" target="_blank">JSON version (opens in a new tab)</a></li>
+      <li><a class="govuk-body"
+          href="https://landregistry.github.io/bgtechdoc/documents/submit-an-application-to-change-the-register/v1.0/openapi.html"
+          target="_blank">Web version (opens in a new tab)</a></li>
+      <li><a class="govuk-body"
+          href="https://landregistry.github.io/bgtechdoc/documents/submit-an-application-to-change-the-register/v1.0/openapi.json"
+          target="_blank">JSON version (opens in a new tab)</a></li>
     </ul>
 
 
@@ -196,22 +231,40 @@ problems.'
 
     <!-- validation rules -->
     <h2 class="govuk-heading-m" id="validation-rules">Validation rules</h2>
-    <p class="govuk-body">The aim of the sandbox is to follow the same validation rules as the live system. 
-      It will also cover all the validation phases. However, at present, there may be some differences between 
+    <p class="govuk-body">The aim of the sandbox is to follow the same validation rules as the live system.
+      It will also cover all the validation phases. However, at present, there may be some differences between
       validation in the sandbox and the live service. </p>
-    <p class="govuk-body">To learn more about the validation rules for the live environment, review the API guidance in the <a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/">Submit an application to change the Land Register APIs</a>.</p>
+    <p class="govuk-body">To learn more about the validation rules for the live environment, review the API guidance in
+      the <a
+        href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/">Submit
+        an application to change the Land Register APIs</a>.</p>
+    <a href="https://forms.office.com/e/iswB5tf1z7" target="_blank">Report a validation difference between the sandbox
+      and live environment</a>
 
-      <div class="govuk-!-padding-bottom-3"></div>
+    <div class="govuk-!-padding-bottom-3"></div>
 
 
     <!-- Test data -->
     <h2 class="govuk-heading-m" id="test-data">Test data</h2>
-    <p class="govuk-body">Test data in the sandbox is designed to mimic real‑world data, 
-      so you can run tests without affecting live systems. This provides a realistic testing experience while reducing risk. </p>
-    <p class="govuk-body">When submitting an application in a live environment, you must supply title numbers, addresses, 
+    <p class="govuk-body">Test data in the sandbox is designed to mimic real‑world data,
+      so you can run tests without affecting live systems. This provides a realistic testing experience while reducing
+      risk. </p>
+    <p class="govuk-body">When submitting an application in a live environment, you must supply title numbers,
+      addresses,
       and names of proprietors or lenders that match data in HM Land Registry systems.</p>
-    <p class="govuk-body">For the sandbox, we supply the following test data – using real titles will not work. You will have your own test data environment.</p>
-    
+    <p class="govuk-body">For the sandbox, we supply the following test data – using real titles will not work. You will
+      have your own test data environment.</p>
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">Warning</span>
+        Only upload the provided test data and provided sample files to the sandbox test environment. 
+        No real application data should not used within the sandbox environment. 
+      </strong>
+    </div>
+
+
+
     <div class="govuk-inset-text guidance-panel">
       <h3 class="govuk-heading-s">Limitations of test data</h3>
       <p class="govuk-body">Currently, the test data only supports freehold titles.</p>
@@ -228,7 +281,8 @@ problems.'
           </h2>
         </div>
         <div id="accordion-default-content-1" class="govuk-accordion__section-content">
-          <p class="govuk-body"><a href="/public/docs/test-title-data.docx" download>Download the list of generated titles</a>. This list includes where they
+          <p class="govuk-body"><a href="/public/docs/test-title-data.docx" download>Download the list of generated
+              titles</a>. This list includes where they
             have charges, the chargee (for example a lender, or charge proprietor).</p>
           <p class="govuk-body">All sandbox titles start with 'TT'. The numbers are made up to supply synthetic data and
             meet specific conditions, and don’t match real titles. </p>
@@ -301,7 +355,8 @@ problems.'
           </h2>
         </div>
         <div id="accordion-default-content-4" class="govuk-accordion__section-content">
-          <p class="govuk-body">When submitting applications, use this <a href="/public/docs/MD-references.docx" download>list of MD Reference charges</a>.
+          <p class="govuk-body">When submitting applications, use this <a href="/public/docs/MD-references.docx"
+              download>list of MD Reference charges</a>.
             These all
             begin with the
             characters MD9T.</p>
@@ -346,8 +401,10 @@ problems.'
           </h2>
         </div>
         <div id="accordion-default-content-4" class="govuk-accordion__section-content">
-          <p class="govuk-body">The sandbox supports file uploads of up to 100KB. You can upload multiple documents, as long as each file does not exceed this limit. We have provided a sample file that meets this size limit</p>
-          <a class="govuk-body" href="/public/docs/sample-document.pdf" download>Download the sample file for testing</a>
+          <p class="govuk-body">The sandbox supports file uploads of up to 100KB. You can upload multiple documents, as
+            long as each file does not exceed this limit. We have provided a sample file that meets this size limit</p>
+          <a class="govuk-body" href="/public/docs/sample-document.pdf" download>Download the sample file for
+            testing</a>
         </div>
       </div>
 
@@ -358,7 +415,9 @@ problems.'
       <h3 class="govuk-heading-s">Reporting test data errors</h3>
       <p class="govuk-body">If you see any data that is not referenced in this guide, it is likely
         made in error.</p>
-      <p class="govuk-body">Report any errors in the sandbox to <a href="mailto:channelpartners@landregistry.gov.uk">Channel Partners</a> (channelpartners@landregistry.gov.uk).</p> 
+      <p class="govuk-body">Report any errors in the sandbox to <a
+          href="mailto:channelpartners@landregistry.gov.uk">Channel Partners</a> (channelpartners@landregistry.gov.uk).
+      </p> 
     </div>
 
 
@@ -367,7 +426,8 @@ problems.'
     <h2 class="govuk-heading-m" id="testing-scenarios">Testing scenarios</h2>
     <p class="govuk-body">We have supplied an example of a successful and unsuccessful application submission.</p>
     <p class="govuk-body">Before you start the test scenarios, familiarise yourself with the
-      <a href="/public/docs/test-title-data.docx" download>test title data</a>. The title you choose should be suitable for the test you
+      <a href="/public/docs/test-title-data.docx" download>test title data</a>. The title you choose should be suitable
+      for the test you
       wish to run. For example, for a DJP (death of joint proprietor), the title must have two
       proprietors.
     </p>
@@ -388,21 +448,31 @@ problems.'
         </ul>
       </li>
       <li>Upload the documents (in this example, a Charge deed or CH1 form).<br><br>
-        To do this you need to obtain the document upload URL by calling by the <a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/send-a-document/1.0/" target="_blank">Send a document API</a>.
+        To do this you need to obtain the document upload URL by calling by the <a
+          href="https://landregistry.github.io/bg-dev-pack-redesign/apis/send-a-document/1.0/" target="_blank">Send a
+          document API</a>.
         To obtain the document upload URL you must supply:
         <ul class="govuk-list govuk-list--bullet">
           <li>the size</li>
           <li>the <code style="color: #a71d5d; background-color: #f5f5f5">sha256</code> hash of the document file</li>
         </ul>
         You must then record the identifier returned by the Send a document API. Once done, upload the
-        document (this should be one of the supplied <a href="/public/docs/sample-document.pdf" download>sample files</a>).<br>
+        document (this should be one of the supplied <a href="/public/docs/sample-document.pdf" download>sample
+          files</a>).<br>
       </li>
       <li>Record the document ID in your system.</li>
-      <li>Submit a new application to change the Land Register by calling the <a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0/" target="_blank">Submit an application API</a>. You need to send a JSON object,
+      <li>Submit a new application to change the Land Register by calling the <a
+          href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0/"
+          target="_blank">Submit an application API</a>. You need to send a JSON object,
         and the documents you mention should refer to the document IDs you got earlier.</li>
       <li>Take note of the application ID returned after you lodge your application.</li>
-      <li>Use the application request ID at the <a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/application-information/1.0/" target="_blank">Application information API</a> to check if the application has passed or failed validation. If it has failed, review that
-        specific API from the <a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/">Submit an application to change the Land Register APIs</a>. Validation in
+      <li>Use the application request ID at the <a
+          href="https://landregistry.github.io/bg-dev-pack-redesign/apis/application-information/1.0/"
+          target="_blank">Application information API</a> to check if the application has passed or failed validation.
+        If it has failed, review that
+        specific API from the <a
+          href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/">Submit
+          an application to change the Land Register APIs</a>. Validation in
         sandbox follows the same as validation rules as those used in the live system</li>
     </ol>
 
@@ -418,14 +488,16 @@ problems.'
         </div>
         <div id="accordion-default-content-1" class="govuk-accordion__section-content">
           <p class="govuk-body">This is an example of the information you may have gathered in your system.</p>
-          <p class="govuk-body">The 'reference' column is a name you can choose for an address, transaction, party etc. 
-            This is used to relate documents to transactions, addresses to parties, or parties to roles in transactions. </p>
-          <p class="govuk-body">You must use the same reference throughout the application. The application will 
+          <p class="govuk-body">The 'reference' column is a name you can choose for an address, transaction, party etc.
+            This is used to relate documents to transactions, addresses to parties, or parties to roles in transactions.
+          </p>
+          <p class="govuk-body">You must use the same reference throughout the application. The application will
             fail validation if you use a different reference. </p>
           <p class="govuk-body">This application is a multi-title transfer-charge application. TT000400 has a
             proprietor in common with TT000100.  </p>
 
-          <a class="govuk-body" href="/public/docs/sample-document.pdf" download>Download sample file for lodging applications</a>
+          <a class="govuk-body" href="/public/docs/sample-document.pdf" download>Download sample file for lodging
+            applications</a>
           <br><br>
 
           <table class="govuk-table">
@@ -590,8 +662,9 @@ problems.'
           </table>
 
           <h4 class="govuk-heading-s">Transfers</h4>
-          <p class="govuk-body">In this scenario, there is a <code style="color: #a71d5d; background-color: #f5f5f5">TRANSFER</code>
-             transaction for the first title - typical information is shown.</p>
+          <p class="govuk-body">In this scenario, there is a <code
+              style="color: #a71d5d; background-color: #f5f5f5">TRANSFER</code>
+            transaction for the first title - typical information is shown.</p>
           <p class="govuk-body">Note: You must use the correct capitalisation and spelling.</p>
           <table class="govuk-table">
             <thead class="govuk-table__head">
@@ -675,7 +748,8 @@ problems.'
           </table>
 
           <h4 class="govuk-heading-s">Charges</h4>
-          <p class="govuk-body">In this scenario, there is a <code style="color: #a71d5d; background-color: #f5f5f5">CHARGE</code> transaction for the first title.</p>
+          <p class="govuk-body">In this scenario, there is a <code
+              style="color: #a71d5d; background-color: #f5f5f5">CHARGE</code> transaction for the first title.</p>
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -737,7 +811,8 @@ problems.'
             </tbody>
           </table>
 
-          <p class="govuk-body">In this scenario, there is a <code style="color: #a71d5d; background-color: #f5f5f5">CHARGE</code> transaction for the second title.</p>
+          <p class="govuk-body">In this scenario, there is a <code
+              style="color: #a71d5d; background-color: #f5f5f5">CHARGE</code> transaction for the second title.</p>
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -810,9 +885,11 @@ problems.'
 
           <p class="govuk-body">For each document, you need to:</p>
           <ol class="govuk-list govuk-list--number">
-            <li>Call the <code style="color: #a71d5d; background-color: #f5f5f5">v1/documents/url</code> endpoint to get the pre-generated upload URL.</li>
+            <li>Call the <code style="color: #a71d5d; background-color: #f5f5f5">v1/documents/url</code> endpoint to get
+              the pre-generated upload URL.</li>
             <li>Upload the document using the pre-generated upload URL returned by step 1.</li>
-            <li>Record the <code style="color: #a71d5d; background-color: #f5f5f5">document_id</code> to include in the application JSON included below.</li>
+            <li>Record the <code style="color: #a71d5d; background-color: #f5f5f5">document_id</code> to include in the
+              application JSON included below.</li>
           </ol>
           <!-- <p class="govuk-body">This results in eight API calls.</p> -->
 
@@ -1131,7 +1208,8 @@ problems.'
             because the borrower name does not match a proprietor.</p>
 
           <h4 class="govuk-heading-s">Title</h4>
-          <p class="govuk-body">Begin a <code style="color: #a71d5d; background-color: #f5f5f5">REGISTER_UPDATE</code> application for the following title:</p>
+          <p class="govuk-body">Begin a <code style="color: #a71d5d; background-color: #f5f5f5">REGISTER_UPDATE</code>
+            application for the following title:</p>
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -1320,7 +1398,7 @@ problems.'
             </tbody>
           </table>
 
-           <details class="govuk-details">
+          <details class="govuk-details">
             <summary class="govuk-details__summary">
               <span class="govuk-details__summary-text">
                 View Submit an application JSON
@@ -1618,8 +1696,8 @@ Example of validation failure data
 }  
   </code>
   </pre>
-  </div>
-  </details>
+            </div>
+          </details>
 
 
 
@@ -1629,11 +1707,19 @@ Example of validation failure data
 
     <!-- data policy -->
     <h2 class="govuk-heading-m" id="data-policy">Data policy</h2>
-    <p class="govuk-body">We recommend only uploading test data. Do not upload real data or anything you would not want others to see.</p>
-    <p class="govuk-body">Under our retention policy, we hold sandbox data for no more than 7.5 days. Please take this into account 
+    <p class="govuk-body">Under our retention policy, we hold sandbox data for no more than 7.5 days. Please take this
+      into account
       if requesting assistance with a particular API call.</p>
+      <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">Warning</span>
+        Only upload the provided test data and provided sample files to the sandbox test environment. 
+        No real application data should not used within the sandbox environment. 
+      </strong>
+    </div>
 
-    
+
 
   </div>
 </div>
