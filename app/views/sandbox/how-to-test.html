@@ -79,8 +79,7 @@ problems.'
     <div class="govuk-inset-text guidance-panel">
       For this initial release of the sandbox, we are focusing on simulating APIs from the <a
         href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/"
-        target="_blank">Submit an
-        application to change the Land Register APIs</a> up until the point of application acceptance.
+        target="_blank">Submit an application to change the Land Register APIs</a> up until the point of application acceptance.
       <br><br>
       Help us improve this page and the developer pack by providing feedback via <a
         href="https://forms.office.com/e/iswB5tf1z7" target="_blank">this form</a>. Your feedback is valuable to us and
@@ -216,7 +215,8 @@ problems.'
     <h3 class="govuk-heading-s">Accessing API endpoints for use with the sandbox environment</h3>
     <p class="govuk-body">The sandbox environment uses a different API sub-domain than the live environment. The
       endpoints can be found in the API specification for the live environment where you can also learn about the
-      OpenAPI validation rules. </p>
+      OpenAPI validation rules. The API specificiation does not currently contain the sandbox subdomain information.</p>
+    <p class="govuk-body">Please make sure to use the URL <a href="https://bgtest.landregistry.gov.uk/bg2sandbox/api" target="_blank">https://bgtest.landregistry.gov.uk/bg2sandbox/api</a> when you are using the below OpenAPI specs as reference.</p>
     <ul class="govuk-list">
       <li><a class="govuk-body"
           href="https://landregistry.github.io/bgtechdoc/documents/submit-an-application-to-change-the-register/v1.0/openapi.html"
@@ -258,8 +258,8 @@ problems.'
       <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
       <strong class="govuk-warning-text__text">
         <span class="govuk-visually-hidden">Warning</span>
-        Only upload the provided test data and provided sample files to the sandbox test environment. 
-        No real application data should not used within the sandbox environment. 
+        Only use the provided test data and sample files in the sandbox. 
+        Do not upload real application data. 
       </strong>
     </div>
 
@@ -401,8 +401,8 @@ problems.'
           </h2>
         </div>
         <div id="accordion-default-content-4" class="govuk-accordion__section-content">
-          <p class="govuk-body">The sandbox supports file uploads of up to 100KB. You can upload multiple documents, as
-            long as each file does not exceed this limit. We have provided a sample file that meets this size limit</p>
+          <p class="govuk-body">The sandbox supports file uploads of up to 100KB. You can upload more than one document, as
+            long as each file does not exceed this limit. We have provided a sample file that meets this size limit.</p>
           <a class="govuk-body" href="/public/docs/sample-document.pdf" download>Download the sample file for
             testing</a>
         </div>
@@ -431,6 +431,13 @@ problems.'
       wish to run. For example, for a DJP (death of joint proprietor), the title must have two
       proprietors.
     </p>
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">Warning</span>
+        You should only use the provided test title data and not any real data. 
+      </strong>
+    </div>
 
     <h3 class="govuk-heading-s">Example of submitting an application in the sandbox</h3>
     <p class="govuk-body">Imagine you wish to submit a simple charge against a single title.</p>
@@ -457,8 +464,8 @@ problems.'
           <li>the <code style="color: #a71d5d; background-color: #f5f5f5">sha256</code> hash of the document file</li>
         </ul>
         You must then record the identifier returned by the Send a document API. Once done, upload the
-        document (this should be one of the supplied <a href="/public/docs/sample-document.pdf" download>sample
-          files</a>).<br>
+        document (this should be the supplied <a href="/public/docs/sample-document.pdf" download>sample
+          file</a>).<br>
       </li>
       <li>Record the document ID in your system.</li>
       <li>Submit a new application to change the Land Register by calling the <a
@@ -629,7 +636,7 @@ problems.'
                 <td class="govuk-table__cell">true</td>
               </tr>
               <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Buyer</td>
+                <td class="govuk-table__cell">Buyer1</td>
                 <td class="govuk-table__cell">PRIVATE_INDIVIDUAL</td>
                 <td class="govuk-table__cell">Madeup One</td>
                 <td class="govuk-table__cell">LODGING_CONVEYANCER</td>
@@ -662,8 +669,7 @@ problems.'
           </table>
 
           <h4 class="govuk-heading-s">Transfers</h4>
-          <p class="govuk-body">In this scenario, there is a <code
-              style="color: #a71d5d; background-color: #f5f5f5">TRANSFER</code>
+          <p class="govuk-body">In this scenario, there is a transfer
             transaction for the first title - typical information is shown.</p>
           <p class="govuk-body">Note: You must use the correct capitalisation and spelling.</p>
           <table class="govuk-table">
@@ -737,7 +743,7 @@ problems.'
                 <td class="govuk-table__cell">Transferor</td>
               </tr>
               <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Buyer</td>
+                <td class="govuk-table__cell">Buyer1</td>
                 <td class="govuk-table__cell">Transferee</td>
               </tr>
               <tr class="govuk-table__row">
@@ -748,8 +754,7 @@ problems.'
           </table>
 
           <h4 class="govuk-heading-s">Charges</h4>
-          <p class="govuk-body">In this scenario, there is a <code
-              style="color: #a71d5d; background-color: #f5f5f5">CHARGE</code> transaction for the first title.</p>
+          <p class="govuk-body">In this scenario, there is a charge transaction for the first title.</p>
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -797,7 +802,7 @@ problems.'
             </thead>
             <tbody class="govuk-table__body">
               <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Buyer</td>
+                <td class="govuk-table__cell">Buyer1</td>
                 <td class="govuk-table__cell">Borrower</td>
               </tr>
               <tr class="govuk-table__row">
@@ -811,8 +816,7 @@ problems.'
             </tbody>
           </table>
 
-          <p class="govuk-body">In this scenario, there is a <code
-              style="color: #a71d5d; background-color: #f5f5f5">CHARGE</code> transaction for the second title.</p>
+          <p class="govuk-body">In this scenario, there is a charge transaction for the second title.</p>
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -860,7 +864,7 @@ problems.'
             </thead>
             <tbody class="govuk-table__body">
               <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Buyer</td>
+                <td class="govuk-table__cell">Buyer1</td>
                 <td class="govuk-table__cell">Borrower</td>
               </tr>
               <tr class="govuk-table__row">
@@ -907,7 +911,7 @@ problems.'
    "applicants": [  
        "Seller1",  
        "Seller2",  
-       "Buyer",  
+       "Buyer1",  
        "Buyer2"  
    ],  
    "addresses": {  
@@ -951,7 +955,7 @@ problems.'
                "surname": "Courbevoie"  
            }  
        },  
-       "Buyer": {  
+       "Buyer1": {  
            "representation_type": "LODGING_CONVEYANCER",  
            "addresses": "Address2",  
            "address_for_service_option": "PROVIDED_ADDRESS",  
@@ -1029,7 +1033,7 @@ problems.'
                    "capacity": "NOT_REQUIRED"  
                },  
                {  
-                   "party_reference": "Buyer",  
+                   "party_reference": "Buyer1",  
                    "role": "TRANSFEREE",  
                    "capacity": "NOT_REQUIRED"  
                },  
@@ -1068,7 +1072,7 @@ problems.'
            ],  
            "party_roles": [  
                {  
-                   "party_reference": "Buyer",  
+                   "party_reference": "Buyer1",  
                    "role": "BORROWER",  
                    "capacity": "REGISTERED_PROPRIETOR"  
                },  
@@ -1111,7 +1115,7 @@ problems.'
            ],  
            "party_roles": [  
                {  
-                   "party_reference": "Buyer",  
+                   "party_reference": "Buyer1",  
                    "role": "BORROWER",  
                    "capacity": "REGISTERED_PROPRIETOR"  
                },  
@@ -1199,7 +1203,7 @@ problems.'
         <div class="govuk-accordion__section-header">
           <h2 class="govuk-accordion__section-heading">
             <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
-              Example scenario - Failed submission
+              Example scenario - Unsuccessful application
             </span>
           </h2>
         </div>
@@ -1208,7 +1212,7 @@ problems.'
             because the borrower name does not match a proprietor.</p>
 
           <h4 class="govuk-heading-s">Title</h4>
-          <p class="govuk-body">Begin a <code style="color: #a71d5d; background-color: #f5f5f5">REGISTER_UPDATE</code>
+          <p class="govuk-body">When you begin a <code style="color: #a71d5d; background-color: #f5f5f5">REGISTER_UPDATE</code>
             application for the following title:</p>
           <table class="govuk-table">
             <thead class="govuk-table__head">
@@ -1330,7 +1334,7 @@ problems.'
             </tbody>
           </table>
           <h4 class="govuk-heading-s">Charges</h4>
-          <p class="govuk-body">There is a CHARGE transaction for the first title:</p>
+          <p class="govuk-body">There is a charge transaction for the first title:</p>
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -1707,18 +1711,11 @@ Example of validation failure data
 
     <!-- data policy -->
     <h2 class="govuk-heading-m" id="data-policy">Data policy</h2>
-    <p class="govuk-body">Under our retention policy, we hold sandbox data for no more than 7.5 days. Please take this
+    <p class="govuk-body">We recommend only uploading test data. Do not upload real data or anything you would not want others to see.</p>
+    <p class="govuk-body">Under our retention policy, we hold sandbox data for no more than 7.5 days. The 7.5 days includes weekends. Please take this
       into account
       if requesting assistance with a particular API call.</p>
-      <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-visually-hidden">Warning</span>
-        Only upload the provided test data and provided sample files to the sandbox test environment. 
-        No real application data should not used within the sandbox environment. 
-      </strong>
-    </div>
-
+      
 
 
   </div>
