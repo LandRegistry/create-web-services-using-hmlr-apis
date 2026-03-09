@@ -477,7 +477,7 @@ html: 'The sandbox is a new service for the Submit an application to change the 
 
         
           <br><br>
-
+          <div class="moj-scrollable-pane" role="region" aria-label="Titles table" tabindex="0">
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -505,10 +505,12 @@ html: 'The sandbox is a new service for the Submit an application to change the 
               </tr>
             </tbody>
           </table>
+          </div>
 
+          <div class="moj-scrollable-pane" role="region" aria-label="Documents table" tabindex="0">
           <table class="govuk-table">
             <thead class="govuk-table__head">
-              <caption class="govuk-table__caption govuk-table__caption--s">Addresses</caption>
+              <caption class="govuk-table__caption govuk-table__caption--s">Documents</caption>
               <tr class="govuk-table__row">
                 <th scope="col" class="govuk-table__header">Reference</th>
                 <th scope="col" class="govuk-table__header">Type</th>
@@ -537,7 +539,9 @@ html: 'The sandbox is a new service for the Submit an application to change the 
               </tr>
             </tbody>
           </table>
+          </div>
 
+          <div class="moj-scrollable-pane" role="region" aria-label="Addresses table" tabindex="0">
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <caption class="govuk-table__caption govuk-table__caption--s">Addresses</caption>
@@ -569,9 +573,12 @@ html: 'The sandbox is a new service for the Submit an application to change the 
               </tr>
             </tbody>
           </table>
+          </div>
 
           <h4 class="govuk-heading-s">Parties</h4>
           <p class="govuk-body">Note that the parties hove to be linked to provided addresses.</p>
+          
+          <div class="moj-scrollable-pane" role="region" aria-label="Parties table" tabindex="0">
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -638,11 +645,14 @@ html: 'The sandbox is a new service for the Submit an application to change the 
               </tr>
             </tbody>
           </table>
+          </div>
 
           <h4 class="govuk-heading-s">Transfers</h4>
           <p class="govuk-body">In this scenario, there is a transfer
             transaction for the first title - typical information is shown.</p>
           <p class="govuk-body">Note: You must use the correct capitalisation and spelling.</p>
+
+          <div class="moj-scrollable-pane" role="region" aria-label="Transfers table" tabindex="0">
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -693,10 +703,13 @@ html: 'The sandbox is a new service for the Submit an application to change the 
               </tr>
             </tbody>
           </table>
+          </div>
 
           <h4 class="govuk-heading-s">Transaction parties</h4>
           <p class="govuk-body">In this scenario, the transaction parties are as follows.</p>
           <p class="govuk-body">Note: The parties are referenced by the party ID you assigned above.</p>
+
+          <div class="moj-scrollable-pane" role="region" aria-label="Transaction parties table" tabindex="0">
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -723,9 +736,12 @@ html: 'The sandbox is a new service for the Submit an application to change the 
               </tr>
             </tbody>
           </table>
+          </div>
 
           <h4 class="govuk-heading-s">Charges</h4>
           <p class="govuk-body">In this scenario, there is a charge transaction for the first title.</p>
+
+          <div class="moj-scrollable-pane" role="region" aria-label="Charges table" tabindex="0">
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -762,8 +778,11 @@ html: 'The sandbox is a new service for the Submit an application to change the 
               </tr>
             </tbody>
           </table>
+          </div>
 
           <p class="govuk-body">The transaction parties for the first title are as follows.</p>
+
+          <div class="moj-scrollable-pane" role="region" aria-label="Transaction parties table for first title" tabindex="0">
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -786,8 +805,11 @@ html: 'The sandbox is a new service for the Submit an application to change the 
               </tr>
             </tbody>
           </table>
+          </div>
 
           <p class="govuk-body">In this scenario, there is a charge transaction for the second title.</p>
+
+          <div class="moj-scrollable-pane" role="region" aria-label="Transactions table for second title" tabindex="0">
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -824,8 +846,11 @@ html: 'The sandbox is a new service for the Submit an application to change the 
               </tr>
             </tbody>
           </table>
+          </div>
 
           <p class="govuk-body">The transaction parties for the second title are as follows.</p>
+          
+          <div class="moj-scrollable-pane" role="region" aria-label="Parties table for second title" tabindex="0">
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -848,6 +873,7 @@ html: 'The sandbox is a new service for the Submit an application to change the 
               </tr>
             </tbody>
           </table>
+          </div>
 
           <h4 class="govuk-heading-s">Uploading documents</h4>
           <p>Before you submit the application, you need to upload the dummy documents:</p>
@@ -1185,29 +1211,34 @@ html: 'The sandbox is a new service for the Submit an application to change the 
           <h4 class="govuk-heading-s">Title</h4>
           <p class="govuk-body">When you begin a <code style="color: #a71d5d; background-color: #f5f5f5">REGISTER_UPDATE</code>
             application for the following title:</p>
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Title number</th>
-                <th scope="col" class="govuk-table__header">Scope</th>
-                <th scope="col" class="govuk-table__header">Interests</th>
-                <th scope="col" class="govuk-table__header">Value</th>
-                <th scope="col" class="govuk-table__header">Comment</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">TT000400</td>
-                <td class="govuk-table__cell">WHOLE</td>
-                <td class="govuk-table__cell">False</td>
-                <td class="govuk-table__cell">250,000</td>
-                <td class="govuk-table__cell">24 Briar Crescent, 2 proprietors</td>
-              </tr>
-            </tbody>
-          </table>
+          
+          <div class="moj-scrollable-pane" role="region" aria-label="Titles table" tabindex="0">
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Title number</th>
+                  <th scope="col" class="govuk-table__header">Scope</th>
+                  <th scope="col" class="govuk-table__header">Interests</th>
+                  <th scope="col" class="govuk-table__header">Value</th>
+                  <th scope="col" class="govuk-table__header">Comment</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">TT000400</td>
+                  <td class="govuk-table__cell">WHOLE</td>
+                  <td class="govuk-table__cell">False</td>
+                  <td class="govuk-table__cell">250,000</td>
+                 <td class="govuk-table__cell">24 Briar Crescent, 2 proprietors</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
           <h4 class="govuk-heading-s">Documents</h4>
           <p class="govuk-body">Upload the following document:</p>
+
+          <div class="moj-scrollable-pane" role="region" aria-label="Documents table" tabindex="0">
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -1226,9 +1257,12 @@ html: 'The sandbox is a new service for the Submit an application to change the 
               </tr>
             </tbody>
           </table>
+          </div>
 
           <h4 class="govuk-heading-s">Parties</h4>
           <p class="govuk-body">Use the following parties:</p>
+
+          <div class="moj-scrollable-pane" role="region" aria-label="Parties table" tabindex="0">
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -1279,9 +1313,13 @@ html: 'The sandbox is a new service for the Submit an application to change the 
               </tr>
             </tbody>
           </table>
+          </div>
+
 
           <h4 class="govuk-heading-s">Addresses</h4>
           <p class="govuk-body">Use the following address:</p>
+
+          <div class="moj-scrollable-pane" role="region" aria-label="Addresses table" tabindex="0">
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -1304,8 +1342,12 @@ html: 'The sandbox is a new service for the Submit an application to change the 
               </tr>
             </tbody>
           </table>
+          </div>
+
           <h4 class="govuk-heading-s">Charges</h4>
           <p class="govuk-body">There is a charge transaction for the first title:</p>
+
+          <div class="moj-scrollable-pane" role="region" aria-label="Charges table" tabindex="0">
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -1347,9 +1389,12 @@ html: 'The sandbox is a new service for the Submit an application to change the 
               </tr>
             </tbody>
           </table>
+          </div>
 
           <h4 class="govuk-heading-s">Transaction parties</h4>
           <p class="govuk-body">Use the following transaction parties:</p>
+          
+          <div class="moj-scrollable-pane" role="region" aria-label="Transactions parties table" tabindex="0">
           <table class="govuk-table">
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
@@ -1372,6 +1417,7 @@ html: 'The sandbox is a new service for the Submit an application to change the 
               </tr>
             </tbody>
           </table>
+          </div>
 
           <details class="govuk-details">
             <summary class="govuk-details__summary">
