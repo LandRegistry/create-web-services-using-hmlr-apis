@@ -79,7 +79,7 @@ problems.'
     <div class="govuk-inset-text guidance-panel">
       For this initial release of the sandbox, we are focusing on simulating APIs from the <a
         href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/"
-        target="_blank">Submit an application to change the Land Register APIs</a> up until the point of application acceptance.
+        target="_blank">Submit an application to change the Land Register APIs</a> <span class="govuk-body govuk-!-font-weight-bold">up until the point of application acceptance. The sandbox does not currently support any further stages.</span>
       <br><br>
       Help us improve this page and the developer pack by providing feedback via <a
         href="https://forms.office.com/e/iswB5tf1z7" target="_blank">this form</a>. Your feedback is valuable to us and
@@ -137,9 +137,7 @@ problems.'
         target="_blank">Send a document API (Version 1.0)</a></h3>
     <p class="govuk-body">Allows the request of an upload URL, uploading documents and provides partial security checks.
     </p>
-    <p class="govuk-body">The sandbox currently supports a restricted file upload size of 100KB. We have provided a
-      sample file that meets this size limit for you to use. <a href="/public/docs/sample-document.pdf"
-        download>Download the sample file</a> to use in sandbox testing. </p>
+    <p class="govuk-body">The sandbox currently supports a restricted file upload size of 100KB.</p>
 
     <h3 class="govuk-heading-s"><a
         href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0" target="_blank">Submit
@@ -171,8 +169,7 @@ problems.'
     <p class="govuk-body">Currently, the sandbox is unable to:
     </p>
     <ul class="govuk-list govuk-list--bullet">
-      <li>upload files larger than 100KB – we have provided a <a href="/public/docs/sample-document.pdf" download>sample
-          file</a> that meets the limit for you to use </li>
+      <li>upload files larger than 100KB</li>
       <li>view post-accepted statuses, which includes completed and cancelled</li>
       <li>reply to a requisition with documents and messages</li>
       <li>access requisition documents, completion documents and other correspondence</li>
@@ -258,7 +255,7 @@ problems.'
       <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
       <strong class="govuk-warning-text__text">
         <span class="govuk-visually-hidden">Warning</span>
-        Only use the provided test data and sample files in the sandbox. 
+        Only use the provided test data in the sandbox. 
         Do not upload real application data. 
       </strong>
     </div>
@@ -402,9 +399,7 @@ problems.'
         </div>
         <div id="accordion-default-content-4" class="govuk-accordion__section-content">
           <p class="govuk-body">The sandbox supports file uploads of up to 100KB. You can upload more than one document, as
-            long as each file does not exceed this limit. We have provided a sample file that meets this size limit.</p>
-          <a class="govuk-body" href="/public/docs/sample-document.pdf" download>Download the sample file for
-            testing</a>
+            long as each file does not exceed this limit.</p>
         </div>
       </div>
 
@@ -464,8 +459,7 @@ problems.'
           <li>the <code style="color: #a71d5d; background-color: #f5f5f5">sha256</code> hash of the document file</li>
         </ul>
         You must then record the identifier returned by the Send a document API. Once done, upload the
-        document (this should be the supplied <a href="/public/docs/sample-document.pdf" download>sample
-          file</a>).<br>
+        document.<br>
       </li>
       <li>Record the document ID in your system.</li>
       <li>Submit a new application to change the Land Register by calling the <a
@@ -503,8 +497,7 @@ problems.'
           <p class="govuk-body">This application is a multi-title transfer-charge application. TT000400 has a
             proprietor in common with TT000100.  </p>
 
-          <a class="govuk-body" href="/public/docs/sample-document.pdf" download>Download sample file for lodging
-            applications</a>
+        
           <br><br>
 
           <table class="govuk-table">
