@@ -110,7 +110,7 @@ problems.'
       <li>reuse your current test TLS certificate</li>
       <li>request access credentials (a username and password) or a new SSL test certificate from <a
           href="mailto:channelpartners@landregistry.gov.uk">Channel Partners</a> (channelpartners@landregistry.gov.uk).
-        You may have already recieved this as part of onboarding to use the sandbox environment</li>
+        You may have already received this as part of onboarding to use the sandbox environment</li>
       <li>call the APIs from the address <code
           style="color: #a71d5d; background-color: #f5f5f5">https://bgtest.landregistry.gov.uk/bg2sandbox/api</code>
       </li>
@@ -179,7 +179,6 @@ problems.'
     <h3 class="govuk-heading-s">The sandbox application flow</h3>
     <p class="govuk-body">This diagram shows the APIs the sandbox currently supports and how they fit together in the
       sandbox journey. </p>
-    <p class="govuk-body">The sandbox can simulate up to the point of acceptance or rejection of an application.</p>
 
     <img src="/public/images/sandbox-api-diagram-mvp.png"
       alt="A diagram showing the submit an application to change the Land Register API" style="width: 700px">
@@ -191,7 +190,7 @@ problems.'
       <li>Application information API
         <ul>
           <li>Cancelled stage</li>
-          <li>Complete stage</li>
+          <li>Completed stage</li>
           <li>Requisitions</li>
         </ul>
       </li>
@@ -212,7 +211,7 @@ problems.'
     <h3 class="govuk-heading-s">Accessing API endpoints for use with the sandbox environment</h3>
     <p class="govuk-body">The sandbox environment uses a different API sub-domain than the live environment. The
       endpoints can be found in the API specification for the live environment where you can also learn about the
-      OpenAPI validation rules. The API specificiation does not currently contain the sandbox subdomain information.</p>
+      OpenAPI validation rules. The API specification does not currently contain the sandbox subdomain information.</p>
     <p class="govuk-body">Please make sure to use the URL <a href="https://bgtest.landregistry.gov.uk/bg2sandbox/api" target="_blank">https://bgtest.landregistry.gov.uk/bg2sandbox/api</a> when you are using the below OpenAPI specs as reference.</p>
     <ul class="govuk-list">
       <li><a class="govuk-body"
@@ -470,8 +469,7 @@ problems.'
       <li>Use the application request ID at the <a
           href="https://landregistry.github.io/bg-dev-pack-redesign/apis/application-information/1.0/"
           target="_blank">Application information API</a> to check if the application has passed or failed validation.
-        If it has failed, review that
-        specific API from the <a
+        If it has failed, review the relevant API from the <a
           href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/">Submit
           an application to change the Land Register APIs</a>. Validation in
         sandbox follows the same as validation rules as those used in the live system</li>
