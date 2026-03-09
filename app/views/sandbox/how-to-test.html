@@ -24,6 +24,7 @@ homepageUrl: "#"
 {% endblock %}
 
 {% block beforeContent %}
+<!-- Beta phase banner -->
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
 
 {{ govukPhaseBanner({
@@ -42,7 +43,7 @@ html: 'The sandbox is a new service for the Submit an application to change the 
 <br>
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-one-third">
-    <!-- navigation -->
+    <!-- side navigation -->
     <nav class="moj-side-navigation sticky" aria-label="Side navigation">
       <ul class="moj-side-navigation__list">
         <li class="moj-side-navigation__item moj-side-navigation__item--active">
@@ -86,7 +87,7 @@ html: 'The sandbox is a new service for the Submit an application to change the 
       will directly inform future improvements to the sandbox.
     </div>
 
-    <!-- overview -->
+    <!-- overview section -->
     <h2 class="govuk-heading-m" id="overview">Overview</h2>
     <p class="govuk-body">The sandbox is a secure, controlled test system that provides your developers
       with an integration environment. It enables repeatable experimentation so you can safely explore configuration,
@@ -103,7 +104,7 @@ html: 'The sandbox is a new service for the Submit an application to change the 
       live system.
     </p>
 
-    <!-- how to access the sandbox -->
+    <!-- how to access the sandbox section -->
     <h2 class="govuk-heading-m" id="how-to-access-the-sandbox">How to access the sandbox</h2>
     <p>If you are an existing user of our APIs, you must:</p>
     <ul class="govuk-list govuk-list--bullet">
@@ -122,7 +123,7 @@ html: 'The sandbox is a new service for the Submit an application to change the 
 
 
 
-    <!-- start using our apis -->
+    <!-- start using our apis section -->
     <h2 class="govuk-heading-m" id="start-using-our-apis">Start using our APIs</h2>
     <p class="govuk-body"><a
         href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/">View
@@ -157,7 +158,7 @@ html: 'The sandbox is a new service for the Submit an application to change the 
     <p class="govuk-body">Provides detailed information about a specific application, such as getting the latest
       application status including validation failures. Will not include any correspondence.</p>
 
-    <!-- limitations -->
+    <!-- limitations section -->
     <h2 class="govuk-heading-m" id="limitations">Limitations</h2>
 
     <p class="govuk-body">As this is an early release of the sandbox, some functionality is not yet available.
@@ -208,7 +209,7 @@ html: 'The sandbox is a new service for the Submit an application to change the 
     </ul>
 
 
-
+    <!-- Accessing endpoints -->
     <h3 class="govuk-heading-s">Accessing API endpoints for use with the sandbox environment</h3>
     <p class="govuk-body">The sandbox environment uses a different API sub-domain than the live environment. The
       endpoints can be found in the API specification for the live environment where you can also learn about the
@@ -226,22 +227,16 @@ html: 'The sandbox is a new service for the Submit an application to change the 
 
     <div class="govuk-!-padding-bottom-3"></div>
 
-    <!-- validation rules -->
+    <!-- validation section -->
     <h2 class="govuk-heading-m" id="validation-rules">Validation rules</h2>
     <p class="govuk-body">The aim of the sandbox is to follow the same validation rules as the live system.
       It will also cover all the validation phases. However, at present, there may be some differences between
       validation in the sandbox and the live service. </p>
-    <!-- <p class="govuk-body">To learn more about the validation rules for the live environment, review the API guidance in
-      the <a
-        href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/">Submit
-        an application to change the Land Register APIs</a>.</p>
-    <a href="https://forms.office.com/e/iswB5tf1z7" target="_blank">Report a validation difference between the sandbox
-      and live environment</a> -->
 
     <div class="govuk-!-padding-bottom-3"></div>
 
 
-    <!-- Test data -->
+    <!-- Test data section -->
     <h2 class="govuk-heading-m" id="test-data">Test data</h2>
     <p class="govuk-body">Test data in the sandbox is designed to mimic real‑world data,
       so you can run tests without affecting live systems. This provides a realistic testing experience while reducing
@@ -261,23 +256,23 @@ html: 'The sandbox is a new service for the Submit an application to change the 
     </div>
 
 
-
+    <!-- Same MOJ inset text component as at the top of the page -->
     <div class="govuk-inset-text guidance-panel">
       <h3 class="govuk-heading-s">Limitations of test data</h3>
       <p class="govuk-body">Currently, the test data only supports freehold titles.</p>
     </div>
 
 
-    <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+    <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-test-data">
       <div class="govuk-accordion__section">
         <div class="govuk-accordion__section-header">
           <h2 class="govuk-accordion__section-heading">
-            <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+            <span class="govuk-accordion__section-button" id="accordion-test-data-titles-heading">
               Titles
             </span>
           </h2>
         </div>
-        <div id="accordion-default-content-1" class="govuk-accordion__section-content">
+        <div id="accordion-test-data-titles-content" class="govuk-accordion__section-content">
           <p class="govuk-body"><a href="/public/docs/test-title-data.docx" download>Download the list of generated
               titles</a>. This list includes some title numbers where there are existing charges (such as lenders, and charge proprietors).</p>
           <p class="govuk-body">All sandbox titles start with 'TT'. The numbers are made up to supply synthetic data and
@@ -298,12 +293,12 @@ html: 'The sandbox is a new service for the Submit an application to change the 
       <div class="govuk-accordion__section">
         <div class="govuk-accordion__section-header">
           <h2 class="govuk-accordion__section-heading">
-            <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
+            <span class="govuk-accordion__section-button" id="accordion-test-data-addresses-header">
               Addresses
             </span>
           </h2>
         </div>
-        <div id="accordion-default-content-2" class="govuk-accordion__section-content">
+        <div id="accordion-test-data-addresses-content" class="govuk-accordion__section-content">
           <p class="govuk-body">Addresses used in test data are real addresses and are taken from the Ordnance
             Survey (OS) sample data set, which is available for download on the OS website. This is to provide a
             more realistic test experience.</p>
@@ -325,12 +320,12 @@ html: 'The sandbox is a new service for the Submit an application to change the 
       <div class="govuk-accordion__section">
         <div class="govuk-accordion__section-header">
           <h2 class="govuk-accordion__section-heading">
-            <span class="govuk-accordion__section-button" id="accordion-default-heading-3">
+            <span class="govuk-accordion__section-button" id="accordion-test-data-lenderdata-heading">
               Lender data
             </span>
           </h2>
         </div>
-        <div id="accordion-default-content-3" class="govuk-accordion__section-content">
+        <div id="accordion-test-data-lenderdata-content" class="govuk-accordion__section-content">
           <p class="govuk-body">Charges (mortgages and loan agreements) are usually identified by an MD Reference (MD
             Ref),
             which identifies the lender. </p>
@@ -349,35 +344,15 @@ html: 'The sandbox is a new service for the Submit an application to change the 
             values in your live system if they match the ‘MD9T’ pattern.</p>
         </div>
       </div>
-      <!-- <div class="govuk-accordion__section">
-        <div class="govuk-accordion__section-header">
-          <h2 class="govuk-accordion__section-heading">
-            <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
-              MD references
-            </span>
-          </h2>
-        </div>
-        <div id="accordion-default-content-4" class="govuk-accordion__section-content">
-          <p class="govuk-body">When submitting applications, use this <a href="/public/docs/MD-references.docx"
-              download>list of MD Reference charges</a>.
-            These all
-            begin with the
-            characters MD9T.</p>
-          <p class="govuk-body">At the time of publishing, none of the test data MD reference values relate to real live
-            MD
-            references, as none start with ‘MD9T’. However, this may change. You must not reject MD reference
-            values in your live system if they match the ‘MD9T’ pattern.</p>
-        </div>
-      </div> -->
       <div class="govuk-accordion__section">
         <div class="govuk-accordion__section-header">
           <h2 class="govuk-accordion__section-heading">
-            <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
+            <span class="govuk-accordion__section-button" id="accordion-test-data-names-heading">
               Names
             </span>
           </h2>
         </div>
-        <div id="accordion-default-content-4" class="govuk-accordion__section-content">
+        <div id="accordion-test-data-names-content" class="govuk-accordion__section-content">
           <p class="govuk-body">Where a person’s name is required in test data, these are taken from a list of fake
             names. 
             These names are not taken from any living person, or organisation, or trademark, or
@@ -398,12 +373,12 @@ html: 'The sandbox is a new service for the Submit an application to change the 
       <div class="govuk-accordion__section">
         <div class="govuk-accordion__section-header">
           <h2 class="govuk-accordion__section-heading">
-            <span class="govuk-accordion__section-button" id="accordion-default-heading-5">
+            <span class="govuk-accordion__section-button" id="accordion-test-data-documents-heading">
               Documents
             </span>
           </h2>
         </div>
-        <div id="accordion-default-content-4" class="govuk-accordion__section-content">
+        <div id="accordion-test-data-documents-content" class="govuk-accordion__section-content">
           <p class="govuk-body">The sandbox supports file uploads of up to 100KB. You can upload more than one document, as
             long as each file does not exceed this limit.</p>
         </div>
@@ -411,7 +386,7 @@ html: 'The sandbox is a new service for the Submit an application to change the 
 
     </div>
 
-
+    <!-- Same MOJ inset text component as at the top of the page -->
     <div class="govuk-inset-text guidance-panel">
       <h3 class="govuk-heading-s">Reporting test data errors</h3>
       <p class="govuk-body">If you see any data that is not referenced in this guide, it is likely
@@ -423,7 +398,7 @@ html: 'The sandbox is a new service for the Submit an application to change the 
 
 
 
-    <!-- Testing scenarios -->
+    <!-- Testing scenarios section -->
     <h2 class="govuk-heading-m" id="testing-scenarios">Testing scenarios</h2>
     <p class="govuk-body">We have supplied an example of a successful and unsuccessful application submission.</p>
     <p class="govuk-body">Before you start the test scenarios, familiarise yourself with the
@@ -481,16 +456,16 @@ html: 'The sandbox is a new service for the Submit an application to change the 
     </ol>
 
 
-    <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
+    <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-example-scenarios">
       <div class="govuk-accordion__section">
         <div class="govuk-accordion__section-header">
           <h2 class="govuk-accordion__section-heading">
-            <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+            <span class="govuk-accordion__section-button" id="accordion-example-scenarios-successful-heading">
               Example scenario - Successful submission
             </span>
           </h2>
         </div>
-        <div id="accordion-default-content-1" class="govuk-accordion__section-content">
+        <div id="accordion-example-scenarios-successful-content" class="govuk-accordion__section-content">
           <p class="govuk-body">This is an example of the information you may have gathered in your system.</p>
           <p class="govuk-body">The 'reference' column is a name you can choose for an address, transaction, party etc.
             This is used to relate documents to transactions, addresses to parties, or parties to roles in transactions.
@@ -1198,12 +1173,12 @@ html: 'The sandbox is a new service for the Submit an application to change the 
       <div class="govuk-accordion__section">
         <div class="govuk-accordion__section-header">
           <h2 class="govuk-accordion__section-heading">
-            <span class="govuk-accordion__section-button" id="accordion-default-heading-2">
+            <span class="govuk-accordion__section-button" id="accordion-example-scenarios-unsuccessful-heading">
               Example scenario - Unsuccessful application
             </span>
           </h2>
         </div>
-        <div id="accordion-default-content-2" class="govuk-accordion__section-content">
+        <div id="accordion-example-scenarios-unsuccessful-content" class="govuk-accordion__section-content">
           <p class="govuk-body">This example is of a single title charge, which fails 
             because the borrower name does not match a proprietor.</p>
 
