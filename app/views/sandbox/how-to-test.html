@@ -28,11 +28,10 @@ homepageUrl: "#"
 
 {{ govukPhaseBanner({
 tag: {
-text: "Prototype",
-classes: "govuk-tag--pink"
+text: "Beta",
+classes: "govuk-tag--blue"
 },
-html: 'This is a prototype of the sandbox documentation for the Business Gateway developer pack. You might experience
-problems.'
+html: 'The sandbox is a new service for the Submit an application to change the Land Register APIs. Help us improve it and <a class="govuk-link" href="https://forms.office.com/e/iswB5tf1z7" target="_blank">give your feedback (opens in new tab)</a>.'
 }) }}
 
 {% endblock %}
@@ -76,8 +75,9 @@ problems.'
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">Testing the Submit an application to change the Land Register APIs</h1>
 
+    <!-- This panel is a styling from MoJ - Inset text (highlighted) - Currently experimental -->
     <div class="govuk-inset-text guidance-panel">
-      For this initial release of the sandbox, we are focusing on simulating APIs from the <a
+      For this initial Beta release of the sandbox, we are focusing on simulating APIs from the <a
         href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/"
         target="_blank">Submit an application to change the Land Register APIs</a> <span class="govuk-body govuk-!-font-weight-bold">up until the point of application acceptance. The sandbox does not currently support any further stages.</span>
       <br><br>
@@ -279,23 +279,20 @@ problems.'
         </div>
         <div id="accordion-default-content-1" class="govuk-accordion__section-content">
           <p class="govuk-body"><a href="/public/docs/test-title-data.docx" download>Download the list of generated
-              titles</a>. This list includes where they
-            have charges, the chargee (for example a lender, or charge proprietor).</p>
+              titles</a>. This list includes some title numbers where there are existing charges (such as lenders, and charge proprietors).</p>
           <p class="govuk-body">All sandbox titles start with 'TT'. The numbers are made up to supply synthetic data and
             meet specific conditions, and don’t match real titles. </p>
           <p class="govuk-body">There are groups of synthetic titles with similar restrictions and numbers of
             proprietors, but they differ in names and addresses. </p>
           <p class="govuk-body">For example, TT000100 to TT000119 are freehold titles with one proprietor, where the
             proprietor's address matches the property's address. </p>
-          <p class="govuk-body">Multiple similar titles are provided to allow integrators to run parallel tests without
-            causing priority issues to the day list. </p>
           <p class="govuk-body">Sandbox-generated titles have various properties, including charges, with or without
             restrictions, and additional lender obligations.  </p>
           <p class="govuk-body">Similarly, sample titles may be shown with or without charges, restrictions, or notices.
             But these are generated without using the register.</p>
           <p class="govuk-body">Existing charges, where these are MD-Ref charges (with a pre-approved mortgage deed
             reference number), the charge will have the form of a synthetic MD-Ref charge. And the charge (the mortgage
-            company) will refer to a synthetic lender name corresponding to that MD Ref. </p>
+            company) will refer to a synthetic lender name corresponding to that MD Ref. See lender data for more about existing charges where there are MD References.</p>
         </div>
       </div>
       <div class="govuk-accordion__section">
@@ -341,9 +338,18 @@ problems.'
             applications in
             the sandbox. None of the MD References in the sandbox are real. Similarly, the lenders recorded
             on the title data are not real. </p>
+            <p class="govuk-body">When submitting applications, use this <a href="/public/docs/MD-references.docx"
+              download>list of MD Reference charges</a>.
+            These all
+            begin with the
+            characters MD9T.</p>
+          <p class="govuk-body">At the time of publishing, none of the test data MD reference values relate to real live
+            MD
+            references, as none start with ‘MD9T’. However, this may change. You must not reject MD reference
+            values in your live system if they match the ‘MD9T’ pattern.</p>
         </div>
       </div>
-      <div class="govuk-accordion__section">
+      <!-- <div class="govuk-accordion__section">
         <div class="govuk-accordion__section-header">
           <h2 class="govuk-accordion__section-heading">
             <span class="govuk-accordion__section-button" id="accordion-default-heading-4">
@@ -362,7 +368,7 @@ problems.'
             references, as none start with ‘MD9T’. However, this may change. You must not reject MD reference
             values in your live system if they match the ‘MD9T’ pattern.</p>
         </div>
-      </div>
+      </div> -->
       <div class="govuk-accordion__section">
         <div class="govuk-accordion__section-header">
           <h2 class="govuk-accordion__section-heading">
@@ -470,9 +476,7 @@ problems.'
       <li>Use the application request ID at the <a
           href="https://landregistry.github.io/bg-dev-pack-redesign/apis/application-information/1.0/"
           target="_blank">Application information API</a> to check if the application has passed or failed validation.
-        If it has failed, review the relevant API from the <a
-          href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/">Submit
-          an application to change the Land Register APIs</a>. Validation in
+        If the application has failed, review the OpenAPI specification for <a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0/" target="_blank">Submit an application API</a> or <a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/send-a-document/1.0/" target="_blank">Send a Document API</a> for any validation issues. Validation in
         sandbox follows the same as validation rules as those used in the live system</li>
     </ol>
 
@@ -515,7 +519,7 @@ problems.'
                 <td class="govuk-table__cell">WHOLE</td>
                 <td class="govuk-table__cell">False</td>
                 <td class="govuk-table__cell">250,000</td>
-                <td class="govuk-table__cell">4 chanter court, 1 proprietor</td>
+                <td class="govuk-table__cell">4 Chanter Court, 1 proprietor</td>
               </tr>
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell">TT000400</td>
@@ -615,7 +619,7 @@ problems.'
                 <td class="govuk-table__cell">Address1</td>
                 <td class="govuk-table__cell">PROVIDED_ADDRESS</td>
                 <td class="govuk-table__cell"> </td>
-                <td class="govuk-table__cell">yes</td>
+                <td class="govuk-table__cell">true</td>
               </tr>
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell">Seller2</td>
@@ -1273,8 +1277,8 @@ problems.'
                 <td class="govuk-table__cell">Address1</td>
                 <td class="govuk-table__cell">PROVIDED_ADDRESS</td>
                 <td class="govuk-table__cell"></td>
-                <td class="govuk-table__cell">yes</td>
-                <td class="govuk-table__cell">Comment column is free! They don't charge for columns</td>
+                <td class="govuk-table__cell">true</td>
+                <td class="govuk-table__cell"> </td>
               </tr>
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell">Borrower2</td>
