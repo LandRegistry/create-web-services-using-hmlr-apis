@@ -32,7 +32,9 @@ tag: {
 text: "Beta",
 classes: "govuk-tag--blue"
 },
-html: 'The sandbox is a new service for the Submit an application to change the Land Register APIs. Help us improve it and <a class="govuk-link" href="https://forms.office.com/e/iswB5tf1z7" target="_blank">give your feedback (opens in new tab)</a>.'
+html: 'The sandbox is a new service for the Submit an application to change the Land Register APIs. Help us improve it
+and <a class="govuk-link" href="https://forms.office.com/e/iswB5tf1z7" target="_blank">give your feedback (opens in new
+  tab)</a>.'
 }) }}
 
 {% endblock %}
@@ -80,7 +82,9 @@ html: 'The sandbox is a new service for the Submit an application to change the 
     <div class="govuk-inset-text guidance-panel">
       For this initial Beta release of the sandbox, we are focusing on simulating APIs from the <a
         href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/"
-        target="_blank">Submit an application to change the Land Register APIs</a> <span class="govuk-body govuk-!-font-weight-bold">up until the point of application acceptance. The sandbox does not currently support any further stages.</span>
+        target="_blank">Submit an application to change the Land Register APIs</a> <span
+        class="govuk-body govuk-!-font-weight-bold">up until the point of application acceptance. The sandbox does not
+        currently support any further stages.</span>
       <br><br>
       Help us improve this page and the developer pack by providing feedback via <a
         href="https://forms.office.com/e/iswB5tf1z7" target="_blank">this form</a>. Your feedback is valuable to us and
@@ -109,7 +113,8 @@ html: 'The sandbox is a new service for the Submit an application to change the 
     <p>If you are an existing user of our APIs, you must:</p>
     <ul class="govuk-list govuk-list--bullet">
       <li>reuse your current test TLS certificate or, if required, request a new SSL test certificate from <a
-          href="mailto:channelpartners@landregistry.gov.uk">Channel Partners</a> (channelpartners@landregistry.gov.uk)</li>
+          href="mailto:channelpartners@landregistry.gov.uk">Channel Partners</a> (channelpartners@landregistry.gov.uk)
+      </li>
       <li>request access credentials (a username and password) &mdash; also from <a
           href="mailto:channelpartners@landregistry.gov.uk">Channel Partners</a>.
         You may have already received this as part of onboarding to use the sandbox environment</li>
@@ -214,7 +219,9 @@ html: 'The sandbox is a new service for the Submit an application to change the 
     <p class="govuk-body">The sandbox environment uses a different API sub-domain than the live environment. The
       endpoints can be found in the API specification for the live environment where you can also learn about the
       OpenAPI validation rules. The API specification does not currently contain the sandbox subdomain information.</p>
-    <p class="govuk-body">Please make sure to use the URL <a href="https://bgtest.landregistry.gov.uk/bg2sandbox/api" target="_blank">https://bgtest.landregistry.gov.uk/bg2sandbox/api</a> when you are using the below OpenAPI specs as reference.</p>
+    <p class="govuk-body">Please make sure to use the URL <a href="https://bgtest.landregistry.gov.uk/bg2sandbox/api"
+        target="_blank">https://bgtest.landregistry.gov.uk/bg2sandbox/api</a> when you are using the below OpenAPI specs
+      as reference.</p>
     <ul class="govuk-list">
       <li><a class="govuk-body"
           href="https://landregistry.github.io/bgtechdoc/documents/submit-an-application-to-change-the-register/v1.0/openapi.html"
@@ -250,8 +257,8 @@ html: 'The sandbox is a new service for the Submit an application to change the 
       <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
       <strong class="govuk-warning-text__text">
         <span class="govuk-visually-hidden">Warning</span>
-        Only use the provided test data in the sandbox. 
-        Do not upload real application data. 
+        Only use the provided test data in the sandbox.
+        Do not upload real application data.
       </strong>
     </div>
 
@@ -274,7 +281,8 @@ html: 'The sandbox is a new service for the Submit an application to change the 
         </div>
         <div id="accordion-test-data-titles-content" class="govuk-accordion__section-content">
           <p class="govuk-body"><a href="/public/docs/test-title-data.docx" download>Download the list of generated
-              titles</a>. This list includes some title numbers where there are existing charges (such as lenders, and charge proprietors).</p>
+              titles</a>. This list includes some title numbers where there are existing charges (such as lenders, and
+            charge proprietors).</p>
           <p class="govuk-body">All sandbox titles start with 'TT'. The numbers are made up to supply synthetic data and
             meet specific conditions, and don’t match real titles. </p>
           <p class="govuk-body">There are groups of synthetic titles with similar restrictions and numbers of
@@ -287,7 +295,8 @@ html: 'The sandbox is a new service for the Submit an application to change the 
             But these are generated without using the register.</p>
           <p class="govuk-body">Existing charges, where these are MD-Ref charges (with a pre-approved mortgage deed
             reference number), the charge will have the form of a synthetic MD-Ref charge. And the charge (the mortgage
-            company) will refer to a synthetic lender name corresponding to that MD Ref. See lender data for more about existing charges where there are MD References.</p>
+            company) will refer to a synthetic lender name corresponding to that MD Ref. See lender data for more about
+            existing charges where there are MD References.</p>
         </div>
       </div>
       <div class="govuk-accordion__section">
@@ -333,7 +342,7 @@ html: 'The sandbox is a new service for the Submit an application to change the 
             applications in
             the sandbox. None of the MD References in the sandbox are real. Similarly, the lenders recorded
             on the title data are not real. </p>
-            <p class="govuk-body">When submitting applications, use this <a href="/public/docs/MD-references.docx"
+          <p class="govuk-body">When submitting applications, use this <a href="/public/docs/MD-references.docx"
               download>list of MD Reference charges</a>.
             These all
             begin with the
@@ -379,7 +388,8 @@ html: 'The sandbox is a new service for the Submit an application to change the 
           </h2>
         </div>
         <div id="accordion-test-data-documents-content" class="govuk-accordion__section-content">
-          <p class="govuk-body">The sandbox supports file uploads of up to 100KB. You can upload more than one document, as
+          <p class="govuk-body">The sandbox supports file uploads of up to 100KB. You can upload more than one document,
+            as
             long as each file does not exceed this limit.</p>
         </div>
       </div>
@@ -411,7 +421,7 @@ html: 'The sandbox is a new service for the Submit an application to change the 
       <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
       <strong class="govuk-warning-text__text">
         <span class="govuk-visually-hidden">Warning</span>
-        You should only use the provided test title data and not any real data. 
+        You should only use the provided test title data and not any real data.
       </strong>
     </div>
 
@@ -451,8 +461,11 @@ html: 'The sandbox is a new service for the Submit an application to change the 
       <li>Use the application request ID at the <a
           href="https://landregistry.github.io/bg-dev-pack-redesign/apis/application-information/1.0/"
           target="_blank">Application information API</a> to check if the application has passed or failed validation.
-        If the application has failed, review the OpenAPI specification for <a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0/" target="_blank">Submit an application API</a> or <a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/send-a-document/1.0/" target="_blank">Send a Document API</a> for any validation issues. Validation in
-        sandbox follows the same as validation rules as those used in the live system</li>
+        If the application has failed, review the OpenAPI specification for <a
+          href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0/"
+          target="_blank">Submit an application API</a> or <a
+          href="https://landregistry.github.io/bg-dev-pack-redesign/apis/send-a-document/1.0/" target="_blank">Send a
+          Document API</a> for any validation issues</li>
     </ol>
 
 
@@ -475,176 +488,176 @@ html: 'The sandbox is a new service for the Submit an application to change the 
           <p class="govuk-body">This application is a multi-title transfer-charge application. TT000400 has a
             proprietor in common with TT000100.  </p>
 
-        
+
           <br><br>
           <div class="moj-scrollable-pane" role="region" aria-label="Titles table" tabindex="0">
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Title number</th>
-                <th scope="col" class="govuk-table__header">Scope</th>
-                <th scope="col" class="govuk-table__header">Interest</th>
-                <th scope="col" class="govuk-table__header">Value</th>
-                <th scope="col" class="govuk-table__header">Comment</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">TT000100</td>
-                <td class="govuk-table__cell">WHOLE</td>
-                <td class="govuk-table__cell">False</td>
-                <td class="govuk-table__cell">250,000</td>
-                <td class="govuk-table__cell">4 Chanter Court, 1 proprietor</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">TT000400</td>
-                <td class="govuk-table__cell">WHOLE</td>
-                <td class="govuk-table__cell">False</td>
-                <td class="govuk-table__cell">250,000</td>
-                <td class="govuk-table__cell">24 Briar Crescent, 2 proprietors</td>
-              </tr>
-            </tbody>
-          </table>
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Title number</th>
+                  <th scope="col" class="govuk-table__header">Scope</th>
+                  <th scope="col" class="govuk-table__header">Interest</th>
+                  <th scope="col" class="govuk-table__header">Value</th>
+                  <th scope="col" class="govuk-table__header">Comment</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">TT000100</td>
+                  <td class="govuk-table__cell">WHOLE</td>
+                  <td class="govuk-table__cell">False</td>
+                  <td class="govuk-table__cell">250,000</td>
+                  <td class="govuk-table__cell">4 Chanter Court, 1 proprietor</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">TT000400</td>
+                  <td class="govuk-table__cell">WHOLE</td>
+                  <td class="govuk-table__cell">False</td>
+                  <td class="govuk-table__cell">250,000</td>
+                  <td class="govuk-table__cell">24 Briar Crescent, 2 proprietors</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="moj-scrollable-pane" role="region" aria-label="Documents table" tabindex="0">
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <caption class="govuk-table__caption govuk-table__caption--s">Documents</caption>
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Reference</th>
-                <th scope="col" class="govuk-table__header">Type</th>
-                <th scope="col" class="govuk-table__header">Certified</th>
-                <th scope="col" class="govuk-table__header">File</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">1</td>
-                <td class="govuk-table__cell">TR1</td>
-                <td class="govuk-table__cell">Yes</td>
-                <td class="govuk-table__cell">Testdoc-valid-2.pdf</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">2</td>
-                <td class="govuk-table__cell">MRTG_DEED</td>
-                <td class="govuk-table__cell">Yes</td>
-                <td class="govuk-table__cell">Testdoc-valid-3.pdf</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">3</td>
-                <td class="govuk-table__cell">MRTG_DEED</td>
-                <td class="govuk-table__cell">Yes</td>
-                <td class="govuk-table__cell">Testdoc-valid-4.pdf</td>
-              </tr>
-            </tbody>
-          </table>
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <caption class="govuk-table__caption govuk-table__caption--s">Documents</caption>
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Reference</th>
+                  <th scope="col" class="govuk-table__header">Type</th>
+                  <th scope="col" class="govuk-table__header">Certified</th>
+                  <th scope="col" class="govuk-table__header">File</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">1</td>
+                  <td class="govuk-table__cell">TR1</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Testdoc-valid-2.pdf</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">2</td>
+                  <td class="govuk-table__cell">MRTG_DEED</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Testdoc-valid-3.pdf</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">3</td>
+                  <td class="govuk-table__cell">MRTG_DEED</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Testdoc-valid-4.pdf</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="moj-scrollable-pane" role="region" aria-label="Addresses table" tabindex="0">
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <caption class="govuk-table__caption govuk-table__caption--s">Addresses</caption>
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Reference</th>
-                <th scope="col" class="govuk-table__header">Type</th>
-                <th scope="col" class="govuk-table__header">Building description</th>
-                <th scope="col" class="govuk-table__header">Street</th>
-                <th scope="col" class="govuk-table__header">Post town</th>
-                <th scope="col" class="govuk-table__header">Postcode</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Address1</td>
-                <td class="govuk-table__cell">UK</td>
-                <td class="govuk-table__cell">4 Chanter Court</td>
-                <td class="govuk-table__cell">Bishop Westall Road</td>
-                <td class="govuk-table__cell">Exeter</td>
-                <td class="govuk-table__cell">EX2 6NH</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Address2</td>
-                <td class="govuk-table__cell">UK</td>
-                <td class="govuk-table__cell">24</td>
-                <td class="govuk-table__cell">Briar Crescent</td>
-                <td class="govuk-table__cell">Exeter</td>
-                <td class="govuk-table__cell">EX2 6DU</td>
-              </tr>
-            </tbody>
-          </table>
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <caption class="govuk-table__caption govuk-table__caption--s">Addresses</caption>
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Reference</th>
+                  <th scope="col" class="govuk-table__header">Type</th>
+                  <th scope="col" class="govuk-table__header">Building description</th>
+                  <th scope="col" class="govuk-table__header">Street</th>
+                  <th scope="col" class="govuk-table__header">Post town</th>
+                  <th scope="col" class="govuk-table__header">Postcode</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Address1</td>
+                  <td class="govuk-table__cell">UK</td>
+                  <td class="govuk-table__cell">4 Chanter Court</td>
+                  <td class="govuk-table__cell">Bishop Westall Road</td>
+                  <td class="govuk-table__cell">Exeter</td>
+                  <td class="govuk-table__cell">EX2 6NH</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Address2</td>
+                  <td class="govuk-table__cell">UK</td>
+                  <td class="govuk-table__cell">24</td>
+                  <td class="govuk-table__cell">Briar Crescent</td>
+                  <td class="govuk-table__cell">Exeter</td>
+                  <td class="govuk-table__cell">EX2 6DU</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <h4 class="govuk-heading-s">Parties</h4>
           <p class="govuk-body">Note that the parties hove to be linked to provided addresses.</p>
-          
+
           <div class="moj-scrollable-pane" role="region" aria-label="Parties table" tabindex="0">
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Reference</th>
-                <th scope="col" class="govuk-table__header">Party type</th>
-                <th scope="col" class="govuk-table__header">Name</th>
-                <th scope="col" class="govuk-table__header">Representation</th>
-                <th scope="col" class="govuk-table__header">Address</th>
-                <th scope="col" class="govuk-table__header">Address for service</th>
-                <th scope="col" class="govuk-table__header">Company number</th>
-                <th scope="col" class="govuk-table__header">Applicant</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Seller1</td>
-                <td class="govuk-table__cell">PRIVATE_INDIVIDUAL</td>
-                <td class="govuk-table__cell">Garnet Riga</td>
-                <td class="govuk-table__cell">LODGING_CONVEYANCER</td>
-                <td class="govuk-table__cell">Address1</td>
-                <td class="govuk-table__cell">PROVIDED_ADDRESS</td>
-                <td class="govuk-table__cell"> </td>
-                <td class="govuk-table__cell">true</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Seller2</td>
-                <td class="govuk-table__cell">PRIVATE_INDIVIDUAL</td>
-                <td class="govuk-table__cell">Garnet Obsidian Courbevoie</td>
-                <td class="govuk-table__cell">LODGING_CONVEYANCER</td>
-                <td class="govuk-table__cell">Address2</td>
-                <td class="govuk-table__cell">PROVIDED_ADDRESS</td>
-                <td class="govuk-table__cell"> </td>
-                <td class="govuk-table__cell">true</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Buyer1</td>
-                <td class="govuk-table__cell">PRIVATE_INDIVIDUAL</td>
-                <td class="govuk-table__cell">Madeup One</td>
-                <td class="govuk-table__cell">LODGING_CONVEYANCER</td>
-                <td class="govuk-table__cell">Address2</td>
-                <td class="govuk-table__cell">PROVIDED_ADDRESS</td>
-                <td class="govuk-table__cell"> </td>
-                <td class="govuk-table__cell">true</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Buyer2</td>
-                <td class="govuk-table__cell">PRIVATE_INDIVIDUAL</td>
-                <td class="govuk-table__cell">Madeup Two</td>
-                <td class="govuk-table__cell">LODGING_CONVEYANCER</td>
-                <td class="govuk-table__cell">Address2</td>
-                <td class="govuk-table__cell">PROVIDED_ADDRESS</td>
-                <td class="govuk-table__cell"> </td>
-                <td class="govuk-table__cell">true</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Lender</td>
-                <td class="govuk-table__cell">UK_COMPANY</td>
-                <td class="govuk-table__cell">Ruby Yew Test Mortgages PLC</td>
-                <td class="govuk-table__cell">NOT_REQUIRED</td>
-                <td class="govuk-table__cell">Address1</td>
-                <td class="govuk-table__cell">PROVIDED_ADDRESS</td>
-                <td class="govuk-table__cell">2294747</td>
-                <td class="govuk-table__cell"> </td>
-              </tr>
-            </tbody>
-          </table>
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Reference</th>
+                  <th scope="col" class="govuk-table__header">Party type</th>
+                  <th scope="col" class="govuk-table__header">Name</th>
+                  <th scope="col" class="govuk-table__header">Representation</th>
+                  <th scope="col" class="govuk-table__header">Address</th>
+                  <th scope="col" class="govuk-table__header">Address for service</th>
+                  <th scope="col" class="govuk-table__header">Company number</th>
+                  <th scope="col" class="govuk-table__header">Applicant</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Seller1</td>
+                  <td class="govuk-table__cell">PRIVATE_INDIVIDUAL</td>
+                  <td class="govuk-table__cell">Garnet Riga</td>
+                  <td class="govuk-table__cell">LODGING_CONVEYANCER</td>
+                  <td class="govuk-table__cell">Address1</td>
+                  <td class="govuk-table__cell">PROVIDED_ADDRESS</td>
+                  <td class="govuk-table__cell"> </td>
+                  <td class="govuk-table__cell">true</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Seller2</td>
+                  <td class="govuk-table__cell">PRIVATE_INDIVIDUAL</td>
+                  <td class="govuk-table__cell">Garnet Obsidian Courbevoie</td>
+                  <td class="govuk-table__cell">LODGING_CONVEYANCER</td>
+                  <td class="govuk-table__cell">Address2</td>
+                  <td class="govuk-table__cell">PROVIDED_ADDRESS</td>
+                  <td class="govuk-table__cell"> </td>
+                  <td class="govuk-table__cell">true</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Buyer1</td>
+                  <td class="govuk-table__cell">PRIVATE_INDIVIDUAL</td>
+                  <td class="govuk-table__cell">Madeup One</td>
+                  <td class="govuk-table__cell">LODGING_CONVEYANCER</td>
+                  <td class="govuk-table__cell">Address2</td>
+                  <td class="govuk-table__cell">PROVIDED_ADDRESS</td>
+                  <td class="govuk-table__cell"> </td>
+                  <td class="govuk-table__cell">true</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Buyer2</td>
+                  <td class="govuk-table__cell">PRIVATE_INDIVIDUAL</td>
+                  <td class="govuk-table__cell">Madeup Two</td>
+                  <td class="govuk-table__cell">LODGING_CONVEYANCER</td>
+                  <td class="govuk-table__cell">Address2</td>
+                  <td class="govuk-table__cell">PROVIDED_ADDRESS</td>
+                  <td class="govuk-table__cell"> </td>
+                  <td class="govuk-table__cell">true</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Lender</td>
+                  <td class="govuk-table__cell">UK_COMPANY</td>
+                  <td class="govuk-table__cell">Ruby Yew Test Mortgages PLC</td>
+                  <td class="govuk-table__cell">NOT_REQUIRED</td>
+                  <td class="govuk-table__cell">Address1</td>
+                  <td class="govuk-table__cell">PROVIDED_ADDRESS</td>
+                  <td class="govuk-table__cell">2294747</td>
+                  <td class="govuk-table__cell"> </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <h4 class="govuk-heading-s">Transfers</h4>
@@ -653,56 +666,56 @@ html: 'The sandbox is a new service for the Submit an application to change the 
           <p class="govuk-body">Note: You must use the correct capitalisation and spelling.</p>
 
           <div class="moj-scrollable-pane" role="region" aria-label="Transfers table" tabindex="0">
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Name</th>
-                <th scope="col" class="govuk-table__header">Value</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Date</td>
-                <td class="govuk-table__cell">2024-08-13</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Value</td>
-                <td class="govuk-table__cell">£140000</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Full value</td>
-                <td class="govuk-table__cell">£140000</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Outstanding charge</td>
-                <td class="govuk-table__cell">0</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Fee</td>
-                <td class="govuk-table__cell">£30.00</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Documents</td>
-                <td class="govuk-table__cell">DOC1</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Trust declaration type</td>
-                <td class="govuk-table__cell">joint tenants</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Title guarante code</td>
-                <td class="govuk-table__cell">full</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Additional provisions code</td>
-                <td class="govuk-table__cell">no provisions</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Consideration type</td>
-                <td class="govuk-table__cell">monetary value</td>
-              </tr>
-            </tbody>
-          </table>
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Name</th>
+                  <th scope="col" class="govuk-table__header">Value</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Date</td>
+                  <td class="govuk-table__cell">2024-08-13</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Value</td>
+                  <td class="govuk-table__cell">£140000</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Full value</td>
+                  <td class="govuk-table__cell">£140000</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Outstanding charge</td>
+                  <td class="govuk-table__cell">0</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Fee</td>
+                  <td class="govuk-table__cell">£30.00</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Documents</td>
+                  <td class="govuk-table__cell">DOC1</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Trust declaration type</td>
+                  <td class="govuk-table__cell">joint tenants</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Title guarante code</td>
+                  <td class="govuk-table__cell">full</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Additional provisions code</td>
+                  <td class="govuk-table__cell">no provisions</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Consideration type</td>
+                  <td class="govuk-table__cell">monetary value</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <h4 class="govuk-heading-s">Transaction parties</h4>
@@ -710,169 +723,170 @@ html: 'The sandbox is a new service for the Submit an application to change the 
           <p class="govuk-body">Note: The parties are referenced by the party ID you assigned above.</p>
 
           <div class="moj-scrollable-pane" role="region" aria-label="Transaction parties table" tabindex="0">
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Party</th>
-                <th scope="col" class="govuk-table__header">Role</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Seller1</td>
-                <td class="govuk-table__cell">Transferor</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Seller2</td>
-                <td class="govuk-table__cell">Transferor</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Buyer1</td>
-                <td class="govuk-table__cell">Transferee</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Buyer2</td>
-                <td class="govuk-table__cell">Transferee</td>
-              </tr>
-            </tbody>
-          </table>
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Party</th>
+                  <th scope="col" class="govuk-table__header">Role</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Seller1</td>
+                  <td class="govuk-table__cell">Transferor</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Seller2</td>
+                  <td class="govuk-table__cell">Transferor</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Buyer1</td>
+                  <td class="govuk-table__cell">Transferee</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Buyer2</td>
+                  <td class="govuk-table__cell">Transferee</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <h4 class="govuk-heading-s">Charges</h4>
           <p class="govuk-body">In this scenario, there is a charge transaction for the first title.</p>
 
           <div class="moj-scrollable-pane" role="region" aria-label="Charges table" tabindex="0">
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Name</th>
-                <th scope="col" class="govuk-table__header">Value</th>
-                <th scope="col" class="govuk-table__header">Comment</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Date</td>
-                <td class="govuk-table__cell">2024-08-13</td>
-                <td class="govuk-table__cell"></td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Value</td>
-                <td class="govuk-table__cell">£140000</td>
-                <td class="govuk-table__cell"></td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Fee</td>
-                <td class="govuk-table__cell">0</td>
-                <td class="govuk-table__cell">Because it accompanies a "scale fee transaction"</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Documents</td>
-                <td class="govuk-table__cell">DOC2</td>
-                <td class="govuk-table__cell"></td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">MD Ref</td>
-                <td class="govuk-table__cell">MD9TAB</td>
-                <td class="govuk-table__cell"></td>
-              </tr>
-            </tbody>
-          </table>
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Name</th>
+                  <th scope="col" class="govuk-table__header">Value</th>
+                  <th scope="col" class="govuk-table__header">Comment</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Date</td>
+                  <td class="govuk-table__cell">2024-08-13</td>
+                  <td class="govuk-table__cell"></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Value</td>
+                  <td class="govuk-table__cell">£140000</td>
+                  <td class="govuk-table__cell"></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Fee</td>
+                  <td class="govuk-table__cell">0</td>
+                  <td class="govuk-table__cell">Because it accompanies a "scale fee transaction"</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Documents</td>
+                  <td class="govuk-table__cell">DOC2</td>
+                  <td class="govuk-table__cell"></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">MD Ref</td>
+                  <td class="govuk-table__cell">MD9TAB</td>
+                  <td class="govuk-table__cell"></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <p class="govuk-body">The transaction parties for the first title are as follows.</p>
 
-          <div class="moj-scrollable-pane" role="region" aria-label="Transaction parties table for first title" tabindex="0">
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Party</th>
-                <th scope="col" class="govuk-table__header">Role</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Buyer1</td>
-                <td class="govuk-table__cell">Borrower</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Buyer2</td>
-                <td class="govuk-table__cell">Borrower</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Lender</td>
-                <td class="govuk-table__cell">Lender</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="moj-scrollable-pane" role="region" aria-label="Transaction parties table for first title"
+            tabindex="0">
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Party</th>
+                  <th scope="col" class="govuk-table__header">Role</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Buyer1</td>
+                  <td class="govuk-table__cell">Borrower</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Buyer2</td>
+                  <td class="govuk-table__cell">Borrower</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Lender</td>
+                  <td class="govuk-table__cell">Lender</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <p class="govuk-body">In this scenario, there is a charge transaction for the second title.</p>
 
           <div class="moj-scrollable-pane" role="region" aria-label="Transactions table for second title" tabindex="0">
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Name</th>
-                <th scope="col" class="govuk-table__header">Value</th>
-                <th scope="col" class="govuk-table__header">Comment</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Date</td>
-                <td class="govuk-table__cell">2024-08-13</td>
-                <td class="govuk-table__cell"></td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Value</td>
-                <td class="govuk-table__cell">£140000</td>
-                <td class="govuk-table__cell"></td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Fee</td>
-                <td class="govuk-table__cell">0</td>
-                <td class="govuk-table__cell">Because it accompanies a "scale fee transaction"</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Documents</td>
-                <td class="govuk-table__cell">DOC3</td>
-                <td class="govuk-table__cell"></td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">MD Ref</td>
-                <td class="govuk-table__cell">MD9TAB</td>
-                <td class="govuk-table__cell"></td>
-              </tr>
-            </tbody>
-          </table>
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Name</th>
+                  <th scope="col" class="govuk-table__header">Value</th>
+                  <th scope="col" class="govuk-table__header">Comment</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Date</td>
+                  <td class="govuk-table__cell">2024-08-13</td>
+                  <td class="govuk-table__cell"></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Value</td>
+                  <td class="govuk-table__cell">£140000</td>
+                  <td class="govuk-table__cell"></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Fee</td>
+                  <td class="govuk-table__cell">0</td>
+                  <td class="govuk-table__cell">Because it accompanies a "scale fee transaction"</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Documents</td>
+                  <td class="govuk-table__cell">DOC3</td>
+                  <td class="govuk-table__cell"></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">MD Ref</td>
+                  <td class="govuk-table__cell">MD9TAB</td>
+                  <td class="govuk-table__cell"></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <p class="govuk-body">The transaction parties for the second title are as follows.</p>
-          
+
           <div class="moj-scrollable-pane" role="region" aria-label="Parties table for second title" tabindex="0">
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Party</th>
-                <th scope="col" class="govuk-table__header">Role</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Buyer1</td>
-                <td class="govuk-table__cell">Borrower</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Buyer2</td>
-                <td class="govuk-table__cell">Borrower</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Lender</td>
-                <td class="govuk-table__cell">Lender</td>
-              </tr>
-            </tbody>
-          </table>
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Party</th>
+                  <th scope="col" class="govuk-table__header">Role</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Buyer1</td>
+                  <td class="govuk-table__cell">Borrower</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Buyer2</td>
+                  <td class="govuk-table__cell">Borrower</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Lender</td>
+                  <td class="govuk-table__cell">Lender</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <h4 class="govuk-heading-s">Uploading documents</h4>
@@ -1209,9 +1223,10 @@ html: 'The sandbox is a new service for the Submit an application to change the 
             because the borrower name does not match a proprietor.</p>
 
           <h4 class="govuk-heading-s">Title</h4>
-          <p class="govuk-body">When you begin a <code style="color: #a71d5d; background-color: #f5f5f5">REGISTER_UPDATE</code>
+          <p class="govuk-body">When you begin a <code
+              style="color: #a71d5d; background-color: #f5f5f5">REGISTER_UPDATE</code>
             application for the following title:</p>
-          
+
           <div class="moj-scrollable-pane" role="region" aria-label="Titles table" tabindex="0">
             <table class="govuk-table">
               <thead class="govuk-table__head">
@@ -1229,7 +1244,7 @@ html: 'The sandbox is a new service for the Submit an application to change the 
                   <td class="govuk-table__cell">WHOLE</td>
                   <td class="govuk-table__cell">False</td>
                   <td class="govuk-table__cell">250,000</td>
-                 <td class="govuk-table__cell">24 Briar Crescent, 2 proprietors</td>
+                  <td class="govuk-table__cell">24 Briar Crescent, 2 proprietors</td>
                 </tr>
               </tbody>
             </table>
@@ -1239,80 +1254,80 @@ html: 'The sandbox is a new service for the Submit an application to change the 
           <p class="govuk-body">Upload the following document:</p>
 
           <div class="moj-scrollable-pane" role="region" aria-label="Documents table" tabindex="0">
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Reference</th>
-                <th scope="col" class="govuk-table__header">Type</th>
-                <th scope="col" class="govuk-table__header">Certified</th>
-                <th scope="col" class="govuk-table__header">File</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">DOC1</td>
-                <td class="govuk-table__cell">MRTG_DEED</td>
-                <td class="govuk-table__cell">Yes</td>
-                <td class="govuk-table__cell">Testdoc-valid-1.pdf</td>
-              </tr>
-            </tbody>
-          </table>
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Reference</th>
+                  <th scope="col" class="govuk-table__header">Type</th>
+                  <th scope="col" class="govuk-table__header">Certified</th>
+                  <th scope="col" class="govuk-table__header">File</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">DOC1</td>
+                  <td class="govuk-table__cell">MRTG_DEED</td>
+                  <td class="govuk-table__cell">Yes</td>
+                  <td class="govuk-table__cell">Testdoc-valid-1.pdf</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <h4 class="govuk-heading-s">Parties</h4>
           <p class="govuk-body">Use the following parties:</p>
 
           <div class="moj-scrollable-pane" role="region" aria-label="Parties table" tabindex="0">
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Reference</th>
-                <th scope="col" class="govuk-table__header">Party type</th>
-                <th scope="col" class="govuk-table__header">Name</th>
-                <th scope="col" class="govuk-table__header">Representation</th>
-                <th scope="col" class="govuk-table__header">Address</th>
-                <th scope="col" class="govuk-table__header">Address for service</th>
-                <th scope="col" class="govuk-table__header">Company number</th>
-                <th scope="col" class="govuk-table__header">Applicant</th>
-                <th scope="col" class="govuk-table__header">Comment</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Borrower1</td>
-                <td class="govuk-table__cell">PRIVATE_INDIVIDUAL</td>
-                <td class="govuk-table__cell">Artichoke Waltz</td>
-                <td class="govuk-table__cell">LODGING_CONVEYANCER</td>
-                <td class="govuk-table__cell">Address1</td>
-                <td class="govuk-table__cell">PROVIDED_ADDRESS</td>
-                <td class="govuk-table__cell"></td>
-                <td class="govuk-table__cell">true</td>
-                <td class="govuk-table__cell"> </td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Borrower2</td>
-                <td class="govuk-table__cell">PRIVATE_INDIVIDUAL</td>
-                <td class="govuk-table__cell">Garnet Obsidian Courbevoie</td>
-                <td class="govuk-table__cell">LODGING_CONVEYANCER</td>
-                <td class="govuk-table__cell">Address1</td>
-                <td class="govuk-table__cell">PROVIDED_ADDRESS</td>
-                <td class="govuk-table__cell"></td>
-                <td class="govuk-table__cell">true</td>
-                <td class="govuk-table__cell">Name accepts either 'First Last' or 'Last, First'</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Lender</td>
-                <td class="govuk-table__cell">UK_COMPANY</td>
-                <td class="govuk-table__cell">Ruby Yew Test Mortgages PLC</td>
-                <td class="govuk-table__cell">NOT_REQUIRED</td>
-                <td class="govuk-table__cell">Address1</td>
-                <td class="govuk-table__cell">PROVIDED_ADDRESS</td>
-                <td class="govuk-table__cell">2294747  </td>
-                <td class="govuk-table__cell"></td>
-                <td class="govuk-table__cell"></td>
-              </tr>
-            </tbody>
-          </table>
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Reference</th>
+                  <th scope="col" class="govuk-table__header">Party type</th>
+                  <th scope="col" class="govuk-table__header">Name</th>
+                  <th scope="col" class="govuk-table__header">Representation</th>
+                  <th scope="col" class="govuk-table__header">Address</th>
+                  <th scope="col" class="govuk-table__header">Address for service</th>
+                  <th scope="col" class="govuk-table__header">Company number</th>
+                  <th scope="col" class="govuk-table__header">Applicant</th>
+                  <th scope="col" class="govuk-table__header">Comment</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Borrower1</td>
+                  <td class="govuk-table__cell">PRIVATE_INDIVIDUAL</td>
+                  <td class="govuk-table__cell">Artichoke Waltz</td>
+                  <td class="govuk-table__cell">LODGING_CONVEYANCER</td>
+                  <td class="govuk-table__cell">Address1</td>
+                  <td class="govuk-table__cell">PROVIDED_ADDRESS</td>
+                  <td class="govuk-table__cell"></td>
+                  <td class="govuk-table__cell">true</td>
+                  <td class="govuk-table__cell"> </td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Borrower2</td>
+                  <td class="govuk-table__cell">PRIVATE_INDIVIDUAL</td>
+                  <td class="govuk-table__cell">Garnet Obsidian Courbevoie</td>
+                  <td class="govuk-table__cell">LODGING_CONVEYANCER</td>
+                  <td class="govuk-table__cell">Address1</td>
+                  <td class="govuk-table__cell">PROVIDED_ADDRESS</td>
+                  <td class="govuk-table__cell"></td>
+                  <td class="govuk-table__cell">true</td>
+                  <td class="govuk-table__cell">Name accepts either 'First Last' or 'Last, First'</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Lender</td>
+                  <td class="govuk-table__cell">UK_COMPANY</td>
+                  <td class="govuk-table__cell">Ruby Yew Test Mortgages PLC</td>
+                  <td class="govuk-table__cell">NOT_REQUIRED</td>
+                  <td class="govuk-table__cell">Address1</td>
+                  <td class="govuk-table__cell">PROVIDED_ADDRESS</td>
+                  <td class="govuk-table__cell">2294747  </td>
+                  <td class="govuk-table__cell"></td>
+                  <td class="govuk-table__cell"></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
 
@@ -1320,103 +1335,103 @@ html: 'The sandbox is a new service for the Submit an application to change the 
           <p class="govuk-body">Use the following address:</p>
 
           <div class="moj-scrollable-pane" role="region" aria-label="Addresses table" tabindex="0">
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Reference</th>
-                <th scope="col" class="govuk-table__header">Type</th>
-                <th scope="col" class="govuk-table__header">Building description</th>
-                <th scope="col" class="govuk-table__header">Street</th>
-                <th scope="col" class="govuk-table__header">Post town</th>
-                <th scope="col" class="govuk-table__header">Postcode</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Address1</td>
-                <td class="govuk-table__cell">UK</td>
-                <td class="govuk-table__cell">24</td>
-                <td class="govuk-table__cell">Briar Crescent</td>
-                <td class="govuk-table__cell">Exeter</td>
-                <td class="govuk-table__cell">EX2 6DU</td>
-              </tr>
-            </tbody>
-          </table>
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Reference</th>
+                  <th scope="col" class="govuk-table__header">Type</th>
+                  <th scope="col" class="govuk-table__header">Building description</th>
+                  <th scope="col" class="govuk-table__header">Street</th>
+                  <th scope="col" class="govuk-table__header">Post town</th>
+                  <th scope="col" class="govuk-table__header">Postcode</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Address1</td>
+                  <td class="govuk-table__cell">UK</td>
+                  <td class="govuk-table__cell">24</td>
+                  <td class="govuk-table__cell">Briar Crescent</td>
+                  <td class="govuk-table__cell">Exeter</td>
+                  <td class="govuk-table__cell">EX2 6DU</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <h4 class="govuk-heading-s">Charges</h4>
           <p class="govuk-body">There is a charge transaction for the first title:</p>
 
           <div class="moj-scrollable-pane" role="region" aria-label="Charges table" tabindex="0">
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Name</th>
-                <th scope="col" class="govuk-table__header">Value</th>
-                <th scope="col" class="govuk-table__header">Comment</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Date</td>
-                <td class="govuk-table__cell">2024-08-13</td>
-                <td class="govuk-table__cell"></td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Value</td>
-                <td class="govuk-table__cell">£140000</td>
-                <td class="govuk-table__cell"></td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Outstanding</td>
-                <td class="govuk-table__cell">£123</td>
-                <td class="govuk-table__cell"></td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Fee</td>
-                <td class="govuk-table__cell">£30.00</td>
-                <td class="govuk-table__cell"></td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Documents</td>
-                <td class="govuk-table__cell">DOC1</td>
-                <td class="govuk-table__cell"></td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">MD Ref</td>
-                <td class="govuk-table__cell">MD9TAB</td>
-                <td class="govuk-table__cell"></td>
-              </tr>
-            </tbody>
-          </table>
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Name</th>
+                  <th scope="col" class="govuk-table__header">Value</th>
+                  <th scope="col" class="govuk-table__header">Comment</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Date</td>
+                  <td class="govuk-table__cell">2024-08-13</td>
+                  <td class="govuk-table__cell"></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Value</td>
+                  <td class="govuk-table__cell">£140000</td>
+                  <td class="govuk-table__cell"></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Outstanding</td>
+                  <td class="govuk-table__cell">£123</td>
+                  <td class="govuk-table__cell"></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Fee</td>
+                  <td class="govuk-table__cell">£30.00</td>
+                  <td class="govuk-table__cell"></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Documents</td>
+                  <td class="govuk-table__cell">DOC1</td>
+                  <td class="govuk-table__cell"></td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">MD Ref</td>
+                  <td class="govuk-table__cell">MD9TAB</td>
+                  <td class="govuk-table__cell"></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <h4 class="govuk-heading-s">Transaction parties</h4>
           <p class="govuk-body">Use the following transaction parties:</p>
-          
+
           <div class="moj-scrollable-pane" role="region" aria-label="Transactions parties table" tabindex="0">
-          <table class="govuk-table">
-            <thead class="govuk-table__head">
-              <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Party</th>
-                <th scope="col" class="govuk-table__header">Role</th>
-              </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Borrower1</td>
-                <td class="govuk-table__cell">Borrower</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Borrower2</td>
-                <td class="govuk-table__cell">Borrower</td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">Lender</td>
-                <td class="govuk-table__cell">Lender</td>
-              </tr>
-            </tbody>
-          </table>
+            <table class="govuk-table">
+              <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                  <th scope="col" class="govuk-table__header">Party</th>
+                  <th scope="col" class="govuk-table__header">Role</th>
+                </tr>
+              </thead>
+              <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Borrower1</td>
+                  <td class="govuk-table__cell">Borrower</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Borrower2</td>
+                  <td class="govuk-table__cell">Borrower</td>
+                </tr>
+                <tr class="govuk-table__row">
+                  <td class="govuk-table__cell">Lender</td>
+                  <td class="govuk-table__cell">Lender</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <details class="govuk-details">
@@ -1728,11 +1743,13 @@ Example of validation failure data
 
     <!-- data policy -->
     <h2 class="govuk-heading-m" id="data-policy">Data policy</h2>
-    <p class="govuk-body">We recommend only uploading test data. Do not upload real data or anything you would not want others to see.</p>
-    <p class="govuk-body">Under our retention policy, we hold sandbox data for no more than 7.5 days. The 7.5 days includes weekends. Please take this
+    <p class="govuk-body">We recommend only uploading test data. Do not upload real data or anything you would not want
+      others to see.</p>
+    <p class="govuk-body">Under our retention policy, we hold sandbox data for no more than 7.5 days. The 7.5 days
+      includes weekends. Please take this
       into account
       if requesting assistance with a particular API call.</p>
-      
+
 
 
   </div>
