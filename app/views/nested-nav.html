@@ -1,0 +1,105 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  GOV.UK page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    <nav class="moj-side-navigation" aria-label="Side navigation">
+       <h4 class="moj-side-navigation__title">Contents</h4>
+      <ul class="moj-side-navigation__list">
+        <li class="moj-side-navigation__item nav-item">
+          <a href="#">How to use the Submit an application API</a>
+        </li>
+        <li>
+          <ul class="moj-side-navigation__list subnav-group">
+            <li class="subnav-item subnav-item--active">
+              <a href="#">Overview</a>
+            </li>
+            <li class="subnav-item">
+              <a href="#">Available notifications</a>
+              </li>
+            <li class="subnav-item">
+              <a href="#">Schemas</a>
+            </li>
+            <li class="subnav-item">
+              <a href="#">API implementation</a>
+            </li>
+          </ul>
+        </li>
+        <li class="moj-side-navigation__item">
+          <a href="#2">Validation rules</a>
+        </li>
+        <li>
+          <ul class="moj-side-navigation__list subnav-group">
+            <li class="subnav-item">
+              <a href="#">Bypass validation</a>
+            </li>
+            <li class="subnav-item">
+              <a href="#">Additional provisions validation</a>
+              </li>
+            <li class="subnav-item">
+              <a href="#">Address for service validation</a>
+            </li>
+            <li class="subnav-item">
+              <a href="#">Applicant validation</a>
+            </li>
+            <li class="subnav-item">
+              <a href="#">Borrower name, borrower representation and borrower validation</a>
+            </li>
+            <li class="subnav-item">
+              <a href="#">Capacity validation</a>
+            </li>
+            <li class="subnav-item">
+              <a href="#">Charge amount, charge date and charge fee validation</a>
+            </li>
+            <li class="subnav-item">
+              <a href="#">Company number validation</a>
+            </li>
+            <li class="subnav-item">
+              <a href="#">Consideration type validation</a>
+            </li>
+            <li class="subnav-item">
+              <a href="#">Conveyancers certificate validation</a>
+            </li>
+            <li class="subnav-item">
+              <a href="#">Customer ID and customer type validation</a>
+            </li>
+            <li class="subnav-item">
+              <a href="#">Declaration of trust validation</a>
+            </li>
+            <li class="subnav-item">
+              <a href="#">DFL5 validation</a>
+            </li>
+            <li class="subnav-item">
+              <a href="#">Discharge fee validation</a>
+            </li>
+          </ul>
+        </li>
+        <li class="moj-side-navigation__item">
+          <a href="#3">Example requests and responses</a>
+        </li>
+        <li>
+          <ul class="moj-side-navigation__list">
+            <li class="subnav-item">
+              <a href="#">Sub item A</a>
+            </li>
+            <li class="subnav-item">
+              <a href="#">Sub item B</a>
+              </li>
+            <li class="subnav-item">
+              <a href="#">Sub item C</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+
+
+{% endblock %}

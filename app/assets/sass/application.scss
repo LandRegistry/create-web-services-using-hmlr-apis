@@ -117,3 +117,44 @@
   /* purposely ignored */
   
 }
+
+.subnav-item {
+  background-color: transparent;
+  color: #1d70b8;
+  padding: 10px 10px 10px 20px;
+  border-left: 1px solid #DCDCDC;
+  margin-left: 12px;
+}
+
+.subnav-item:hover {
+  color: #0D3274;
+}
+
+
+.subnav-item--active {
+  background-color: #f3f3f3;
+  text-decoration: none;
+  border-left: 4px solid #1d70b8;
+  font-weight: 700;
+}
+
+.subnav-item a {
+  text-decoration: none;
+}
+
+.subnav-item a:visited {
+  color: #1d70b8;
+}
+
+.subnav-item a:hover {
+  color: #0D3274;
+}
+
+.nav-item {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.subnav-group {
+  margin-bottom: 0px;
+}
