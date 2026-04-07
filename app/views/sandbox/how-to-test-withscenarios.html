@@ -1,0 +1,1218 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Beta - HMLR Business Gateway Sandbox Documentation
+{% endblock %}
+
+{% block header %}
+
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+
+{{ govukHeader({
+homepageUrl: "#"
+}) }}
+
+<!-- adding highlight.js for code snippets -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+
+<!-- individually load additional languages -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/go.min.js"></script>
+
+<script>hljs.highlightAll();</script>
+
+{% endblock %}
+
+{% block beforeContent %}
+<!-- Beta phase banner -->
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+
+{{ govukPhaseBanner({
+tag: {
+text: "Beta",
+classes: "govuk-tag--blue"
+},
+html: 'The sandbox is a new service for the Submit an application to change the Land Register APIs. Help us improve it
+and <a class="govuk-link" href="https://forms.office.com/e/iswB5tf1z7" target="_blank">give your feedback (opens in new
+  tab)</a>.'
+}) }}
+
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+</div>
+<br>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    <!-- side navigation -->
+    <nav class="moj-side-navigation sticky" aria-label="Side navigation">
+      <ul class="moj-side-navigation__list">
+        <li class="moj-side-navigation__item moj-side-navigation__item--active">
+          <a href="#overview" aria-current="location">Overview</a>
+        </li>
+        <li class="moj-side-navigation__item">
+          <a href="#how-to-access-the-sandbox">How to access the sandbox</a>
+        </li>
+        <li class="moj-side-navigation__item">
+          <a href="#start-using-our-apis">Start using our APIs</a>
+        </li>
+        <li class="moj-side-navigation__item">
+          <a href="#limitations">Limitations</a>
+        </li>
+        <li class="moj-side-navigation__item">
+          <a href="#validation-rules">Validation rules</a>
+        </li>
+        <li class="moj-side-navigation__item">
+          <a href="#test-data">Test data</a>
+        </li>
+        <li class="moj-side-navigation__item">
+          <a href="#testing-scenarios">Testing scenarios</a>
+        </li>
+        <li class="moj-side-navigation__item">
+          <a href="#data-policy">Data policy</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Testing the Submit an application to change the Land Register APIs</h1>
+
+    <!-- This panel is a styling from MoJ - Inset text (highlighted) - Currently experimental -->
+    <div class="govuk-inset-text guidance-panel">
+      For this initial Beta release of the sandbox, we are focusing on simulating APIs from the <a
+        href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/"
+        target="_blank">Submit an application to change the Land Register APIs</a> <span
+        class="govuk-body govuk-!-font-weight-bold">up until the point of application acceptance. The sandbox does not
+        currently support any further stages.</span>
+      <br><br>
+      Help us improve this page and the developer pack by providing feedback via <a
+        href="https://forms.office.com/e/iswB5tf1z7" target="_blank">this form</a>. Your feedback is valuable to us and
+      will directly inform future improvements to the sandbox.
+    </div>
+
+    <!-- overview section -->
+    <h2 class="govuk-heading-m" id="overview">Overview</h2>
+    <p class="govuk-body">The sandbox is a secure, controlled test system that provides your developers
+      with an integration environment. It enables repeatable experimentation so you can safely explore configuration,
+      understand potential impacts, and identify issues early. The sandbox does not affect HM Land Registry’s live
+      production register and will not incur fees.
+    </p>
+    <p class="govuk-body">The sandbox simulates real test scenarios by providing dummy data, called  <a
+        href="#test-data">test title data</a>.
+      It simulates everything up to acceptance or rejection of an application. The sandbox does not currently support
+      further stages - applications won't be processed, completed, or cancelled. Correspondence and completion
+      documents will not be issued for downloading.
+    </p>
+    <p class="govuk-body">You may find that processing times vary and application validation will not always match the
+      live system.
+    </p>
+
+    <!-- how to access the sandbox section -->
+    <h2 class="govuk-heading-m" id="how-to-access-the-sandbox">How to access the sandbox</h2>
+    <p>If you are an existing user of our APIs, you must:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>reuse your current test TLS certificate or, if required, request a new SSL test certificate from <a
+          href="mailto:channelpartners@landregistry.gov.uk">Channel Partners</a> (channelpartners@landregistry.gov.uk)
+      </li>
+      <li>request access credentials (a username and password) &mdash; also from <a
+          href="mailto:channelpartners@landregistry.gov.uk">Channel Partners</a>.
+        You may have already received this as part of onboarding to use the sandbox environment</li>
+      <li>call the APIs from the address <code
+          style="color: #a71d5d; background-color: #f5f5f5">https://bgtest.landregistry.gov.uk/bg2sandbox/api</code>
+      </li>
+    </ul>
+
+    <p class="govuk-body">This sandbox is a closely managed test environment for the initial release, so access is
+      controlled.</p>
+
+
+
+    <!-- start using our apis section -->
+    <h2 class="govuk-heading-m" id="start-using-our-apis">Start using our APIs</h2>
+    <p class="govuk-body"><a
+        href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application-to-change-the-land-register/1.0/">View
+        our APIs</a> from the Submit an application to change the Land Register
+      APIs to learn more about how they work. To view the guidance, select the API you want to test in the sandbox from
+      the list.
+    </p>
+    <p class="govuk-body">In the sandbox, use version 1.0 of the APIs.
+    </p>
+    <p class="govuk-body">The APIs currently supported in the sandbox are:
+    </p>
+    <h3 class="govuk-heading-s"><a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/send-a-document/1.0"
+        target="_blank">Send a document API (Version 1.0)</a></h3>
+    <p class="govuk-body">Allows the request of an upload URL, uploading documents and provides partial security checks.
+    </p>
+    <p class="govuk-body">The sandbox currently supports a restricted file upload size of 100KB.</p>
+
+    <h3 class="govuk-heading-s"><a
+        href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0" target="_blank">Submit
+        an application API (Version 1.0)</a></h3>
+    <p class="govuk-body">Allows for submission of an application up to the point of acceptance or rejection. It will
+      not
+      include cancelled and completed.</p>
+
+    <h3 class="govuk-heading-s"><a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/notifications/1.0"
+        target="_blank">Notifications API (Version 1.0)</a></h3>
+    <p class="govuk-body">Provides all notification types that are sent up to the point of an application being accepted
+      or rejected. </p>
+
+    <h3 class="govuk-heading-s"><a
+        href="https://landregistry.github.io/bg-dev-pack-redesign/apis/application-information/1.0"
+        target="_blank">Application information API (Version 1.0)</a></h3>
+    <p class="govuk-body">Provides detailed information about a specific application, such as getting the latest
+      application status including validation failures. Will not include any correspondence.</p>
+
+    <!-- limitations section -->
+    <h2 class="govuk-heading-m" id="limitations">Limitations</h2>
+
+    <p class="govuk-body">As this is an early release of the sandbox, some functionality is not yet available.
+      We have provided a list of known limitations, but this is not an exhaustive list.
+    </p>
+    <p class="govuk-body">We’ll continue to improve and resolve these limitations as we develop the sandbox.
+      <a href="https://forms.office.com/e/iswB5tf1z7" target="_blank">Please let us know if you encounter any unexpected
+        limitations.</a>
+    </p>
+    <p class="govuk-body">Currently, the sandbox is unable to:
+    </p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>upload files larger than 100KB</li>
+      <li>view post-accepted statuses, which includes completed and cancelled</li>
+      <li>reply to a requisition with documents and messages</li>
+      <li>access requisition documents, completion documents and other correspondence</li>
+      <li>receive notifications that occur after the acceptance or rejection of an application</li>
+    </ul>
+    <br><br>
+    <h3 class="govuk-heading-s">The sandbox application flow</h3>
+    <p class="govuk-body">This diagram shows the APIs the sandbox currently supports and how they fit together in the
+      sandbox journey. </p>
+
+    <img src="/public/images/sandbox-api-diagram-mvp.png"
+      alt="A diagram showing the submit an application to change the Land Register API" style="width: 700px">
+
+    <p class="govuk-body">The sandbox can simulate up to the point of acceptance or rejection of an application.
+      Therefore it cannot simulate: </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Application information API
+        <ul>
+          <li>Cancelled stage</li>
+          <li>Completed stage</li>
+          <li>Requisitions</li>
+        </ul>
+      </li>
+      <li>Attach a message API</li>
+      <li>Attach a document API</li>
+      <li>Download a document API</li>
+      <li>Notifications API
+        <ul>
+          <li>Cancelled</li>
+          <li>Completed</li>
+          <li>Correspondence</li>
+        </ul>
+      </li>
+    </ul>
+
+
+    <!-- Accessing endpoints -->
+    <h3 class="govuk-heading-s">Accessing API endpoints for use with the sandbox environment</h3>
+    <p class="govuk-body">The sandbox environment uses a different API sub-domain to the live environment. The
+      endpoints can be found in the API specification for the live environment where you can also learn about the
+      OpenAPI validation rules. The API specification does not currently contain the sandbox subdomain information.</p>
+    <p class="govuk-body">Please make sure to use the URL <a href="https://bgtest.landregistry.gov.uk/bg2sandbox/api"
+        target="_blank">https://bgtest.landregistry.gov.uk/bg2sandbox/api</a> when you are using the below OpenAPI specs
+      as reference.</p>
+    <ul class="govuk-list">
+      <li><a class="govuk-body"
+          href="https://landregistry.github.io/bgtechdoc/documents/submit-an-application-to-change-the-register/v1.0/openapi.html"
+          target="_blank">Web version (opens in a new tab)</a></li>
+      <li><a class="govuk-body"
+          href="https://landregistry.github.io/bgtechdoc/documents/submit-an-application-to-change-the-register/v1.0/openapi.json"
+          target="_blank">JSON version (opens in a new tab)</a></li>
+    </ul>
+
+
+    <div class="govuk-!-padding-bottom-3"></div>
+
+    <!-- validation section -->
+    <h2 class="govuk-heading-m" id="validation-rules">Validation rules</h2>
+    <p class="govuk-body">The aim of the sandbox is to follow the same validation rules as the live system.
+      It will also cover all the validation phases. However, at present, there may be some differences between
+      validation in the sandbox and the live service. </p>
+
+    <div class="govuk-!-padding-bottom-3"></div>
+
+
+    <!-- Test data section -->
+    <h2 class="govuk-heading-m" id="test-data">Test data</h2>
+    <p class="govuk-body">Test data in the sandbox is designed to mimic real‑world data,
+      so you can run tests without affecting live systems. This provides a realistic testing experience while reducing
+      risk. </p>
+    <p class="govuk-body">When submitting an application in a live environment, you must supply title numbers,
+      addresses,
+      and names of proprietors or lenders that match data in HM Land Registry systems.</p>
+    <p class="govuk-body">For the sandbox, we supply the following test data – using real titles will not work. You will
+      have your own test data environment.</p>
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">Warning</span>
+        Only use the provided test data in the sandbox.
+        Do not upload real application data.
+      </strong>
+    </div>
+
+
+    <!-- Same MOJ inset text component as at the top of the page -->
+    <div class="govuk-inset-text guidance-panel">
+      <h3 class="govuk-heading-s">Limitations of test data</h3>
+      <p class="govuk-body">Currently, the test data only supports freehold titles.</p>
+    </div>
+
+    <!-- Same MOJ inset text component as at the top of the page -->
+    <div class="govuk-inset-text guidance-panel">
+      <h3 class="govuk-heading-s">Reporting test data errors</h3>
+      <p class="govuk-body">If you see any data that is not referenced in this guide, it is likely
+        made in error.</p>
+      <p class="govuk-body">Report any errors in the sandbox to <a
+          href="mailto:channelpartners@landregistry.gov.uk">Channel Partners</a> (channelpartners@landregistry.gov.uk).
+      </p> 
+    </div>
+
+
+    <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-test-data">
+      <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+          <h2 class="govuk-accordion__section-heading">
+            <span class="govuk-accordion__section-button" id="accordion-test-data-titles-heading">
+              Titles
+            </span>
+          </h2>
+        </div>
+        <div id="accordion-test-data-titles-content" class="govuk-accordion__section-content">
+          <p class="govuk-body"><a href="/public/docs/test-title-data.docx" download>Download the list of generated
+              titles</a>. This list includes some title numbers where there are existing charges (such as lenders, and
+            charge proprietors).</p>
+          <p class="govuk-body">All sandbox titles start with 'TT'. The numbers are made up to supply synthetic data and
+            meet specific conditions, and don’t match real titles. </p>
+          <p class="govuk-body">There are groups of synthetic titles with similar restrictions and numbers of
+            proprietors, but they differ in names and addresses. </p>
+          <p class="govuk-body">For example, TT000100 to TT000119 are freehold titles with one proprietor, where the
+            proprietor's address matches the property's address. </p>
+          <p class="govuk-body">Sandbox-generated titles have various properties, including charges, with or without
+            restrictions, and additional lender obligations.  </p>
+          <p class="govuk-body">Similarly, sample titles may be shown with or without charges, restrictions, or notices.
+            But these are generated without using the register.</p>
+          <p class="govuk-body">Existing charges, where these are MD-Ref charges (with a pre-approved mortgage deed
+            reference number), the charge will have the form of a synthetic MD-Ref charge. And the charge (the mortgage
+            company) will refer to a synthetic lender name corresponding to that MD Ref. See lender data for more about
+            existing charges where there are MD References.</p>
+        </div>
+      </div>
+      <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+          <h2 class="govuk-accordion__section-heading">
+            <span class="govuk-accordion__section-button" id="accordion-test-data-addresses-header">
+              Addresses
+            </span>
+          </h2>
+        </div>
+        <div id="accordion-test-data-addresses-content" class="govuk-accordion__section-content">
+          <p class="govuk-body">Addresses used in test data are real addresses and are taken from the Ordnance
+            Survey (OS) sample data set, which is available for download on the OS website. This is to provide a
+            more realistic test experience.</p>
+          <p class="govuk-body">These addresses are not linked to real people, restrictions, or charges.</p>
+          <p class="govuk-body">Where a company or organisation name appears in the OS address data, this will
+            be removed and not appear in the synthetic title data.</p>
+          <p class="govuk-body">For example, integrators may use existing address validation which references
+            Royal Mail PAF or OS data. This allows them to test their entire system, including their internal
+            validation against PAF/OS data, along with the BG Sandbox validation.</p>
+          <p class="govuk-body">The title data does not reference any title held by the land registry. For
+            example, a title with a specific address may be shown as a closed title, development title,
+            leasehold, or freehold in the sandbox. This has no relation to real titles held by HM Land
+            Registry.</p>
+          <p class="govuk-body">Any relation between synthetic title data in the sandbox and real data is
+            coincidental as we do not use the register data to generate synthetic data.</p>
+
+        </div>
+      </div>
+      <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+          <h2 class="govuk-accordion__section-heading">
+            <span class="govuk-accordion__section-button" id="accordion-test-data-lenderdata-heading">
+              Lender data
+            </span>
+          </h2>
+        </div>
+        <div id="accordion-test-data-lenderdata-content" class="govuk-accordion__section-content">
+          <p class="govuk-body">Charges (mortgages and loan agreements) are usually identified by an MD Reference (MD
+            Ref),
+            which identifies the lender. </p>
+          <p class="govuk-body">The sandbox provides synthetic MD References which can be used when submitting
+            applications in
+            the sandbox. None of the MD References in the sandbox are real. Similarly, the lenders recorded
+            on the title data are not real. </p>
+          <p class="govuk-body">When submitting applications, use this <a href="/public/docs/MD-references.docx"
+              download>list of MD Reference charges</a>.
+            These all
+            begin with the
+            characters MD9T.</p>
+          <p class="govuk-body">At the time of publishing, none of the test data MD reference values relate to real live
+            MD
+            references, as none start with ‘MD9T’. However, this may change. You must not reject MD reference
+            values in your live system if they match the ‘MD9T’ pattern.</p>
+        </div>
+      </div>
+      <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+          <h2 class="govuk-accordion__section-heading">
+            <span class="govuk-accordion__section-button" id="accordion-test-data-names-heading">
+              Names
+            </span>
+          </h2>
+        </div>
+        <div id="accordion-test-data-names-content" class="govuk-accordion__section-content">
+          <p class="govuk-body">Where a person’s name is required in test data, these are taken from a list of fake
+            names. 
+            These names are not taken from any living person, or organisation, or trademark, or
+            copyrighted work. </p>
+          <p class="govuk-body">The surnames are taken from European cities and towns, and the forenames are taken from
+            common
+            names of gemstones, trees, flowers, and culinary herbs. For example, TT000410 has proprietors
+            “Cedar Cagnes-sur-Mer” and “Fern Manchester”.</p>
+          <p class="govuk-body">When submitting an application against a test title, you should consult the supplied
+            title
+            data
+            to find which name to use.</p>
+          <p class="govuk-body">Any relation to any living person, organisation, work, trademark, or any intellectual
+            property
+            is coincidental.</p>
+        </div>
+      </div>
+      <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+          <h2 class="govuk-accordion__section-heading">
+            <span class="govuk-accordion__section-button" id="accordion-test-data-documents-heading">
+              Documents
+            </span>
+          </h2>
+        </div>
+        <div id="accordion-test-data-documents-content" class="govuk-accordion__section-content">
+          <p class="govuk-body">The sandbox supports file uploads of up to 100KB. You can upload more than one document,
+            as
+            long as each file does not exceed this limit.</p>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+    <!-- Testing scenarios section -->
+    <h2 class="govuk-heading-m" id="testing-scenarios">Testing scenarios</h2>
+    <!-- <p class="govuk-body">We have supplied an example of a successful and unsuccessful application submission.</p> -->
+    <p class="govuk-body">Before you start using the sandbox, familiarise yourself with the
+      <a href="/public/docs/test-title-data.docx" download>test title data</a>. The title you choose should be suitable
+      for the test you
+      wish to run. For example, for a DJP (death of joint proprietor), the title must have two
+      proprietors. <span class="govuk-!-font-weight-bold">You should only use the provided test title data and not any
+        real data.</span>
+    </p>
+    <!-- <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">Warning</span>
+        You should only use the provided test title data and not any real data.
+      </strong>
+    </div> -->
+
+    <h3 class="govuk-heading-s">Example of submitting an application in the sandbox</h3>
+    <p class="govuk-body">Imagine you wish to submit a simple charge against a single title.</p>
+    <p class="govuk-body">To do this, you would follow these steps:</p>
+    <ol class="govuk-list govuk-list--number">
+      <li>Collect the relevant test title data. This should include all the details needed to
+        submit the application, such as:
+        <ul class="govuk-list govuk-list--bullet">
+          <li>the title number</li>
+          <li>the existing proprietors </li>
+          <li>the applicants</li>
+          <li>the details of the charge to be added </li>
+          <li>the binary data for any documents required, in one of the accepted formats such as PDF,
+            JPG, GIF or TIFF </li>
+        </ul>
+      </li>
+      <li>Upload the documents (in this example, a Charge deed or CH1 form).<br><br>
+        To do this you need to obtain the document upload URL by calling the <a
+          href="https://landregistry.github.io/bg-dev-pack-redesign/apis/send-a-document/1.0/" target="_blank">Send a
+          document API</a>.
+        To obtain the document upload URL you must supply:
+        <ul class="govuk-list govuk-list--bullet">
+          <li>the size</li>
+          <li>the <code style="color: #a71d5d; background-color: #f5f5f5">sha256</code> hash of the document file</li>
+        </ul>
+        You must then record the identifier returned by the Send a document API. Once done, upload the
+        document.<br>
+      </li>
+      <li>Record the document ID in your system.</li>
+      <li>Submit a new application to change the Land Register by calling the <a
+          href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0/"
+          target="_blank">Submit an application API</a>. You need to send a JSON submission payload,
+        and the documents you mention should refer to the document IDs you got earlier.</li>
+      <li>Take note of the application ID returned after you lodge your application.</li>
+      <li>Use the application request ID at the <a
+          href="https://landregistry.github.io/bg-dev-pack-redesign/apis/application-information/1.0/"
+          target="_blank">Application information API</a> to check if the application has passed or failed validation.
+        If the application has failed, review the OpenAPI specification for <a
+          href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0/"
+          target="_blank">Submit an application API</a> or <a
+          href="https://landregistry.github.io/bg-dev-pack-redesign/apis/send-a-document/1.0/" target="_blank">Send a
+          Document API</a> for any validation issues</li>
+    </ol>
+
+    <div class="govuk-accordion" data-module="govuk-accordion" id="test-scenarios">
+      <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+          <h2 class="govuk-accordion__section-heading">
+            <span class="govuk-accordion__section-button" id="successful-scenario-heading">
+              Example scenario - Successful submission of a single transfer charge
+            </span>
+          </h2>
+        </div>
+        <div id="successful-scenario-content" class="govuk-accordion__section-content">
+          <p class="govuk-body">This example scenario provides the information needed to test a successful application
+            with a single transfer charge.</p>
+          <ol class="govuk-list govuk-list--number">
+            <li>
+              <p>Begin a <code style="color: #a71d5d; background-color: #f5f5f5">REGISTER_UPDATE</code> application for
+                the following title.</p>
+              <dl class="govuk-summary-list">
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Title number
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    TT000406
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Scope
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    WHOLE
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Interests
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    false
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Comment
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    12 Tollards Road, 2 proprietors
+                  </dd>
+                </div>
+              </dl>
+
+            </li>
+            <li>
+              <p>Next, upload the following documents:</p>
+              <table class="govuk-table">
+                <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Reference</th>
+                    <th scope="col" class="govuk-table__header">Document type</th>
+                    <th scope="col" class="govuk-table__header">Certified</th>
+                  </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                  <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">DOC1</th>
+                    <td class="govuk-table__cell">TR1</td>
+                    <td class="govuk-table__cell">Yes</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">DOC2</th>
+                    <td class="govuk-table__cell">MRTG_DEED</td>
+                    <td class="govuk-table__cell">Yes</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li>
+              <p>Add the following parties:</p>
+              <div class="moj-scrollable-pane" role="region" aria-label="Parties-table" tabindex="0">
+                <div class="govuk-summary-card">
+                  <div class="govuk-summary-card__title-wrapper">
+                    <h2 class="govuk-summary-card__title">
+                      Seller1
+                    </h2>
+                  </div>
+                  <div class="govuk-summary-card__content">
+                    <dl class="govuk-summary-list">
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Party type
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          PRIVATE_INDIVIDUAL
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          Elder Marjoram Hague
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Representation
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          OTHER_CONVEYANCER
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Address for service
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          NOT_REQUIRED
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Applicant
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          False
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          conveyancer-ukaddress-ref
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conv_ref
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          conveyancer_reference
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          Smith and Jones Conveyancing Ltd
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+                <div class="govuk-summary-card">
+                  <div class="govuk-summary-card__title-wrapper">
+                    <h2 class="govuk-summary-card__title">
+                      Seller2
+                    </h2>
+                  </div>
+                  <div class="govuk-summary-card__content">
+                    <dl class="govuk-summary-list">
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Party type
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          PRIVATE_INDIVIDUAL
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          Garnet Oxford
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Representation
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          OTHER_CONVEYANCER
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Address for service
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          NOT_REQUIRED
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Applicant
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          False
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          conveyancer-ukaddress-ref
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer reference
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          conveyancer_reference
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          Smith and Jones Conveyancing Ltd
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+                <div class="govuk-summary-card">
+                  <div class="govuk-summary-card__title-wrapper">
+                    <h2 class="govuk-summary-card__title">
+                      Buyer1
+                    </h2>
+                  </div>
+                  <div class="govuk-summary-card__content">
+                    <dl class="govuk-summary-list">
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Party type
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          PRIVATE_INDIVIDUAL
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          John Smith
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Representation
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          LODGING_CONVEYANCER
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          Address1
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Address for service
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          PROVIDED_ADDRESS
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Applicant
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          True
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer reference
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+                <div class="govuk-summary-card">
+                  <div class="govuk-summary-card__title-wrapper">
+                    <h2 class="govuk-summary-card__title">
+                      Buyer2
+                    </h2>
+                  </div>
+                  <div class="govuk-summary-card__content">
+                    <dl class="govuk-summary-list">
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Party type
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          PRIVATE_INDIVIDUAL
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          Joan Stern
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Representation
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          LODGING_CONVEYANCER
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          Address1
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Address for service
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          PROVIDED_ADDRESS
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Applicant
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          True
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer reference
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+                <div class="govuk-summary-card">
+                  <div class="govuk-summary-card__title-wrapper">
+                    <h2 class="govuk-summary-card__title">
+                      Lender
+                    </h2>
+                  </div>
+                  <div class="govuk-summary-card__content">
+                    <dl class="govuk-summary-list">
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Party type
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          UK_COMPANY
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          Ruby Yew Test Mortgages PLC
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Representation
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          LODGING_CONVEYANCER
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Address for service
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          NOT_REQUIRED
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Applicant
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          False
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer reference
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <p>Add the following addresses.</p>
+              <div class="moj-scrollable-pane" role="region" aria-label="Addresses" tabindex="0">
+                <table class="govuk-table">
+                  <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                      <th scope="col" class="govuk-table__header">Reference</th>
+                      <th scope="col" class="govuk-table__header">Type</th>
+                      <th scope="col" class="govuk-table__header">Building description</th>
+                      <th scope="col" class="govuk-table__header">Street</th>
+                      <th scope="col" class="govuk-table__header">Post town</th>
+                      <th scope="col" class="govuk-table__header">Postcode</th>
+                    </tr>
+                  </thead>
+                  <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">Address1</td>
+                      <td class="govuk-table__cell">UK</td>
+                      <td class="govuk-table__cell">12</td>
+                      <td class="govuk-table__cell">Tollards Road</td>
+                      <td class="govuk-table__cell">Exeter</td>
+                      <td class="govuk-table__cell">EX2 6JJ</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">conveyancer-ukaddress-ref</td>
+                      <td class="govuk-table__cell">UK</td>
+                      <td class="govuk-table__cell">12</td>
+                      <td class="govuk-table__cell">Cedar Brook Road</td>
+                      <td class="govuk-table__cell">Exeter</td>
+                      <td class="govuk-table__cell">EX6 6FU</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+            <li>
+              <p>There is a <code style="color: #a71d5d; background-color: #f5f5f5">TRANSFER</code> transaction for the
+                title with the following details.</p>
+              <dl class="govuk-summary-list">
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Date
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    2025-08-13
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Value
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    £140000
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Fee
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    £100.00
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Documents
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    DOC1
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Trust declaration type
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Joint tenants
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Title guarantee code
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Full
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Additional provisions code
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No provisions
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Consideration type
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    MONETARY_VALUE
+                  </dd>
+                </div>
+              </dl>
+            </li>
+            <li>
+              <p>Use the following transaction parties.</p>
+              <table class="govuk-table">
+                <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Party</th>
+                    <th scope="col" class="govuk-table__header">Role</th>
+                  </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Seller1</td>
+                    <td class="govuk-table__cell">Transferor</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Seller2</td>
+                    <td class="govuk-table__cell">Transferor</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Buyer1</td>
+                    <td class="govuk-table__cell">Transferee</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Buyer2</td>
+                    <td class="govuk-table__cell">Transferee</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li>
+              <p>There is a <code style="color: #a71d5d; background-color: #f5f5f5">CHARGE</code> transaction for the
+                title with the following details.</p>
+              <dl class="govuk-summary-list">
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    MD Ref
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    MD9TAB
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Date
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    2025-08-13
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Value
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    £80000
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Fee
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    £0.00
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Documents
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    DOC2
+                  </dd>
+                </div>
+              </dl>
+            </li>
+            <li>
+              <p>Use the following transaction parties.</p>
+              <table class="govuk-table">
+                <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Party</th>
+                    <th scope="col" class="govuk-table__header">Role</th>
+                  </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Buyer1</td>
+                    <td class="govuk-table__cell">Borrower</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Buyer2</td>
+                    <td class="govuk-table__cell">Borrower</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Lender</td>
+                    <td class="govuk-table__cell">Lender</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li>
+              <p>Submit the application with this information.</p>
+              <p>When the application is submitted, it will be successful and return the status of <code style="color: #a71d5d; background-color: #f5f5f5">ACCEPTED_PRIORITY_PROTECTED</code>.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+      <div class="govuk-accordion__section">
+        <div class="govuk-accordion__section-header">
+          <h2 class="govuk-accordion__section-heading">
+            <span class="govuk-accordion__section-button" id="unsuccessful-scenario-heading">
+              Example scenario - Unsuccessful submission of a single transfer charge
+            </span>
+          </h2>
+        </div>
+        <div id="unsuccessful-scenario-content" class="govuk-accordion__section-content">
+          <p class="govuk-body">This example scenario provides the information needed to test a unsuccessful application
+            with a single transfer charge. This example will result in validation errors.</p>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+    <!-- data policy -->
+    <h2 class="govuk-heading-m" id="data-policy">Data policy</h2>
+    <p class="govuk-body">We recommend only uploading test data. Do not upload real data or anything you would not want
+      others to see.</p>
+    <p class="govuk-body">Under our retention policy, we hold sandbox data for no more than 7.5 days. The 7.5 days
+      includes weekends. Please take this
+      into account
+      if requesting assistance with a particular API call.</p>
+
+
+
+  </div>
+</div>
+
+{% endblock %}
