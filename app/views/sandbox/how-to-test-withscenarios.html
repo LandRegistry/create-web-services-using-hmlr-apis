@@ -1175,9 +1175,232 @@ and <a class="govuk-link" href="https://forms.office.com/e/iswB5tf1z7" target="_
             </li>
             <li>
               <p>Submit the application with this information.</p>
-              <p>When the application is submitted, it will be successful and return the status of <code style="color: #a71d5d; background-color: #f5f5f5">ACCEPTED_PRIORITY_PROTECTED</code>.</p>
+              <p>When the application is submitted, it will be successful and return the status of <code
+                  style="color: #a71d5d; background-color: #f5f5f5">ACCEPTED_PRIORITY_PROTECTED</code>.</p>
             </li>
           </ol>
+          <p>We have also provided the JSON for this scenario, which can be viewed below.</p>
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                View JSON
+              </span>
+            </summary>
+            <div class="code-block-styling">
+              <pre>
+            <code class="language-json" style="background-color: #f3f2f1">
+                {
+    "submission_warning_understood": true,
+    "applicants": [
+        "Buyer1",
+        "Buyer2"
+    ],
+    "addresses": {
+        "Address1": {
+            "details": {
+                "type": "UK",
+                "building_description": "12",
+                "street": "Tollards Road",
+                "post_town": "Exeter",
+                "postcode": "EX2 6JJ"
+            }
+        },
+        "conveyancer-ukaddress-ref": {
+            "details": {
+                "type": "UK",
+                "building_description": "12",
+                "street": "Cedar Brook Road",
+                "post_town": "Exeter",
+                "postcode": "EX6 6FU"
+            }
+        }
+    },
+    "parties": {
+        "Seller1": {
+            "representation_type": "OTHER_CONVEYANCER",
+            "address_for_service_option": "NOT_REQUIRED",
+            "details": {
+                "type": "PRIVATE_INDIVIDUAL",
+                "forenames": "Elder Marjoram",
+                "surname": "Hague"
+            },
+            "other_conveyancer": {
+                "address_reference": "conveyancer-ukaddress-ref",
+                "conveyancer_reference": "conveyancer_reference",
+                "full_name": "Smith and Jones Conveyancing Ltd"
+            }
+        },
+        "Seller2": {
+            "representation_type": "OTHER_CONVEYANCER",
+            "address_for_service_option": "NOT_REQUIRED",
+            "details": {
+                "type": "PRIVATE_INDIVIDUAL",
+                "forenames": "Garnet",
+                "surname": "Oxford"
+            },
+            "other_conveyancer": {
+                "address_reference": "conveyancer-ukaddress-ref",
+                "conveyancer_reference": "conveyancer_reference",
+                "full_name": "Smith and Jones Conveyancing Ltd"
+            }
+        },
+        "Buyer1": {
+            "representation_type": "LODGING_CONVEYANCER",
+            "address_for_service_option": "PROVIDED_ADDRESS",
+            "details": {
+                "type": "PRIVATE_INDIVIDUAL",
+                "forenames": "John",
+                "surname": "Smith"
+            },
+            "addresses": "Address1"
+        },
+        "Buyer2": {
+            "representation_type": "LODGING_CONVEYANCER",
+            "address_for_service_option": "PROVIDED_ADDRESS",
+            "details": {
+                "type": "PRIVATE_INDIVIDUAL",
+                "forenames": "Joan",
+                "surname": "Stern"
+            },
+            "addresses": "Address1"
+        },
+        "Lender": {
+            "representation_type": "LODGING_CONVEYANCER",
+            "address_for_service_option": "NOT_REQUIRED",
+            "details": {
+                "type": "UK_COMPANY",
+                "organisation_name": "Ruby Yew Test Mortgages PLC",
+                "company_number": ""
+            }
+        }
+    },
+    "titles": {
+        "title-1": {
+            "title_number": "TT000406",
+            "scope_details": {
+                "scope": "WHOLE"
+            },
+            "disclosable_overriding_interests": false,
+            "title_type": "REGISTER_TITLE"
+        }
+    },
+    "customer_reference": "ref-20260331123256400850",
+    "application_lodger": {
+        "email": "John.Doe@conveyancingcompany.co.uk",
+        "type": "CONVEYANCER"
+    },
+    "jp1_reference": null,
+    "total_fee_in_pence": 10000,
+    "transactions": {
+        "transaction-001": {
+            "type": "T",
+            "title_references": [
+                "title-1"
+            ],
+            "priority": 1,
+            "documents": [
+                "DOC1"
+            ],
+            "party_roles": [
+                {
+                    "party_reference": "Seller1",
+                    "role": "TRANSFEROR",
+                    "capacity": "NOT_REQUIRED"
+                },
+                {
+                    "party_reference": "Seller2",
+                    "role": "TRANSFEROR",
+                    "capacity": "NOT_REQUIRED"
+                },
+                {
+                    "party_reference": "Buyer1",
+                    "role": "TRANSFEREE",
+                    "capacity": "NOT_REQUIRED"
+                },
+                {
+                    "party_reference": "Buyer2",
+                    "role": "TRANSFEREE",
+                    "capacity": "NOT_REQUIRED"
+                }
+            ],
+            "details": {
+                "type": "TRANSFER",
+                "value": 140000,
+                "value_band": null,
+                "date": "2025-08-13",
+                "trust_declaration_type": "JOINT_TENANTS",
+                "trust_details": null,
+                "title_guarantee_code": "FULL",
+                "additional_provisions_code": "NO_PROVISIONS",
+                "additional_provisions": null,
+                "consideration_type": "MONETARY_VALUE",
+                "consideration_description": null,
+                "full_value_of_property_band": null
+            },
+            "fee_in_pence": 10000
+        },
+        "transaction-002": {
+            "type": "C",
+            "title_references": [
+                "title-1"
+            ],
+            "priority": 2,
+            "documents": [
+                "DOC2"
+            ],
+            "party_roles": [
+                {
+                    "party_reference": "Buyer1",
+                    "role": "BORROWER",
+                    "capacity": "NOT_REQUIRED"
+                },
+                {
+                    "party_reference": "Buyer2",
+                    "role": "BORROWER",
+                    "capacity": "NOT_REQUIRED"
+                },
+                {
+                    "party_reference": "Lender",
+                    "role": "LENDER",
+                    "capacity": "NOT_REQUIRED"
+                }
+            ],
+            "details": {
+                "type": "CHARGE",
+                "value": 80000,
+                "mdref": "MD9TAB",
+                "date": "2025-08-13",
+                "outstanding_charge": null
+            },
+            "fee_in_pence": 0
+        }
+    },
+    "documents": {
+        "DOC1": {
+            "document_id": "ef6656d2-2080-461f-b061-8e7e86f2d52b",
+            "type": "TR1",
+            "document_metadata": {
+                "certification_statement_type": "CERTIFIED",
+                "document_filename": "DOC1-TR1.pdf"
+            }
+        },
+        "DOC2": {
+            "document_id": "7c3bdc8d-1ac2-4fc8-934c-14c2315e8b10",
+            "type": "MRTG_DEED",
+            "document_metadata": {
+                "certification_statement_type": "CERTIFIED",
+                "document_filename": "DOC2-MRTG_DEED.pdf"
+            }
+        }
+    },
+    "disagree_with_validation_results": [],
+    "type": "REGISTER_UPDATE"
+}
+
+            </code>
+          </pre>
+            </div>
+          </details>
         </div>
       </div>
       <div class="govuk-accordion__section">
