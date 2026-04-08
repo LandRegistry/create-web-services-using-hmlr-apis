@@ -473,7 +473,8 @@ and <a class="govuk-link" href="https://forms.office.com/e/iswB5tf1z7" target="_
     </ol>
 
     <h3 class="govuk-heading-s">Example test scenarios</h3>
-    <p class="govuk-body">We have provided an example of a successful and unsuccessful single transfer charge to get you started.</p>
+    <p class="govuk-body">We have provided an example of a successful and unsuccessful single transfer charge to get you
+      started.</p>
 
     <div class="govuk-accordion" data-module="govuk-accordion" id="test-scenarios">
       <div class="govuk-accordion__section">
@@ -489,7 +490,8 @@ and <a class="govuk-link" href="https://forms.office.com/e/iswB5tf1z7" target="_
             with a single transfer charge.</p>
           <ol class="govuk-list govuk-list--number">
             <li>
-              <p class="govuk-body">Begin a <code style="color: #a71d5d; background-color: #f5f5f5">REGISTER_UPDATE</code> application for
+              <p class="govuk-body">Begin a <code
+                  style="color: #a71d5d; background-color: #f5f5f5">REGISTER_UPDATE</code> application for
                 the following title:</p>
               <dl class="govuk-summary-list">
                 <div class="govuk-summary-list__row">
@@ -1007,7 +1009,8 @@ and <a class="govuk-link" href="https://forms.office.com/e/iswB5tf1z7" target="_
               </div>
             </li>
             <li>
-              <p class="govuk-body">There is a <code style="color: #a71d5d; background-color: #f5f5f5">TRANSFER</code> transaction for the
+              <p class="govuk-body">There is a <code style="color: #a71d5d; background-color: #f5f5f5">TRANSFER</code>
+                transaction for the
                 title with the following details:</p>
               <dl class="govuk-summary-list">
                 <div class="govuk-summary-list__row">
@@ -1106,7 +1109,8 @@ and <a class="govuk-link" href="https://forms.office.com/e/iswB5tf1z7" target="_
               </table>
             </li>
             <li>
-              <p class="govuk-body">There is a <code style="color: #a71d5d; background-color: #f5f5f5">CHARGE</code> transaction for the
+              <p class="govuk-body">There is a <code style="color: #a71d5d; background-color: #f5f5f5">CHARGE</code>
+                transaction for the
                 title with the following details:</p>
               <dl class="govuk-summary-list">
                 <div class="govuk-summary-list__row">
@@ -1178,8 +1182,8 @@ and <a class="govuk-link" href="https://forms.office.com/e/iswB5tf1z7" target="_
             </li>
             <li>
               <p class="govuk-body">Submit the application with this information.</p>
-              <p class="govuk-body">When the application is submitted, it will be successful and return the status of <code
-                  style="color: #a71d5d; background-color: #f5f5f5">ACCEPTED_PRIORITY_PROTECTED</code>.</p>
+              <p class="govuk-body">When the application is submitted, it will be successful and return the status of
+                <code style="color: #a71d5d; background-color: #f5f5f5">ACCEPTED_PRIORITY_PROTECTED</code>.</p>
             </li>
           </ol>
           <p class="govuk-body">We have also provided the JSON for this scenario, which can be viewed below.</p>
@@ -1406,6 +1410,8 @@ and <a class="govuk-link" href="https://forms.office.com/e/iswB5tf1z7" target="_
           </details>
         </div>
       </div>
+      <!--End happy path scenario-->
+      <!--Start unhappy path scenario-->
       <div class="govuk-accordion__section">
         <div class="govuk-accordion__section-header">
           <h2 class="govuk-accordion__section-heading">
@@ -1416,7 +1422,928 @@ and <a class="govuk-link" href="https://forms.office.com/e/iswB5tf1z7" target="_
         </div>
         <div id="unsuccessful-scenario-content" class="govuk-accordion__section-content">
           <p class="govuk-body">This example scenario provides the information needed to test a unsuccessful application
-            with a single transfer charge. This example will result in validation errors.</p>
+            with a single transfer charge. <span class="govuk-body govuk-!-font-weight-bold">This example will result in validation errors.</span></p>
+          <ol class="govuk-list govuk-list--number">
+            <li>
+              <p class="govuk-body">Begin a <code
+                  style="color: #a71d5d; background-color: #f5f5f5">REGISTER_UPDATE</code> application for
+                the following title:</p>
+              <dl class="govuk-summary-list">
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Title number
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    TT000406
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Scope
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    WHOLE
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Interests
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    False
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Comment
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    12 Tollards Road, 2 proprietors
+                  </dd>
+                </div>
+              </dl>
+
+            </li>
+            <li>
+              <p class="govuk-body">Next, upload the following documents:</p>
+              <table class="govuk-table">
+                <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Reference</th>
+                    <th scope="col" class="govuk-table__header">Document type</th>
+                    <th scope="col" class="govuk-table__header">Certified</th>
+                  </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                  <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">DOC1</th>
+                    <td class="govuk-table__cell">TR1</td>
+                    <td class="govuk-table__cell">Yes</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <th scope="row" class="govuk-table__header">DOC2</th>
+                    <td class="govuk-table__cell">MRTG_DEED</td>
+                    <td class="govuk-table__cell">Yes</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li>
+              <p class="govuk-body">Add the following parties:</p>
+              <div class="moj-scrollable-pane" role="region" aria-label="Parties-table" tabindex="0">
+                <div class="govuk-summary-card">
+                  <div class="govuk-summary-card__title-wrapper">
+                    <h2 class="govuk-summary-card__title">
+                      Seller1
+                    </h2>
+                  </div>
+                  <div class="govuk-summary-card__content">
+                    <dl class="govuk-summary-list">
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Party type
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          PRIVATE_INDIVIDUAL
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          Zacary Smith
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Representation
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          OTHER_CONVEYANCER
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Address for service
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          NOT_REQUIRED
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Applicant
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          False
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          conveyancer-ukaddress-ref
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conv_ref
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          conveyancer_reference
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          Smith and Jones Conveyancing Ltd
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+                <div class="govuk-summary-card">
+                  <div class="govuk-summary-card__title-wrapper">
+                    <h2 class="govuk-summary-card__title">
+                      Seller2
+                    </h2>
+                  </div>
+                  <div class="govuk-summary-card__content">
+                    <dl class="govuk-summary-list">
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Party type
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          PRIVATE_INDIVIDUAL
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          Garnet Oxford
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Representation
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          OTHER_CONVEYANCER
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Address for service
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          NOT_REQUIRED
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Applicant
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          False
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          conveyancer-ukaddress-ref
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer reference
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          conveyancer_reference
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          Smith and Jones Conveyancing Ltd
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+                <div class="govuk-summary-card">
+                  <div class="govuk-summary-card__title-wrapper">
+                    <h2 class="govuk-summary-card__title">
+                      Buyer1
+                    </h2>
+                  </div>
+                  <div class="govuk-summary-card__content">
+                    <dl class="govuk-summary-list">
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Party type
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          PRIVATE_INDIVIDUAL
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          John Smith
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Representation
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          LODGING_CONVEYANCER
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          Address1
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Address for service
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          PROVIDED_ADDRESS
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Applicant
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          True
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer reference
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+                <div class="govuk-summary-card">
+                  <div class="govuk-summary-card__title-wrapper">
+                    <h2 class="govuk-summary-card__title">
+                      Buyer2
+                    </h2>
+                  </div>
+                  <div class="govuk-summary-card__content">
+                    <dl class="govuk-summary-list">
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Party type
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          PRIVATE_INDIVIDUAL
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          Joan Stern
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Representation
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          LODGING_CONVEYANCER
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          Address1
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Address for service
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          PROVIDED_ADDRESS
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Applicant
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          True
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer reference
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+                <div class="govuk-summary-card">
+                  <div class="govuk-summary-card__title-wrapper">
+                    <h2 class="govuk-summary-card__title">
+                      Lender
+                    </h2>
+                  </div>
+                  <div class="govuk-summary-card__content">
+                    <dl class="govuk-summary-list">
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Party type
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          UK_COMPANY
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          Ruby Yew Test Mortgages PLC
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Representation
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          LODGING_CONVEYANCER
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Address for service
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          NOT_REQUIRED
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Applicant
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          False
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer address
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer reference
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                      <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                          Conveyancer name
+                        </dt>
+                        <dd class="govuk-summary-list__value">
+                          -
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <p class="govuk-body">Add the following addresses:</p>
+              <div class="moj-scrollable-pane" role="region" aria-label="Addresses" tabindex="0">
+                <table class="govuk-table">
+                  <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                      <th scope="col" class="govuk-table__header">Reference</th>
+                      <th scope="col" class="govuk-table__header">Type</th>
+                      <th scope="col" class="govuk-table__header">Building description</th>
+                      <th scope="col" class="govuk-table__header">Street</th>
+                      <th scope="col" class="govuk-table__header">Post town</th>
+                      <th scope="col" class="govuk-table__header">Postcode</th>
+                    </tr>
+                  </thead>
+                  <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">Address1</td>
+                      <td class="govuk-table__cell">UK</td>
+                      <td class="govuk-table__cell">12</td>
+                      <td class="govuk-table__cell">Tollards Road</td>
+                      <td class="govuk-table__cell">Exeter</td>
+                      <td class="govuk-table__cell">EX2 6JJ</td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                      <td class="govuk-table__cell">conveyancer-ukaddress-ref</td>
+                      <td class="govuk-table__cell">UK</td>
+                      <td class="govuk-table__cell">12</td>
+                      <td class="govuk-table__cell">Cedar Brook Road</td>
+                      <td class="govuk-table__cell">Exeter</td>
+                      <td class="govuk-table__cell">EX6 6FU</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </li>
+            <li>
+              <p class="govuk-body">There is a <code style="color: #a71d5d; background-color: #f5f5f5">TRANSFER</code>
+                transaction for the
+                title with the following details:</p>
+              <dl class="govuk-summary-list">
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Date
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    2025-08-13
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Value
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    £140000
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Fee
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    £100.00
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Documents
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    DOC1
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Trust declaration type
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Joint tenants
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Title guarantee code
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    Full
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Additional provisions code
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    No provisions
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Consideration type
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    MONETARY_VALUE
+                  </dd>
+                </div>
+              </dl>
+            </li>
+            <li>
+              <p class="govuk-body">Use the following transaction parties:</p>
+              <table class="govuk-table">
+                <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Party</th>
+                    <th scope="col" class="govuk-table__header">Role</th>
+                  </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Seller1</td>
+                    <td class="govuk-table__cell">Transferor</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Seller2</td>
+                    <td class="govuk-table__cell">Transferor</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Buyer1</td>
+                    <td class="govuk-table__cell">Transferee</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Buyer2</td>
+                    <td class="govuk-table__cell">Transferee</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li>
+              <p class="govuk-body">There is a <code style="color: #a71d5d; background-color: #f5f5f5">CHARGE</code>
+                transaction for the
+                title with the following details:</p>
+              <dl class="govuk-summary-list">
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    MD Ref
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    MD9TAB
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Date
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    2025-08-13
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Value
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    £80000
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Fee
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    £0.00
+                  </dd>
+                </div>
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Documents
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    DOC2
+                  </dd>
+                </div>
+              </dl>
+            </li>
+            <li>
+              <p class="govuk-body">Use the following transaction parties:</p>
+              <table class="govuk-table">
+                <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Party</th>
+                    <th scope="col" class="govuk-table__header">Role</th>
+                  </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Buyer1</td>
+                    <td class="govuk-table__cell">Borrower</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Buyer2</td>
+                    <td class="govuk-table__cell">Borrower</td>
+                  </tr>
+                  <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Lender</td>
+                    <td class="govuk-table__cell">Lender</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li>
+              <p class="govuk-body">Submit the application with this information.</p>
+              <p class="govuk-body">When the application is submitted, it will return the status of
+                <code style="color: #a71d5d; background-color: #f5f5f5">VALIDATION_FAILED</code>.</p>
+                <p class="govuk-body">The validation error returned will read:</p>
+                <p class="govuk-body"><code style="color: #a71d5d; background-color: #f5f5f5">1 proprietor(s) on title 'TT000406' cannot be matched to a transferor on transaction</code></p>
+            </li>
+          </ol>
+          <p class="govuk-body">We have also provided the JSON for this scenario, which can be viewed below.</p>
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                View JSON
+              </span>
+            </summary>
+            <div class="code-block-styling">
+              <pre>
+            <code class="language-json" style="background-color: #f3f2f1">
+                {
+    "submission_warning_understood": true,
+    "applicants": [
+        "Buyer1",
+        "Buyer2"
+    ],
+    "addresses": {
+        "Address1": {
+            "details": {
+                "type": "UK",
+                "building_description": "12",
+                "street": "Tollards Road",
+                "post_town": "Exeter",
+                "postcode": "EX2 6JJ"
+            }
+        },
+        "conveyancer-ukaddress-ref": {
+            "details": {
+                "type": "UK",
+                "building_description": "12",
+                "street": "Cedar Brook Road",
+                "post_town": "Exeter",
+                "postcode": "EX6 6FU"
+            }
+        }
+    },
+    "parties": {
+        "Seller1": {
+            "representation_type": "OTHER_CONVEYANCER",
+            "address_for_service_option": "NOT_REQUIRED",
+            "details": {
+                "type": "PRIVATE_INDIVIDUAL",
+                "forenames": "Zachary",
+                "surname": "Smith"
+            },
+            "other_conveyancer": {
+                "address_reference": "conveyancer-ukaddress-ref",
+                "conveyancer_reference": "conveyancer_reference",
+                "full_name": "Smith and Jones Conveyancing Ltd"
+            }
+        },
+        "Seller2": {
+            "representation_type": "OTHER_CONVEYANCER",
+            "address_for_service_option": "NOT_REQUIRED",
+            "details": {
+                "type": "PRIVATE_INDIVIDUAL",
+                "forenames": "Garnet",
+                "surname": "Oxford"
+            },
+            "other_conveyancer": {
+                "address_reference": "conveyancer-ukaddress-ref",
+                "conveyancer_reference": "conveyancer_reference",
+                "full_name": "Smith and Jones Conveyancing Ltd"
+            }
+        },
+        "Buyer1": {
+            "representation_type": "LODGING_CONVEYANCER",
+            "address_for_service_option": "PROVIDED_ADDRESS",
+            "details": {
+                "type": "PRIVATE_INDIVIDUAL",
+                "forenames": "John",
+                "surname": "Smith"
+            },
+            "addresses": "Address1"
+        },
+        "Buyer2": {
+            "representation_type": "LODGING_CONVEYANCER",
+            "address_for_service_option": "PROVIDED_ADDRESS",
+            "details": {
+                "type": "PRIVATE_INDIVIDUAL",
+                "forenames": "Joan",
+                "surname": "Stern"
+            },
+            "addresses": "Address1"
+        },
+        "Lender": {
+            "representation_type": "LODGING_CONVEYANCER",
+            "address_for_service_option": "NOT_REQUIRED",
+            "details": {
+                "type": "UK_COMPANY",
+                "organisation_name": "Ruby Yew Test Mortgages PLC",
+                "company_number": ""
+            }
+        }
+    },
+    "titles": {
+        "title-1": {
+            "title_number": "TT000406",
+            "scope_details": {
+                "scope": "WHOLE"
+            },
+            "disclosable_overriding_interests": false,
+            "title_type": "REGISTER_TITLE"
+        }
+    },
+    "customer_reference": "ref-20260407102239411662",
+    "application_lodger": {
+        "email": "John.Doe@conveyancingcompany.co.uk",
+        "type": "CONVEYANCER"
+    },
+    "jp1_reference": null,
+    "total_fee_in_pence": 10000,
+    "transactions": {
+        "transaction-001": {
+            "type": "T",
+            "title_references": [
+                "title-1"
+            ],
+            "priority": 1,
+            "documents": [
+                "DOC1"
+            ],
+            "party_roles": [
+                {
+                    "party_reference": "Seller1",
+                    "role": "TRANSFEROR",
+                    "capacity": "NOT_REQUIRED"
+                },
+                {
+                    "party_reference": "Seller2",
+                    "role": "TRANSFEROR",
+                    "capacity": "NOT_REQUIRED"
+                },
+                {
+                    "party_reference": "Buyer1",
+                    "role": "TRANSFEREE",
+                    "capacity": "NOT_REQUIRED"
+                },
+                {
+                    "party_reference": "Buyer2",
+                    "role": "TRANSFEREE",
+                    "capacity": "NOT_REQUIRED"
+                }
+            ],
+            "details": {
+                "type": "TRANSFER",
+                "value": 140000,
+                "value_band": null,
+                "date": "2025-08-13",
+                "trust_declaration_type": "JOINT_TENANTS",
+                "trust_details": null,
+                "title_guarantee_code": "FULL",
+                "additional_provisions_code": "NO_PROVISIONS",
+                "additional_provisions": null,
+                "consideration_type": "MONETARY_VALUE",
+                "consideration_description": null,
+                "full_value_of_property_band": null
+            },
+            "fee_in_pence": 10000
+        },
+        "transaction-002": {
+            "type": "C",
+            "title_references": [
+                "title-1"
+            ],
+            "priority": 2,
+            "documents": [
+                "DOC2"
+            ],
+            "party_roles": [
+                {
+                    "party_reference": "Buyer1",
+                    "role": "BORROWER",
+                    "capacity": "NOT_REQUIRED"
+                },
+                {
+                    "party_reference": "Buyer2",
+                    "role": "BORROWER",
+                    "capacity": "NOT_REQUIRED"
+                },
+                {
+                    "party_reference": "Lender",
+                    "role": "LENDER",
+                    "capacity": "NOT_REQUIRED"
+                }
+            ],
+            "details": {
+                "type": "CHARGE",
+                "value": 80000,
+                "mdref": "MD9TAB",
+                "date": "2025-08-13",
+                "outstanding_charge": null
+            },
+            "fee_in_pence": 0
+        }
+    },
+    "documents": {
+        "DOC1": {
+            "document_id": "ea38040b-3c8a-4ba5-8958-667c4cd76100",
+            "type": "TR1",
+            "document_metadata": {
+                "certification_statement_type": "CERTIFIED",
+                "document_filename": "DOC1-TR1.pdf"
+            }
+        },
+        "DOC2": {
+            "document_id": "790eba97-cd9a-4efa-9fde-56167fc8e05f",
+            "type": "MRTG_DEED",
+            "document_metadata": {
+                "certification_statement_type": "CERTIFIED",
+                "document_filename": "DOC2-MRTG_DEED.pdf"
+            }
+        }
+    },
+    "disagree_with_validation_results": [],
+    "type": "REGISTER_UPDATE"
+}
+            </code>
+          </pre>
+            </div>
+          </details>
         </div>
       </div>
     </div>
