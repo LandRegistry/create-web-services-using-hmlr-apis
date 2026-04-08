@@ -418,9 +418,16 @@ and <a class="govuk-link" href="https://forms.office.com/e/iswB5tf1z7" target="_
       <a href="/public/docs/test-title-data.docx" download>test title data</a>. The title you choose should be suitable
       for the test you
       wish to run. For example, for a DJP (death of joint proprietor), the title must have two
-      proprietors. <span class="govuk-!-font-weight-bold">You should only use the provided test title data and not any
-        real data.</span>
+      proprietors.
     </p>
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">Warning</span>
+        You should only use the provided test title data and not any
+        real data.
+      </strong>
+    </div>
     <!-- <div class="govuk-warning-text">
       <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
       <strong class="govuk-warning-text__text">
@@ -1183,7 +1190,8 @@ and <a class="govuk-link" href="https://forms.office.com/e/iswB5tf1z7" target="_
             <li>
               <p class="govuk-body">Submit the application with this information.</p>
               <p class="govuk-body">When the application is submitted, it will be successful and return the status of
-                <code style="color: #a71d5d; background-color: #f5f5f5">ACCEPTED_PRIORITY_PROTECTED</code>.</p>
+                <code style="color: #a71d5d; background-color: #f5f5f5">ACCEPTED_PRIORITY_PROTECTED</code>.
+              </p>
             </li>
           </ol>
           <p class="govuk-body">We have also provided the JSON for this scenario, which can be viewed below.</p>
@@ -1421,7 +1429,8 @@ and <a class="govuk-link" href="https://forms.office.com/e/iswB5tf1z7" target="_
           </h2>
         </div>
         <div id="unsuccessful-scenario-content" class="govuk-accordion__section-content">
-          <p class="govuk-body">This example scenario provides the information needed to test an unsuccessful application
+          <p class="govuk-body">This example scenario provides the information needed to test an unsuccessful
+            application
             with a single transfer charge.</p>
           <p class="govuk-body">Note: This example will result in validation errors.</p>
           <ol class="govuk-list govuk-list--number">
@@ -2119,9 +2128,12 @@ and <a class="govuk-link" href="https://forms.office.com/e/iswB5tf1z7" target="_
             <li>
               <p class="govuk-body">Submit the application with this information.</p>
               <p class="govuk-body">When the application is submitted, it will return the status of
-                <code style="color: #a71d5d; background-color: #f5f5f5">VALIDATION_FAILED</code>.</p>
-                <p class="govuk-body">The validation error returned will read:</p>
-                <p class="govuk-body"><code style="color: #a71d5d; background-color: #f5f5f5">1 proprietor(s) on title 'TT000406' cannot be matched to a transferor on transaction</code></p>
+                <code style="color: #a71d5d; background-color: #f5f5f5">VALIDATION_FAILED</code>.
+              </p>
+              <p class="govuk-body">The validation error returned will read:</p>
+              <p class="govuk-body"><code
+                  style="color: #a71d5d; background-color: #f5f5f5">1 proprietor(s) on title 'TT000406' cannot be matched to a transferor on transaction</code>
+              </p>
             </li>
           </ol>
           <p class="govuk-body">We have also provided the JSON for this scenario, which can be viewed below.</p>
