@@ -468,14 +468,15 @@ and <a class="govuk-link" href="https://forms.office.com/e/iswB5tf1z7" target="_
           target="_blank">Submit an application API</a>. You need to send a JSON submission payload,
         and the documents you mention should refer to the document IDs you got earlier.</li>
       <li>Take note of the application ID returned after you lodge your application.</li>
-      <li>Use the application request ID at the <a
+      <li>Check if the application has passed or failed validation by calling the <a
+          href="https://landregistry.github.io/bg-dev-pack-redesign/apis/notifications/1.0/"
+          target="_blank">Notifications API</a>.
+        If the application has failed, call the <a
           href="https://landregistry.github.io/bg-dev-pack-redesign/apis/application-information/1.0/"
-          target="_blank">Application information API</a> to check if the application has passed or failed validation.
-        If the application has failed, review the OpenAPI specification for <a
-          href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0/"
-          target="_blank">Submit an application API</a> or <a
-          href="https://landregistry.github.io/bg-dev-pack-redesign/apis/send-a-document/1.0/" target="_blank">Send a
-          Document API</a> for any validation issues</li>
+          target="_blank">Application information API</a> to obtain further details, then review the OpenAPI specification for the <a
+          href="https://landregistry.github.io/bg-dev-pack-redesign/apis/submit-an-application/1.0/" target="_blank">Send a
+          document API</a> or the <a href="https://landregistry.github.io/bg-dev-pack-redesign/apis/send-a-document/1.0/" target="_blank">Send a
+          document API</a> for any validation issues.</li>
     </ol>
 
     <h3 class="govuk-heading-s">Example test scenarios</h3>
