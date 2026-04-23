@@ -5,6 +5,38 @@
 
 // Add extra styles here
 
+// Header fix
+.govuk-template--rebranded .govuk-header,
+.govuk-template--rebranded .govuk-header__link--homepage:not(:focus) {
+  background: #789904;
+}
+.govuk-logo-dot {
+  fill: #ffffff;
+}
+// Footer fix
+.govuk-template--rebranded .govuk-footer {
+  background: #f8faf2;
+  border-top: 10px solid #789904;
+}
+.govuk-footer__copyright-logo--hmlr {
+  background-image: url(/public/images/hmlr-logo-grey.svg);
+  display: block;
+  background-repeat: no-repeat;
+  min-width: 172px;
+  padding-top: 65px;
+  background-image: url("/hmlrassets/images/hmlr-logo-grey.svg");
+  filter: saturate(300%) grayscale(100%) brightness(64%) contrast(350%);
+  background-size: 172px 55px;
+}
+.govuk-footer__copyright-logo::before {
+  display:none;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2),only screen and (min-resolution: 192dpi),only screen and (min-resolution: 2dppx) {
+  .govuk-footer__copyright-logo--hmlr {
+    background-image: url("/public/images/hmlr-logo-grey.svg");
+  }
+}
+
 .guidance-panel {
         border-left-color: govuk-colour('blue');
         background-color: #eaf4f9;
